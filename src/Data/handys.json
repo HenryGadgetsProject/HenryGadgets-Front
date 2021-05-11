@@ -1,0 +1,149 @@
+[
+    {
+        "email": "heinz-georg.fiedler@example.com",
+        "name": "Heinz-Georg",
+        "id": "0F8JIqi4zwvb77FGz6Wt",
+        "rating": 4,
+        "address": "la garnacha 547",
+        "picture": "https://randomuser.me/api/portraits/men/1.jpg",
+        "categories": [
+            {
+                "id": 1,
+                "name": "carpinteria"
+            },
+            {
+                "id": 2,
+                "name": "electricista"
+            }
+        ],
+        "visit_fee": 0,
+        "dni": "14.541.978",
+        "phone": "54112154678"
+    },
+    {
+        "email": "Aheinz-georg.fiedler@example.com",
+        "name": "AHeinz-Georg",
+        "id": "A0F8JIqi4zwvb77FGz6Wt",
+        "rating": 3,
+        "address": "Ala garnacha 547",
+        "picture": "https://randomuser.me/api/portraits/men/2.jpg",
+        "categories": [
+            {
+                "id": 2,
+                "name": "carpinteria"
+            },
+            {
+                "id": 15,
+                "name": "plomeria"
+            }
+        ],
+        "visit_fee": 100,
+        "dni": "A14.541.978",
+        "phone": "A54112154678"
+    },
+    {
+        "email": "Bheinz-georg.fiedler@example.com",
+        "name": "BHeinz-Georg",
+        "id": "B0F8JIqi4zwvb77FGz6Wt",
+        "rating": 3,
+        "address": "Bla garnacha 547",
+        "picture": "https://randomuser.me/api/portraits/men/3.jpg",
+        "categories": [
+            {
+                "id": 2,
+                "name": "carpinteria"
+            },
+            {
+                "id": 15,
+                "name": "plomeria"
+            }
+        ],
+        "visit_fee": 100,
+        "dni": "B14.541.978",
+        "phone": "B54112154678"
+    },
+    {
+        "email": "Cheinz-georg.fiedler@example.com",
+        "name": "CHeinz-Georg",
+        "id": "C0F8JIqi4zwvb77FGz6Wt",
+        "rating": 5,
+        "address": "Cla garnacha 547",
+        "picture": "https://randomuser.me/api/portraits/men/4.jpg",
+        "categories": [
+            {
+                "id": 6,
+                "name": "electricidad"
+            },
+            {
+                "id": 15,
+                "name": "plomeria"
+            }
+        ],
+        "visit_fee": 0,
+        "dni": "C14.541.978",
+        "phone": "C54112154678"
+    },
+    {
+        "email": "Dheinz-georg.fiedler@example.Dom",
+        "name": "DHeinz-Georg",
+        "id": "D0F8JIqi4zwvb77FGz6Wt",
+        "rating": 5,
+        "address": "Dla garnadha 547",
+        "picture": "https://randomuser.me/api/portraits/men/5.jpg",
+        "categories": [
+            {
+                "id": 6,
+                "name": "electricidad"
+            },
+            {
+                "id": 2,
+                "name": "carpinteria"
+            }
+        ],
+        "visit_fee": 0,
+        "dni": "D14.541.978",
+        "phone": "D54112154678"
+    },
+    {
+        "email": "Eheinz-georg.fiedler@example.Dom",
+        "name": "EHeinz-Georg",
+        "id": "E0F8JIqi4zwvb77FGz6Wt",
+        "rating": 5,
+        "address": "Ela garnadha 547",
+        "picture": "https://randomuser.me/api/portraits/men/6.jpg",
+        "categories": [
+            {
+                "id": 1,
+                "name": "belleza"
+            },
+            {
+                "id": 12,
+                "name": "limpieza"
+            }
+        ],
+        "visit_fee": 0,
+        "dni": "E14.541.978",
+        "phone": "E54112154678"
+    },
+    {
+        "email": "Fheinz-georg.fiedler@example.Dom",
+        "name": "FHeinz-Georg",
+        "id": "F0F8JIqi4zwvb77FGz6Wt",
+        "rating": 5,
+        "address": "Fla garnadha 547",
+        "picture": "https://randomuser.me/api/portraits/men/7.jpg",
+        "categories": [
+            {
+                "id": 1,
+                "name": "belleza"
+            },
+            {
+                "id": 12,
+                "name": "limpieza"
+            }
+        ],
+        "visit_fee": 0,
+        "dni": "F14.541.978",
+        "phone": "F54112154678"
+    }
+]
