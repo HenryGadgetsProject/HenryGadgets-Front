@@ -16,7 +16,6 @@ const Category = ({ categoryId }) => {
 
     const products = useSelector(state => state.product.filteredProducts);
 
-
     return (
         <div className="container">
             <Header id="header">

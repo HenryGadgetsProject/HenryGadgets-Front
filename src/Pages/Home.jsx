@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
 
-    const popularProducts = useSelector((state) => state.product.popularProducts)
+    // const popularProducts = useSelector((state) => state.product.popularProducts)
     const categories = useSelector((state) => state.category.categories)
 
     // const handleCategoryClick = (e) => {
@@ -36,11 +36,11 @@ const Home = () => {
                     renderIndicator={false}
                     infiniteLoop={true}
                     showThumbs={false}>
-                    {categories.map((item) => (
-                        <Link to={`/category/${item.id}`} key={item.id}>
-                            <div className="category-slide" id={item.id} >
-                                <span className="slideTitle">{item.name}</span>
-                                <img src={item.photo} alt={item.name} />
+                    {categories.map((category) => (
+                        <Link to={`/category/${category.id}`} key={category.id}>
+                            <div className="category-slide" id={category.id} >
+                                <span className="slideTitle">{category.name}</span>
+                                <img src={category.photo} alt={category.name} />
                             </div>
                         </Link>
                     )
@@ -56,14 +56,10 @@ const Home = () => {
 
                     <div className="popular-products">
                         {/* <TopServices - Cards /> */}
-                        {popularProducts.map(product => {
-                            return (
-                                <HomeCards
-                                    key={product.id}
-                                    product={product}
-                                />
-                            )
-                        })}
+
+                        {/* Pasamos la parte lógica hacia HomeCards para ahorrar código en Home */}                        
+                        <HomeCards/>
+
                     </div>
                 </section>
             </Main>

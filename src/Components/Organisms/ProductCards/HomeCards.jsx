@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import Button from '../../Atoms/Button'
+import { useSelector } from 'react-redux'
 
 import styled from 'styled-components'
 
@@ -54,19 +54,37 @@ const Cards = styled.div`
     }
 `
 
+const HomeCards = () => {
+    
+    // No funciona el dispatch de Redux, llega como 'undefined'
+    // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
+    // const dispatch = useDispatch()
+    const products = useSelector((state) => state.product.products)
 
-const HomeCards = ({ product }) => {
-    const { id, name, rating, categories, picture } = product
+    // useEffect(() => {
+    //     dispatch(getProducts());
+    // }, [dispatch])
+
+    // console.log(products) // Undefined
 
     return (
-        <Link to={`/productx/${id}`} key={id}>
-            <Cards onClick={() => console.log(id)}>
-                <img src={picture} alt={name}></img><br />
-                <p>{name}</p>
-                <b>{rating} ⭐</b><br /><br />
-                {categories.map(category => <span className="cat-name">{category.name}</span>)}
-            </Cards>
-        </Link>
+        <div>
+            {products.map(p => {
+            return(
+                <Link to={`/product/${p.id}`} key={p?.id}>
+                    <Cards>
+                        <img src={p.big_image} alt={p.name}></img><br />
+                        <p>{p.name}</p>
+                        <p>{p.price}$</p>
+                        <p>{p.rating}</p>
+                        {/* REVIEWS MODAL (Probablemente) */}
+                        {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                    </Cards>
+                </Link>
+            )
+        })}
+            {/* <h3>No hay productos disponibles</h3> */}
+        </div>
     )
 }
 

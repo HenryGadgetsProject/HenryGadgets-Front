@@ -1,4 +1,4 @@
-import products from '../../Data/products';
+// import products from '../../Data/products';
 import {
     PRODUCT_ERROR,
     PRODUCT_REQUEST,
@@ -17,7 +17,7 @@ import {
 
 const initialState = {
     loading: false,
-    products: products,
+    products: [],
     filteredProducts: [],
     popularProducts: [],
     product: {},
@@ -61,7 +61,7 @@ const ProductReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                product: state.products.find(p => p.id === action.payload)
+                product: state.products.find(p => parseInt(p.id) === parseInt(action.payload))
             }
         }
 

@@ -23,14 +23,12 @@ export const getProducts = () => {
                 type: PRODUCT_REQUEST
             }
         )
-
-        const BASE_URL = 'https://dummyapi.io/data/api'
-        const APP_ID = '5ffd995bfae5180ad0926c02'
-        axios.get(`${BASE_URL}/user/`, { headers: { 'app-id': APP_ID } })
+        // const BASE_URL = 'https://dummyapi.io/data/api'
+        // const APP_ID = '5ffd995bfae5180ad0926c02'
+        // axios.get(`${BASE_URL}/user/`, { headers: { 'app-id': APP_ID } })
+        axios.get('http://localhost:3001/products')
             .then(response => {
-
-
-                const products = response.data.data
+                const products = response.data
                 dispatch(
                     {
                         type: GET_PRODUCT_SUCCESS,

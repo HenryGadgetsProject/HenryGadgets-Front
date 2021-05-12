@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchCategories } from '../../../Redux/Actions/Categories/CategoriesActions'
+import { getProducts } from '../../../Redux/Actions/Product/ProductActions'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -60,7 +60,7 @@ const Li = styled.li`
 const SearchBar = () => {
 
     const dispatch = useDispatch()
-    const foundCategories = useSelector(state => state.category.foundCategories)
+    const foundProducts = useSelector(state => state.product.products)
 
     const [inputValue, setInputValue] = useState('');
     const [options, setOptions] = useState([]);
@@ -70,13 +70,17 @@ const SearchBar = () => {
         setOptions([]);
     }
 
+
+    // ------------------------------------- REVISAR SEARCHBAR --------------------------------
+    // Los dispatch me traen todos los productos en vez de hacer un filtrado correctamente por el value
+
     const handleChange = (e) => {
-        setOptions(foundCategories);
+        setOptions(foundProducts);
         setInputValue(e.target.value);
         if (inputValue.length > 2) {
-            dispatch(searchCategories(inputValue))
+            dispatch(getProducts(inputValue))
         } else {
-            dispatch(searchCategories(inputValue))
+            dispatch(getProducts(inputValue))
             setOptions([])
         }
     }
@@ -86,15 +90,15 @@ const SearchBar = () => {
             <Input
                 value={inputValue}
                 onChange={handleChange}
-                placeholder="🔍 Selecciona una categoría..."
+                placeholder="🔍 Buscar un producto..."
             />
             <SuggestContainer>
                 <Ul>
                     {options.length > 0 ?
-                        options.map((categories) => (
-                            <Link to={`/category/${categories.id}`} key={categories.id} onClick={handleClick}>
-                                <Li key={`${categories.id}`}>
-                                    {categories.name}
+                        options.map((products) => (
+                            <Link to={`/product/${products.id}`} key={products.id} onClick={handleClick}>
+                                <Li key={`${products.id}`}>
+                                    {products.name}
                                 </Li>
                             </Link>
                         )) : null}

@@ -37,13 +37,12 @@ const DetailedCard = styled.div`
 
     p {
         color           : var(--pure-black);
-        font-size       : 3em;
+        font-size       : 2.2em;
         margin          : .5em;
     }
 `
 
 const Product = ({ productId }) => {
-    console.log('PRODUCT', productId)
 
     const dispatch = useDispatch()
 
@@ -55,24 +54,22 @@ const Product = ({ productId }) => {
 
     console.log(product)
 
-
     return (
         <div className="container">
         <Header id="header">
             <h1>Henry Gadgets</h1>
         </Header>
 
+        {/* const { id, name, price, stock, description, rating, big_image } = product */}
+
         <Main id="main">
             <DetailedCard>
-                {/* <HomeCards product={product} /> */}
                 <h3>{product.name}</h3>
-                {/* <h3>{product.categories.map(category => <span className="pepe">{category.name}</span>)}</h3> */}
-                <img src={product.picture} alt={product.name} />
-                {/* <p>{`${product.email}`}</p> */}
-                {/* <p>{`Dirección: ${product.address}`}</p> */}
-                {/* <p>{`Costo de visita: ${product.visitfee}$`}</p> */}
-                {/* <p>{`Teléfono: ${product.phone}`}</p> */}
-                {/* <p>{`DNI: ${product.dni}`}</p> */}
+                <img src={product.big_image} alt={product.name} />
+                <p>Descripción: {product.description}</p>
+                <p>Rating: {product.rating}</p>
+                <p>Stock: {product.stock} unidades</p>
+                <p>{product.price}$</p>
             </DetailedCard>
         </Main>
         </div>
