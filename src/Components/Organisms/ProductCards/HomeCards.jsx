@@ -72,18 +72,18 @@ const HomeCards = () => {
         <div>
             {products.map(p => {
             return(
-                
+                <>
                     <Cards key={p?.id}>
-                    <Link to={`/product/${p.id}`}>
-                        <img src={p.big_image} alt={p.name}></img><br />
-                    </Link>
+                        <Link to={`/product/${p.id}`}>
+                            <img src={p.big_image} alt={p.name}></img><br />
+                        </Link>
                         <p>{p.name}</p>
                         <p>{p.price}$</p>
                         <p>{p.rating}</p>
                         {/* REVIEWS MODAL (Probablemente) */}
                         {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                     </Cards>
-                
+                </>
             )
         })}
             {/* <h3>No hay productos disponibles</h3> */}
