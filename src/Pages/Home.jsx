@@ -1,17 +1,16 @@
 import React from 'react'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
-import HomeCards from '../Components/Organisms/HandyCards/HomeCards'
+import HomeCards from '../Components/Organisms/ProductCards/HomeCards'
 import { useSelector } from 'react-redux'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 //import data from '../Data/categories'
 import { Link } from 'react-router-dom'
 
-
 const Home = () => {
 
-    const popularHandys = useSelector((state) => state.handler.popularHandys)
+    const popularProducts = useSelector((state) => state.product.popularProducts)
     const categories = useSelector((state) => state.category.categories)
 
     // const handleCategoryClick = (e) => {
@@ -23,11 +22,11 @@ const Home = () => {
     return (
         <div className="container">
             <Header id="header">
-                <h1>HandyX</h1>
+                <h1>Henry Gadgets</h1>
             </Header>
 
             <Main id="main">
-                {/* ya tiene preparado el onClick para que vaya a /handlers/id */}
+                {/* ya tiene preparado el onClick para que vaya a /products/id */}
                 <Carousel
                     autoPlay={true}
                     interval={3000}
@@ -53,15 +52,15 @@ const Home = () => {
                         {/* <Pagination /> */}
                     </div>
 
-                    <h2>HandyX destacados.</h2>
+                    <h2>Productos destacados.</h2>
 
-                    <div className="popular-handys">
+                    <div className="popular-products">
                         {/* <TopServices - Cards /> */}
-                        {popularHandys.map(handy => {
+                        {popularProducts.map(product => {
                             return (
                                 <HomeCards
-                                    key={handy.id}
-                                    handy={handy}
+                                    key={product.id}
+                                    product={product}
                                 />
                             )
                         })}

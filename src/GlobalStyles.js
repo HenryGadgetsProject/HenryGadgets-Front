@@ -317,7 +317,7 @@ const GlobalStyle = createGlobalStyle`
 
 
     ${'' /* Others */}
-    .popular-handys{
+    .popular-products{
         margin-top:5rem;
         display:flex;
         flex-wrap: wrap;
@@ -334,7 +334,7 @@ const GlobalStyle = createGlobalStyle`
         padding-top:10em;
     } */}
 
-    ${'' /* .handy-page-container{
+    ${'' /* .product-page-container{
         padding-top:10em;
     } */}
 `

@@ -1,4 +1,4 @@
-const handlers = [
+const products = [
     {
         email: "Guille.Bravo@example.com",
         name: "Guille Bravo",
@@ -169,8 +169,8 @@ const handlers = [
     }
 ]
 
-export default handlers;
+export default products;
 
 
-// const popularHandys = handlers.filter(h => h.rating > 4)
-// console.log(popularHandys);
+// const popularProducts = products.filter(h => h.rating > 4)
+// console.log(popularProducts);

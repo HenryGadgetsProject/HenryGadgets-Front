@@ -43,7 +43,7 @@ const NavBar = () => {
             <LogoDiv>
                 <Link to="/home">
                     <img
-                        id="logo-handyman"
+                        id="logo-productman"
                         src={Logo}
                         width="50"
                         height="50"

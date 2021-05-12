@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-// import { getHandys } from '../Redux/Actions/Handy/HandyActions'
+// import { getProducts } from '../Redux/Actions/Handy/HandyActions'
 import { getCategoriasProvisorio } from '../Redux/Actions/Categories/CategoriesActions'
-import { getPopularHandys } from '../Redux/Actions/Handy/HandyActions'
+import { getPopularProducts } from '../Redux/Actions/Product/ProductActions'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components';
@@ -48,16 +48,16 @@ const Landing = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(getHandys())        
+        // dispatch(getProducts())        
         dispatch(getCategoriasProvisorio())
-        dispatch(getPopularHandys());
+        dispatch(getPopularProducts());
         // dispatch(searchCategories('lim'))
     }, [dispatch])
 
     return (
         <Div>
             <Link to='/home'>
-                <p>Buscamos la solución a tu problema.</p>
+                <p>Vendemos lo que buscas.</p>
             </Link>
         </Div>
     )

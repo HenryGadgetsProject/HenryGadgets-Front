@@ -5,14 +5,14 @@ import ToggleForm from './Components/Molecules/Toggle'
 import Footer from './Components/Organisms/Footer'
 import About from './Pages/About'
 import CreatePost from './Pages/CreatePost'
-import DetailPost from './Pages/DetailPost'
+// import DetailPost from './Pages/DetailPost'
 import Home from './Pages/Home'
 import Landing from './Pages/Landing'
 import MyChart from './Pages/MyChart'
 import NotFound from './Pages/NotFound'
 import { useSelector } from 'react-redux'
-import CategoryPage from './Pages/CategoryPage'
-import HandyPage from './Pages/HandyPage'
+import Category from './Pages/Category'
+import Product from './Pages/Product'
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import { ThemeProvider } from 'styled-components'
@@ -41,10 +41,10 @@ function App() {
                     path="/create"
                     component={CreatePost}
                 />
-                <Route
+                {/* <Route
                     path="/detail/:id"
                     component={DetailPost}
-                />
+                /> */}
                 <Route
                     path="/home"
                     component={Home}
@@ -55,11 +55,11 @@ function App() {
                 />
                 <Route
                     exact path='/category/:categoryId'
-                    render={({ match }) => <CategoryPage categoryId={match.params.categoryId} />}
+                    render={({ match }) => <Category categoryId={match.params.categoryId} />}
                 />
                 <Route
-                    exact path='/handyx/:handyId'
-                    render={({ match }) => <HandyPage handyId={match.params.handyId} />}
+                    exact path='/product/:productId'
+                    render={({ match }) => <Product productId={match.params.productId} />}
                 />
 
                 <Route

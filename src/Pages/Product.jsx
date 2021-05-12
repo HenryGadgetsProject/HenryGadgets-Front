@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
-import { getHandysById } from '../Redux/Actions/Handy/HandyActions'
+import { getProductsById } from '../Redux/Actions/Product/ProductActions'
 
 import styled from 'styled-components'
 
@@ -42,41 +42,41 @@ const DetailedCard = styled.div`
     }
 `
 
-const HandyPage = ({ handyId }) => {
-    console.log('HANDY', handyId)
+const Product = ({ productId }) => {
+    console.log('PRODUCT', productId)
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getHandysById(handyId))
-    }, [dispatch, handyId])
+        dispatch(getProductsById(productId))
+    }, [dispatch, productId])
 
-    const handy = useSelector(state => state.handler.handy)
+    const product = useSelector(state => state.product.product)
 
-    console.log(handy)
+    console.log(product)
 
 
     return (
         <div className="container">
         <Header id="header">
-            <h1>HandyX</h1>
+            <h1>Henry Gadgets</h1>
         </Header>
 
         <Main id="main">
             <DetailedCard>
-                {/* <HomeCards handy={handy} /> */}
-                <h3>{handy.name}</h3>
-                {/* <h3>{handy.categories.map(category => <span className="pepe">{category.name}</span>)}</h3> */}
-                <img src={handy.picture} alt={handy.name} />
-                <p>{`${handy.email}`}</p>
-                <p>{`Dirección: ${handy.address}`}</p>
-                <p>{`Costo de visita: ${handy.visitfee}$`}</p>
-                <p>{`Teléfono: ${handy.phone}`}</p>
-                <p>{`DNI: ${handy.dni}`}</p>
+                {/* <HomeCards product={product} /> */}
+                <h3>{product.name}</h3>
+                {/* <h3>{product.categories.map(category => <span className="pepe">{category.name}</span>)}</h3> */}
+                <img src={product.picture} alt={product.name} />
+                {/* <p>{`${product.email}`}</p> */}
+                {/* <p>{`Dirección: ${product.address}`}</p> */}
+                {/* <p>{`Costo de visita: ${product.visitfee}$`}</p> */}
+                {/* <p>{`Teléfono: ${product.phone}`}</p> */}
+                {/* <p>{`DNI: ${product.dni}`}</p> */}
             </DetailedCard>
         </Main>
         </div>
     )
 }
 
-export default HandyPage
+export default Product

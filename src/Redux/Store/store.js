@@ -1,14 +1,13 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 import categoriesReducer from '../Reducers/CategoriesReducer'
-import handlerReducer from '../Reducers/HandyReducer'
+import productReducer from '../Reducers/ProductReducer'
 import globalReducer from '../Reducers/GlobalReducer'
 
 const rootReducer = combineReducers({
-    handler: handlerReducer,
+    product: productReducer,
     category: categoriesReducer,
     global: globalReducer
-
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

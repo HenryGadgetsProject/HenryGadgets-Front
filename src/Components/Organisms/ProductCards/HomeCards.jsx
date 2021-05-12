@@ -55,11 +55,11 @@ const Cards = styled.div`
 `
 
 
-const HomeCards = ({ handy }) => {
-    const { id, name, rating, categories, picture } = handy
+const HomeCards = ({ product }) => {
+    const { id, name, rating, categories, picture } = product
 
     return (
-        <Link to={`/handyx/${id}`} key={id}>
+        <Link to={`/productx/${id}`} key={id}>
             <Cards onClick={() => console.log(id)}>
                 <img src={picture} alt={name}></img><br />
                 <p>{name}</p>
