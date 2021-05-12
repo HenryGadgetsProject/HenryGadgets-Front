@@ -39,11 +39,11 @@ const Ul = styled.ul`
 const MenuOptBar = ({ open }) => {
     return (
         <Ul open = { open }>
-            {/* <li>
+            <li>
                 <Link to = "/create"  className = "link">
                     Crear publicación
                 </Link>
-            </li> */}
+            </li>
             <li>
                 <Link to = "/about"  className = "link">
                     Acerca de

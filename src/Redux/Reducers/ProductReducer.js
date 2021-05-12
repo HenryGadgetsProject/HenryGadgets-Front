@@ -7,7 +7,11 @@ import {
     GET_PRODUCTS_BY_ID,
     GET_PRODUCTS_BY_CATEGORY_ID,
     GET_PRODUCTS_BY_CATEGORY_NAME,
-
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_REQUEST,
+    CREATE_PRODUCT_ERROR,
+    GET_SEARCH_SUCCESS,
+    GET_PRODUCTS_BY_NAME,
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -21,6 +25,7 @@ const initialState = {
     filteredProducts: [],
     popularProducts: [],
     product: {},
+    createdProduct: {},
     error: ''
 }
 
@@ -61,7 +66,7 @@ const ProductReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                product: state.products.find(p => parseInt(p.id) === parseInt(action.payload))
+                product: state.products.find(p => p.id === action.payload)
             }
         }
 
@@ -76,6 +81,46 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredProducts: state.products.filter(product => product.categories.some(category => category.name === action.payload))
+            }
+        }
+
+        case CREATE_PRODUCT_REQUEST: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case CREATE_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                createdProduct: action.payload,
+                products: [...state.products, action.payload],
+                loading: false
+            }
+        }
+
+        case CREATE_PRODUCT_ERROR: {
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        }
+
+        // case GET_SEARCH_SUCCESS: {
+        //     return {
+        //         ...state,
+        //         filteredProducts: action.payload,
+        //         loading: false,
+        //     }
+        // }
+
+        case GET_PRODUCTS_BY_NAME: {
+            return {
+                ...state,
+                // filteredProducts: state.products.filter(product => product.name.contains(action.payload))
+                filteredProducts: state.products.filter(product => product.name.includes(action.payload))
             }
         }
 

@@ -8,12 +8,15 @@ import {
     GET_PRODUCTS_BY_ID,
     GET_PRODUCTS_BY_CATEGORY_ID,
     GET_PRODUCTS_BY_CATEGORY_NAME,
-
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_REQUEST,
+    CREATE_PRODUCT_ERROR,
+    GET_SEARCH_SUCCESS,
+    GET_PRODUCTS_BY_NAME,
     // FILTER_PRODUCT_BY_CATEGORY
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
-    // ADD_PRODUCT
 } from './ProductActionTypes'
 
 export const getProducts = () => {
@@ -72,5 +75,46 @@ export const getProductsByCategoryName = (name) => {
     return {
         type: GET_PRODUCTS_BY_CATEGORY_NAME,
         payload: name
+    }
+}
+
+export const addProduct = (body) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: CREATE_PRODUCT_REQUEST
+            }
+        )
+        axios.post('http://localhost:3001/products', body)
+            .then(response => {
+                const product = response.data
+                dispatch(
+                    {
+                        type: CREATE_PRODUCT_SUCCESS,
+                        payload: product
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: CREATE_PRODUCT_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const searchProducts = (query) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: GET_PRODUCTS_BY_NAME,
+                payload: query
+            }
+        )
+        
     }
 }

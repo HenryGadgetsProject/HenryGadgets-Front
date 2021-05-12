@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
+import ProductForm from '../Components/Organisms/ProductForm'
 
 const CreatePost = () => {
     return (
@@ -10,7 +11,8 @@ const CreatePost = () => {
             </Header>
 
             <Main id="main">
-                <h3>Crea una publicación.</h3>
+                {/* <h3>Crea una publicación.</h3> */}
+                <ProductForm/>
             </Main>
         </div>
     )

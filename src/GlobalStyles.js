@@ -173,16 +173,17 @@ const GlobalStyle = createGlobalStyle`
         margin: 0 auto;
         ${'' /* place-self  : center; */}
         display         : flex;
-        flex-direction  : row;
-        flex-wrap       : wrap;
+        ${'' /* flex-direction  : row; */}
+        flex-direction  : column;
+        ${'' /* flex-wrap       : wrap; */}
         justify-content : center;
 
         padding         : .5em;
-        max-width       : 90%;
+        width           : 90%;
         @media(min-width: 99.2em) and (max-width: 120em) {
-            ${'' /* border: .3em dotted #AF0000; */}
-            display     : block;
-            grid-column : 1 / 25;
+            border: .3em dotted #AF0000;
+            ${'' /* display     : block;
+            grid-column : 1 / 25; */}
         }
     }
 
@@ -318,10 +319,11 @@ const GlobalStyle = createGlobalStyle`
 
     ${'' /* Others */}
     .popular-products{
-        margin-top:5rem;
-        display:flex;
+        display:flex !important;
+        flex-direction: row !important;
         flex-wrap: wrap;
         justify-content:space-around;
+        width: 100%;
     }
 
     .category-slide{

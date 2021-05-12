@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../../../Redux/Actions/Product/ProductActions'
+import { searchProducts } from '../../../Redux/Actions/Product/ProductActions'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
@@ -60,7 +60,7 @@ const Li = styled.li`
 const SearchBar = () => {
 
     const dispatch = useDispatch()
-    const foundProducts = useSelector(state => state.product.products)
+    const foundProducts = useSelector(state => state.product.filteredProducts)
 
     const [inputValue, setInputValue] = useState('');
     const [options, setOptions] = useState([]);
@@ -78,9 +78,9 @@ const SearchBar = () => {
         setOptions(foundProducts);
         setInputValue(e.target.value);
         if (inputValue.length > 2) {
-            dispatch(getProducts(inputValue))
+            dispatch(searchProducts(inputValue))
         } else {
-            dispatch(getProducts(inputValue))
+            dispatch(searchProducts(inputValue))
             setOptions([])
         }
     }
