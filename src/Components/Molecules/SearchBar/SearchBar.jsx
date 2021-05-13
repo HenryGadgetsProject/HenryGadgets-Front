@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchProducts } from '../../../Redux/Actions/Product/ProductActions'
 import { Link } from 'react-router-dom'
+import debounce from 'lodash.debounce';
 
 import styled from 'styled-components'
 
@@ -66,33 +67,45 @@ const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
     const [options, setOptions] = useState([]);
 
-    const handleClick = () => {
-        setInputValue('');
-        setOptions([]);
-    }
-
-
-    // ------------------------------------- REVISAR SEARCHBAR --------------------------------
-    // Los dispatch me traen todos los productos en vez de hacer un filtrado correctamente por el value
+    const delayInput = useCallback(
+        debounce((input) => dispatch(searchProducts(input)), 300),
+        []
+    );
 
     const handleChange = (e) => {
         setOptions(foundProducts);
         setInputValue(e.target.value);
         if (inputValue.length > 2) {
-            dispatch(searchProducts(inputValue))
+            delayInput(e.target.value)
+            // dispatch(searchProducts(inputValue))
         } else {
-            dispatch(searchProducts(inputValue))
+            delayInput(e.target.value)
+            // dispatch(searchProducts(inputValue))
             setOptions([])
         }
     }
+    
+    // Busca en caso de no encontrar alguna sugerencia
+    const handleSubmit =(e)=>{
+        e.preventDefault();
+        dispatch(searchProducts(inputValue))
+    }
 
+    // Vacía la barra de autocompletado al hacer click en una sugerencia
+    const handleClick = () => {
+        setInputValue('');
+        setOptions([]);
+    }
+    
     return (
-        <div>
+        <>
+        <form onSubmit={handleSubmit}>
             <Input
                 value={inputValue}
                 onChange={handleChange}
                 placeholder="🔍 Buscar un producto..."
             />
+            {/* <input type="submit" value="Buscar"/> */}
             <SuggestContainer>
                 <Ul>
                     {options.length > 0 ?
@@ -105,7 +118,8 @@ const SearchBar = () => {
                         )) : null}
                 </Ul>
             </SuggestContainer>
-        </div>
+        </form>
+        </>
     )
 }
 

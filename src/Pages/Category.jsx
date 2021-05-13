@@ -19,7 +19,7 @@ const Category = ({ categoryId }) => {
     return (
         <div className="container">
             <Header id="header">
-                <h1>Henry Gadgets</h1>
+                {/* <h1>Henry Gadgets</h1> */}
             </Header>
 
             {products.length === 0 ?

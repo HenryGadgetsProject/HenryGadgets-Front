@@ -8,6 +8,7 @@ const NotFoundContainer = styled.div`
     flex-direction      : column;
     justify-self        : center;
     margin              : 0 auto;
+    margin-top          : 8em;
     max-width           : 55em;
     padding             : .5em;
     text-align          : justify;
