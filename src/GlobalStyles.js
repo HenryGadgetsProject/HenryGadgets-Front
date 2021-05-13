@@ -4,12 +4,12 @@ import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
     // background          : 'linear-gradient(to right, #FE4918, #FFF8DC)',
-    background          : 'linear-gradient(to right, #FFA000, #FFF8DC)',
+    background          : 'linear-gradient(to right, #ff1744, #ff1744)',
     fontColor           : '#212121',
 
     // Color Palette - Light Theme
     colorPalette        : {
-        darkPrimary     : '#FFA000',
+        darkPrimary     : '#c4001d',
         defaultPrimary  : '#FFC107',
         lightPrimary    : '#FFECB3',
         textPrimary     : '#212121',
@@ -267,7 +267,7 @@ const GlobalStyle = createGlobalStyle`
         top             : 10%;
         color           : var(--pure-white);
         font-size       : 10em;
-        text-shadow     : .3em .5em .8em var(--pure-black);
+        text-shadow: 3px 5px 8px var(--pure-black);
     }
 
     .carousel-root{
@@ -276,7 +276,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .carousel.carousel-slider{
-        max-height      : 60em;
+        max-height      : 32em;
     }
     
 
@@ -287,16 +287,16 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* margin:             : auto 1.8em; */}
         padding             : .8em;
         &:hover {
-            border          : .1em solid var(--accent);
+            /* border          : .1em solid var(--accent); */
             ${'' /* background      : var(--accent); */}
-            background-image: radial-gradient(rgba(0, 0, 0, 1) 55%, var(--accent));
-            border-radius   : 3em;
-            box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            /* background-image: radial-gradient(rgba(0, 0, 0, 1) 55%, var(--accent)); */
+            /* border-radius   : 3em; */
+            /* box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
         }
         &:active {
-            background      : var(--light-primary);
+            /* background      : var(--light-primary);
             color           : #000000;
-            font-weight     : bold;
+            font-weight     : bold; */
         }
     }
 
@@ -319,10 +319,10 @@ const GlobalStyle = createGlobalStyle`
 
     ${'' /* Others */}
     .popular-products{
-        display:flex !important;
-        flex-direction: row !important;
+        display:flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        justify-content:space-around;
+        justify-content:center;
         width: 100%;
     }
 

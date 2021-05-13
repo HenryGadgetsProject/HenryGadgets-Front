@@ -52,7 +52,7 @@ const Home = () => {
                         {/* <Pagination /> */}
                     </div>
 
-                    <h2>Productos destacados.</h2>
+                    <h2>Catálogo</h2>
 
                     <div className="popular-products">
                         {/* <TopServices - Cards /> */}

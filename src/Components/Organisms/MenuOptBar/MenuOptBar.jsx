@@ -36,19 +36,42 @@ const Ul = styled.ul`
     }
 `
 
+const Img = styled.img`
+    width: 2em;
+    height: 2em;
+    transition: 0.5s;
+    &:hover {
+        transform: scale(1.30)
+    }
+`
+
+const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
+const createIcon = 'https://api.iconify.design/gridicons:create.svg?color=white'
+const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
+
 const MenuOptBar = ({ open }) => {
     return (
         <Ul open = { open }>
             <li>
-                <Link to = "/create"  className = "link">
-                    Crear publicación
+                <Link to = "/MyChart"  className="link">
+                    <Img src={chartIcon} alt='chart'></Img>
                 </Link>
             </li>
             <li>
+                <Link to = "/create"  className="link">
+                    <Img src={createIcon} alt='create'></Img>
+                </Link>
+            </li>
+            <li>
+                <Link to = "/admin"  className="link">
+                    <Img src={adminIcon} alt='admin'></Img>
+                </Link>
+            </li>
+            {/* <li>
                 <Link to = "/about"  className = "link">
                     Acerca de
                 </Link>
-            </li>
+            </li> */}
             {/* <li>Contact Us</li>
             <li>Sign In</li>
             <li>Sign Up</li> */}

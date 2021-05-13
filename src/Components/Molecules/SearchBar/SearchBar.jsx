@@ -8,8 +8,8 @@ import styled from 'styled-components'
 // Styled Components
 const Input = styled.input`
     background      : var(--pure-white);
-    border          : .2em solid var(--divider);
-    border-radius   : 3em;
+    border          : .2em solid var(--pure-black);
+    /* border-radius   : 3em; */
     ${'' /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1); */}
     font-size       : 1.3em;
     font-weight     : 600;
@@ -23,10 +23,10 @@ const Input = styled.input`
 
 const SuggestContainer = styled.div`
     border-radius       : .3em;
-    margin-left         : 1.3em;
+    margin-left         : 0.2em;
     max-height          : 24em;
     ${'' /* max-width           : 21.35em; */}
-    width               : 30em;
+    width               : 32.1em;
     overflow            : scroll;
     &::-webkit-scrollbar {
         display         : none;
@@ -50,7 +50,8 @@ const Li = styled.li`
     padding-left        : 1em;
     transition          : .3s;
     &:hover {
-        background-color: var(--default-primary);
+        /* background-color: var(--default-primary); */
+        background-color: #ff616f;
         color           : var(--pure-white);
         cursor          : pointer;
         transform       : scale(1.05);

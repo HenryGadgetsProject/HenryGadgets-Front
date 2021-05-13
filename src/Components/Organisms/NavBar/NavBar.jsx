@@ -4,7 +4,7 @@ import SearchBar from '../../Molecules/SearchBar'
 import MenuBurgerOptBar from '../MenuBurgerOptBar'
 
 import styled from 'styled-components'
-import Logo from '../../../Images/Logo.png'
+// import Logo from '../../../Images/Logo.png'
 
 const Nav = styled.nav`
     ${'' /* background      : ${ props => props.theme.background || '#000000' }; */}
@@ -44,7 +44,7 @@ const NavBar = () => {
                 <Link to="/home">
                     <img
                         id="logo-productman"
-                        src={Logo}
+                        src="https://i.imgur.com/To3EW78.png"
                         width="50"
                         height="50"
                         alt=""

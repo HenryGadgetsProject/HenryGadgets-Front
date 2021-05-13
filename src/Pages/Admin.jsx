@@ -1,9 +1,8 @@
 import React from 'react'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
-import ProductForm from '../Components/Organisms/ProductForm'
 
-const CreatePost = () => {
+const Admin = () => {
     return (
         <div className="container">
             <Header id="header">
@@ -11,10 +10,10 @@ const CreatePost = () => {
             </Header>
 
             <Main id="main">
-                <ProductForm/>
+                <h3>Control Panel</h3>
             </Main>
         </div>
     )
 }
 
-export default CreatePost
+export default Admin

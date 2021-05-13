@@ -15,7 +15,7 @@ import data from '../../../Data/categories'
 export const getCategories = () => {
     return (dispatch) => {
         dispatch({ type: CATEGORY_REQUEST })
-        axios.get("/categories")
+        axios.get("http://localhost:3001/categories")
             .then(response => {
                 const categories = response.data
                 dispatch(

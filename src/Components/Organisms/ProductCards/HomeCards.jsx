@@ -21,21 +21,21 @@ const Cards = styled.div`
     transition              : all .3s ease;
     width                   : 30em;
     &:hover {
-        border              : .5em solid var(--dark-primary);
-        box-shadow          : 0px 0px 50px var(--font-color);
+        /* border              : .20em solid var(--dark-primary); */
+        box-shadow          : 0px 0px 10px var(--font-color);
         box-sizing: border-box;
-        transform           : scale(1.11);
+        transform           : scale(1.01);
     }
 
     img {
-        border-radius       : 50%;
-        height              : 13em;
-        width               : 13em;
+        height              : 16em;
+        width               : 16em;
+        object-fit          : contain;
     }
 
     p {
-        color               : var(--dark-primary);
-        font-size           : 2.5em;
+        color               : var(--pure-black);
+        font-size           : 2em;
         margin              : .5em;
     }
 
@@ -69,7 +69,7 @@ const HomeCards = () => {
     // console.log(products) // Undefined
 
     return (
-        <div>
+        <>
             {products.map(p => {
             return(
                 <>
@@ -78,7 +78,7 @@ const HomeCards = () => {
                             <img src={p.big_image} alt={p.name}></img><br />
                         </Link>
                         <p>{p.name}</p>
-                        <p>{p.price}$</p>
+                        <p>{p.price} $</p>
                         <p>{p.rating}</p>
                         {/* REVIEWS MODAL (Probablemente) */}
                         {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
@@ -87,7 +87,7 @@ const HomeCards = () => {
             )
         })}
             {/* <h3>No hay productos disponibles</h3> */}
-        </div>
+        </>
     )
 }
 

@@ -16,6 +16,7 @@ import Product from './Pages/Product'
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import { ThemeProvider } from 'styled-components'
+import Admin from './Pages/Admin'
 
 function App() {
     const mode = useSelector((state) => state.global.theme)
@@ -52,6 +53,10 @@ function App() {
                 <Route
                     path="/chart"
                     component={MyChart}
+                />
+                <Route
+                    path="/admin"
+                    component={Admin}
                 />
                 <Route
                     exact path='/category/:categoryId'

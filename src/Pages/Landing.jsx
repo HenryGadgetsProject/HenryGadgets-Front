@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 // import { getProducts } from '../Redux/Actions/Handy/HandyActions'
-import { getCategoriasProvisorio } from '../Redux/Actions/Categories/CategoriesActions'
+import { getCategories } from '../Redux/Actions/Categories/CategoriesActions'
 import { getPopularProducts, getProducts } from '../Redux/Actions/Product/ProductActions'
 import { Link } from 'react-router-dom'
 
@@ -13,7 +13,7 @@ const Div = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
-    background: url('https://i.imgur.com/wNaz28c.jpg');
+    background: url('https://www.stratospherenetworks.com/blog/wp-content/uploads/2014/05/Desktop-coffee-ipad.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -48,7 +48,7 @@ const Landing = () => {
     const dispatch = useDispatch()
 
     useEffect(() => { 
-        dispatch(getCategoriasProvisorio())
+        dispatch(getCategories());
         dispatch(getPopularProducts());
         dispatch(getProducts());
         // dispatch(searchCategories('lim'))

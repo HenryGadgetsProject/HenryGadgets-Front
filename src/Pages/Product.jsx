@@ -8,8 +8,8 @@ import styled from 'styled-components'
 
 const DetailedCard = styled.div`
     background          : var(--pure-white);
-    border              : .5em solid var(--dark-primary);
-    box-shadow          : 0 0 2em var(--font-color);
+    border              : .3em solid var(--dark-primary);
+    box-shadow          : 0 0 1em var(--font-color);
     display             : flex;
     flex-direction      : column;
     justify-self        : center;
@@ -28,11 +28,12 @@ const DetailedCard = styled.div`
     }
 
     img {
-        border-radius   : 50%;
+        width: 25em;
+        height: 25em;
         margin-bottom   : 2em;
-        max-width       : 14em;
         padding         : .5em;
         place-self      : center;
+        object-fit      : contain;
     }
 
     p {
@@ -57,7 +58,7 @@ const Product = ({ productId }) => {
     return (
         <div className="container">
         <Header id="header">
-            <h1>Henry Gadgets</h1>
+            {/* <h1>Henry Gadgets</h1> */}
         </Header>
 
         {/* const { id, name, price, stock, description, rating, big_image } = product */}
@@ -69,7 +70,7 @@ const Product = ({ productId }) => {
                 <p>Descripción: {product.description}</p>
                 <p>Rating: {product.rating}</p>
                 <p>Stock: {product.stock} unidades</p>
-                <p>{product.price}$</p>
+                <p>{product.price} $</p>
             </DetailedCard>
         </Main>
         </div>

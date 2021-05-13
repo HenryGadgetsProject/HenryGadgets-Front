@@ -5,7 +5,7 @@ const Header = styled.header`
     color           : ${ props => props.theme.fontColor || '#393E46' };
     display         : flex;
     flex-direction  : column;
-    height          : 22em;
+    height          : 6.5em;
     padding         : 0 4em;
 `
 
