@@ -119,8 +119,7 @@ const ProductReducer = (state = initialState, action) => {
         case GET_PRODUCTS_BY_NAME: {
             return {
                 ...state,
-                // filteredProducts: state.products.filter(product => product.name.contains(action.payload))
-                filteredProducts: state.products.filter(product => product.name.includes(action.payload))
+                filteredProducts: action.payload
             }
         }
 

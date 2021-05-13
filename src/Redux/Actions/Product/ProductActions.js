@@ -26,9 +26,6 @@ export const getProducts = () => {
                 type: PRODUCT_REQUEST
             }
         )
-        // const BASE_URL = 'https://dummyapi.io/data/api'
-        // const APP_ID = '5ffd995bfae5180ad0926c02'
-        // axios.get(`${BASE_URL}/user/`, { headers: { 'app-id': APP_ID } })
         axios.get('http://localhost:3001/products')
             .then(response => {
                 const products = response.data
@@ -111,10 +108,27 @@ export const searchProducts = (query) => {
     return (dispatch) => {
         dispatch(
             {
-                type: GET_PRODUCTS_BY_NAME,
-                payload: query
+                type: PRODUCT_REQUEST
             }
         )
-        
+        axios.get(`http://localhost:3001/search?query=${query}`)
+            .then(response => {
+                const products = response.data
+                dispatch(
+                    {
+                        type: GET_PRODUCTS_BY_NAME,
+                        payload: products
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: PRODUCT_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }
