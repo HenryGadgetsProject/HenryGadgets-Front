@@ -9,13 +9,14 @@ import styled from 'styled-components'
 // Styled Components
 const Input = styled.input`
     background      : var(--pure-white);
-    border          : .2em solid var(--pure-black);
-    /* border-radius   : 3em; */
+    border          : none;
+    border-radius   : 3em;
     ${'' /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1); */}
     font-size       : 1.3em;
     font-weight     : 600;
-    height          : 3em;
+    height          : 5vh;
     margin          : 1.23em 3em 0 0;
+    outline         : none;
     padding-left    : 1em;
     text-transform  : capitalize;
     min-width       : 25em;
@@ -23,11 +24,11 @@ const Input = styled.input`
 `
 
 const SuggestContainer = styled.div`
-    border-radius       : .3em;
-    margin-left         : 0.2em;
-    max-height          : 24em;
+    ${'' /* border-radius       : .3em; */}
+    margin-left         : 1.8em;
+    height              : 25em;
     ${'' /* max-width           : 21.35em; */}
-    width               : 32.1em;
+    width               : 29em;
     overflow            : scroll;
     &::-webkit-scrollbar {
         display         : none;

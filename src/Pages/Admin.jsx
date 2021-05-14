@@ -1,20 +1,22 @@
 import React from "react"
-import Header from "../Components/Atoms/Header"
+import NavBar from '../Components/Organisms/NavBar'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from "../Components/Atoms/Main"
-import styled from "styled-components"
+import Footer from '../Components/Organisms/Footer'
 import { useSelector } from 'react-redux'
 import { Route, useHistory } from 'react-router-dom';
-import AdminSidebar from '../Components/Organisms/AdminSideBar/AdminSideBar'
+import AdminSidebar from '../Components/Organisms/AdminSideBar'
 import StarRatings from 'react-star-ratings';
 
+import styled from "styled-components"
 
 
-const Content = styled.div`
+const Content = styled.section`
   align-self: right;
   background: #424242;
   border-left: .2em solid #ff1744;
   padding: .3em 6em;
-  width: 75%;
+  width: 80%;
 
   h3 {
     color: #FFFFFF;
@@ -98,14 +100,10 @@ const DeleteIcon = styled.img`
 `
 
 
-
-
 const Admin = () => {
 
   const products = useSelector(state => state.product.products);
   const categories = useSelector(state => state.category.categories)
-
-  console.log(products)
 
 
   const editHandler = (e) => {
@@ -114,7 +112,11 @@ const Admin = () => {
 
   return (
     <div className="container">
-      <Header id="header">{/* <h1>Henry Gadgets</h1> */}</Header>
+      <NavBar className="nav" />
+      <Breadcrumb id="breadcrumb" />
+      {/* <Header id="header">
+        <h1>Henry Gadgets</h1>
+      </Header> */}
 
       <Main id="main">
 
@@ -195,6 +197,8 @@ const Admin = () => {
 
         </Content>
       </Main>
+
+      <Footer />
     </div>
   )
 }

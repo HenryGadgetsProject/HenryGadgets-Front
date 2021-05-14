@@ -55,8 +55,6 @@ const ProductForm = () => {
         alert('Producto Creado')
     }
 
-    console.log(input)
-
     return (
         <FormContainer>
             <h3>Crear Producto</h3>
