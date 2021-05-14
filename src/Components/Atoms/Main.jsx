@@ -6,7 +6,7 @@ const Main = styled.main`
     flex-wrap       : wrap;
     justify-content : center;
     margin          : 0 auto;
-    min-height      : calc(100vh - 40em);
+    min-height      : calc(100vh - 30em);
     width           : 100%;
 `
 
