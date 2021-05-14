@@ -2,52 +2,12 @@ import React from "react"
 import Header from "../Components/Atoms/Header"
 import Main from "../Components/Atoms/Main"
 import styled from "styled-components"
+import { useSelector } from 'react-redux'
+import { Route, useHistory } from 'react-router-dom';
+import AdminSidebar from '../Components/Organisms/AdminSideBar/AdminSideBar'
+import StarRatings from 'react-star-ratings';
 
-const Menu = styled.aside`
-  align-self: left;
-  background: black;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 2.2em 0 0 3em;
-  width: 25%;
 
-  button {
-    align-items: center;
-    background: black;
-    ${'' /* border: .2em solid black; */}
-    border: none;
-    outline: none;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: flex;
-    font-size: 1.8em;
-    margin: .5em auto;
-    padding: .5em;
-    transition: .5s;
-    width: 92%;
-    &:hover {
-      transform: scale(1.08)
-    }
-    &:active {
-      color: #ff1744;
-    }
-
-    img {
-      border: none;
-      margin-right: 1em;
-      outline: none;
-      padding: 1em;
-      width: 2em;
-    }
-  }
-
-  h4 {
-    color: #FFFFFF;
-  }
-`
 
 const Content = styled.div`
   align-self: right;
@@ -79,10 +39,23 @@ const Content = styled.div`
   }
 
 	tbody tr td {
-	  text-align: center;
+	  text-align: left;
     color: #b6b6b6;
     font-size: 1.4em;
 	}
+
+  th.name {
+        width: 255px;
+    }
+
+  tr{
+    background-color:#424242; 
+    transition: background-color 0.5s ease;  
+  }
+
+  tr:hover{
+    background-color:#626262;
+  }
 
   img {
     height: 2em;
@@ -94,101 +67,129 @@ const Content = styled.div`
       transform: scale(1.20)
     }
   }
+
+  img.mini{
+    width:100px;
+    height:auto;
+  }
+
+  span.cat{
+    margin-right:.5em;
+    background-color:#686892;
+    border-radius:3em;
+    padding:.3em .5em;
+  }
+
+  .center{
+    text-align:center;
+  }
 `
 
 const EditIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
 `
 
+const StatusIcon = styled.img`
+background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;
+`
+
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-const ProductIcon = styled.img`
-    background: url('https://api.iconify.design/akar-icons:tag.svg?color=white') no-repeat center center / contain;
-`
 
-const AddProductIcon = styled.img`
-    background: url('https://api.iconify.design/carbon:tag-edit.svg?color=white') no-repeat center center / contain;
-`
-
-const CategoryIcon = styled.img`
-    background: url('https://api.iconify.design/bx:bx-category-alt.svg?color=white') no-repeat center center / contain;
-`
-
-const AddCategoryIcon = styled.img`
-    background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
-`
 
 
 const Admin = () => {
+
+  const products = useSelector(state => state.product.products);
+  const categories = useSelector(state => state.category.categories)
+
+  console.log(products)
+
+
+  const editHandler = (e) => {
+    alert(e)
+  }
+
   return (
     <div className="container">
       <Header id="header">{/* <h1>Henry Gadgets</h1> */}</Header>
 
       <Main id="main">
 
-        <Menu>
-            <button><ProductIcon/> Productos</button>
-            <button><CategoryIcon/> Categorías</button>
-          
-            <button><AddCategoryIcon/> Agregar Productos</button>
-            <button><AddProductIcon/> Agregar Categorías</button>
+        <AdminSidebar />
 
-        </Menu>
-      
         <Content>
-          <h3>Categorías</h3>
+          <h3>Productos</h3>
 
           <table>
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
+                <th>*</th>
+                <th className="name">Nombre</th>
                 <th>Precio</th>
                 <th>Stock</th>
-                <th>Descripción</th>
                 <th>Rating</th>
                 <th>Categorías</th>
+                <th>Activo</th>
                 <th>Editar</th>
                 <th>Borrar</th>
               </tr>
             </thead>
 
             <tbody>
+
+              {products.map(product => (
+                <tr>
+                  <td>*</td>
+                  <td>{product.name}</td>
+                  <td className="center">{product.price}</td>
+                  <td className="center">{product.stock}</td>
+                  <td className="center"><StarRatings
+                    rating={product.rating}
+                    starDimension="1em"
+                    starSpacing=".2em"
+                    numberOfStars={5}
+                    starRatedColor="gold"
+                  /></td>
+                  <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+                  <td className="center">{(product.is_active) ? <StatusIcon /> : null}</td>
+                  <td className="center"><EditIcon onClick={() => editHandler(product.id)} /></td>
+                  <td className="center"><DeleteIcon /></td>
+                </tr>
+              )
+
+              )}
+            </tbody>
+          </table>
+
+          <h3>Categorías</h3>
+
+          <table>
+            <thead>
               <tr>
-                <td>1</td>
-                <td>Auriculares</td>
-                <td>500$</td>
-                <td>50</td>
-                <td>Descripción sarasa. Descripción sarasa. Descripción sarasa. </td>
-                <td>5</td>
-                <td>Audio, Tecnologia</td>
-                <td><EditIcon/></td>
-                <td><DeleteIcon/></td>
+                <th>Id</th>
+                <th className="name">Nombre</th>
+                <th>Descripcion</th>
+                <th>photo</th>
+                <th>Editar</th>
+                <th>Borrar</th>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Auriculares</td>
-                <td>500$</td>
-                <td>50</td>
-                <td>Descripción sarasa. Descripción sarasa. Descripción sarasa.</td>
-                <td>5</td>
-                <td>Audio, Tecnologia</td>
-                <td><EditIcon/></td>
-                <td><DeleteIcon/></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Auriculares</td>
-                <td>500$</td>
-                <td>50</td>
-                <td>Descripción sarasa. Descripción sarasa. Descripción sarasa.</td>
-                <td>4</td>
-                <td>Audio, Tecnologia</td>
-                <td><EditIcon/></td>
-                <td><DeleteIcon/></td>
-              </tr>
+            </thead>
+
+            <tbody>
+
+              {categories.map(category => (
+                <tr>
+                  <td>{category.id}</td>
+                  <td>{category.name}</td>
+                  <td>{category.description}</td>
+                  <td><img className="mini" src={category.photo} alt={category.name} /></td>
+                  <td><EditIcon /></td>
+                  <td><DeleteIcon /></td>
+                </tr>
+              ))}
             </tbody>
           </table>
 

@@ -4,47 +4,47 @@ import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
     // background          : 'linear-gradient(to right, #FE4918, #FFF8DC)',
-    background          : 'linear-gradient(to right, #ff1744, #ff1744)',
-    fontColor           : '#212121',
+    background: 'linear-gradient(to right, #ff1744, #ff1744)',
+    fontColor: '#212121',
 
     // Color Palette - Light Theme
-    colorPalette        : {
-        darkPrimary     : '#c4001d',
-        defaultPrimary  : '#FFC107',
-        lightPrimary    : '#FFECB3',
-        textPrimary     : '#212121',
-        accent          : '#A67D02',
-        primaryText     : '#212121',
-        secondaryText   : '#757575',
-        divider         : '#BDBDBD',
+    colorPalette: {
+        darkPrimary: '#c4001d',
+        defaultPrimary: '#FFC107',
+        lightPrimary: '#FFECB3',
+        textPrimary: '#212121',
+        accent: '#A67D02',
+        primaryText: '#212121',
+        secondaryText: '#757575',
+        divider: '#BDBDBD',
 
-        body            : '#F2F2F2',
+        body: '#F2F2F2',
 
         h2: {
-            fontColor   : '#FFC107'
+            fontColor: '#FFC107'
         },
     }
 }
 
 export const darkTheme = {
-    background          : 'linear-gradient(to right, #04C8D4, #512DA8)',
-    fontColor           : '#FFFFFF',
+    background: 'linear-gradient(to right, #04C8D4, #512DA8)',
+    fontColor: '#FFFFFF',
 
     // Color Palette - Dark Theme
-    colorPalette        : {
-        darkPrimary     : '#04C8D4',
-        defaultPrimary  : '#512DA8',
-        lightPrimary    : '#673AB7',
-        textPrimary     : '#FFFFFF',
-        accent          : '#E040FB',
-        primaryText     : '#212121',
-        secondaryText   : '#30363D',
-        divider         : '#BDBDBD',
+    colorPalette: {
+        darkPrimary: '#04C8D4',
+        defaultPrimary: '#512DA8',
+        lightPrimary: '#673AB7',
+        textPrimary: '#FFFFFF',
+        accent: '#E040FB',
+        primaryText: '#212121',
+        secondaryText: '#30363D',
+        divider: '#BDBDBD',
 
-        body            : '#000000',
+        body: '#000000',
 
         h2: {
-            fontColor   : '#FFFFFF'
+            fontColor: '#FFFFFF'
         },
     }
 }
@@ -132,6 +132,8 @@ const GlobalStyle = createGlobalStyle`
         max-width       : 100%;
         height          : auto;
     }
+
+    
 
     a {
         text-decoration : none;
@@ -339,6 +341,10 @@ const GlobalStyle = createGlobalStyle`
     ${'' /* .product-page-container{
         padding-top:10em;
     } */}
+
+
+    
+   
 `
 
 export default GlobalStyle
