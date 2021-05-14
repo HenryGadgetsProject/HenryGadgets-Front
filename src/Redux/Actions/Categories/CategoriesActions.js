@@ -1,4 +1,5 @@
 import axios from 'axios'
+import HOST from '../../../../constants'
 import {
     CATEGORY_ERROR,
     CATEGORY_REQUEST,
@@ -15,7 +16,7 @@ import data from '../../../Data/categories'
 export const getCategories = () => {
     return (dispatch) => {
         dispatch({ type: CATEGORY_REQUEST })
-        axios.get("http://localhost:3001/categories")
+        axios.get(`${HOST}/categories`)
             .then(response => {
                 const categories = response.data
                 dispatch(
@@ -59,7 +60,7 @@ export const searchCategories = (term) => {
 
 export const addCategory = (body) => {
     return (dispatch) => {
-        axios.post('http://localhost:3001/categories', body)
+        axios.post(`${HOST}/categories`, body)
             .then(response => {
                 const category = response.data
                 dispatch(
