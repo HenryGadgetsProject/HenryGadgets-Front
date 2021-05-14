@@ -1,5 +1,5 @@
 import axios from 'axios'
-import HOST from '../../../../constants'
+import HOST from '../../../constants'
 import {
     CATEGORY_ERROR,
     CATEGORY_REQUEST,
