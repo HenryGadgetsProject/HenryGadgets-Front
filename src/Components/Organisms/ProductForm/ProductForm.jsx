@@ -5,6 +5,7 @@ import { addProduct } from '../../../Redux/Actions/Product/ProductActions'
 
 const FormContainer = styled.div`
     border: 0.2em solid black;
+    margin: 2em;
 `
 const Form = styled.form`
     padding: 2em;

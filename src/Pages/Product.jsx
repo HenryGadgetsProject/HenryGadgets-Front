@@ -13,7 +13,7 @@ const DetailedCard = styled.div`
     display             : flex;
     flex-direction      : column;
     justify-self        : center;
-    margin-top          : 3em;
+    margin              : 3em auto;
     max-width           : 60em;
     padding             : 1em 3em;
     text-align          : justify;

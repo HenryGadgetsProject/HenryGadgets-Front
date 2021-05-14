@@ -24,7 +24,7 @@ const NotFoundContainer = styled.div`
 const NotFound = () => {
     return (
         <div className="container">
-            <Main className = "main">
+            <Main id="main">
                 <NotFoundContainer>
                     <h2>Error 404 | La página no existe.</h2>
 

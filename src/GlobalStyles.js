@@ -161,7 +161,7 @@ const GlobalStyle = createGlobalStyle`
 
     #main {
         ${'' /* border: .2em solid blue; */}
-        grid-column : 2 / 24;
+        grid-column : 1 / 25;
         grid-row    : 3 / 10;
         place-self  : center;
     }
