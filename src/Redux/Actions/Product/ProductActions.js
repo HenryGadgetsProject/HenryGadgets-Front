@@ -1,4 +1,5 @@
 import axios from 'axios'
+import HOST from '../../../../constants'
 
 import {
     PRODUCT_ERROR,
@@ -26,7 +27,7 @@ export const getProducts = () => {
                 type: PRODUCT_REQUEST
             }
         )
-        axios.get('http://localhost:3001/products')
+        axios.get(`${HOST}/products`)
             .then(response => {
                 const products = response.data
                 dispatch(
@@ -82,7 +83,7 @@ export const addProduct = (body) => {
                 type: CREATE_PRODUCT_REQUEST
             }
         )
-        axios.post('http://localhost:3001/products', body)
+        axios.post(`${HOST}/products`, body)
             .then(response => {
                 const product = response.data
                 dispatch(
@@ -111,7 +112,7 @@ export const searchProducts = (query) => {
                 type: PRODUCT_REQUEST
             }
         )
-        axios.get(`http://localhost:3001/search?query=${query}`)
+        axios.get(`${HOST}/search?query=${query}`)
             .then(response => {
                 const products = response.data
                 dispatch(
