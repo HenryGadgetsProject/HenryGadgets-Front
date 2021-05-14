@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
+import { Link } from 'react-router-dom'
 
 
 const Menu = styled.aside`
@@ -65,14 +66,14 @@ const AddCategoryIcon = styled.img`
 `
 
 const AdminSideBar = () => {
-    return (
-        <Menu>
-            <button><ProductIcon /> Productos</button>
-            <button><CategoryIcon /> Categorías</button>
-            <button><AddProductIcon /> Agregar Productos</button>
-            <button><AddCategoryIcon /> Agregar Categorías</button>
-        </Menu>
-    )
+  return (
+    <Menu>
+      <Link to='/admin/products' ><button><ProductIcon /> Productos</button></Link>
+      <Link to='/admin/categories' ><button><CategoryIcon /> Categorías</button></Link>
+      <button><AddProductIcon /> Agregar Productos</button>
+      <button><AddCategoryIcon /> Agregar Categorías</button>
+    </Menu>
+  )
 }
 
 export default AdminSideBar
