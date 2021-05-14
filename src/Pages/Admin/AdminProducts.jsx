@@ -1,19 +1,13 @@
 import React from 'react'
-import NavBar from '../Components/Organisms/NavBar'
-import Breadcrumb from '../Components/Atoms/Breadcrumb'
-import Header from '../Components/Atoms/Header'
-import Main from '../Components/Atoms/Main'
-import Footer from '../Components/Organisms/Footer'
-
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
+import StarRatings from 'react-star-ratings';
 
-const Content = styled.div`
+const Content = styled.section`
   align-self: right;
-  background: #424242;
-  border-left: .2em solid #ff1744;
+  background: #424242;  
   padding: .3em 6em;
-  width: 75%;
+  width: 100%;
 
   h3 {
     color: #FFFFFF;
@@ -37,6 +31,15 @@ const Content = styled.div`
     font-size: 1.6em;
   }
 
+  tr{
+    background-color:#424242; 
+    transition: background-color 0.5s ease;  
+  }
+
+  tr:hover{
+    background-color:#626262;
+  }
+
 	tbody tr td {
 	  text-align: left;
     color: #b6b6b6;
@@ -57,7 +60,17 @@ const Content = styled.div`
   .center-text{
       text-align:center;
   }
+
+  span.cat{
+    margin-right:.5em;
+    background-color:#686892;
+    border-radius:3em;
+    padding:.3em .5em;
+  }
 `
+
+const StatusIcon = styled.img`
+background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;`
 
 const EditIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
@@ -67,15 +80,12 @@ const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-const AdminProducts = ({ products }) => {
+const AdminProducts = () => {
 
-  // const products = useSelector(state => state.product.products);
+  const products = useSelector(state => state.product.products);
 
   return (
     <div>
-
-
-
       <Content>
         <h3>Productos</h3>
 
@@ -86,10 +96,10 @@ const AdminProducts = ({ products }) => {
               <th className="name">Nombre</th>
               <th>Precio</th>
               <th>Stock</th>
-              <th>Descripción</th>
+
               <th>Rating</th>
-              <th>Activo</th>
               <th>Categorías</th>
+              <th>Activo</th>
               <th>Editar</th>
               <th>Borrar</th>
             </tr>
@@ -103,10 +113,16 @@ const AdminProducts = ({ products }) => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td className="center-text">{product.stock}</td>
-                <td>{product.description}</td>
-                <td className="center-text">{product.rating}</td>
-                <td className="center-text">{(product.is_active) ? <span>si</span> : <span>no</span>}</td>
-                <td>{product.category}</td>
+
+                <td className="center"><StarRatings
+                  rating={product.rating}
+                  starDimension="1em"
+                  starSpacing=".2em"
+                  numberOfStars={5}
+                  starRatedColor="gold"
+                /></td>
+                <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+                <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
                 <td className="center-text"><EditIcon /></td>
                 <td className="center-text"><DeleteIcon /></td>
               </tr>
@@ -114,7 +130,6 @@ const AdminProducts = ({ products }) => {
           </tbody>
         </table>
       </Content>
-
     </div>
   )
 }

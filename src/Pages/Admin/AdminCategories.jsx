@@ -1,19 +1,12 @@
 import React from 'react'
-import NavBar from '../Components/Organisms/NavBar'
-import Breadcrumb from '../Components/Atoms/Breadcrumb'
-import Header from '../Components/Atoms/Header'
-import Main from '../Components/Atoms/Main'
-import Footer from '../Components/Organisms/Footer'
-
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
 
-const Content = styled.div`
+const Content = styled.section`
   align-self: right;
-  background: #424242;
-  border-left: .2em solid #ff1744;
+  background: #424242;  
   padding: .3em 6em;
-  width: 75%;
+  width: 100%;
 
   h3 {
     color: #FFFFFF;
@@ -43,6 +36,15 @@ const Content = styled.div`
     font-size: 1.4em;
 	}
 
+  tr{
+    background-color:#424242; 
+    transition: background-color 0.5s ease;  
+  }
+
+  tr:hover{
+    background-color:#626262;
+  }
+
   img {
     height: 2em;
     outline: none;
@@ -52,6 +54,11 @@ const Content = styled.div`
     &:hover {
       transform: scale(1.20)
     }
+  }
+
+  img.mini{
+    width:100px;
+    height:auto;
   }
 
   .center-text{
@@ -67,29 +74,23 @@ const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-const AdminProducts = ({ products }) => {
+const AdminCategories = () => {
 
-  // const products = useSelector(state => state.product.products);
+  const categories = useSelector(state => state.category.categories);
+  // console.log('xxxxxxx')
 
   return (
     <div>
-
-
-
       <Content>
-        <h3>Productos</h3>
+        <h3>Categorías</h3>
 
         <table>
           <thead>
             <tr>
-              <th>*</th>
+              <th>Id</th>
               <th className="name">Nombre</th>
-              <th>Precio</th>
-              <th>Stock</th>
-              <th>Descripción</th>
-              <th>Rating</th>
-              <th>Activo</th>
-              <th>Categorías</th>
+              <th>Descripcion</th>
+              <th>photo</th>
               <th>Editar</th>
               <th>Borrar</th>
             </tr>
@@ -97,26 +98,21 @@ const AdminProducts = ({ products }) => {
 
           <tbody>
 
-            {products.map(product => (
+            {categories.map(category => (
               <tr>
-                <td>*</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td className="center-text">{product.stock}</td>
-                <td>{product.description}</td>
-                <td className="center-text">{product.rating}</td>
-                <td className="center-text">{(product.is_active) ? <span>si</span> : <span>no</span>}</td>
-                <td>{product.category}</td>
-                <td className="center-text"><EditIcon /></td>
-                <td className="center-text"><DeleteIcon /></td>
+                <td>{category.id}</td>
+                <td>{category.name}</td>
+                <td>{category.description}</td>
+                <td><img className="mini" src={category.photo} alt={category.name} /></td>
+                <td><EditIcon /></td>
+                <td><DeleteIcon /></td>
               </tr>
             ))}
           </tbody>
         </table>
       </Content>
-
     </div>
   )
 }
 
-export default AdminProducts
+export default AdminCategories
