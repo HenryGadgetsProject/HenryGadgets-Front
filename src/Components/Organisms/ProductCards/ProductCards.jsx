@@ -55,7 +55,7 @@ const Cards = styled.div`
     }
 `
 
-const HomeCards = () => {
+const ProductCards = () => {
     
     // No funciona el dispatch de Redux, llega como 'undefined'
     // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
@@ -65,8 +65,6 @@ const HomeCards = () => {
     // useEffect(() => {
     //     dispatch(getProducts());
     // }, [dispatch])
-
-    // console.log(products) // Undefined
 
     return (
         <>
@@ -91,4 +89,4 @@ const HomeCards = () => {
     )
 }
 
-export default HomeCards
+export default ProductCards

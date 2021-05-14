@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from "styled-components"
+import { Link } from 'react-router-dom'
 
 
 const Menu = styled.aside`
-  align-self: left;
+  ${'' /* align-self: left; */}
   background: black;
-  box-sizing: border-box;
+  ${'' /* box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 2.2em 0 0 3em;
-  width: 25%;
+  flex-direction: column; */}
+  ${'' /* height: 100vh; */}
+  ${'' /* margin: 0 auto; */}
+  ${'' /* padding: 2.2em 0 0 3em;
+  width: 25%; */}
 
   button {
     align-items: center;
@@ -48,7 +49,6 @@ const Menu = styled.aside`
   }
 `
 
-
 const ProductIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:tag.svg?color=white') no-repeat center center / contain;
 `
@@ -65,14 +65,14 @@ const AddCategoryIcon = styled.img`
 `
 
 const AdminSideBar = () => {
-    return (
-        <Menu>
-            <button><ProductIcon /> Productos</button>
-            <button><CategoryIcon /> Categorías</button>
-            <button><AddProductIcon /> Agregar Productos</button>
-            <button><AddCategoryIcon /> Agregar Categorías</button>
-        </Menu>
-    )
+  return (
+    <Menu>
+      <Link to='/admin/products' ><button><ProductIcon /> Productos</button></Link>
+      <Link to='/admin/categories' ><button><CategoryIcon /> Categorías</button></Link>
+      <button><AddProductIcon /> Agregar Productos</button>
+      <button><AddCategoryIcon /> Agregar Categorías</button>
+    </Menu>
+  )
 }
 
 export default AdminSideBar

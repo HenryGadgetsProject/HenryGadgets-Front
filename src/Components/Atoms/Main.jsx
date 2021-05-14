@@ -8,6 +8,7 @@ const Main = styled.main`
     margin          : 0 auto;
     min-height      : calc(100vh - 30em);
     width           : 100%;
+    
 `
 
 export default Main
