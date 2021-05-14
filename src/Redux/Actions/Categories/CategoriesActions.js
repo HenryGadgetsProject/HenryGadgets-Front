@@ -4,9 +4,9 @@ import {
     CATEGORY_REQUEST,
     GET_CATEGORIES_SUCCESS,
     SEARCH_CATEGORIES,
-
+    ADD_CATEGORY,
+    CREATE_CATEGORY_SUCCESS,
     // GET_CATEGORY_BY_ID_SUCCESS,
-    // ADD_CATEGORY,
     // REMOVE_CATEGORY
 } from './CategoriesActionTypes'
 
@@ -54,5 +54,20 @@ export const searchCategories = (term) => {
     return {
         type: SEARCH_CATEGORIES,
         payload: term
+    }
+}
+
+export const addCategory = (body) => {
+    return (dispatch) => {
+        axios.post('http://localhost:3001/categories', body)
+            .then(response => {
+                const category = response.data
+                dispatch(
+                    {
+                        type: CREATE_CATEGORY_SUCCESS,
+                        payload: category
+                    }
+                )
+            })
     }
 }

@@ -69,8 +69,8 @@ const AdminSideBar = () => {
         <Menu>
             <button><ProductIcon /> Productos</button>
             <button><CategoryIcon /> Categorías</button>
-            <button><AddCategoryIcon /> Agregar Productos</button>
-            <button><AddProductIcon /> Agregar Categorías</button>
+            <button><AddProductIcon /> Agregar Productos</button>
+            <button><AddCategoryIcon /> Agregar Categorías</button>
         </Menu>
     )
 }
