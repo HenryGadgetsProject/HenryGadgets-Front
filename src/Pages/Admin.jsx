@@ -4,6 +4,7 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from "../Components/Atoms/Main"
 import AdminSidebar from '../Components/Organisms/AdminSideBar/AdminSideBar'
 import Container from "../Components/Atoms/Container"
+import Footer from "../Components/Organisms/Footer"
 
 const Admin = () => {
 

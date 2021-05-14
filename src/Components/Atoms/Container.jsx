@@ -8,7 +8,8 @@ const Container = styled.div`
   align-self: right;
   background: #424242;  
   padding: .3em 2em;
-  width: 75%;
+  width: 80%;
+
   `
 
 
