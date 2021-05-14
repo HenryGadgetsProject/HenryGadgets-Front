@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import ProductForm from '../Components/Organisms/ProductForm'
+import CategoryForm from '../Components/Organisms/CategoryForm'
 
 const CreatePost = () => {
     return (
@@ -12,6 +13,7 @@ const CreatePost = () => {
 
             <Main id="main">
                 <ProductForm/>
+                <CategoryForm/>
             </Main>
         </div>
     )

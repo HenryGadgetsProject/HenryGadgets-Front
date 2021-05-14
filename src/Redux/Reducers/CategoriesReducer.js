@@ -1,12 +1,11 @@
-
-
 import {
     CATEGORY_ERROR,
     CATEGORY_REQUEST,
     GET_CATEGORIES_SUCCESS,
-    SEARCH_CATEGORIES
-    // GET_CATEGORY_BY_ID_SUCCESS,
+    SEARCH_CATEGORIES,
     // ADD_CATEGORY,
+    CREATE_CATEGORY_SUCCESS,
+    // GET_CATEGORY_BY_ID_SUCCESS,
     // REMOVE_CATEGORY
 } from '../Actions/Categories/CategoriesActionTypes'
 
@@ -18,7 +17,6 @@ const initialState = {
     foundCategories: [],
     error: ''
 }
-
 
 const CategoryReducer = (state = initialState, action) => {
 
@@ -58,6 +56,11 @@ const CategoryReducer = (state = initialState, action) => {
                 foundCategories: state.categories.filter(category => category.name.toLowerCase().includes(action.payload.toLowerCase()))
             }
         }
+        case CREATE_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                categories: [...state.categories, action.payload],
+            }
 
         default: {
             return state
