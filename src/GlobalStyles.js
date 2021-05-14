@@ -155,10 +155,18 @@ const GlobalStyle = createGlobalStyle`
         overflow: hidden; */}
     }
 
+    #breadcrumb-home {
+        grid-column : 1 / 25;
+    }
+
+    #breadcrumb {
+        grid-column : 1 / 25;
+        margin-top  : 7em;
+    }
+
     #header {
         grid-column : 1 / 25;
-        grid-row    : 1;
-        margin-top  : 7em;
+        margin: 2em auto;
     }
 
     #main {
@@ -168,10 +176,27 @@ const GlobalStyle = createGlobalStyle`
         place-self  : center;
     }
 
+    aside {
+        ${'' /* border: .2em solid purple; */}
+        grid-column : 1 / 4;
+
+        align-self: left;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 2.2em 0;
+        width: 20%;
+    }
+
+    label {
+        font-size: 1.8em;
+        color       : ${props => props.theme.fontColor || '#393E46'};
+    }
+
     section {
         ${'' /* border: .2em solid #AF0000; */}
-        ${'' /* grid-column : 2 / 24;
-        grid-row    : 4 / 8; */}
+        grid-column : 4 / 25;
         margin: 0 auto;
         ${'' /* place-self  : center; */}
         display         : flex;
@@ -181,37 +206,51 @@ const GlobalStyle = createGlobalStyle`
         justify-content : center;
 
         padding         : .5em;
-        width           : 90%;
-        @media(min-width: 99.2em) and (max-width: 120em) {
+        width           : 80%;
+        ${'' /* @media(min-width: 99.2em) and (max-width: 120em) {
             border: .3em dotted #AF0000;
-            ${'' /* display     : block;
-            grid-column : 1 / 25; */}
-        }
+            display     : block;
+            grid-column : 1 / 25;
+        } */}
     }
 
     footer {
+        grid-column : 1 / 25;
         grid-row    : 10;
     }
 
     h1 {
         color       : ${props => props.theme.fontColor || '#393E46'};
-        font-size   : 7em;
+        font-size   : 4em;
+        margin: 0;
     }
 
-    h2, h3, .slideTitle {
+    h2, .slideTitle {
         color       : var(--text-primary);
         font-size   : 3.5em;
-        margin-top  : 1em;
+        margin      : .3em 0 0 1em;
+    }
+
+    h3 {
+        color       : var(--text-primary);
+        font-size   : 3.5em;
+        margin      : .3em 0 0 1em;
     }
 
     ${'' /* Classes */}
+    .carousel-root{
+        /* max-width: 85%; */
+        ${'' /* margin-top      : .5em; */}
+        margin-top  : 7em;
+    }
+
     .carousel {
         margin      : 0;
         ${'' /* max-height  : 50em; */}
-        max-height  : calc(100vh - 14em);
+        max-height  : calc(100vh - 34em) !important;
         ${'' /* max-width   : 110em; */}
         ${'' /* max-width   : 151em; */}
-        max-width   : calc(100vw - 2.2em);
+        max-width   : 100vw !important;
         ${'' /* min-width   : calc(100vw - 3em); */}
         padding     : 0;
     }
@@ -220,7 +259,7 @@ const GlobalStyle = createGlobalStyle`
         background      : var(--light-primary) !important;
         border-radius   : 3em !important;
         height          : 2em !important;
-        margin          : auto 0 !important;
+        margin          : auto .5em !important;
         opacity         : .2 !important;
         transition      : opacity .5s linear !important;
         width           : 2em !important;
@@ -265,16 +304,11 @@ const GlobalStyle = createGlobalStyle`
 
     span.slideTitle{
         position        : absolute;
-        left            : 10%;
-        top             : 10%;
+        top             : 5%;
+        right           : 5%;
         color           : var(--pure-white);
-        font-size       : 10em;
+        font-size       : 10vw;
         text-shadow: 3px 5px 8px var(--pure-black);
-    }
-
-    .carousel-root{
-        /* max-width: 85%; */
-        margin-top      : .5em;
     }
 
     .carousel.carousel-slider{

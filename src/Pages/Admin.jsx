@@ -1,19 +1,27 @@
 import React from "react"
-import Header from "../Components/Atoms/Header"
+import NavBar from '../Components/Organisms/NavBar'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from "../Components/Atoms/Main"
 import AdminSidebar from '../Components/Organisms/AdminSideBar/AdminSideBar'
 import Container from "../Components/Atoms/Container"
 
 const Admin = () => {
 
+
   return (
     <div className="container">
-      <Header id="header">{/* <h1>Henry Gadgets</h1> */}</Header>
+      <NavBar className="nav" />
+      <Breadcrumb id="breadcrumb" />
+      {/* <Header id="header">
+        <h1>Henry Gadgets</h1>
+      </Header> */}
 
       <Main id="main">
         <AdminSidebar />
         <Container />
       </Main>
+
+      <Footer />
     </div>
   )
 }
