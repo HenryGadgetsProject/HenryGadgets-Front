@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { addProduct } from '../../../Redux/Actions/Product/ProductActions'
 
+import styled from 'styled-components'
+
 const FormContainer = styled.div`
-    border: 0.2em solid black;
-    margin: 2em;
+    padding: 2em;
+    background: #424242;
+    h3 {
+      color: #FFFFFF;
+    }
 `
 const Form = styled.form`
     padding: 2em;
 `
 const Label = styled.label`
     font-size: 2em;
+    color: #FFFFFF;
 `
 const Input = styled.input`
     font-size: 1.5em;
@@ -34,6 +39,7 @@ const ProductForm = () => {
         description: "",
         is_active: "",
         stock: "",
+        categories: [1]
     })
 
     const handleChange = (e) => {
@@ -43,34 +49,37 @@ const ProductForm = () => {
         })
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         dispatch(addProduct(input))
+        alert('Producto Creado')
     }
 
     return (
         <FormContainer>
+            <h3>Crear Producto</h3>
             <Form onSubmit={handleSubmit}>
 
-                <Label>Nombre: </Label><br/>
-                <Input name='name' value={input.name} onChange={handleChange} required placeholder="Nombre de tu Producto"></Input> <br/>
+                <Label>Nombre </Label><br/>
+                <Input name='name' value={input.name} onChange={handleChange} required></Input> <br/>
 
-                <Label>Precio: </Label><br/>
-                <Input name='price' value={input.price} onChange={handleChange} required placeholder="Precio de tu producto"></Input> <br/>
+                <Label>Precio </Label><br/>
+                <Input name='price' value={input.price} onChange={handleChange} required></Input> <br/>
 
-                <Label>Rating: </Label><br/>
-                <Input name='rating' value={input.rating} onChange={handleChange} required placeholder="1 a 5"></Input> <br/>
+                <Label>Rating </Label><br/>
+                <Input name='rating' value={input.rating} onChange={handleChange} required></Input> <br/>
                 
-                <Label>Imágen: </Label><br/>
-                <Input name='big_image' value={input.big_image} onChange={handleChange} required placeholder="Insertar Url"></Input> <br/>
+                <Label>Imágen </Label><br/>
+                <Input name='big_image' value={input.big_image} onChange={handleChange} required></Input> <br/>
 
-                <Label>Descripción: </Label><br/>
-                <Input name='description' value={input.description} onChange={handleChange} required placeholder="Describe tu producto"></Input> <br/>
+                <Label>Descripción </Label><br/>
+                <Input name='description' value={input.description} onChange={handleChange} required></Input> <br/>
 
-                <Label>Activo: </Label><br/>
-                <Input name='is_active' value={input.is_active} onChange={handleChange} required placeholder="true / false"></Input> <br/>
+                <Label>Activo </Label><br/>
+                <Input name='is_active' value={input.is_active} onChange={handleChange} required placeholder='true/false'></Input> <br/>
 
-                <Label>Cant. de Stock: </Label><br/>
-                <Input name='stock' value={input.stock} onChange={handleChange} required placeholder="Unidades disponibles"></Input> <br/>
+                <Label>Cant. de Stock </Label><br/>
+                <Input name='stock' value={input.stock} onChange={handleChange} required></Input> <br/>
 
                 <Button type='submit'>Crear</Button>
             </Form>

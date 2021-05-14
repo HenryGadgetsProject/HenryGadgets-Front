@@ -153,9 +153,9 @@ const Admin = () => {
                     starDimension="1em"
                     starSpacing=".2em"
                     numberOfStars={5}
-                    starRatedColor="gold" />
-                  </td>
-                  <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+                    starRatedColor="gold"
+                  /></td>
+                  <td>{product.categories?.map(cat => (<span className="cat">{cat.name}</span>))}</td>
                   <td className="center">{(product.is_active) ? <StatusIcon /> : null}</td>
                   <td className="center"><EditIcon onClick={() => editHandler(product.id)} /></td>
                   <td className="center"><DeleteIcon /></td>
