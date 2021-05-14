@@ -17,6 +17,7 @@ const Form = styled.form`
 const Label = styled.label`
     font-size: 2em;
     color: #FFFFFF;
+    margin-right: .2em;
 `
 const Input = styled.input`
     font-size: 1.5em;
@@ -26,10 +27,37 @@ const Button = styled.button`
     margin-top: 1em;
     font-size: 2em;
 `
+const ErrorMsg = styled.p`
+    color: #ff1744;
+    font-size: 1.2em;
+`
+const TextContainer = styled.div`
+    display: flex;
+`
+
+const validate = (input) => {
+
+    let error = {}
+
+    if (!input.name) {
+    error.name = 'Ingresa un nombre'
+    }
+    if (!input.photo) {
+    error.photo = 'Ingresa una url'
+    }
+    if (!input.description) {
+    error.description = 'Ingresa una descripción'
+    }
+    return error
+}
 
 const CategoryForm = () => {
 
     const dispatch = useDispatch()
+
+    const [isTouch, setIsTouch] = useState({})
+
+    const [error, setError] = useState('')
 
     const categories = useSelector(state => state.category.categories)
 
@@ -51,6 +79,9 @@ const CategoryForm = () => {
             ...input,
             [e.target.name]: e.target.value,
         })
+        setError(validate({
+            ...input, [e.target.name]: e.target.value
+        }))
     }
 
     const handleSubmit = (e) => {
@@ -59,28 +90,37 @@ const CategoryForm = () => {
         alert('Producto Creado')
     }
 
-    console.log(input)
+    const handleBlur = (e) => {
+        setIsTouch({
+            ...isTouch,
+            [e.target.name]: true
+        })
+    }
 
     return (
         <FormContainer>
             <h3>Crear Categoría</h3>
             <Form onSubmit={handleSubmit}>
-                <div>
 
-                <Label>Nombre </Label><br/>
-                <Input name='name' value={input.name} onChange={handleChange} required></Input>
-                </div>
-                <div>
+                <TextContainer>
+                    <Label>Nombre </Label>
+                    {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
+                </TextContainer>
+                <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange} required></Input>
 
-                <Label>Imágen </Label><br/>
-                <Input name='photo' value={input.photo} onChange={handleChange} required></Input>
-                </div>
+                <TextContainer>
+                    <Label>Imágen </Label>
+                    {isTouch.photo && error.photo ? (<ErrorMsg>{error.photo}</ErrorMsg>) : null}
+                </TextContainer>
+                <Input name='photo' value={input.photo} onBlur={handleBlur} onChange={handleChange} required></Input>
+                    
+                <TextContainer>
+                    <Label>Descripción </Label>
+                    {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
+                </TextContainer>
+                <Input name='description' value={input.description} onBlur={handleBlur} onChange={handleChange} required></Input>
 
-                <div>
-                <Label>Descripción </Label><br/>
-                <Input name='description' value={input.description} onChange={handleChange} required></Input>
-
-                </div>
+                <br/>
 
                 <Button type='submit'>Crear</Button>
 
