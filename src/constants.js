@@ -1,4 +1,4 @@
-console.log(process.env.PORT);
+console.log(process.env);
 const HOST =
     process.env.PORT !== undefined
         ? "https://henrygadgets-backend.herokuapp.com/"
