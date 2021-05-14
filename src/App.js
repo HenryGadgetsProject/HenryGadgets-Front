@@ -13,6 +13,7 @@ import NotFound from './Pages/NotFound'
 import { useSelector } from 'react-redux'
 import Category from './Pages/Category'
 import Product from './Pages/Product'
+import HOST from './constants'
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import { ThemeProvider } from 'styled-components'
@@ -20,7 +21,6 @@ import Admin from './Pages/Admin'
 
 function App() {
     const mode = useSelector((state) => state.global.theme)
-
     return (
         <ThemeProvider theme={mode === false ? lightTheme : darkTheme}>
             <GlobalStyles />
