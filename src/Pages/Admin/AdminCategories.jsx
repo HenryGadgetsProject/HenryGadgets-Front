@@ -77,6 +77,7 @@ const DeleteIcon = styled.img`
 const AdminCategories = () => {
 
   const categories = useSelector(state => state.category.categories);
+  // console.log('xxxxxxx')
 
   return (
     <div>
