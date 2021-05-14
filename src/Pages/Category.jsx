@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsByCategoryId } from '../Redux/Actions/Product/ProductActions'
+import NavBar from '../Components/Organisms/NavBar'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
-import HomeCards from '../Components/Organisms/ProductCards/HomeCards'
+import Footer from '../Components/Organisms/Footer'
+import ProductCards from '../Components/Organisms/ProductCards'
 
 
 const Category = ({ categoryId }) => {
@@ -18,9 +21,11 @@ const Category = ({ categoryId }) => {
 
     return (
         <div className="container">
-            <Header id="header">
-                {/* <h1>Henry Gadgets</h1> */}
-            </Header>
+            <NavBar className="nav" />
+            <Breadcrumb id="breadcrumb" />
+            {/* <Header id="header">
+                <h1>Henry Gadgets</h1>
+            </Header> */}
 
             {products.length === 0 ?
                 <Main id="main">
@@ -28,9 +33,11 @@ const Category = ({ categoryId }) => {
                 </Main>
                 :
                 <Main id="main">
-                    {products.map(p => <HomeCards product={p} />)}
+                    {products.map(p => <ProductCards product={p} />)}
                 </Main>
             }
+
+            <Footer />
         </div>
     )
 }

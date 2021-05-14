@@ -1,4 +1,10 @@
 import React from 'react'
+import NavBar from '../Components/Organisms/NavBar'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
+import Header from '../Components/Atoms/Header'
+import Main from '../Components/Atoms/Main'
+import Footer from '../Components/Organisms/Footer'
+
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
 
@@ -67,6 +73,13 @@ const AdminProducts = ({ products }) => {
 
     return (
         <div>
+            <NavBar className="nav" />
+            <Breadcrumb id="breadcrumb" />
+            {/* <Header id="header">
+                <h1>Henry Gadgets</h1>
+            </Header> */}
+
+            <Main id="main">
             <Content>
                 <h3>Productos</h3>
 
@@ -105,6 +118,9 @@ const AdminProducts = ({ products }) => {
                     </tbody>
                 </table>
             </Content>
+            </Main>
+
+            <Footer />
         </div>
     )
 }

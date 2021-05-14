@@ -3,15 +3,15 @@ import styled from "styled-components"
 
 
 const Menu = styled.aside`
-  align-self: left;
+  ${'' /* align-self: left; */}
   background: black;
-  box-sizing: border-box;
+  ${'' /* box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 2.2em 0 0 3em;
-  width: 25%;
+  flex-direction: column; */}
+  ${'' /* height: 100vh; */}
+  ${'' /* margin: 0 auto; */}
+  ${'' /* padding: 2.2em 0 0 3em;
+  width: 25%; */}
 
   button {
     align-items: center;
@@ -47,7 +47,6 @@ const Menu = styled.aside`
     color: #FFFFFF;
   }
 `
-
 
 const ProductIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:tag.svg?color=white') no-repeat center center / contain;

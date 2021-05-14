@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import NavBar from './Components/Organisms/NavBar'
+// import NavBar from './Components/Organisms/NavBar'
 import ToggleForm from './Components/Molecules/Toggle'
-import Footer from './Components/Organisms/Footer'
+// import Footer from './Components/Organisms/Footer'
 import About from './Pages/About'
 import CreatePost from './Pages/CreatePost'
 // import DetailPost from './Pages/DetailPost'
@@ -25,7 +25,7 @@ function App() {
         <ThemeProvider theme={mode === false ? lightTheme : darkTheme}>
             <GlobalStyles />
 
-            <NavBar className="nav" />
+            {/* <NavBar className="nav" /> */}
             <ToggleForm />
 
             <Switch>
@@ -71,9 +71,6 @@ function App() {
                     component={NotFound}
                 />
             </Switch>
-
-            <Footer />
-
         </ThemeProvider>
     )
 }

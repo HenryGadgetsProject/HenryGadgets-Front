@@ -17,6 +17,9 @@ const Nav = styled.nav`
     justify-content : space-between;
     padding         : 0 2em;
     position        : fixed;
+    ${'' /* position: -webkit-sticky;
+    position: sticky;
+    top: 0; */}
     width           : 100%;
     z-index         : 1000;
 

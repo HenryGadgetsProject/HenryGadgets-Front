@@ -1,5 +1,9 @@
 import React from 'react'
+import NavBar from '../Components/Organisms/NavBar'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
+import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
+import Footer from '../Components/Organisms/Footer'
 
 import styled from 'styled-components'
 
@@ -19,11 +23,21 @@ const NotFoundContainer = styled.div`
         padding         : .5em;
         place-self      : center;
     }
+
+    p {
+        color           : ${props => props.theme.fontColor || '#393E46'};
+    }
 `
 
 const NotFound = () => {
     return (
         <div className="container">
+            <NavBar className="nav" />
+            <Breadcrumb id="breadcrumb" />
+            {/* <Header id="header">
+                <h1>Henry Gadgets</h1>
+            </Header> */}
+
             <Main id="main">
                 <NotFoundContainer>
                     <h2>Error 404 | La página no existe.</h2>
@@ -33,6 +47,8 @@ const NotFound = () => {
                     <p>Si lo deseas también puedes repetir la busqueda verificando el nombre, intentar una nueva busqueda con otro producto o regresar a la página principal para ver más opciones.</p>
                 </NotFoundContainer>
             </Main>
+
+            <Footer />
         </div>
     )
 }

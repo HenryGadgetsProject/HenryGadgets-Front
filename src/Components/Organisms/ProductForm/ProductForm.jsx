@@ -47,8 +47,6 @@ const ProductForm = () => {
         dispatch(addProduct(input))
     }
 
-    console.log(input)
-
     return (
         <FormContainer>
             <Form onSubmit={handleSubmit}>
