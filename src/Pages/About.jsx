@@ -1,17 +1,24 @@
 import React from 'react'
-import Header from '../Components/Atoms/Header'
+import NavBar from '../Components/Organisms/NavBar'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
+// import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
+import Footer from '../Components/Organisms/Footer'
 
 const About = () => {
     return (
         <div className="container">
-            <Header id="header">
+            <NavBar className="nav" />
+            <Breadcrumb id="breadcrumb" />
+            {/* <Header id="header">
                 <h1>Henry Gadgets</h1>
-            </Header>
+            </Header> */}
 
             <Main id="main">
                 <h3>Acerca de nosotros.</h3>
             </Main>
+            
+            <Footer />
         </div>
     )
 }

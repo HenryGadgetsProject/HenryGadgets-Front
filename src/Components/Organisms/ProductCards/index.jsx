@@ -1,2 +1,2 @@
 
-export { default } from './HomeCards'
+export { default } from './ProductCards'

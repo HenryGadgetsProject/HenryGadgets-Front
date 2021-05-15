@@ -7,7 +7,7 @@ const ToggleForm = styled.div`
     position: absolute;
     right   : .5em;
     top     : 7.2em;
-    z-index : 100;
+    z-index : 200;
 `
 
 const Toggle = () => {
