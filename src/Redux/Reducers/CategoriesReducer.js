@@ -70,7 +70,7 @@ const CategoryReducer = (state = initialState, action) => {
         case REMOVE_CATEGORY_SUCCESS: {
             return {
                 ...state,
-                categories: [state.categories.filter(cat => cat.id !== parseInt(action.payload))]
+                categories: state.categories.filter(cat => cat.id !== parseInt(action.payload))
             }
         }
 
