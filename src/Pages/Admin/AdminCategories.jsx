@@ -1,9 +1,8 @@
 
 import React from 'react'
-import { useSelector } from 'react-redux'
-import Table from '../../Components/Atoms/Table'
-import styled from "styled-components"
 import { useSelector, useDispatch } from 'react-redux'
+import Table from '../../Components/Atoms/Table'
+
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { deleteCategories } from '../../Redux/Actions/Categories/CategoriesActions'

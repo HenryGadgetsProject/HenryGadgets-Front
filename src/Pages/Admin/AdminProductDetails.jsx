@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import styled from "styled-components"
+
 import StarRatings from 'react-star-ratings';
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductsById } from '../../Redux/Actions/Product/ProductActions'
@@ -16,7 +16,7 @@ const AdminProductDetails = ({ productId }) => {
   useEffect(() => {
     dispatch(getProductsById(productId))
 
-  }, [dispatch, getProductsById])
+  }, [dispatch, productId])
 
   const product = useSelector(state => state.product.product);
 

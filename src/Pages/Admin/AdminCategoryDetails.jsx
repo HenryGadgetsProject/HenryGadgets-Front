@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react'
-import styled from "styled-components"
-import StarRatings from 'react-star-ratings';
 import { useSelector, useDispatch } from 'react-redux'
 import { getCategoryById } from '../../Redux/Actions/Categories/CategoriesActions'
 
@@ -16,7 +14,7 @@ const AdminCategoryDetails = ({ categoryId }) => {
   useEffect(() => {
     dispatch(getCategoryById(categoryId))
 
-  }, [dispatch, getCategoryById])
+  }, [categoryId, dispatch])
 
   const category = useSelector(state => state.category.category);
 

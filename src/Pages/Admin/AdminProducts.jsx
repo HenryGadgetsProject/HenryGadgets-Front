@@ -66,6 +66,7 @@ const AdminProducts = () => {
                 starRatedColor="gold"
               /></td>
               <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+              <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
               <td className="center-text" ><EditIcon /></td>
               <td className="center-text" onClick={() => alert(product.name)}><DeleteIcon onClick={() => alert(product.name)} /></td>
               <td className="center-text" ><Link to={`/admin/products/${product.id}`}><InfoIcon /></Link></td>
