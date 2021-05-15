@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-import Header from '../Components/Atoms/Header'
+// import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 
@@ -11,9 +11,8 @@ const NotFoundContainer = styled.div`
     display             : flex;
     flex-direction      : column;
     justify-self        : center;
-    margin              : 0 auto;
-    margin-top          : 8em;
-    max-width           : 55em;
+    margin              : 2vw 10vw;
+    max-width           : 100vw;
     padding             : .5em;
     text-align          : justify;
     width               : 100%;
@@ -24,8 +23,13 @@ const NotFoundContainer = styled.div`
         place-self      : center;
     }
 
+    h3 {
+        margin: 0;
+    }
+
     p {
         color           : ${props => props.theme.fontColor || '#393E46'};
+        font-size       : 1.8em;
     }
 `
 
@@ -40,7 +44,7 @@ const NotFound = () => {
 
             <Main id="main">
                 <NotFoundContainer>
-                    <h2>Error 404 | La página no existe.</h2>
+                    <h3>Error 404 | La página no existe.</h3>
 
                     <p>Lo sentimos, tu busqueda no ha retornado ningún resultado.</p>
                     <p>Probablemente el producto que estás buscando no existe".</p>
