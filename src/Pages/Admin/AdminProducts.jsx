@@ -20,8 +20,13 @@ const AdminProducts = () => {
 
   const products = useSelector(state => state.product.products);
 
-  return (
-    <Table>
+  const loading = useSelector(state => state.product.loading);
+
+  if (loading) {
+    return <h3>Cargando</h3>
+  } else {
+    return (
+      <Table>
       <caption>Productos</caption>
       <thead>
         <tr>
@@ -59,7 +64,8 @@ const AdminProducts = () => {
         ))}
       </tbody>
     </Table>
-  )
+    )
+  }
 }
 
 export default AdminProducts
