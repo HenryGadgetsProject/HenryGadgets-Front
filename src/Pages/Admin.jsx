@@ -8,8 +8,12 @@ import AdminSection from '../Components/Atoms/AdminSection'
 import AdminCategories from '../Pages/Admin/AdminCategories'
 import AdminProducts from '../Pages/Admin/AdminProducts'
 import Footer from "../Components/Organisms/Footer"
+import AdminProductDetails from "./Admin/AdminProductDetails"
+import AdminCategoryDetails from "./Admin/AdminCategoryDetails"
+
 
 const Admin = () => {
+
   return (
     <div className="container">
       <NavBar className="nav" />
@@ -23,6 +27,13 @@ const Admin = () => {
         <AdminSection>
           <Route exact path={['/admin', '/admin/products']} render={() => <AdminProducts />} />
           <Route exact path='/admin/categories' render={() => <AdminCategories />} />
+          <Route exact path='/admin/products/:productId'
+            render={({ match }) => <AdminProductDetails productId={match.params.productId} />}
+          />
+          <Route exact path='/admin/categories/:categoryId'
+            render={({ match }) => <AdminCategoryDetails categoryId={match.params.categoryId} />}
+          />
+
         </AdminSection>
       </Main>
 
