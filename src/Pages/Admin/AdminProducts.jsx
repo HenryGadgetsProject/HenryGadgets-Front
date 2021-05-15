@@ -84,54 +84,61 @@ const AdminProducts = () => {
 
   const products = useSelector(state => state.product.products);
 
-  return (
-    <div>
-      <Content>
-        <h3>Productos</h3>
+  const loading = useSelector(state => state.product.loading);
 
-        <table>
-          <thead>
-            <tr>
-              <th>*</th>
-              <th className="name">Nombre</th>
-              <th>Precio</th>
-              <th>Stock</th>
-
-              <th>Rating</th>
-              <th>Categorías</th>
-              <th>Activo</th>
-              <th>Editar</th>
-              <th>Borrar</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            {products.map(product => (
+  if (loading) {
+    return <h3>Cargando</h3>
+  } else {
+    return (
+      <div>
+        <Content>
+          <h3>Productos</h3>
+  
+          <table>
+            <thead>
               <tr>
-                <td>*</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td className="center-text">{product.stock}</td>
-
-                <td className="center"><StarRatings
-                  rating={product.rating}
-                  starDimension="1em"
-                  starSpacing=".2em"
-                  numberOfStars={5}
-                  starRatedColor="gold"
-                /></td>
-                <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
-                <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
-                <td className="center-text"><EditIcon /></td>
-                <td className="center-text"><DeleteIcon /></td>
+                <th>*</th>
+                <th className="name">Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+  
+                <th>Rating</th>
+                <th>Categorías</th>
+                <th>Activo</th>
+                <th>Editar</th>
+                <th>Borrar</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </Content>
-    </div>
-  )
+            </thead>
+  
+            <tbody>
+  
+              {products.map(product => (
+                <tr>
+                  <td>*</td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td className="center-text">{product.stock}</td>
+  
+                  <td className="center"><StarRatings
+                    rating={product.rating}
+                    starDimension="1em"
+                    starSpacing=".2em"
+                    numberOfStars={5}
+                    starRatedColor="gold"
+                  /></td>
+                  <td>{product.categories?.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+                  <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
+                  <td className="center-text"><EditIcon /></td>
+                  <td className="center-text"><DeleteIcon /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Content>
+      </div>
+    )
+  }
+
 }
 
 export default AdminProducts

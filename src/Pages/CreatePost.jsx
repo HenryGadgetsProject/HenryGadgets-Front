@@ -18,7 +18,7 @@ const CreatePost = () => {
 
             <Main id="main">
                 <ProductForm/>
-                {/* <CategoryForm/> */}
+                <CategoryForm/>
             </Main>
 
             <Footer />
