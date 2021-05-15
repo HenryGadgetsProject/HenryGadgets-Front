@@ -5,15 +5,15 @@ import {
     SEARCH_CATEGORIES,
     // ADD_CATEGORY,
     CREATE_CATEGORY_SUCCESS,
-    // GET_CATEGORY_BY_ID_SUCCESS,
-    // REMOVE_CATEGORY
+    GET_CATEGORY_BY_ID_SUCCESS,
+    REMOVE_CATEGORY_SUCCESS
 } from '../Actions/Categories/CategoriesActionTypes'
 
 const initialState = {
     loading: false,
     categories: [],
     filteredCategories: [],
-    Category: {},
+    category: {},
     foundCategories: [],
     error: ''
 }
@@ -61,6 +61,18 @@ const CategoryReducer = (state = initialState, action) => {
                 ...state,
                 categories: [...state.categories, action.payload],
             }
+
+        case GET_CATEGORY_BY_ID_SUCCESS:
+            return {
+                ...state,
+                category: state.categories.find(cat => cat.id === action.payload)
+            }
+        case REMOVE_CATEGORY_SUCCESS: {
+            return {
+                ...state,
+                categories: [state.categories.filter(cat => cat.id !== action.payload)]
+            }
+        }
 
         default: {
             return state
