@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
+import Swal from 'sweetalert2'
 
 import styled from 'styled-components'
 
@@ -29,14 +30,18 @@ const LongInput = styled.input`
     width: 34.7em;
 `
 const Button = styled.button`
-    background: crimson;
+    background: #424242;
+    color: #FFFFFF;
+    border: .15em solid #ff1744;
+    padding: .7em 1.5em .7em 1.5em;
     margin-top: 1em;
     font-size: 2em;
-    border: solid .1em black;
     border-radius: .3em;
-    transition: .3s;
+    transition: box-shadow 300ms ease-in-out,
+    color 300ms ease-in-out;
     &:hover {
-        transform: scale(1.15)
+        color: black;
+        box-shadow: 0 0 40px 40px #ff1744 inset;
     }
 `
 const ErrorMsg = styled.p`
@@ -129,7 +134,11 @@ const CategoryForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addCategory(input))
-        alert('Categoría Creada')
+        Swal.fire(
+            'Listo!',
+            'La categoría se ha agregado con éxito!',
+            'success'
+        )
     }
 
     const handleBlur = (e) => {
@@ -141,7 +150,7 @@ const CategoryForm = () => {
 
     return (
         <FormContainer>
-            <h3>Crear Categoría</h3>
+            <h3>Agregar Categoría</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
@@ -170,7 +179,7 @@ const CategoryForm = () => {
                 </Item>
                 
                 <ButtonContainer>
-                    <Button type='submit'>Crear</Button>
+                    <Button type='submit'>Agregar</Button>
                 </ButtonContainer>
 
             </Form>

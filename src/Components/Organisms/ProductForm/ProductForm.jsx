@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../Redux/Actions/Product/ProductActions'
+import Swal from 'sweetalert2'
 
 import styled from 'styled-components'
 
@@ -31,14 +32,18 @@ const LongInput = styled.input`
     width: 34.7em;
 `
 const Button = styled.button`
-    background: crimson;
+    background: #424242;
+    color: #FFFFFF;
+    border: .15em solid #ff1744;
+    padding: .7em 1.5em .7em 1.5em;
     margin-top: 1em;
     font-size: 2em;
-    border: solid .1em black;
     border-radius: .3em;
-    transition: .3s;
+    transition: box-shadow 300ms ease-in-out,
+    color 300ms ease-in-out;
     &:hover {
-        transform: scale(1.15)
+        color: black;
+        box-shadow: 0 0 40px 40px #ff1744 inset;
     }
 `
 const ErrorMsg = styled.p`
@@ -211,7 +216,11 @@ const ProductForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addProduct(submitData))
-        alert('Producto Creado')
+        Swal.fire(
+            'Listo!',
+            'Tu producto fué agregado con éxito!',
+            'success'
+        )
     }
 
     const handleBlur = (e) => {
@@ -224,7 +233,7 @@ const ProductForm = () => {
     return (
         <>
         <FormContainer>
-        <h3>Crear Producto</h3>
+        <h3>Agregar Producto</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
@@ -305,7 +314,7 @@ const ProductForm = () => {
                 </Item>
 
                 <ButtonContainer>
-                    <Button type='submit'>Crear</Button>
+                    <Button type='submit'>Agregar</Button>
                 </ButtonContainer>
                 
             </Form>
