@@ -10,6 +10,8 @@ import AdminProducts from '../Pages/Admin/AdminProducts'
 import Footer from "../Components/Organisms/Footer"
 import AdminProductDetails from "./Admin/AdminProductDetails"
 import AdminCategoryDetails from "./Admin/AdminCategoryDetails"
+import AdminProductAdd from "./Admin/AdminProductAdd"
+import AdminCategoryAdd from './Admin/AdminCategoryAdd'
 
 
 const Admin = () => {
@@ -27,6 +29,9 @@ const Admin = () => {
         <AdminSection>
           <Route exact path={['/admin', '/admin/products']} render={() => <AdminProducts />} />
           <Route exact path='/admin/categories' render={() => <AdminCategories />} />
+          <Route exact path='/admin/category' render={() => <AdminCategoryAdd />} />
+          <Route exact path='/admin/product' render={() => <AdminProductAdd />} />
+
           <Route exact path='/admin/products/:productId'
             render={({ match }) => <AdminProductDetails productId={match.params.productId} />}
           />
