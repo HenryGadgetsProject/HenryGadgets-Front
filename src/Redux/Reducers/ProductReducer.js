@@ -12,6 +12,7 @@ import {
     CREATE_PRODUCT_ERROR,
     // GET_SEARCH_SUCCESS,
     GET_PRODUCTS_BY_NAME,
+    REMOVE_PRODUCT_SUCCESS
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -120,6 +121,15 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredProducts: action.payload
+            }
+        }
+
+        case REMOVE_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                products: state.products.filter(product => product.id !== action.payload),
+                filteredProducts: state.products.filter(product => product.id !== action.payload),
+                loading: false
             }
         }
 
