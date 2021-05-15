@@ -129,7 +129,7 @@ const CategoryForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(addCategory(input))
-        alert('Producto Creado')
+        alert('Categoría Creada')
     }
 
     const handleBlur = (e) => {
