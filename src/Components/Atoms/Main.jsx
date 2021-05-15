@@ -6,9 +6,9 @@ const Main = styled.main`
     flex-wrap       : wrap;
     justify-content : center;
     margin          : 0 auto;
-    min-height      : calc(100vh - 30em);
+    ${'' /* min-height      : calc(100vh - 20em); */}
+    min-height      : calc(100vh - 20em);
     width           : 100%;
-    
 `
 
 export default Main

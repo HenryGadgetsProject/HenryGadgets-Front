@@ -1,73 +1,9 @@
 import React from 'react'
-import styled from "styled-components"
 import { useSelector } from 'react-redux'
-import StarRatings from 'react-star-ratings';
+import StarRatings from 'react-star-ratings'
+import Table from '../../Components/Atoms/Table'
 
-const Content = styled.section`
-  align-self: right;
-  background: #424242;  
-  padding: .3em 6em;
-  width: 100%;
-
-  h3 {
-    color: #FFFFFF;
-    margin-top: .8em;
-  }
-
-  table {
-    border-collapse: collapse;
-		display:block;
-		margin:0 auto;
-	}
-
-  th, td {
-    padding: .8em;
-    text-align: left;
-    border-bottom: .1em solid #b6b6b6;
-   }
-
-  th {
-    color: #FFFFFF;
-    font-size: 1.6em;
-  }
-
-  tr{
-    background-color:#424242; 
-    transition: background-color 0.5s ease;  
-  }
-
-  tr:hover{
-    background-color:#626262;
-  }
-
-	tbody tr td {
-	  text-align: left;
-    color: #b6b6b6;
-    font-size: 1.4em;
-	}
-
-  img {
-    height: 2em;
-    outline: none;
-    padding: 1em;
-    transition: .3s;
-    width: 2em;
-    &:hover {
-      transform: scale(1.20)
-    }
-  }
-
-  .center-text{
-      text-align:center;
-  }
-
-  span.cat{
-    margin-right:.5em;
-    background-color:#686892;
-    border-radius:3em;
-    padding:.3em .5em;
-  }
-`
+import styled from "styled-components"
 
 const StatusIcon = styled.img`
 background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;`
@@ -90,55 +26,46 @@ const AdminProducts = () => {
     return <h3>Cargando</h3>
   } else {
     return (
-      <div>
-        <Content>
-          <h3>Productos</h3>
-  
-          <table>
-            <thead>
-              <tr>
-                <th>*</th>
-                <th className="name">Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-  
-                <th>Rating</th>
-                <th>Categorías</th>
-                <th>Activo</th>
-                <th>Editar</th>
-                <th>Borrar</th>
-              </tr>
-            </thead>
-  
-            <tbody>
-  
-              {products.map(product => (
-                <tr>
-                  <td>*</td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td className="center-text">{product.stock}</td>
-  
-                  <td className="center"><StarRatings
-                    rating={product.rating}
-                    starDimension="1em"
-                    starSpacing=".2em"
-                    numberOfStars={5}
-                    starRatedColor="gold"
-                  /></td>
-                  <td>{product.categories?.map(cat => (<span className="cat">{cat.name}</span>))}</td>
-                  <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
-                  <td className="center-text"><EditIcon /></td>
-                  <td className="center-text"><DeleteIcon /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Content>
-      </div>
+      <Table>
+      <caption>Productos</caption>
+      <thead>
+        <tr>
+          <th>*</th>
+          <th className="name">Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Rating</th>
+          <th>Categorías</th>
+          <th>Activo</th>
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {products.map(product => (
+          <tr>
+            <td>*</td>
+            <td>{product.name}</td>
+            <td>{product.price}</td>
+            <td className="center-text">{product.stock}</td>
+            <td className="center"><StarRatings
+              rating={product.rating}
+              starDimension="1em"
+              starSpacing=".2em"
+              numberOfStars={5}
+              starRatedColor="gold"
+            /></td>
+            <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+            <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
+            <td className="center-text"><EditIcon /></td>
+            <td className="center-text"><DeleteIcon /></td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
     )
   }
-
 }
 
 export default AdminProducts
