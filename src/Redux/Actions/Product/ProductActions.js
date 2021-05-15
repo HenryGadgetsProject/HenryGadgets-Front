@@ -7,14 +7,15 @@ import {
     GET_PRODUCT_SUCCESS,
     POPULAR_PRODUCTS,
     GET_PRODUCTS_BY_ID,
-    GET_PRODUCTS_BY_CATEGORY_ID,
-    GET_PRODUCTS_BY_CATEGORY_NAME,
+    GET_PRODUCTS_BY_PRODUCT_NAME,
     CREATE_PRODUCT_SUCCESS,
     CREATE_PRODUCT_REQUEST,
     CREATE_PRODUCT_ERROR,
     // GET_SEARCH_SUCCESS,
     GET_PRODUCTS_BY_NAME,
-    // FILTER_PRODUCT_BY_CATEGORY
+    REMOVE_PRODUCT_SUCCESS,
+    GET_PRODUCTS_BY_CATEGORY_ID
+    // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -69,9 +70,9 @@ export const getProductsByCategoryId = (categoryId) => {
     }
 }
 
-export const getProductsByCategoryName = (name) => {
+export const getProductsByProductName = (name) => {
     return {
-        type: GET_PRODUCTS_BY_CATEGORY_NAME,
+        type: GET_PRODUCTS_BY_PRODUCT_NAME,
         payload: name
     }
 }
@@ -119,6 +120,31 @@ export const searchProducts = (query) => {
                     {
                         type: GET_PRODUCTS_BY_NAME,
                         payload: products
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: PRODUCT_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+
+export const deleteProducts = (id) => {
+    return (dispatch) => {
+        dispatch({ type: PRODUCT_REQUEST })
+        axios.delete(`${HOST}/products/${id}`)
+            .then(response => {
+                dispatch(
+                    {
+                        type: REMOVE_PRODUCT_SUCCESS,
+                        payload: id
                     }
                 )
             })
