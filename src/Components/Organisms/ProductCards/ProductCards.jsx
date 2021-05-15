@@ -69,8 +69,7 @@ const ProductCards = () => {
     return (
         <>
             {products.map(p => {
-            return(
-                <>
+                return(
                     <Cards key={p?.id}>
                         <Link to={`/product/${p.id}`}>
                             <img src={p.big_image} alt={p.name}></img><br />
@@ -81,9 +80,8 @@ const ProductCards = () => {
                         {/* REVIEWS MODAL (Probablemente) */}
                         {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                     </Cards>
-                </>
-            )
-        })}
+                )
+            })}
             {/* <h3>No hay productos disponibles</h3> */}
         </>
     )

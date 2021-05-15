@@ -3,16 +3,9 @@ import styled from "styled-components"
 import { Link } from 'react-router-dom'
 
 
-const Menu = styled.aside`
-  ${'' /* align-self: left; */}
+const AdminAside = styled.aside`
   background: black;
-  ${'' /* box-sizing: border-box;
-  display: flex;
-  flex-direction: column; */}
-  ${'' /* height: 100vh; */}
-  ${'' /* margin: 0 auto; */}
-  ${'' /* padding: 2.2em 0 0 3em;
-  width: 25%; */}
+  height: 100vh;
 
   button {
     align-items: center;
@@ -66,12 +59,12 @@ const AddCategoryIcon = styled.img`
 
 const AdminSideBar = () => {
   return (
-    <Menu>
-      <Link to='/admin/products' ><button><ProductIcon /> Productos</button></Link>
-      <Link to='/admin/categories' ><button><CategoryIcon /> Categorías</button></Link>
+    <AdminAside>
+      <Link to='/admin/products'><button><ProductIcon /> Productos</button></Link>
+      <Link to='/admin/categories'><button><CategoryIcon /> Categorías</button></Link>
       <button><AddProductIcon /> Agregar Productos</button>
       <button><AddCategoryIcon /> Agregar Categorías</button>
-    </Menu>
+    </AdminAside>
   )
 }
 

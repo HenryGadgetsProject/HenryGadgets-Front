@@ -1,14 +1,15 @@
 import React from "react"
+import { Route } from 'react-router-dom'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from "../Components/Atoms/Main"
-import AdminSidebar from '../Components/Organisms/AdminSideBar/AdminSideBar'
-import Container from "../Components/Atoms/Container"
+import AdminSidebar from '../Components/Organisms/AdminSideBar'
+import AdminSection from '../Components/Atoms/AdminSection'
+import AdminCategories from '../Pages/Admin/AdminCategories'
+import AdminProducts from '../Pages/Admin/AdminProducts'
 import Footer from "../Components/Organisms/Footer"
 
 const Admin = () => {
-
-
   return (
     <div className="container">
       <NavBar className="nav" />
@@ -19,7 +20,10 @@ const Admin = () => {
 
       <Main id="main">
         <AdminSidebar />
-        <Container />
+        <AdminSection>
+          <Route exact path={['/admin', '/admin/products']} render={() => <AdminProducts />} />
+          <Route exact path='/admin/categories' render={() => <AdminCategories />} />
+        </AdminSection>
       </Main>
 
       <Footer />

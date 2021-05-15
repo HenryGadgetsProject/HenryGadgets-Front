@@ -81,7 +81,7 @@ const Home = () => {
                             {/* <TopServices - Cards /> */}
                             <ProductCards/>
 
-                            {/* Pasamos la parte lógica hacia HomeCards para ahorrar código en Home */}
+                            {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                         </div>
                     </section>
                 {/* </div> */}

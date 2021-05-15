@@ -197,15 +197,15 @@ const GlobalStyle = createGlobalStyle`
     section {
         ${'' /* border: .2em solid #AF0000; */}
         grid-column : 4 / 25;
-        margin: 0 auto;
         ${'' /* place-self  : center; */}
-        display         : flex;
-        ${'' /* flex-direction  : row; */}
-        flex-direction  : column;
-        ${'' /* flex-wrap       : wrap; */}
-        justify-content : center;
 
-        padding         : .5em;
+        align-self: right;
+        display         : flex;
+        flex-direction  : column;
+        ${'' /* justify-content : center; */}
+        margin: 0 auto;
+        ${'' /* padding         : .5em; */}
+        padding: .3em 6em;
         width           : 80%;
         ${'' /* @media(min-width: 99.2em) and (max-width: 120em) {
             border: .3em dotted #AF0000;
@@ -233,8 +233,7 @@ const GlobalStyle = createGlobalStyle`
 
     h3 {
         color       : var(--text-primary);
-        font-size   : 3.5em;
-        margin      : .3em 0 0 1em;
+        font-size   : 3em;
     }
 
     ${'' /* Classes */}
