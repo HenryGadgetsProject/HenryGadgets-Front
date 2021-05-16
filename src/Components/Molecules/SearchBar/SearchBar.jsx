@@ -24,7 +24,7 @@ const Input = styled.input`
 `
 
 const SuggestContainer = styled.div`
-    display:none;
+    /* display:none; */
     ${'' /* border-radius       : .3em; */}
     margin-left         : 1.8em;
     height              : 25em;

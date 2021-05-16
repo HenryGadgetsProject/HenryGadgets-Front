@@ -4,6 +4,7 @@ import NavBar from '../../Components/Organisms/NavBar'
 // import Header from '../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
 // import Footer from '../Components/Organisms/Footer'
+import LoginForm from '../../Components/Organisms/LoginForm'
 
 const Login = () => {
     return (
@@ -11,6 +12,7 @@ const Login = () => {
             <NavBar className="nav" />
             <Main id="main">
                 <h3>Login Page</h3>
+                <LoginForm/>
             </Main>
         </div>
     )

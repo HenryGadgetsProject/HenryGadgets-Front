@@ -13,6 +13,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 //import data from '../Data/categories'
 import { Link } from 'react-router-dom'
+import SearchBar from '../Components/Molecules/SearchBar'
 
 const Home = () => {
 
@@ -60,6 +61,9 @@ const Home = () => {
                 </Header>
 
                 <aside>
+
+                    {/* <SearchBar/> */}
+
                     <FilterBy
                         array={categories}
                         handleChange={handleChange}
