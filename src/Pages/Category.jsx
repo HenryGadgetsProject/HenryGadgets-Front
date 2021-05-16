@@ -34,7 +34,7 @@ const Category = ({ categoryId }) => {
                 </Main>
                 :
                 <Main id="main">
-                    {products.map(p => <ProductCards product={p} />)}
+                    <ProductCards products={products}/>
                 </Main>
             }
 

@@ -12,6 +12,7 @@ import AdminProductDetails from "./Admin/AdminProductDetails"
 import AdminCategoryDetails from "./Admin/AdminCategoryDetails"
 import AdminProductAdd from "./Admin/AdminProductAdd"
 import AdminCategoryAdd from './Admin/AdminCategoryAdd'
+import AdminCategoryEdit from "./Admin/AdminCategoryEdit"
 
 
 const Admin = () => {
@@ -30,6 +31,10 @@ const Admin = () => {
           <Route exact path={['/admin', '/admin/products']} render={() => <AdminProducts />} />
           <Route exact path='/admin/categories' render={() => <AdminCategories />} />
           <Route exact path='/admin/category' render={() => <AdminCategoryAdd />} />
+
+          <Route exact path='/admin/categories/:categoryId'
+            render={({ match }) => <AdminCategoryEdit categoryId={match.params.categoryId} />}
+          />
           <Route exact path='/admin/product' render={() => <AdminProductAdd />} />
 
           <Route exact path='/admin/products/:productId'

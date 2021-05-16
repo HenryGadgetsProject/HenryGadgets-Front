@@ -60,6 +60,7 @@ const CategoryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 categories: [...state.categories, action.payload],
+                loading: false
             }
 
         case GET_CATEGORY_BY_ID_SUCCESS:
