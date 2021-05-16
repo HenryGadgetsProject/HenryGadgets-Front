@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProduct, getProductsById } from '../../../Redux/Actions/Product/ProductActions'
@@ -175,11 +175,15 @@ const EditProductForm = ({ productId }) => {
 
     const dispatch = useDispatch()
 
+    // useEffect(() => {
     dispatch(getProductsById(productId))
+    // }, [productId])
+
 
     const product = useSelector(state => state.product.product);
 
-    console.log(product)
+    const cate = product.categories.map(cat => ({ value: cat.id, label: cat.name }))
+
 
     const categories = useSelector((state) => state.category.categories)
 
@@ -187,7 +191,9 @@ const EditProductForm = ({ productId }) => {
 
     const [error, setError] = useState('')
 
-    const [options, setOptions] = useState('')
+    const [options, setOptions] = useState(cate)
+
+    console.log('OPTIONS', options)
 
     const [input, setInput] = useState({
         id: product.id,
@@ -200,6 +206,8 @@ const EditProductForm = ({ productId }) => {
         stock: product.stock,
         categories: product.categories
     })
+
+
 
     // Mapeo categories para darle el formato correcto para las opciones de React-Select
     const selectCategories = categories.map((categories) => {
@@ -226,15 +234,18 @@ const EditProductForm = ({ productId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (submitData.categories.length > 2) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Solo puedes seleccionar 2 Categorías como máximo!'
-            })
-            return
-        }
-        dispatch(updateProduct(submitData))
+        // dispatch(updateCategory(categoryId, input))
+        // if (submitData.categories.length > 2) {
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Solo puedes seleccionar 2 Categorías como máximo!'
+        //     })
+        //     return
+        // }
+
+
+        dispatch(updateProduct(productId, input))
         Swal.fire(
             'Listo!',
             'Tu producto fué agregado con éxito!',
@@ -319,7 +330,7 @@ const EditProductForm = ({ productId }) => {
                     </Item>
 
 
-                    <Item>
+                    {/* <Item>
                         <SelectIcon />
                         <Label>Seleccionar Categorías </Label>
                         <Select
@@ -330,8 +341,9 @@ const EditProductForm = ({ productId }) => {
                             maxMenuHeight={85}
                             placeholder=''
                             isMulti
+                            value={options}
                         />
-                    </Item>
+                    </Item> */}
 
                     <ButtonContainer>
                         <Button type='submit'>Editar</Button>
