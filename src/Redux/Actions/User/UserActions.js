@@ -1,6 +1,8 @@
+import axios from 'axios'
+
 import {
-    USER_LOGIN_SUCCESS,
-    USER_LOGOUT_SUCCESS,
+    // USER_LOGIN_SUCCESS,
+    // USER_LOGOUT_SUCCESS,
     USER_ERROR,
     USER_LOADING,
     GET_USER_SUCCESS,
@@ -9,6 +11,8 @@ import {
     EDIT_USER_SUCCESS,
     DELETE_USER_SUCCESS
 } from './UserActionTypes'
+
+import HOST from '../../../constants'
 
 export const userLogin = () => {
 

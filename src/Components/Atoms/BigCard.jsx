@@ -5,29 +5,31 @@ const BigCard = styled.div`
     height: 430px;
     width: 900px;
     margin: 200px auto;
-    background-color: #FFF;
+    background-color: #FFFFFF;
     -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
 
     /* Image on the left side */
     .thumbnail {
+        object-fit: contain;
         background: #FFFFFF;
         float: left;
         position: relative;
         left: 30px;
         top: -30px;
-        height: 320px;
-        width: 440px;
+        height: 40em;
+        width: 40em;
         -webkit-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
-        box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 5px 5px 60px 0px rgba(0, 0, 0, 0.75);
         overflow: hidden;
     }
 
     /*object-fit: cover;*/
     /*object-position: center;*/
     img.left {
+        object-fit: contain;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -40,7 +42,7 @@ const BigCard = styled.div`
 
     /* Right side of the card */
     .right {
-        margin-left: 590px;
+        margin-left: 500px;
         margin-right: 20px;
     }
 
