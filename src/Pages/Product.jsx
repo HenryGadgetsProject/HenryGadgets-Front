@@ -5,48 +5,16 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
+import DetailedCard from '../Components/Atoms/DetailedCard'
 import { getProductsById } from '../Redux/Actions/Product/ProductActions'
 
-import styled from 'styled-components'
+import BigCard from '../Components/Atoms/BigCard'
 
-const DetailedCard = styled.div`
-    background          : var(--pure-white);
-    border              : .3em solid var(--dark-primary);
-    box-shadow          : 0 0 1em var(--font-color);
-    display             : flex;
-    flex-direction      : column;
-    justify-self        : center;
-    margin              : 3em auto;
-    max-width           : 60em;
-    padding             : 1em 3em;
-    text-align          : justify;
-    width               : 100%;
-
-    h3 {
-        color           : var(--pure-black);
-        font-size       : 3em;
-        margin          : .5em;
-        text-align      : center;
-        ${'' /* text-shadow     : .1em .2em .4em var(--light-primary); */}
-    }
-
-    img {
-        width: 25em;
-        height: 25em;
-        margin-bottom   : 2em;
-        padding         : .5em;
-        place-self      : center;
-        object-fit      : contain;
-    }
-
-    p {
-        color           : var(--pure-black);
-        font-size       : 2.2em;
-        margin          : .5em;
-    }
-`
 
 const Product = ({ productId }) => {
+    const eyeIcon = 'https://api.iconify.design/bi-eye.svg?height=16'
+    const heartIcon = 'https://code.iconify.design/1/1.0.7/iconify.min.js'
+    const shareIcon = 'https://code.iconify.design/1/1.0.7/iconify.min.js'
 
     const dispatch = useDispatch()
 
@@ -67,6 +35,37 @@ const Product = ({ productId }) => {
             {/* const { id, name, price, stock, description, rating, big_image } = product */}
 
             <Main id="main">
+                <BigCard>
+                    <div class="thumbnail">
+                        <img class="left" src={product.big_image} />
+                    </div>
+
+                    <div class="right">
+                        <h3>{product.name}</h3>
+                        <div class="stars">
+                            <h2>Rating: {product.rating}</h2>
+                        </div>
+
+                        <div class="separator"></div>
+                        <p>Descripción: {product.description}</p>
+                        <p>Stock: {product.stock} unidades</p>
+                        <p>{product.price} $</p>
+                    </div>
+
+                    <h5>17</h5>
+                    <h6>Mayo</h6>
+                        
+                    <ul>
+                        <li><img src={ eyeIcon } alt='eye' /></li>
+                        <li><img src={ heartIcon } alt='heart' /></li>
+                        <li><img src={ shareIcon } alt='share' /></li>
+                    </ul>
+
+                    <button class="buy">
+                        Comprar
+                    </button>
+                </BigCard>
+
                 <DetailedCard>
                     <h3>{product.name}</h3>
                     <img src={product.big_image} alt={product.name} />
