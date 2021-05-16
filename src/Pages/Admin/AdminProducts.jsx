@@ -92,7 +92,7 @@ const AdminProducts = () => {
               /></td>
               <td>{product.categories.map(cat => (<span key={cat.name} className="cat">{cat.name}</span>))}</td>
               <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
-              <td className="center-text" ><EditIcon /></td>
+              <td className="center-text" ><Link to={`/admin/products-edit/${product.id}`}><EditIcon /></Link></td>
               <td className="center-text" onClick={() => deleteHandler(product.id)}><DeleteIcon /></td>
               <td className="center-text" ><Link to={`/admin/products/${product.id}`}><InfoIcon /></Link></td>
             </tr>

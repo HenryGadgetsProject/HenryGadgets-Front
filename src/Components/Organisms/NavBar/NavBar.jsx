@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from '../../Molecules/SearchBar'
 import MenuBurgerOptBar from '../MenuBurgerOptBar'
+import { useLocation } from 'react-router-dom'
 
 import styled from 'styled-components'
 // import Logo from '../../../Images/Logo.png'
@@ -41,6 +42,9 @@ const LogoDiv = styled.div`
 // `
 
 const NavBar = () => {
+
+    const location = useLocation()
+    console.log(location)
     return (
         <Nav className="nav">
             <LogoDiv>
@@ -60,7 +64,8 @@ const NavBar = () => {
                 </H2> */}
             </LogoDiv>
 
-            <SearchBar />
+            {location.pathname === '/home' ? <SearchBar /> : null}
+            {/* <SearchBar /> */}
 
             <MenuBurgerOptBar />
         </Nav>

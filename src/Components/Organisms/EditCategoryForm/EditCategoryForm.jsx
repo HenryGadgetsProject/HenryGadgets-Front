@@ -155,7 +155,7 @@ const EditCategoryForm = ({ categoryId }) => {
 
     return (
         <FormContainer>
-            <h3>Agregar Categoría</h3>
+            <h3>Editar Categoría</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
@@ -184,7 +184,7 @@ const EditCategoryForm = ({ categoryId }) => {
                 </Item>
 
                 <ButtonContainer>
-                    <Button type='submit'>Agregar</Button>
+                    <Button type='submit'>Editar</Button>
                 </ButtonContainer>
 
             </Form>
