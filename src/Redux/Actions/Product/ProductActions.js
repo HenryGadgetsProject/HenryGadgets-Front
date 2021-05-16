@@ -9,7 +9,7 @@ import {
     GET_PRODUCTS_BY_ID,
     GET_PRODUCTS_BY_PRODUCT_NAME,
     CREATE_PRODUCT_SUCCESS,
-    // GET_SEARCH_SUCCESS,
+    EDIT_PRODUCT_SUCCESS,
     GET_PRODUCTS_BY_NAME,
     REMOVE_PRODUCT_SUCCESS,
     GET_PRODUCTS_BY_CATEGORY_ID,
@@ -164,5 +164,34 @@ export const getProductsByCategoryName = (categoryName) => {
     return {
         type: GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
         payload: categoryName
+    }
+}
+
+export const updateProduct = (id, body) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: PRODUCT_REQUEST
+            }
+        )
+        axios.put(`${HOST}/products/${id}`, body)
+            .then(response => {
+                const product = response.data
+                dispatch(
+                    {
+                        type: EDIT_PRODUCT_SUCCESS,
+                        payload: product
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: PRODUCT_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }

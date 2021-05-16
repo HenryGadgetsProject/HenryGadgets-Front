@@ -8,7 +8,7 @@ import {
     GET_PRODUCTS_BY_CATEGORY_ID,
     // GET_PRODUCTS_BY_CATEGORY_NAME,
     CREATE_PRODUCT_SUCCESS,
-    // CREATE_PRODUCT_REQUEST,
+    EDIT_PRODUCT_SUCCESS,
     // GET_SEARCH_SUCCESS,
     GET_PRODUCTS_BY_NAME,
     REMOVE_PRODUCT_SUCCESS,
@@ -111,7 +111,8 @@ const ProductReducer = (state = initialState, action) => {
         case GET_PRODUCTS_BY_NAME: {
             return {
                 ...state,
-                filteredProducts: action.payload
+                filteredProducts: action.payload,
+                loading: false
             }
         }
 
@@ -120,6 +121,14 @@ const ProductReducer = (state = initialState, action) => {
                 ...state,
                 products: state.products.filter(product => product.id !== action.payload),
                 filteredProducts: state.products.filter(product => product.id !== action.payload),
+                loading: false
+            }
+        }
+
+        case EDIT_PRODUCT_SUCCESS: {
+            return {
+                ...state,
+                products: state.products.map(prod => (prod.id === action.payload.id) ? { ...prod, ...action.payload } : prod),
                 loading: false
             }
         }
