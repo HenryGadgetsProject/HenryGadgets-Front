@@ -121,7 +121,7 @@ export const updateCategory = (id, body) => {
         axios.put(`${HOST}/categories/${id}`, body)
             .then(response => {
                 console.log('aaaa', body)
-                const category = response.data
+                // const category = response.data
                 dispatch(
                     {
                         type: UPDATE_CATEGORY_SUCCESS,

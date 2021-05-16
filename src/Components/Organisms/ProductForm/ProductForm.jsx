@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct, getProducts } from '../../../Redux/Actions/Product/ProductActions'
+import { addProduct } from '../../../Redux/Actions/Product/ProductActions'
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom";
 

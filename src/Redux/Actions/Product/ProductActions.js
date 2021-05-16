@@ -86,7 +86,6 @@ export const addProduct = (body) => {
         axios.post(`${HOST}/products`, body)
             .then(response => {
                 const product = response.data
-                console.log(product)
                 dispatch(
                     {
                         type: CREATE_PRODUCT_SUCCESS,

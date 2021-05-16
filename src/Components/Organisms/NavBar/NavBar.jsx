@@ -44,7 +44,7 @@ const LogoDiv = styled.div`
 const NavBar = () => {
 
     const location = useLocation()
-    console.log(location)
+
     return (
         <Nav className="nav">
             <LogoDiv>

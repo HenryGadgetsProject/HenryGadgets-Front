@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateCategory, getCategoryById } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
@@ -105,19 +105,8 @@ const EditCategoryForm = ({ categoryId }) => {
 
     const category = useSelector(state => state.category.category);
 
-
-    console.log('DESPUES DE USEEFFECT', category)
-
-
-    // return (
-    //     <h1>{categoryId}</h1>
-    // )
-
-
-
     const [isTouch, setIsTouch] = useState({})
     const [error, setError] = useState('')
-
 
     const [input, setInput] = useState({
         id: category.id,

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Main from '../../Components/Atoms/Main'
 import EditProductForm from '../../Components/Organisms/EditProductForm'
-import { useDispatch, useSelector } from 'react-redux'
-import { getproductById } from '../../Redux/Actions/Categories/CategoriesActions'
 
 const AdminProductedit = ({ productId }) => {
 

@@ -20,8 +20,6 @@ const initialState = {
 
 const CategoryReducer = (state = initialState, action) => {
 
-    console.log('*******************************************************', action.payload)
-
     switch (action.type) {
 
         case CATEGORY_REQUEST: {

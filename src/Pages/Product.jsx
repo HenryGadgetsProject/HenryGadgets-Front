@@ -5,7 +5,6 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
-import DetailedCard from '../Components/Atoms/DetailedCard'
 import { getProductsById } from '../Redux/Actions/Product/ProductActions'
 import StarRatings from 'react-star-ratings'
 
