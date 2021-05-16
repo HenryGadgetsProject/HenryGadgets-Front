@@ -13,6 +13,7 @@ import AdminCategoryDetails from "./Admin/AdminCategoryDetails"
 import AdminProductAdd from "./Admin/AdminProductAdd"
 import AdminCategoryAdd from './Admin/AdminCategoryAdd'
 import AdminCategoryEdit from './Admin/AdminCategoryEdit'
+import AdminProductEdit from './Admin/AdminProductEdit'
 
 
 const Admin = () => {
@@ -35,6 +36,10 @@ const Admin = () => {
             render={({ match }) => <AdminCategoryEdit categoryId={match.params.categoryId} />}
           />
           <Route exact path='/admin/product' render={() => <AdminProductAdd />} />
+
+          <Route exact path='/admin/products-edit/:productId'
+            render={({ match }) => <AdminProductEdit productId={match.params.productId} />}
+          />
           <Route exact path='/admin/products/:productId'
             render={({ match }) => <AdminProductDetails productId={match.params.productId} />}
           />

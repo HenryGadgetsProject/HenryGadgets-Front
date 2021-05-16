@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -86,18 +87,20 @@ const validate = (input) => {
     let error = {}
 
     if (!input.name) {
-    error.name = 'Ingresa un nombre'
+        error.name = 'Ingresa un nombre'
     }
     if (!input.photo) {
-    error.photo = 'Ingresa una url'
+        error.photo = 'Ingresa una url'
     }
     if (!input.description) {
-    error.description = 'Ingresa una descripción'
+        error.description = 'Ingresa una descripción'
     }
     return error
 }
 
 const CategoryForm = () => {
+
+    let history = useHistory();
 
     const dispatch = useDispatch()
 
@@ -139,6 +142,7 @@ const CategoryForm = () => {
             'La categoría se ha agregado con éxito!',
             'success'
         )
+        history.push("/admin/categories");
     }
 
     const handleBlur = (e) => {
@@ -155,29 +159,29 @@ const CategoryForm = () => {
 
                 <Divider>
                     <Item>
-                        <NameIcon/>
+                        <NameIcon />
                         <Label>Nombre </Label>
-                        <br/>
+                        <br />
                         <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange} required></Input>
                         {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
                     </Item>
                     <Item>
-                        <ImageIcon/>
+                        <ImageIcon />
                         <Label>Imágen </Label>
-                        <br/>
+                        <br />
                         <Input name='photo' value={input.photo} onBlur={handleBlur} onChange={handleChange} required></Input>
                         {isTouch.photo && error.photo ? (<ErrorMsg>{error.photo}</ErrorMsg>) : null}
                     </Item>
                 </Divider>
 
                 <Item>
-                    <DescriptionIcon/>
+                    <DescriptionIcon />
                     <Label>Descripción </Label>
-                    <br/>
+                    <br />
                     <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange} required></LongInput>
                     {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
                 </Item>
-                
+
                 <ButtonContainer>
                     <Button type='submit'>Agregar</Button>
                 </ButtonContainer>
