@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
+import { updateCategory, getCategoryById } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
-import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -98,30 +97,22 @@ const validate = (input) => {
     return error
 }
 
-const CategoryForm = () => {
-
-    let history = useHistory();
+const EditCategoryForm = ({ categoryId }) => {
 
     const dispatch = useDispatch()
 
-    const [isTouch, setIsTouch] = useState({})
+    dispatch(getCategoryById(parseInt(categoryId)))
 
+    const category = useSelector(state => state.category.category);
+
+    const [isTouch, setIsTouch] = useState({})
     const [error, setError] = useState('')
 
-    const categories = useSelector(state => state.category.categories)
-
-    // Determina el último valor de la ID categories
-    function getId(array) {
-        return array.reduce((acumulator, current) => {
-            return acumulator < current.id ? current.id : acumulator;
-        }, 0) + 1;
-    }
-
     const [input, setInput] = useState({
-        id: getId(categories),
-        name: "",
-        photo: "",
-        description: "",
+        id: category.id,
+        name: category.name,
+        photo: category.photo,
+        description: category.description,
     })
 
     const handleChange = (e) => {
@@ -136,13 +127,12 @@ const CategoryForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addCategory(input))
+        dispatch(updateCategory(categoryId, input))
         Swal.fire(
             'Listo!',
             'La categoría se ha agregado con éxito!',
             'success'
         )
-        history.push("/admin/categories");
     }
 
     const handleBlur = (e) => {
@@ -154,7 +144,7 @@ const CategoryForm = () => {
 
     return (
         <FormContainer>
-            <h3>Agregar Categoría</h3>
+            <h3>Editar Categoría</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
@@ -183,7 +173,7 @@ const CategoryForm = () => {
                 </Item>
 
                 <ButtonContainer>
-                    <Button type='submit'>Agregar</Button>
+                    <Button type='submit'>Editar</Button>
                 </ButtonContainer>
 
             </Form>
@@ -191,4 +181,4 @@ const CategoryForm = () => {
     )
 }
 
-export default CategoryForm
+export default EditCategoryForm

@@ -7,18 +7,19 @@ import Select from '../../Atoms/Select'
 
 const FilterBy = ({ array, handleChange }) => {
     // const dispatch = useDispatch()
-    
+
     // const handleChange = e => {
     //     dispatch(setSortOrder(e.target.value))
     // }
-    
+
     return (
         <FilterContainer>
-            <label htmlFor="sort-by">Ordenar por: </label>
+            <label htmlFor="filter-by">Buscar por Categoría: </label>
             <Select
-                onChange = { handleChange }>
-                {array.map(item => <option
-                    value={item.id}>
+                onChange={handleChange}>
+                <option value="todas">Todas</option>
+                {array.map(item => <option key={item.id}
+                    value={item.name}>
                     {item.name}
                 </option>)}
             </Select>

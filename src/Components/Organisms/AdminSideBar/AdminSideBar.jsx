@@ -62,8 +62,8 @@ const AdminSideBar = () => {
     <AdminAside>
       <Link to='/admin/products'><button><ProductIcon /> Productos</button></Link>
       <Link to='/admin/categories'><button><CategoryIcon /> Categorías</button></Link>
-      <button><AddProductIcon /> Agregar Productos</button>
-      <button><AddCategoryIcon /> Agregar Categorías</button>
+      <Link to='/admin/product'><button><AddProductIcon /> Agregar Productos</button></Link>
+      <Link to='/admin/category'><button><AddCategoryIcon /> Agregar Categorías</button></Link>
     </AdminAside>
   )
 }

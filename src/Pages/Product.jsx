@@ -6,47 +6,16 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { getProductsById } from '../Redux/Actions/Product/ProductActions'
+import StarRatings from 'react-star-ratings'
 
-import styled from 'styled-components'
+import BigCard from '../Components/Atoms/BigCard'
 
-const DetailedCard = styled.div`
-    background          : var(--pure-white);
-    border              : .3em solid var(--dark-primary);
-    box-shadow          : 0 0 1em var(--font-color);
-    display             : flex;
-    flex-direction      : column;
-    justify-self        : center;
-    margin              : 3em auto;
-    max-width           : 60em;
-    padding             : 1em 3em;
-    text-align          : justify;
-    width               : 100%;
-
-    h3 {
-        color           : var(--pure-black);
-        font-size       : 3em;
-        margin          : .5em;
-        text-align      : center;
-        ${'' /* text-shadow     : .1em .2em .4em var(--light-primary); */}
-    }
-
-    img {
-        width: 25em;
-        height: 25em;
-        margin-bottom   : 2em;
-        padding         : .5em;
-        place-self      : center;
-        object-fit      : contain;
-    }
-
-    p {
-        color           : var(--pure-black);
-        font-size       : 2.2em;
-        margin          : .5em;
-    }
-`
 
 const Product = ({ productId }) => {
+
+    // const eyeIcon = 'https://api.iconify.design/bi-eye.svg?height=16'
+    // const heartIcon = 'https://api.iconify.design/ant-design:heart-filled.svg'
+    // const shareIcon = 'https://api.iconify.design/bi:share-fill.svg'
 
     const dispatch = useDispatch()
 
@@ -67,14 +36,53 @@ const Product = ({ productId }) => {
             {/* const { id, name, price, stock, description, rating, big_image } = product */}
 
             <Main id="main">
-                <DetailedCard>
+                <BigCard>
+                    <div class="thumbnail">
+                        <img class="left" src={product.big_image} alt='left'/>
+                    </div>
+
+                    <div class="right">
+
+                        <h3>{product.name}</h3>
+
+                        <StarRatings
+                        rating={product.rating}
+                        starDimension="1.2em"
+                        starSpacing=".2em"
+                        numberOfStars={5}
+                        starRatedColor="gold"
+                        />
+
+                        <div class="separator"></div>
+                        <span>Descripción</span><p>{product.description}</p>
+                        <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
+                        <span>Precio</span><p>{product.price} $</p>
+
+                    </div>
+
+                    {/* <h5>17</h5>
+                    <h6>Mayo</h6> */}
+                        
+                    {/* <ul>
+                        <li><img src={ eyeIcon } alt='eye' /></li>
+                        <li><img src={ heartIcon } alt='heart' /></li>
+                        <li><img src={ shareIcon } alt='share' /></li>
+                    </ul> */}
+
+                    <button class="buy">
+                        Comprar
+                    </button>
+
+                </BigCard>
+
+                {/* <DetailedCard>
                     <h3>{product.name}</h3>
                     <img src={product.big_image} alt={product.name} />
                     <p>Descripción: {product.description}</p>
                     <p>Rating: {product.rating}</p>
                     <p>Stock: {product.stock} unidades</p>
                     <p>{product.price} $</p>
-                </DetailedCard>
+                </DetailedCard> */}
             </Main>
 
             <Footer />

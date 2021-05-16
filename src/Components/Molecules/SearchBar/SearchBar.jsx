@@ -24,6 +24,7 @@ const Input = styled.input`
 `
 
 const SuggestContainer = styled.div`
+    display:none;
     ${'' /* border-radius       : .3em; */}
     margin-left         : 1.8em;
     height              : 25em;
@@ -69,9 +70,7 @@ const SearchBar = () => {
     const [options, setOptions] = useState([]);
 
     const delayInput = useCallback(
-        debounce((input) => dispatch(searchProducts(input)), 300),
-        []
-    );
+        debounce((input) => dispatch(searchProducts(input)), 300), []);
 
     const handleChange = (e) => {
         setOptions(foundProducts);
@@ -85,9 +84,9 @@ const SearchBar = () => {
             setOptions([])
         }
     }
-    
+
     // Busca en caso de no encontrar alguna sugerencia
-    const handleSubmit =(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(searchProducts(inputValue))
     }
@@ -97,29 +96,29 @@ const SearchBar = () => {
         setInputValue('');
         setOptions([]);
     }
-    
+
     return (
         <>
-        <form onSubmit={handleSubmit}>
-            <Input
-                value={inputValue}
-                onChange={handleChange}
-                placeholder="🔍 Buscar un producto..."
-            />
-            {/* <input type="submit" value="Buscar"/> */}
-            <SuggestContainer>
-                <Ul>
-                    {options.length > 0 ?
-                        options.map((products) => (
-                            <Link to={`/product/${products.id}`} key={products.id} onClick={handleClick}>
-                                <Li key={`${products.id}`}>
-                                    {products.name}
-                                </Li>
-                            </Link>
-                        )) : null}
-                </Ul>
-            </SuggestContainer>
-        </form>
+            <form onSubmit={handleSubmit}>
+                <Input
+                    value={inputValue}
+                    onChange={handleChange}
+                    placeholder="🔍 Buscar un producto..."
+                />
+                {/* <input type="submit" value="Buscar"/> */}
+                <SuggestContainer>
+                    <Ul>
+                        {options.length > 0 ?
+                            options.map((products) => (
+                                <Link to={`/product/${products.id}`} key={products.id} onClick={handleClick}>
+                                    <Li key={`${products.id}`}>
+                                        {products.name}
+                                    </Li>
+                                </Link>
+                            )) : null}
+                    </Ul>
+                </SuggestContainer>
+            </form>
         </>
     )
 }

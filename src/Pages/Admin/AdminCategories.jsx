@@ -69,12 +69,12 @@ const AdminCategories = () => {
 
       <tbody>
         {categories.map(category => (
-          <tr>
+          <tr key={category.id}>
             <td>{category.id}</td>
             <td>{category.name}</td>
             <td>{category.description}</td>
             <td><img className="mini" src={category.photo} alt={category.name} /></td>
-            <td className="center-text" onClick={() => alert(category.id)}><EditIcon /></td>
+            <td className="center-text"><Link to={`/admin/categories-edit/${category.id}`}><EditIcon /></Link></td>
             <td className="center-text" onClick={() => deleteHandler(category.id)}><DeleteIcon /></td>
             <td className="center-text"><Link to={`/admin/categories/${category.id}`}><InfoIcon /></Link></td>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../../../Redux/Actions/Product/ProductActions'
+import { updateProduct, getProductsById } from '../../../Redux/Actions/Product/ProductActions'
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom";
 
@@ -169,11 +169,17 @@ const validate = (input) => {
     return error
 }
 
-const ProductForm = () => {
+const EditProductForm = ({ productId }) => {
 
     let history = useHistory();
 
     const dispatch = useDispatch()
+
+    dispatch(getProductsById(productId))
+
+    const product = useSelector(state => state.product.product);
+
+    console.log(product)
 
     const categories = useSelector((state) => state.category.categories)
 
@@ -184,13 +190,15 @@ const ProductForm = () => {
     const [options, setOptions] = useState('')
 
     const [input, setInput] = useState({
-        name: "",
-        price: "",
-        rating: "",
-        big_image: "",
-        description: "",
-        is_active: "",
-        stock: "",
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        rating: product.rating,
+        big_image: product.big_image,
+        description: product.description,
+        is_active: product.is_active,
+        stock: product.stock,
+        categories: product.categories
     })
 
     // Mapeo categories para darle el formato correcto para las opciones de React-Select
@@ -226,7 +234,7 @@ const ProductForm = () => {
             })
             return
         }
-        dispatch(addProduct(submitData))
+        dispatch(updateProduct(submitData))
         Swal.fire(
             'Listo!',
             'Tu producto fué agregado con éxito!',
@@ -245,7 +253,7 @@ const ProductForm = () => {
     return (
         <>
             <FormContainer>
-                <h3>Agregar Producto</h3>
+                <h3>Editar Producto</h3>
                 <Form onSubmit={handleSubmit}>
 
                     <Divider>
@@ -326,7 +334,7 @@ const ProductForm = () => {
                     </Item>
 
                     <ButtonContainer>
-                        <Button type='submit'>Agregar</Button>
+                        <Button type='submit'>Editar</Button>
                     </ButtonContainer>
 
                 </Form>
@@ -335,4 +343,4 @@ const ProductForm = () => {
     )
 }
 
-export default ProductForm
+export default EditProductForm

@@ -24,7 +24,7 @@ const Ul = styled.ul`
         position        : fixed;
         right           : -2em;
         top             : 0;
-        transform       : ${ ({ open }) => open ? 'translateX(0)' : 'translateX(100%)' };
+        transform       : ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
         transition      : all .5s linear;
         width           : 300px;
 
@@ -44,27 +44,38 @@ const Img = styled.img`
         transform: scale(1.30)
     }
 `
-
+const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
+const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
+const userIcon = 'https://api.iconify.design/bx:bx-user-circle.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
-const createIcon = 'https://api.iconify.design/gridicons:create.svg?color=white'
 const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
     return (
-        <Ul open = { open }>
+        <Ul open={open}>
             <li>
-                <Link to = "/MyChart"  className="link">
+                <Link to="/MyChart" className="link">
                     <Img src={chartIcon} alt='chart'></Img>
                 </Link>
             </li>
             <li>
-                <Link to = "/create"  className="link">
-                    <Img src={createIcon} alt='create'></Img>
+                <Link to="/admin" className="link">
+                    <Img src={adminIcon} alt='admin'></Img>
                 </Link>
             </li>
             <li>
-                <Link to = "/admin"  className="link">
-                    <Img src={adminIcon} alt='admin'></Img>
+                <Link to="/login" className="link">
+                    <Img src={loginIcon} alt='login'></Img>
+                </Link>
+            </li>
+            <li>
+                <Link to="/logout" className="link">
+                    <Img src={logoutIcon} alt='logout'></Img>
+                </Link>
+            </li>
+            <li>
+                <Link to="/user" className="link">
+                    <Img src={userIcon} alt='user'></Img>
                 </Link>
             </li>
             {/* <li>

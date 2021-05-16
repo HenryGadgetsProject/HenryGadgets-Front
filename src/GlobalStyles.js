@@ -96,7 +96,7 @@ const GlobalStyle = createGlobalStyle`
 
     code {
         font-family : 'source-code-pro', 'Menlo', 'Monaco', 'Consolas',
-                      'Courier New', 'monospace';
+                      'Courier New', 'monospace', 'Roboto';
     }
 
     ol, ul {
@@ -246,7 +246,7 @@ const GlobalStyle = createGlobalStyle`
     .carousel {
         margin      : 0;
         ${'' /* max-height  : 50em; */}
-        max-height  : calc(100vh - 34em) !important;
+        max-height  : calc(100vh - 40em) !important;
         ${'' /* max-width   : 110em; */}
         ${'' /* max-width   : 151em; */}
         max-width   : 100vw !important;

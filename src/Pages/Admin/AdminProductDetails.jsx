@@ -39,7 +39,7 @@ const AdminProductDetails = ({ productId }) => {
         numberOfStars={5}
         starRatedColor="gold"
       /></div>
-      <div>{product.categories?.map(cat => (<span className="cat">{cat.name}</span>))}</div>
+      <div>{product.categories?.map(cat => (<span key={cat.name} className="cat">{cat.name}</span>))}</div>
       {/* <div className="center-text">{(product.is_active) ? <StatusIcon /> : null}</div> */}
 
 
