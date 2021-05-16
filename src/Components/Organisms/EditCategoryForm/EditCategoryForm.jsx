@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
+import { updateCategory, getCategoryById } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 
 import styled from 'styled-components'
@@ -86,41 +86,44 @@ const validate = (input) => {
     let error = {}
 
     if (!input.name) {
-    error.name = 'Ingresa un nombre'
+        error.name = 'Ingresa un nombre'
     }
     if (!input.photo) {
-    error.photo = 'Ingresa una url'
+        error.photo = 'Ingresa una url'
     }
     if (!input.description) {
-    error.description = 'Ingresa una descripción'
+        error.description = 'Ingresa una descripción'
     }
     return error
 }
 
-const EditCategoryForm = ({category}) => {
-
-    console.log(category)
+const EditCategoryForm = ({ categoryId }) => {
 
     const dispatch = useDispatch()
 
-    const [isTouch, setIsTouch] = useState({})
+    dispatch(getCategoryById(parseInt(categoryId)))
 
+    const category = useSelector(state => state.category.category);
+
+
+    console.log('DESPUES DE USEEFFECT', category)
+
+
+    // return (
+    //     <h1>{categoryId}</h1>
+    // )
+
+
+
+    const [isTouch, setIsTouch] = useState({})
     const [error, setError] = useState('')
 
-    const categories = useSelector(state => state.category.categories)
-
-    // Determina el último valor de la ID categories
-    function getId(array) {
-        return array.reduce((acumulator, current) => {
-            return acumulator < current.id ? current.id : acumulator;
-        }, 0) + 1;
-    }
 
     const [input, setInput] = useState({
-        id: getId(categories),
-        name: "",
-        photo: "",
-        description: "",
+        id: category.id,
+        name: category.name,
+        photo: category.photo,
+        description: category.description,
     })
 
     const handleChange = (e) => {
@@ -135,7 +138,7 @@ const EditCategoryForm = ({category}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(addCategory(input))
+        dispatch(updateCategory(categoryId, input))
         Swal.fire(
             'Listo!',
             'La categoría se ha agregado con éxito!',
@@ -157,29 +160,29 @@ const EditCategoryForm = ({category}) => {
 
                 <Divider>
                     <Item>
-                        <NameIcon/>
+                        <NameIcon />
                         <Label>Nombre </Label>
-                        <br/>
+                        <br />
                         <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange} required></Input>
                         {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
                     </Item>
                     <Item>
-                        <ImageIcon/>
+                        <ImageIcon />
                         <Label>Imágen </Label>
-                        <br/>
+                        <br />
                         <Input name='photo' value={input.photo} onBlur={handleBlur} onChange={handleChange} required></Input>
                         {isTouch.photo && error.photo ? (<ErrorMsg>{error.photo}</ErrorMsg>) : null}
                     </Item>
                 </Divider>
 
                 <Item>
-                    <DescriptionIcon/>
+                    <DescriptionIcon />
                     <Label>Descripción </Label>
-                    <br/>
+                    <br />
                     <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange} required></LongInput>
                     {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
                 </Item>
-                
+
                 <ButtonContainer>
                     <Button type='submit'>Agregar</Button>
                 </ButtonContainer>

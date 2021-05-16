@@ -78,7 +78,7 @@ const AdminProducts = () => {
 
         <tbody>
           {products.map(product => (
-            <tr>
+            <tr key={product.id}>
               <td>*</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
@@ -90,7 +90,7 @@ const AdminProducts = () => {
                 numberOfStars={5}
                 starRatedColor="gold"
               /></td>
-              <td>{product.categories.map(cat => (<span className="cat">{cat.name}</span>))}</td>
+              <td>{product.categories.map(cat => (<span key={cat.name} className="cat">{cat.name}</span>))}</td>
               <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
               <td className="center-text" ><EditIcon /></td>
               <td className="center-text" onClick={() => deleteHandler(product.id)}><DeleteIcon /></td>

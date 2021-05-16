@@ -3,7 +3,7 @@ import {
     CATEGORY_REQUEST,
     GET_CATEGORIES_SUCCESS,
     SEARCH_CATEGORIES,
-    // ADD_CATEGORY,
+    UPDATE_CATEGORY_SUCCESS,
     CREATE_CATEGORY_SUCCESS,
     GET_CATEGORY_BY_ID_SUCCESS,
     REMOVE_CATEGORY_SUCCESS
@@ -19,6 +19,8 @@ const initialState = {
 }
 
 const CategoryReducer = (state = initialState, action) => {
+
+    console.log('*******************************************************', action.payload)
 
     switch (action.type) {
 
@@ -72,6 +74,13 @@ const CategoryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 categories: state.categories.filter(cat => cat.id !== parseInt(action.payload))
+            }
+        }
+        case UPDATE_CATEGORY_SUCCESS: {
+            console.log(action.payload)
+            return {
+                ...state,
+                categories: state.categories.map(cat => (cat.id === parseInt(action.payload.id)) ? { ...cat, ...action.payload } : cat)
             }
         }
 

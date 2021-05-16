@@ -5,7 +5,7 @@ import {
     CATEGORY_REQUEST,
     GET_CATEGORIES_SUCCESS,
     SEARCH_CATEGORIES,
-    //ADD_CATEGORY,
+    UPDATE_CATEGORY_SUCCESS,
     CREATE_CATEGORY_SUCCESS,
     GET_CATEGORY_BY_ID_SUCCESS,
     REMOVE_CATEGORY_SUCCESS,
@@ -86,7 +86,7 @@ export const addCategory = (body) => {
 export const getCategoryById = (id) => {
     return {
         type: GET_CATEGORY_BY_ID_SUCCESS,
-        payload: parseInt(id)
+        payload: id
     }
 }
 
@@ -100,6 +100,32 @@ export const deleteCategories = (id) => {
                     {
                         type: REMOVE_CATEGORY_SUCCESS,
                         payload: parseInt(id)
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: CATEGORY_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const updateCategory = (id, body) => {
+    return (dispatch) => {
+        dispatch({ type: CATEGORY_REQUEST })
+        axios.put(`${HOST}/categories/${id}`, body)
+            .then(response => {
+                console.log('aaaa', body)
+                const category = response.data
+                dispatch(
+                    {
+                        type: UPDATE_CATEGORY_SUCCESS,
+                        payload: body
                     }
                 )
             })

@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Main from '../../Components/Atoms/Main'
-import Footer from '../../Components/Organisms/Footer'
+
 
 import CategoryForm from '../../Components/Organisms/CategoryForm'
 

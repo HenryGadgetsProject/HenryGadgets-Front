@@ -1,11 +1,11 @@
 import React from 'react'
 import NavBar from '../Components/Organisms/NavBar'
-import Breadcrumb from '../Components/Atoms/Breadcrumb'
+//import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import FilterBy from '../Components/Organisms/FilterBy'
-import SortBy from '../Components/Organisms/SortBy'
+//import SortBy from '../Components/Organisms/SortBy'
 import ProductCards from '../Components/Organisms/ProductCards'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductsByCategoryName } from '../Redux/Actions/Product/ProductActions'
@@ -55,39 +55,39 @@ const Home = () => {
                 {/* <Breadcrumb id="breadcrumb-home" /> */}
 
                 {/* <div> */}
-                    <Header id="header">
-                        <h1>Henry Gadgets</h1>
-                    </Header>
+                <Header id="header">
+                    <h1>Henry Gadgets</h1>
+                </Header>
 
-                    <aside>
-                        <FilterBy
-                            array={categories}
-                            handleChange={handleChange}
-                        />
+                <aside>
+                    <FilterBy
+                        array={categories}
+                        handleChange={handleChange}
+                    />
 
-                        {/* <SortBy />
+                    {/* <SortBy />
 
                         <SortBy />
 
                         <SortBy />
 
                         <SortBy /> */}
-                    </aside>
+                </aside>
 
-                    <section>
-                        <div>
-                            {/* <Pagination /> */}
-                        </div>
+                <section>
+                    <div>
+                        {/* <Pagination /> */}
+                    </div>
 
-                        <h2>Catálogo</h2>
+                    <h2>Catálogo</h2>
 
-                        <div className="popular-products">
-                            {/* <TopServices - Cards /> */}
-                            <ProductCards products={products}/>
+                    <div className="popular-products">
+                        {/* <TopServices - Cards /> */}
+                        <ProductCards products={products} />
 
-                            {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
-                        </div>
-                    </section>
+                        {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
+                    </div>
+                </section>
                 {/* </div> */}
             </Main>
             <Footer />

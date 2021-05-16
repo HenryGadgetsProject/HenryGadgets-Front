@@ -1,6 +1,6 @@
 import React from 'react'
 import Main from '../../Components/Atoms/Main'
-import Footer from '../../Components/Organisms/Footer'
+
 
 import ProductForm from '../../Components/Organisms/ProductForm'
 
