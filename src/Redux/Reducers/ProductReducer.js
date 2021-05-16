@@ -6,13 +6,13 @@ import {
     GET_PRODUCT_SUCCESS,
     GET_PRODUCTS_BY_ID,
     GET_PRODUCTS_BY_CATEGORY_ID,
-    GET_PRODUCTS_BY_CATEGORY_NAME,
+    // GET_PRODUCTS_BY_CATEGORY_NAME,
     CREATE_PRODUCT_SUCCESS,
-    CREATE_PRODUCT_REQUEST,
-    CREATE_PRODUCT_ERROR,
+    // CREATE_PRODUCT_REQUEST,
     // GET_SEARCH_SUCCESS,
     GET_PRODUCTS_BY_NAME,
-    REMOVE_PRODUCT_SUCCESS
+    REMOVE_PRODUCT_SUCCESS,
+    GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -26,7 +26,6 @@ const initialState = {
     filteredProducts: [],
     popularProducts: [],
     product: {},
-    createdProduct: {},
     error: ''
 }
 
@@ -45,6 +44,7 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: action.payload,
+                filteredProducts: action.payload,
                 loading: false
             }
         }
@@ -56,6 +56,7 @@ const ProductReducer = (state = initialState, action) => {
                 loading: false
             }
         }
+
         case POPULAR_PRODUCTS: {
             return {
                 ...state,
@@ -78,33 +79,23 @@ const ProductReducer = (state = initialState, action) => {
             }
         }
 
-        case GET_PRODUCTS_BY_CATEGORY_NAME: {
+        case GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS: {
+            if (action.payload === 'todas') {
+                return {
+                    ...state,
+                    filteredProducts: state.products
+                }
+            }
             return {
                 ...state,
                 filteredProducts: state.products.filter(product => product.categories.some(category => category.name === action.payload))
             }
         }
 
-        case CREATE_PRODUCT_REQUEST: {
-            return {
-                ...state,
-                loading: true
-            }
-        }
-
         case CREATE_PRODUCT_SUCCESS: {
             return {
                 ...state,
-                createdProduct: action.payload,
                 products: [...state.products, action.payload],
-                loading: false
-            }
-        }
-
-        case CREATE_PRODUCT_ERROR: {
-            return {
-                ...state,
-                error: action.payload,
                 loading: false
             }
         }

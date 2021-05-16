@@ -7,7 +7,8 @@ import Footer from '../Components/Organisms/Footer'
 import FilterBy from '../Components/Organisms/FilterBy'
 import SortBy from '../Components/Organisms/SortBy'
 import ProductCards from '../Components/Organisms/ProductCards'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProductsByCategoryName } from '../Redux/Actions/Product/ProductActions'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 //import data from '../Data/categories'
@@ -15,11 +16,14 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
 
-    // const popularProducts = useSelector((state) => state.product.popularProducts)
+    const dispatch = useDispatch()
+
+    const products = useSelector((state) => state.product.filteredProducts)
+
     const categories = useSelector((state) => state.category.categories)
 
     const handleChange = e => {
-        alert(e.target.value)
+        dispatch(getProductsByCategoryName(e.target.value))
     }
 
     return (
@@ -48,7 +52,7 @@ const Home = () => {
                     )}
                 </Carousel>
 
-                <Breadcrumb id="breadcrumb-home" />
+                {/* <Breadcrumb id="breadcrumb-home" /> */}
 
                 {/* <div> */}
                     <Header id="header">
@@ -61,13 +65,13 @@ const Home = () => {
                             handleChange={handleChange}
                         />
 
-                        <SortBy />
+                        {/* <SortBy />
 
                         <SortBy />
 
                         <SortBy />
 
-                        <SortBy />
+                        <SortBy /> */}
                     </aside>
 
                     <section>
@@ -79,7 +83,7 @@ const Home = () => {
 
                         <div className="popular-products">
                             {/* <TopServices - Cards /> */}
-                            <ProductCards/>
+                            <ProductCards products={products}/>
 
                             {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                         </div>

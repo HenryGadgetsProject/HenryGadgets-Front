@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import StarRatings from 'react-star-ratings'
 
 import styled from 'styled-components'
 
@@ -55,12 +56,12 @@ const Cards = styled.div`
     }
 `
 
-const ProductCards = () => {
+const ProductCards = ({products}) => {
     
     // No funciona el dispatch de Redux, llega como 'undefined'
     // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
     // const dispatch = useDispatch()
-    const products = useSelector((state) => state.product.products)
+    // const products = useSelector((state) => state.product.products)
 
     // useEffect(() => {
     //     dispatch(getProducts());
@@ -68,7 +69,7 @@ const ProductCards = () => {
 
     return (
         <>
-            {products.map(p => {
+            {products?.map(p => {
                 return(
                     <Cards key={p?.id}>
                         <Link to={`/product/${p.id}`}>
@@ -76,7 +77,14 @@ const ProductCards = () => {
                         </Link>
                         <p>{p.name}</p>
                         <p>{p.price} $</p>
-                        <p>{p.rating}</p>
+                        {/* <p>{p.rating}</p> */}
+                        <p className="center"><StarRatings
+                        rating={p.rating}
+                        starDimension="1em"
+                        starSpacing=".2em"
+                        numberOfStars={5}
+                        starRatedColor="gold"
+                        /></p>
                         {/* REVIEWS MODAL (Probablemente) */}
                         {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                     </Cards>

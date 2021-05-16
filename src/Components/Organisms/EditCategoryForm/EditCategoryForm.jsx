@@ -97,7 +97,9 @@ const validate = (input) => {
     return error
 }
 
-const CategoryForm = () => {
+const EditCategoryForm = ({category}) => {
+
+    console.log(category)
 
     const dispatch = useDispatch()
 
@@ -187,4 +189,4 @@ const CategoryForm = () => {
     )
 }
 
-export default CategoryForm
+export default EditCategoryForm

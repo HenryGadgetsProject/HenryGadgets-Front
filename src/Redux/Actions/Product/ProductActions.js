@@ -9,12 +9,11 @@ import {
     GET_PRODUCTS_BY_ID,
     GET_PRODUCTS_BY_PRODUCT_NAME,
     CREATE_PRODUCT_SUCCESS,
-    CREATE_PRODUCT_REQUEST,
-    CREATE_PRODUCT_ERROR,
     // GET_SEARCH_SUCCESS,
     GET_PRODUCTS_BY_NAME,
     REMOVE_PRODUCT_SUCCESS,
-    GET_PRODUCTS_BY_CATEGORY_ID
+    GET_PRODUCTS_BY_CATEGORY_ID,
+    GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS
     // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
@@ -81,12 +80,13 @@ export const addProduct = (body) => {
     return (dispatch) => {
         dispatch(
             {
-                type: CREATE_PRODUCT_REQUEST
+                type: PRODUCT_REQUEST
             }
         )
         axios.post(`${HOST}/products`, body)
             .then(response => {
                 const product = response.data
+                console.log(product)
                 dispatch(
                     {
                         type: CREATE_PRODUCT_SUCCESS,
@@ -98,7 +98,7 @@ export const addProduct = (body) => {
                 const errorMsg = error.message
                 dispatch(
                     {
-                        type: CREATE_PRODUCT_ERROR,
+                        type: PRODUCT_ERROR,
                         payload: errorMsg
                     }
                 )
@@ -157,5 +157,12 @@ export const deleteProducts = (id) => {
                     }
                 )
             })
+    }
+}
+
+export const getProductsByCategoryName = (categoryName) => {
+    return {
+        type: GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
+        payload: categoryName
     }
 }
