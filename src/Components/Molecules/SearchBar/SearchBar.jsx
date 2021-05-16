@@ -70,9 +70,7 @@ const SearchBar = () => {
     const [options, setOptions] = useState([]);
 
     const delayInput = useCallback(
-        debounce((input) => dispatch(searchProducts(input)), 300),
-        []
-    );
+        debounce((input) => dispatch(searchProducts(input)), 300), []);
 
     const handleChange = (e) => {
         setOptions(foundProducts);
