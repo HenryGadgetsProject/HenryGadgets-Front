@@ -9,7 +9,6 @@ const Main = styled.main`
     ${'' /* min-height      : calc(100vh - 20em); */}
     min-height      : calc(100vh - 20em);
     width           : 100%;
-    padding-top     :7em;
 `
 
 export default Main

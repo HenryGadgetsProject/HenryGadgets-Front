@@ -12,12 +12,13 @@ const BigCard = styled.div`
 
     /* Image on the left side */
     .thumbnail {
+        background: #FFFFFF;
         float: left;
         position: relative;
         left: 30px;
         top: -30px;
         height: 320px;
-        width: 530px;
+        width: 440px;
         -webkit-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
         box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
@@ -45,8 +46,7 @@ const BigCard = styled.div`
 
     h3 {
         padding-top: 15px;
-        font-size: 1.8em;
-        color: #4B4B4B;
+        font-size: 2em;
     }
 
     .stars {
@@ -73,16 +73,21 @@ const BigCard = styled.div`
     }
 
     .separator {
-        margin-top: 10px;
+        margin-top: 1em;
+        margin-bottom: 1em;
         border: 1px solid #C3C3C3;
     }
 
     p {
         text-align: justify;
-        padding-top: 10px;
-        font-size: 0.95rem;
+        font-size: 1.2rem;
         line-height: 150%;
         color: #4B4B4B;
+    }
+
+    span {
+        font-size: 1.6em;
+        font-weight: 500;
     }
 
     /* DATE of release*/
@@ -117,19 +122,25 @@ const BigCard = styled.div`
     /* Floating action button */
     .buy {
         position: absolute;
+        background-color: #ff1744;
+        color: white;
+        border: .15em solid #ff1744;
         right: 70px;
         bottom: -20px;
-        box-sizing: border-box;
-        padding-top: 18px;
-        background-color: #1875D0;
+        font-size: 1.4em;
+        border-radius: 3em;
+        font-size: 1.6em;
         width: 180px;
         height: 60px;
-        color: white;
         text-align: center;
-        border-radius: 3em;
+        box-sizing: border-box;
         -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+        transition: .3s;
+        &:hover{
+            transform: scale(1.10);
+        }
     }
 `
 
