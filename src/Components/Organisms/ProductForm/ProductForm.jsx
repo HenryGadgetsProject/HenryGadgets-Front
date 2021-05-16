@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../../../Redux/Actions/Product/ProductActions'
+import { addProduct, getProducts } from '../../../Redux/Actions/Product/ProductActions'
 import Swal from 'sweetalert2'
 
 import styled from 'styled-components'
@@ -215,6 +215,14 @@ const ProductForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (submitData.categories.length > 2) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Solo puedes seleccionar 2 Categorías como máximo!'
+              })
+            return
+        }
         dispatch(addProduct(submitData))
         Swal.fire(
             'Listo!',

@@ -1,11 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-
-
 import Landing from '../Pages/Landing'
 import About from '../Pages/About'
-import CreatePost from '../Pages/CreatePost'
 import Home from '../Pages/Home'
 import MyChart from '../Pages/MyChart'
 import Category from '../Pages/Category'
@@ -18,7 +15,6 @@ const ClientRouter = () => {
             <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route path="/about" component={About} />
-                <Route path="/create" component={CreatePost} />
                 <Route path="/home" component={Home} />
                 <Route path="/chart" component={MyChart} />
                 <Route exact path='/category/:categoryId'

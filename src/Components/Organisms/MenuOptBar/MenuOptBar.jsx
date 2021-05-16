@@ -46,7 +46,6 @@ const Img = styled.img`
 `
 
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
-const createIcon = 'https://api.iconify.design/gridicons:create.svg?color=white'
 const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
@@ -55,11 +54,6 @@ const MenuOptBar = ({ open }) => {
             <li>
                 <Link to = "/MyChart"  className="link">
                     <Img src={chartIcon} alt='chart'></Img>
-                </Link>
-            </li>
-            <li>
-                <Link to = "/create"  className="link">
-                    <Img src={createIcon} alt='create'></Img>
                 </Link>
             </li>
             <li>

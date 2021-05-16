@@ -14,11 +14,12 @@ const FilterBy = ({ array, handleChange }) => {
     
     return (
         <FilterContainer>
-            <label htmlFor="sort-by">Ordenar por: </label>
+            <label htmlFor="filter-by">Buscar por Categoría: </label>
             <Select
                 onChange = { handleChange }>
+                <option value="todas">Todas</option>
                 {array.map(item => <option
-                    value={item.id}>
+                    value={item.name}>
                     {item.name}
                 </option>)}
             </Select>
