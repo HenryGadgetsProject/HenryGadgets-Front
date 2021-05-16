@@ -8,6 +8,10 @@ import MyChart from '../Pages/MyChart'
 import Category from '../Pages/Category'
 import Product from '../Pages/Product'
 import NotFound from '../Pages/NotFound'
+import Login from '../Pages/User/Login'
+import Register from '../Pages/User/Register'
+import UserProfile from '../Pages/User/UserProfile'
+import Logout from '../Pages/User/Logout'
 
 const ClientRouter = () => {
     return (
@@ -17,6 +21,10 @@ const ClientRouter = () => {
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/chart" component={MyChart} />
+                <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
+                <Route path="/register" component={Register} />
+                <Route path="/user" component={UserProfile} />
                 <Route exact path='/category/:categoryId'
                     render={({ match }) => <Category categoryId={match.params.categoryId} />}
                 />
