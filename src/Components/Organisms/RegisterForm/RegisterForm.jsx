@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getId } from '../../../Helpers/getId'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from '../../../Redux/Actions/User/UserActions'
+import { useHistory } from 'react-router-dom'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 
@@ -129,6 +130,8 @@ const RegisterForm = () => {
         password: "",
     })
 
+    const history = useHistory()
+
     // const [reType, setReType] = useState("")
 
     const handleChange = (e) => {
@@ -157,6 +160,7 @@ const RegisterForm = () => {
             'Tu cuenta se ha registrado con éxito!',
             'success'
             )
+        history.push('/login')
     }
 
     const handleBlur = (e) => {

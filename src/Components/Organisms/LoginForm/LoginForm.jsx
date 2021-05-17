@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { userLogin } from '../../../Redux/Actions/User/UserActions'
@@ -106,7 +107,7 @@ const validate = (input) => {
 
 const LoginForm = () => {
 
-    // let history = useHistory();
+    let history = useHistory()
 
     const dispatch = useDispatch()
 
@@ -146,7 +147,7 @@ const LoginForm = () => {
             'Te has Logeado con éxito!',
             'success'
         )
-        // history.push("/admin/categories");
+        history.push("/home");
     }
 
     const handleBlur = (e) => {
@@ -156,11 +157,11 @@ const LoginForm = () => {
         })
     }
 
-    console.log(input)
+    // console.log(input)
 
     return (
         <FormContainer>
-            <h3>Ingresa con tus Datos</h3>
+            <h3>Login</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>

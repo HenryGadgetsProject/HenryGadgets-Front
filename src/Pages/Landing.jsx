@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 // import { getProducts } from '../Redux/Actions/Handy/HandyActions'
 import { getCategories } from '../Redux/Actions/Categories/CategoriesActions'
 import { getPopularProducts, getProducts } from '../Redux/Actions/Product/ProductActions'
 import { getUsers } from '../Redux/Actions/User/UserActions'
 import { Link } from 'react-router-dom'
+import Loader from '../Components/Molecules/Loader'
 
 import styled from 'styled-components';
 
@@ -31,6 +32,17 @@ const Div = styled.div`
             transform: scale(1.065);
         }
     }
+
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        color: white;
+        text-shadow: 3px 5px 8px black;
+    }
 `;
 
 // const Title = styled.p`
@@ -48,6 +60,10 @@ const Landing = () => {
 
     const dispatch = useDispatch()
 
+    const LoadingCategories = useSelector(state => state.category.loading)
+    const LoadingProduct = useSelector(state => state.product.loading)
+    const LoadingUsers = useSelector(state => state.user.loading)
+
     useEffect(() => { 
         dispatch(getCategories());
         dispatch(getPopularProducts());
@@ -55,13 +71,21 @@ const Landing = () => {
         dispatch(getUsers());
     }, [dispatch])
 
-    return (
-        <Div>
-            <Link to='/home'>
-                <p>Vendemos lo que buscas.</p>
-            </Link>
-        </Div>
-    )
+    if (LoadingCategories === true && LoadingProduct === true && LoadingUsers === true) {
+        return (
+            <Div className="loader">
+                <h2>Cargando...</h2>
+            </Div>
+        )
+    } else {
+        return (
+            <Div>
+                <Link to='/home'>
+                    <p>Vendemos lo que buscas.</p>
+                </Link>
+            </Div>
+        )
+    }
 }
 
 export default Landing

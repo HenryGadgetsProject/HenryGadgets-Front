@@ -218,6 +218,17 @@ const ProductForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setError(validate({
+            ...input, [e.target.name]: e.target.value
+        }))
+        if (error.name || error.price || error.rating || error.big_image || error.description || error.is_active || error.stock || input.name === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes completar correctamente los campos!'
+            })
+            return
+        }
         if (submitData.categories.length > 2) {
             Swal.fire({
                 icon: 'error',
@@ -253,14 +264,14 @@ const ProductForm = () => {
                             <NameIcon />
                             <Label>Nombre </Label>
                             <br />
-                            <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange} required></Input>
+                            <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange}  ></Input>
                             {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : <p></p>}
                         </Item>
                         <Item>
                             <PriceIcon />
                             <Label>Precio </Label>
                             <br />
-                            <Input name='price' value={input.price} onBlur={handleBlur} onChange={handleChange} required></Input>
+                            <Input name='price' value={input.price} onBlur={handleBlur} onChange={handleChange}  ></Input>
                             {isTouch.price && error.price ? (<ErrorMsg>{error.price}</ErrorMsg>) : <p></p>}
                         </Item>
                     </Divider>
@@ -270,14 +281,14 @@ const ProductForm = () => {
                             <RatingIcon />
                             <Label>Rating </Label>
                             <br />
-                            <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange} required></Input>
+                            <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange}  ></Input>
                             {isTouch.rating && error.rating ? (<ErrorMsg>{error.rating}</ErrorMsg>) : <p></p>}
                         </Item>
                         <Item>
                             <ImageIcon />
                             <Label>Imágen </Label>
                             <br />
-                            <Input name='big_image' value={input.big_image} onBlur={handleBlur} onChange={handleChange} required></Input>
+                            <Input name='big_image' value={input.big_image} onBlur={handleBlur} onChange={handleChange}  ></Input>
                             {isTouch.big_image && error.big_image ? (<ErrorMsg>{error.big_image}</ErrorMsg>) : <p></p>}
                         </Item>
                     </Divider>
@@ -286,7 +297,7 @@ const ProductForm = () => {
                             <ActiveIcon />
                             <Label>Publicación Activa </Label>
                             <br />
-                            <Input name='is_active' value={input.is_active} onBlur={handleBlur} onChange={handleChange} required placeholder='True / False'></Input>
+                            <Input name='is_active' value={input.is_active} onBlur={handleBlur} onChange={handleChange}   placeholder='True / False'></Input>
                             {isTouch.is_active && error.is_active ? (<ErrorMsg>{error.is_active}</ErrorMsg>) : <p></p>}
                             {/* <select onChange={handleChange} value={input.is_active}>
                             <option value="true">Activa</option>
@@ -297,7 +308,7 @@ const ProductForm = () => {
                             <StockIcon />
                             <Label>Cant. de Stock </Label>
                             <br />
-                            <Input name='stock' value={input.stock} onBlur={handleBlur} onChange={handleChange} required></Input>
+                            <Input name='stock' value={input.stock} onBlur={handleBlur} onChange={handleChange}  ></Input>
                             {isTouch.stock && error.stock ? (<ErrorMsg>{error.stock}</ErrorMsg>) : <p></p>}
                         </Item>
                     </Divider>
@@ -306,7 +317,7 @@ const ProductForm = () => {
                         <DescriptionIcon />
                         <Label>Descripción </Label>
                         <br />
-                        <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                        <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange}  ></LongInput>
                         {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : <p></p>}
                     </Item>
 

@@ -22,7 +22,6 @@ export const userLogin = (input) => {
         })
         axios.post(`${HOST}/login`, input)
             .then(response => {
-                console.log('FLAGFLAGFLAGFLAGFLAGFLAG', response.data)
                 const user = response.data.user
                 const jwt = response.data.token
                 const fullUser = {...user, token: jwt}
@@ -109,12 +108,16 @@ export const addUser = (body) => {
         axios.post(`${HOST}/register`, body)
             .then(response => {
                 const user = response.data
-                dispatch(
-                    {
-                        type: ADD_USER_SUCCESS,
-                        payload: user
-                    }
-                )
+                if(user) {
+                    dispatch(
+                        {
+                            type: ADD_USER_SUCCESS,
+                            payload: user
+                        }
+                    )
+                } else {
+                    alert('No se pudo registrar tu nuevo usuario')
+                }
             })
             .catch(error => {
                 const errorMsg = error.message
