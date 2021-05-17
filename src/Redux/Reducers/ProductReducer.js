@@ -84,7 +84,8 @@ const ProductReducer = (state = initialState, action) => {
             if (action.payload === 'todas') {
                 return {
                     ...state,
-                    filteredProducts: state.products
+                    filteredProducts: state.products,
+                    loading: false
                 }
             }
             return {
