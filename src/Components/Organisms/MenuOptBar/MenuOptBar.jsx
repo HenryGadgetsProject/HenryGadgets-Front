@@ -59,31 +59,31 @@ const MenuOptBar = ({ open }) => {
                     <Img src={chartIcon} alt='chart'></Img>
                 </Link>
             </li> */}
-            <li>
+            {/* <li>
                 <Link to="/login" className="link">
                     <Img src={loginIcon} alt='login'></Img>
                 </Link>
-            </li>
+            </li> */}
             {/* <li>
                 <Link to="/logout" className="link">
                     <Img src={logoutIcon} alt='logout'></Img>
                 </Link>
             </li> */}
-            <li>
+            {/* <li>
                 <Link to="/register" className="link">
                     <Img src={registerUserIcon} alt='register'></Img>
                 </Link>
-            </li>
+            </li> */}
             <li>
                 <Link to="/admin" className="link">
                     <Img src={adminIcon} alt='admin'></Img>
                 </Link>
             </li>
-            <li>
+            {/* <li>
                 <Link to="/user" className="link">
                     <Img src={userIcon} alt='user'></Img>
                 </Link>
-            </li>
+            </li> */}
             {/* <li>
                 <Link to = "/about"  className = "link">
                     Acerca de
