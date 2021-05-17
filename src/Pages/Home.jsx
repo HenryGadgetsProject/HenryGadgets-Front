@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 //import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
@@ -18,6 +18,10 @@ import SearchBar from '../Components/Molecules/SearchBar'
 const Home = () => {
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getProductsByCategoryName('todas'))
+    }, [dispatch, getProductsByCategoryName])
 
     const products = useSelector((state) => state.product.filteredProducts)
 

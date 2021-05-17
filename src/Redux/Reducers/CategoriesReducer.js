@@ -75,7 +75,7 @@ const CategoryReducer = (state = initialState, action) => {
             }
         }
         case UPDATE_CATEGORY_SUCCESS: {
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 categories: state.categories.map(cat => (cat.id === parseInt(action.payload.id)) ? { ...cat, ...action.payload } : cat)

@@ -120,7 +120,7 @@ export const updateCategory = (id, body) => {
         dispatch({ type: CATEGORY_REQUEST })
         axios.put(`${HOST}/categories/${id}`, body)
             .then(response => {
-                console.log('aaaa', body)
+                // console.log('aaaa', body)
                 // const category = response.data
                 dispatch(
                     {

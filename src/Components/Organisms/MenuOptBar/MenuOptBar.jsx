@@ -71,36 +71,45 @@ const MenuOptBar = ({ open }) => {
                 </Link>
             </li> */}
 
-            {user.token ? 
-            <li>{
-                <Link to="/home" className="link" onClick={handleClick}>
-                    <Img src={logoutIcon} alt='logout'></Img>
-                </Link>                
-                }
-            </li> 
+            {user.token ?
+                user.is_admin ?
+                <>
+                    <li>{
+                        <Link to="/home" className="link" onClick={handleClick}>
+                            <Img src={logoutIcon} alt='logout'></Img>
+                        </Link>
+                        }
+                    </li>
+                    <li>
+                        <Link to="/admin" className="link">
+                            <Img src={adminIcon} alt='admin'></Img>
+                        </Link>
+                    </li>
+                </>
+                :
+                <li>{
+                    <Link to="/home" className="link" onClick={handleClick}>
+                        <Img src={logoutIcon} alt='logout'></Img>
+                    </Link>
+                    }
+                </li>
             :
             <>
-            <li>
-                <Link to="/login" className="link">
-                    <Img src={loginIcon} alt='login'></Img>
-                </Link>
-            </li>
-            <li>
-                <Link to="/register" className="link">
-                    <Img src={registerUserIcon} alt='register'></Img>
-                </Link>
-            </li>
+                <li>
+                    <Link to="/login" className="link">
+                        <Img src={loginIcon} alt='login'></Img>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/register" className="link">
+                        <Img src={registerUserIcon} alt='register'></Img>
+                    </Link>
+                </li>
             </>
             }
 
 
-            <li>
-                <Link to="/admin" className="link">
-                    <Img src={adminIcon} alt='admin'></Img>
-                </Link>
-            </li>
-
-            {user.token ?             
+            {user.token ?
             <li>
                 {/* <Link to="/user" className="link">
                     <Img src={userIcon} alt='user'></Img>
