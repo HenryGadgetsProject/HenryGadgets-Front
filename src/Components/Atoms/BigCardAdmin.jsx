@@ -1,6 +1,10 @@
-import styled from 'styled-components'
 
-const BigCard = styled.div`
+import React from 'react'
+import styled from 'styled-components'
+import StarRatings from 'react-star-ratings'
+import { Link } from 'react-router-dom'
+
+const BCA = styled.div`
     position: relative;
     height: 430px;
     width: 900px;
@@ -144,6 +148,7 @@ const BigCard = styled.div`
             transform: scale(1.10);
         }
     }
+
     .close{
         font-size: 2.5em;
         position:absolute;
@@ -153,4 +158,45 @@ const BigCard = styled.div`
     }
 `
 
-export default BigCard
+
+
+const BigCardAdmin = ({ product }) => {
+
+
+
+    return (
+
+        <Link to='/admin/products'>
+            <BCA>
+                <div class="thumbnail">
+                    <img class="left" src={product.big_image} alt='left' />
+                </div>
+
+                <div class="right">
+
+                    <div className="close">X</div>
+                    <h3>{product.name}</h3>
+
+                    <StarRatings
+                        rating={product.rating}
+                        starDimension="1.2em"
+                        starSpacing=".2em"
+                        numberOfStars={5}
+                        starRatedColor="gold"
+                    />
+
+                    <div class="separator"></div>
+                    <span>Descripción</span><p>{product.description}</p>
+                    <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
+                    <span>Precio</span><p>{product.price} $</p>
+
+                </div>
+
+            </BCA>
+        </Link>
+    )
+}
+
+export default BigCardAdmin
+
+

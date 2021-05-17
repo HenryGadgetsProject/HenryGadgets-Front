@@ -7,6 +7,7 @@ import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { getProductsById } from '../Redux/Actions/Product/ProductActions'
 import StarRatings from 'react-star-ratings'
+import { Link } from 'react-router-dom'
 
 import BigCard from '../Components/Atoms/BigCard'
 
@@ -36,21 +37,23 @@ const Product = ({ productId }) => {
             {/* const { id, name, price, stock, description, rating, big_image } = product */}
 
             <Main id="main">
+
                 <BigCard>
+
                     <div class="thumbnail">
-                        <img class="left" src={product.big_image} alt='left'/>
+                        <img class="left" src={product.big_image} alt='left' />
                     </div>
 
                     <div class="right">
-
+                        <Link to='/home'><div className="close">X</div></Link>
                         <h3>{product.name}</h3>
 
                         <StarRatings
-                        rating={product.rating}
-                        starDimension="1.2em"
-                        starSpacing=".2em"
-                        numberOfStars={5}
-                        starRatedColor="gold"
+                            rating={product.rating}
+                            starDimension="1.2em"
+                            starSpacing=".2em"
+                            numberOfStars={5}
+                            starRatedColor="gold"
                         />
 
                         <div class="separator"></div>
@@ -62,18 +65,21 @@ const Product = ({ productId }) => {
 
                     {/* <h5>17</h5>
                     <h6>Mayo</h6> */}
-                        
+
                     {/* <ul>
                         <li><img src={ eyeIcon } alt='eye' /></li>
                         <li><img src={ heartIcon } alt='heart' /></li>
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
 
-                    <button class="buy">
+
+
+                    {/* <button class="buy">
                         Comprar
-                    </button>
+                    </button> */}
 
                 </BigCard>
+
 
                 {/* <DetailedCard>
                     <h3>{product.name}</h3>
