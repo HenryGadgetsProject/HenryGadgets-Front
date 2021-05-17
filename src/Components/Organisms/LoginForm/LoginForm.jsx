@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 
 import styled from 'styled-components'
+import { userLogin } from '../../../Redux/Actions/User/UserActions'
 
 const FormContainer = styled.div`
     margin-top: 12em;
@@ -85,12 +86,12 @@ const validate = (input) => {
 
     let error = {}
 
-    if (!input.user) {
-        error.user = 'Ingresa un nombre de Usuario'
-    }
-    if (input.user.length < 6) {
-        error.user = 'Debe tener al menos 6 letras'
-    }
+    // if (!input.user) {
+    //     error.user = 'Ingresa un nombre de Usuario'
+    // }
+    // if (input.user.length < 6) {
+    //     error.user = 'Debe tener al menos 6 letras'
+    // }
     if (!input.email) {
         error.email = 'Ingresa un Email'
     }
@@ -107,14 +108,14 @@ const LoginForm = () => {
 
     // let history = useHistory();
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
 
     const [input, setInput] = useState({
-        user: "",
+        // user: "",
         email: "",
         password: ""
     })
@@ -131,8 +132,8 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // dispatch(addCategory(input))
-        if (error.name || error.email || input.user === "" || input.email === "" || error.password) {
+        dispatch(userLogin(input))
+        if (error.email || input.email === "" || error.password) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -142,7 +143,7 @@ const LoginForm = () => {
         }
         Swal.fire(
             'Listo!',
-            'Tu cuenta se ha registrado con éxito!',
+            'Te has Logeado con éxito!',
             'success'
         )
         // history.push("/admin/categories");
@@ -163,13 +164,13 @@ const LoginForm = () => {
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
-                    <Item>
+                    {/* <Item>
                         <NameIcon />
                         <Label>Nombre de Usuario </Label>
                         <br />
                         <Input name='user' value={input.user} onBlur={handleBlur} onChange={handleChange}></Input>
                         {isTouch.user && error.user ? (<ErrorMsg>{error.user}</ErrorMsg>) : null}
-                    </Item>
+                    </Item> */}
                 </Divider>
 
                 <Item>
@@ -181,7 +182,7 @@ const LoginForm = () => {
                 </Item>
 
                 <Item>
-                    <PasswordIcon/>
+                    <PasswordIcon />
                     <Label>Contraseña </Label>
                     <br />
                     <Input type='password' name='password' value={input.password} onBlur={handleBlur} onChange={handleChange}></Input>
