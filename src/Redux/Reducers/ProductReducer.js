@@ -96,6 +96,7 @@ const ProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: [...state.products, action.payload],
+                filteredProducts: [...state.filteredProducts, action.payload],
                 loading: false
             }
         }
