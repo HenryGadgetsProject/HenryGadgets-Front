@@ -4,6 +4,7 @@ import NavBar from '../../Components/Organisms/NavBar'
 // import Header from '../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
 // import Footer from '../Components/Organisms/Footer'
+import RegisterForm from '../../Components/Organisms/RegisterForm'
 
 const Register = () => {
     return (
@@ -11,6 +12,7 @@ const Register = () => {
             <NavBar className="nav" />
             <Main id="main">
                 <h2>Register.</h2>
+                <RegisterForm/>
             </Main>
         </div>
     )

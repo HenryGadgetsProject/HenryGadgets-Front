@@ -166,20 +166,23 @@ export const getProductsByCategoryName = (categoryName) => {
     }
 }
 
-export const updateProduct = (id, body) => {
+export const updateProduct = (id, input) => {
+
     return (dispatch) => {
         dispatch(
             {
                 type: PRODUCT_REQUEST
             }
         )
-        axios.put(`${HOST}/products/${id}`, body)
+        axios.put(`${HOST}/products/${id}`, input)
             .then(response => {
                 const product = response.data
+
+
                 dispatch(
                     {
                         type: EDIT_PRODUCT_SUCCESS,
-                        payload: product
+                        payload: input
                     }
                 )
             })

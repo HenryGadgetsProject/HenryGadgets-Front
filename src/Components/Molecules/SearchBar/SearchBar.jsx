@@ -10,7 +10,6 @@ import styled from 'styled-components'
 const Input = styled.input`
     background      : var(--pure-white);
     border          : none;
-    border-radius   : 3em;
     ${'' /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1); */}
     font-size       : 1.3em;
     font-weight     : 600;
@@ -24,12 +23,12 @@ const Input = styled.input`
 `
 
 const SuggestContainer = styled.div`
-    display:none;
+    /* display:none; */
     ${'' /* border-radius       : .3em; */}
-    margin-left         : 1.8em;
+    /* margin-left         : 1.8em; */
     height              : 25em;
     ${'' /* max-width           : 21.35em; */}
-    width               : 29em;
+    width               : 32.5em;
     overflow            : scroll;
     &::-webkit-scrollbar {
         display         : none;
@@ -64,7 +63,7 @@ const Li = styled.li`
 const SearchBar = () => {
 
     const dispatch = useDispatch()
-    const foundProducts = useSelector(state => state.product.filteredProducts)
+    const foundProducts = useSelector(state => state.product.searchProducts)
 
     const [inputValue, setInputValue] = useState('');
     const [options, setOptions] = useState([]);
