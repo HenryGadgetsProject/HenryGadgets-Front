@@ -143,7 +143,7 @@ const LoginForm = () => {
         }
         Swal.fire(
             'Listo!',
-            'Tu cuenta se ha registrado con éxito!',
+            'Te has Logeado con éxito!',
             'success'
         )
         // history.push("/admin/categories");

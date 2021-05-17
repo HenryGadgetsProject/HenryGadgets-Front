@@ -22,14 +22,17 @@ export const userLogin = (input) => {
         })
         axios.post(`${HOST}/login`, input)
             .then(response => {
-                console.log(response.data)
-                const user = response.data
-                // dispatch(
-                //     {
-                //         type: USER_LOGIN_SUCCESS,
-                //         payload: user
-                //     }
-                // )
+                console.log('FLAGFLAGFLAGFLAGFLAGFLAG', response.data)
+                const user = response.data.user
+                const jwt = response.data.token
+                const fullUser = {...user, token: jwt}
+                localStorage.setItem("JWT", JSON.stringify(jwt))
+                dispatch(
+                    {
+                        type: USER_LOGIN_SUCCESS,
+                        payload: fullUser
+                    }
+                )
             })
             .catch(error => {
                 const errorMsg = error.message
@@ -44,7 +47,7 @@ export const userLogin = (input) => {
 
 }
 export const userLogut = () => {
-    localStorage.removeItem('jwt')
+    localStorage.removeItem("JWT")
     return {
         type: USER_LOGOUT_SUCCESS
     }
