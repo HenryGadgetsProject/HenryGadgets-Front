@@ -65,6 +65,7 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 error: action.payload,
                 loading: false
+
             }
         }
         case USER_LOADING: {

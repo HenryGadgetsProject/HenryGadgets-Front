@@ -14,7 +14,7 @@ const Div = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
-    background: url('https://www.stratospherenetworks.com/blog/wp-content/uploads/2014/05/Desktop-coffee-ipad.jpg');
+    background: url('https://i.imgur.com/huMkNiw.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
