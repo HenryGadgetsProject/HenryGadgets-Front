@@ -19,7 +19,7 @@ const initialState = {
 }
 
 
-const userReducer = (state = initialState.action) => {
+const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case GET_USERS_SUCCESS: {
@@ -55,9 +55,45 @@ const userReducer = (state = initialState.action) => {
         case DELETE_USER_SUCCESS: {
             return {
                 ...state,
-                users: state.users.filter(user => user.id !== parseInt(action.payload))
+                users: state.users.filter(user => user.id !== parseInt(action.payload)),
+                loading: false
             }
+        }
+
+        case USER_ERROR: {
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        }
+        case USER_LOADING: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case USER_LOGIN_SUCCESS: {
+            return {
+                ...state,
+                user:action.payload,
+                loading:false
+            }
+        }
+
+        case USER_LOGOUT_SUCCESS: {
+            return {
+                ...state,
+                user: {},
+                loading: false
+            }
+        }
+
+        default: {
+            return state
         }
     }
 }
 
+export default userReducer

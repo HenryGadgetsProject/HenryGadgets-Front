@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 // import { getProducts } from '../Redux/Actions/Handy/HandyActions'
 import { getCategories } from '../Redux/Actions/Categories/CategoriesActions'
 import { getPopularProducts, getProducts } from '../Redux/Actions/Product/ProductActions'
+import { getUsers } from '../Redux/Actions/User/UserActions'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components';
@@ -51,7 +52,7 @@ const Landing = () => {
         dispatch(getCategories());
         dispatch(getPopularProducts());
         dispatch(getProducts());
-        // dispatch(searchCategories('lim'))
+        dispatch(getUsers());
     }, [dispatch])
 
     return (
