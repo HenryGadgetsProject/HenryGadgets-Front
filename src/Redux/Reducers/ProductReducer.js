@@ -24,6 +24,7 @@ const initialState = {
     loading: false,
     products: [],
     filteredProducts: [],
+    searchProducts: [],
     popularProducts: [],
     product: {},
     error: ''
@@ -112,7 +113,7 @@ const ProductReducer = (state = initialState, action) => {
         case GET_PRODUCTS_BY_NAME: {
             return {
                 ...state,
-                filteredProducts: action.payload,
+                searchProducts: action.payload,
                 loading: false
             }
         }
