@@ -63,7 +63,7 @@ const AdminCategories = () => {
           <th>photo</th>
           <th>Editar</th>
           <th>Borrar</th>
-          <th>Info</th>
+          {/* <th>Info</th> */}
         </tr>
       </thead>
 
@@ -76,7 +76,7 @@ const AdminCategories = () => {
             <td><img className="mini" src={category.photo} alt={category.name} /></td>
             <td className="center-text"><Link to={`/admin/categories-edit/${category.id}`}><EditIcon /></Link></td>
             <td className="center-text" onClick={() => deleteHandler(category.id)}><DeleteIcon /></td>
-            <td className="center-text"><Link to={`/admin/categories/${category.id}`}><InfoIcon /></Link></td>
+            {/* <td className="center-text"><Link to={`/admin/categories/${category.id}`}><InfoIcon /></Link></td> */}
 
           </tr>
         ))}

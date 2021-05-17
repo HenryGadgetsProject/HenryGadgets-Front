@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { userLogut } from '../../../Redux/Actions/User/UserActions'
 
 import styled from 'styled-components'
 
@@ -45,13 +47,22 @@ const Img = styled.img`
     }
 `
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
-// const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
+const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
 const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
 const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
 // const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
+
+    const dispatch = useDispatch()
+
+    const user = useSelector(state => state.user.user)
+
+    const handleClick = () => {
+        dispatch(userLogut())
+    }
+
     return (
         <Ul open={open}>
             {/* <li>
@@ -59,31 +70,46 @@ const MenuOptBar = ({ open }) => {
                     <Img src={chartIcon} alt='chart'></Img>
                 </Link>
             </li> */}
-            {/* <li>
+
+            {user.token ? 
+            <li>{
+                <Link to="/home" className="link" onClick={handleClick}>
+                    <Img src={logoutIcon} alt='logout'></Img>
+                </Link>                
+                }
+            </li> 
+            :
+            <>
+            <li>
                 <Link to="/login" className="link">
                     <Img src={loginIcon} alt='login'></Img>
                 </Link>
-            </li> */}
-            {/* <li>
-                <Link to="/logout" className="link">
-                    <Img src={logoutIcon} alt='logout'></Img>
-                </Link>
-            </li> */}
-            {/* <li>
+            </li>
+            <li>
                 <Link to="/register" className="link">
                     <Img src={registerUserIcon} alt='register'></Img>
                 </Link>
-            </li> */}
+            </li>
+            </>
+            }
+
+
             <li>
                 <Link to="/admin" className="link">
                     <Img src={adminIcon} alt='admin'></Img>
                 </Link>
             </li>
-            {/* <li>
-                <Link to="/user" className="link">
+
+            {user.token ?             
+            <li>
+                {/* <Link to="/user" className="link">
                     <Img src={userIcon} alt='user'></Img>
-                </Link>
-            </li> */}
+                </Link> */}
+                <span>{user.first_name}</span>
+            </li>
+            : null}
+
+
             {/* <li>
                 <Link to = "/about"  className = "link">
                     Acerca de

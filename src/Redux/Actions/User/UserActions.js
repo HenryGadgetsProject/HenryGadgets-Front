@@ -1,8 +1,9 @@
 import axios from 'axios'
+import HOST from '../../../constants'
 
 import {
-    // USER_LOGIN_SUCCESS,
-    // USER_LOGOUT_SUCCESS,
+    USER_LOGIN_SUCCESS,
+    USER_LOGOUT_SUCCESS,
     USER_ERROR,
     USER_LOADING,
     GET_USER_SUCCESS,
@@ -12,13 +13,44 @@ import {
     DELETE_USER_SUCCESS
 } from './UserActionTypes'
 
-import HOST from '../../../constants'
 
-export const userLogin = () => {
+
+export const userLogin = (input) => {
+    return (dispatch) => {
+        dispatch({
+            type: USER_LOADING
+        })
+        axios.post(`${HOST}/login`, input)
+            .then(response => {
+                console.log('FLAGFLAGFLAGFLAGFLAGFLAG', response.data)
+                const user = response.data.user
+                const jwt = response.data.token
+                const fullUser = {...user, token: jwt}
+                localStorage.setItem("JWT", JSON.stringify(jwt))
+                dispatch(
+                    {
+                        type: USER_LOGIN_SUCCESS,
+                        payload: fullUser
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
 
 }
 export const userLogut = () => {
-
+    localStorage.removeItem("JWT")
+    return {
+        type: USER_LOGOUT_SUCCESS
+    }
 }
 
 export const getUsers = () => {
@@ -74,7 +106,7 @@ export const getUser = (id) => {
 export const addUser = (body) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
-        axios.post(`${HOST}/users`, body)
+        axios.post(`${HOST}/register`, body)
             .then(response => {
                 const user = response.data
                 dispatch(
@@ -144,4 +176,3 @@ export const deleteUser = (id) => {
             })
     }
 }
-

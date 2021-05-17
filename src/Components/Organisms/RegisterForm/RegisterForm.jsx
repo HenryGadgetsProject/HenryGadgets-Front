@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { getId } from '../../../Helpers/getId'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser } from '../../../Redux/Actions/User/UserActions'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 
@@ -81,15 +83,15 @@ const PasswordIcon = styled.img`
 `
 
 // Control para Formulario
-const validate = (input) => {
+const validate = (input, reType) => {
 
     let error = {}
 
-    if (!input.user) {
-        error.user = 'Ingresa un nombre de Usuario'
+    if (!input.first_name) {
+        error.first_name = 'Ingresa un nombre'
     }
-    if (input.user.length < 6) {
-        error.user = 'Debe tener al menos 6 caracteres'
+    if (!input.last_name) {
+        error.last_name = 'Ingresa un apellido'
     }
     if (!input.email) {
         error.email = 'Ingresa un Email'
@@ -103,28 +105,31 @@ const validate = (input) => {
     if (!input.password) {
         error.password = 'Ingresa una Contraseña'
     }
-    if (input.password !== input.retypePassword) {
-        error.retypePassword = 'Las contraseñas deben ser Iguales!'
-    }
+    // if (input.password !== reType) {
+    //     error.retypePassword = 'Las contraseñas deben ser Iguales!'
+    // }
     return error
 }
 
 const RegisterForm = () => {
 
-    // let history = useHistory();
+    const users = useSelector(state => state.user.users)
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
 
     const [input, setInput] = useState({
-        user: "",
+        id: getId(users),
+        first_name: "",
+        last_name: "",
         email: "",
         password: "",
-        retypePassword: ""
     })
+
+    // const [reType, setReType] = useState("")
 
     const handleChange = (e) => {
         setInput({
@@ -138,8 +143,7 @@ const RegisterForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // dispatch(addCategory(input))
-        if (error.name || error.email || input.user === "" || input.email === "" || error.retypePassword || error.password) {
+        if (error.first_name || error.email || input.first_name === "" || input.email === "" || error.password || error.last_name) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -147,12 +151,12 @@ const RegisterForm = () => {
             })
             return
         }
+        dispatch(addUser(input))
         Swal.fire(
             'Listo!',
             'Tu cuenta se ha registrado con éxito!',
             'success'
-        )
-        // history.push("/admin/categories");
+            )
     }
 
     const handleBlur = (e) => {
@@ -162,22 +166,28 @@ const RegisterForm = () => {
         })
     }
 
-    console.log(input)
-
     return (
         <FormContainer>
             <h3>Registrar Cuenta</h3>
             <Form onSubmit={handleSubmit}>
 
-                <Divider>
-                    <Item>
-                        <NameIcon />
-                        <Label>Nombre de Usuario </Label>
-                        <br />
-                        <Input name='user' value={input.user} onBlur={handleBlur} onChange={handleChange}></Input>
-                        {isTouch.user && error.user ? (<ErrorMsg>{error.user}</ErrorMsg>) : null}
-                    </Item>
-                </Divider>
+
+                <Item>
+                    <NameIcon />
+                    <Label>Nombre </Label>
+                    <br />
+                    <Input name='first_name' value={input.first_name} onBlur={handleBlur} onChange={handleChange}></Input>
+                    {isTouch.first_name && error.first_name ? (<ErrorMsg>{error.first_name}</ErrorMsg>) : null}
+                </Item>
+                    <br/>
+
+                <Item>
+                    <NameIcon />
+                    <Label>Apellido </Label>
+                    <br />
+                    <Input name='last_name' value={input.last_name} onBlur={handleBlur} onChange={handleChange}></Input>
+                    {isTouch.last_name && error.last_name ? (<ErrorMsg>{error.last_name}</ErrorMsg>) : null}
+                </Item>
 
                 <Item>
                     <EmailIcon />
@@ -195,13 +205,13 @@ const RegisterForm = () => {
                     {isTouch.password && error.password ? (<ErrorMsg>{error.password}</ErrorMsg>) : null}
                 </Item>
 
-                <Item>
+                {/* <Item>
                     <PasswordIcon/>
                     <Label>Reingresar Contraseña </Label>
                     <br />
-                    <Input type='password' name='retypePassword' value={input.retypePassword} onBlur={handleBlur} onChange={handleChange}></Input>
+                    <Input type='password' name='retypePassword' value={reType} onBlur={handleBlur} onChange={(e) => setReType(e.target.value)}></Input>
                     {isTouch.retypePassword && error.retypePassword ? (<ErrorMsg>{error.retypePassword}</ErrorMsg>) : null}
-                </Item>
+                </Item> */}
 
                 <ButtonContainer>
                     <Button type='submit'>Registrarse</Button>
