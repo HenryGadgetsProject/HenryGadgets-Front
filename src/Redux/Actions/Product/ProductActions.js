@@ -13,7 +13,8 @@ import {
     GET_PRODUCTS_BY_NAME,
     REMOVE_PRODUCT_SUCCESS,
     GET_PRODUCTS_BY_CATEGORY_ID,
-    GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS
+    GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
+    GET_PRODUCTS_BY_STOCK_SUCCESS
     // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
@@ -163,6 +164,13 @@ export const getProductsByCategoryName = (categoryName) => {
     return {
         type: GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
         payload: categoryName
+    }
+}
+
+export const getProductsByStock = (term) => {
+    return {
+        type: GET_PRODUCTS_BY_STOCK_SUCCESS,
+        payload: term
     }
 }
 

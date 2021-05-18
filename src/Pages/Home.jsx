@@ -8,7 +8,7 @@ import FilterBy from '../Components/Organisms/FilterBy'
 //import SortBy from '../Components/Organisms/SortBy'
 import ProductCards from '../Components/Organisms/ProductCards'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductsByCategoryName } from '../Redux/Actions/Product/ProductActions'
+import { getProductsByCategoryName, getProductsByStock } from '../Redux/Actions/Product/ProductActions'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 //import data from '../Data/categories'
@@ -27,8 +27,23 @@ const Home = () => {
 
     const categories = useSelector((state) => state.category.categories)
 
-    const handleChange = e => {
+    const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
+
+    const handleChangeCat = e => {
         dispatch(getProductsByCategoryName(e.target.value))
+    }
+
+    const handleChangePrd = e => {
+        // if (e.target.value === 'false' || e.target.value === 'true') {
+            console.log('En handle', typeof(e.target.value))
+            // const toBoolean = Boolean(e.target.value)
+            dispatch(getProductsByStock(e.target.value))
+        // }
+
+        // else {
+        //     dispatch(getProductsByIsActive(e.target.value))
+        // }
+        // console.log('Tipo', typeof(toBoolean))
     }
 
     return (
@@ -70,7 +85,12 @@ const Home = () => {
 
                     <FilterBy
                         array={categories}
-                        handleChange={handleChange}
+                        handleChange={handleChangeCat}
+                    />
+
+                    <FilterBy
+                        array={arrPrdStock}
+                        handleChange={handleChangePrd}
                     />
 
                     {/* <SortBy />

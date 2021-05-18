@@ -14,6 +14,7 @@ import AdminProductAdd from "./Admin/AdminProductAdd"
 import AdminCategoryAdd from './Admin/AdminCategoryAdd'
 import AdminCategoryEdit from './Admin/AdminCategoryEdit'
 import AdminProductEdit from './Admin/AdminProductEdit'
+import AdminUsers from './Admin/AdminUsers'
 
 
 const Admin = () => {
@@ -31,6 +32,8 @@ const Admin = () => {
         <AdminSection>
           <Route exact path={['/admin', '/admin/products']} render={() => <AdminProducts />} />
           <Route exact path='/admin/categories' render={() => <AdminCategories />} />
+          <Route exact path='/admin/users' render={() => <AdminUsers />} />
+
           <Route exact path='/admin/category' render={() => <AdminCategoryAdd />} />
           <Route exact path='/admin/categories-edit/:categoryId'
             render={({ match }) => <AdminCategoryEdit categoryId={match.params.categoryId} />}
