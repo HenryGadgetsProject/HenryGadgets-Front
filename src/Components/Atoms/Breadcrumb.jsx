@@ -6,6 +6,7 @@ const Breadcrumb = styled.div`
     display         : flex;
     flex-direction  : row;
     height          : 7.5vh;
+    justify-content : center;
     padding         : 0 3vw;
     position        : -webkit-sticky;
     position        : sticky;

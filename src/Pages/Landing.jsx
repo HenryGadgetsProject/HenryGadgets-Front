@@ -58,18 +58,11 @@ const Div = styled.div`
 
 const Landing = () => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const LoadingCategories = useSelector(state => state.category.loading)
     const LoadingProduct = useSelector(state => state.product.loading)
     const LoadingUsers = useSelector(state => state.user.loading)
-
-    useEffect(() => { 
-        dispatch(getCategories());
-        dispatch(getPopularProducts());
-        dispatch(getProducts());
-        dispatch(getUsers());
-    }, [dispatch])
 
     if (LoadingCategories === true && LoadingProduct === true && LoadingUsers === true) {
         return (

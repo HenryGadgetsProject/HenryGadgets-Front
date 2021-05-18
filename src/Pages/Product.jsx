@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-// import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { getProductsById } from '../Redux/Actions/Product/ProductActions'
@@ -10,6 +9,7 @@ import StarRatings from 'react-star-ratings'
 import { Link } from 'react-router-dom'
 
 import BigCard from '../Components/Atoms/BigCard'
+import NotFound from './NotFound'
 
 
 const Product = ({ productId }) => {
@@ -25,16 +25,15 @@ const Product = ({ productId }) => {
     }, [dispatch, productId])
 
     const product = useSelector(state => state.product.product)
+    
+    if (!product) {
+        return <NotFound />
+    }
 
     return (
         <div className="container">
             <NavBar className="nav" />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
-
-            {/* const { id, name, price, stock, description, rating, big_image } = product */}
 
             <Main id="main">
 
@@ -72,23 +71,11 @@ const Product = ({ productId }) => {
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
 
-
-
                     {/* <button class="buy">
                         Comprar
                     </button> */}
 
                 </BigCard>
-
-
-                {/* <DetailedCard>
-                    <h3>{product.name}</h3>
-                    <img src={product.big_image} alt={product.name} />
-                    <p>Descripción: {product.description}</p>
-                    <p>Rating: {product.rating}</p>
-                    <p>Stock: {product.stock} unidades</p>
-                    <p>{product.price} $</p>
-                </DetailedCard> */}
             </Main>
 
             <Footer />
