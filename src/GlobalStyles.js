@@ -375,7 +375,11 @@ const GlobalStyle = createGlobalStyle`
         padding-top:10em;
     } */}
 
-
+    .filters {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     
    
 `

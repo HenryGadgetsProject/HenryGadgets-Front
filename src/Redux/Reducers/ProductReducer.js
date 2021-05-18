@@ -13,7 +13,8 @@ import {
     GET_PRODUCTS_BY_NAME,
     REMOVE_PRODUCT_SUCCESS,
     GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
-    GET_PRODUCTS_BY_STOCK_SUCCESS
+    GET_PRODUCTS_BY_STOCK_SUCCESS,
+    GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -32,7 +33,9 @@ const initialState = {
 }
 
 const ProductReducer = (state = initialState, action) => {
-    console.log('en reducer', typeof(action.payload));
+    // console.log('en reducer', typeof(action.payload))
+    console.log('en reducer trae un', action.payload)
+
     switch (action.type) {
 
         case PRODUCT_REQUEST: {
@@ -117,6 +120,42 @@ const ProductReducer = (state = initialState, action) => {
                 filteredProducts: state.products.filter(product => product.stock === 0),
                 loading: false
             }
+        }
+
+        case GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS: {
+            if (action.payload === 'todas') {
+                return {
+                    ...state,
+                    filteredProducts: state.products,
+                    loading: false
+                }
+            }
+
+            let flagOption = ''
+
+            if (action.payload === 'inactivo') {
+                flagOption = 'false'
+                return {
+                    ...state,
+                    filteredProducts: state.products.filter(product => product.is_active.toString() === flagOption),
+                    loading: false
+                }
+            }
+
+            if (action.payload === 'activo') {
+                flagOption = 'true'
+                return {
+                    ...state,
+                    filteredProducts: state.products.filter(product => product.is_active.toString() === flagOption),
+                    loading: false
+                }
+            }
+
+            // return {
+            //     ...state,
+            //     filteredProducts: state.products.filter(product => product.is_active === action.payload),
+            //     loading: false
+            // }
         }
 
         case CREATE_PRODUCT_SUCCESS: {
