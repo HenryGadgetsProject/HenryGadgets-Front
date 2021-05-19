@@ -12,7 +12,7 @@ const Breadcrumb = styled.div`
     position        : sticky;
     top             : 7em;
     width           : 100%;
-    z-index         : 100;
+    z-index         : 800;
 `
 
 export default Breadcrumb

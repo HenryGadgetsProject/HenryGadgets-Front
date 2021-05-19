@@ -98,7 +98,6 @@ const Product = ({ productId }) => {
                         <CartIcon/>
                     </button>
 
-
                 </BigCard>
             </Main>
 

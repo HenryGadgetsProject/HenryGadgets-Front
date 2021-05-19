@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import NavBar from '../Components/Organisms/NavBar'
-//import Breadcrumb from '../Components/Atoms/Breadcrumb'
+import NavBarHome from '../Components/Organisms/NavBarHome'
+// import NavBar from '../Components/Organisms/NavBar'
+// import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
@@ -13,7 +14,6 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 //import data from '../Data/categories'
 import { Link } from 'react-router-dom'
-import SearchBar from '../Components/Molecules/SearchBar'
 
 const Home = () => {
 
@@ -48,11 +48,11 @@ const Home = () => {
 
     return (
         <div className="container">
-            <NavBar className="nav" />
+            <NavBarHome />
+            {/* <NavBar /> */}
 
-            <Main id="main">
-                {/* ya tiene preparado el onClick para que vaya a /products/id */}
-                <Carousel
+            {/* ya tiene preparado el onClick para que vaya a /products/id */}
+            <Carousel
                     autoPlay={true}
                     dynamicHeight={true}
                     infiniteLoop={true}
@@ -73,6 +73,8 @@ const Home = () => {
                 </Carousel>
 
                 {/* <Breadcrumb id="breadcrumb-home" /> */}
+
+            <Main id="main">
 
                 {/* <div> */}
                 <Header id="header">

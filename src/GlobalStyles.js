@@ -155,13 +155,45 @@ const GlobalStyle = createGlobalStyle`
         overflow: hidden; */}
     }
 
+    nav {
+        grid-column : 1 / 25;
+        ${'' /* grid-row    : 10; */}
+    }
+
+    .nav-cristal {
+        background      : transparent;
+    }
+
+    .nav-solid {
+        ${'' /* background      : ${ props => props.theme.background || '#000000' }; */}
+        background      : var(--pure-black);
+    }
+
+    ${'' /* #nav-home {
+        background      : transparent !important;
+        position        : fixed !important;
+        top             : 0 !important;
+        ${'' /* width           : 100% !important; */}
+        ${'' /* z-index         : 900; */}
+    } */}
+
+    ${'' /* #nav-general {
+        background      : ${ props => props.theme.background || '#000000' };
+        ${'' /* background      : var(--pure-black); */}
+        position        : -webkit-sticky !important;
+        position        : sticky !important;
+        top             : 0 !important;
+        ${'' /* width           : 100% !important; */}
+        ${'' /* z-index         : 900; */}
+    } */}
+
     #breadcrumb-home {
         grid-column : 1 / 25;
     }
 
     #breadcrumb {
         grid-column : 1 / 25;
-        margin-top  : 7em;
+        ${'' /* margin-top  : 7em; */}
     }
 
     #header {
@@ -172,7 +204,7 @@ const GlobalStyle = createGlobalStyle`
     #main {
         ${'' /* border: .2em solid blue; */}
         grid-column : 1 / 25;
-        grid-row    : 3 / 10;
+        ${'' /* grid-row    : 3 / 10; */}
         place-self  : center;
     }
 
@@ -216,7 +248,7 @@ const GlobalStyle = createGlobalStyle`
 
     footer {
         grid-column : 1 / 25;
-        grid-row    : 10;
+        ${'' /* grid-row    : 10; */}
     }
 
     h1 {
@@ -238,15 +270,28 @@ const GlobalStyle = createGlobalStyle`
 
     ${'' /* Classes */}
     .carousel-root{
+        ${'' /* width: 100%; */}
+        ${'' /* border: 2px solid lime; */}
+
+        ${'' /* display         : flex; */}
+        ${'' /* flex-direction  : row; */}
+        ${'' /* flex-wrap       : wrap; */}
+        ${'' /* justify-content : center; */}
+        ${'' /* min-height      : calc(100vh - 20em); */}
+        ${'' /* max-height      : 100%; */}
+        max-height      : calc(100vh - 40em);
+        width           : calc(100vw - 1.65em);
+
         /* max-width: 85%; */
         ${'' /* margin-top      : .5em; */}
-        margin-top  : 7em;
+        ${'' /* margin-top  : 7em; */}
     }
 
     .carousel {
         margin      : 0;
         ${'' /* max-height  : 50em; */}
         max-height  : calc(100vh - 40em) !important;
+        ${'' /* height: 100% !important; */}
         ${'' /* max-width   : 110em; */}
         ${'' /* max-width   : 151em; */}
         max-width   : 100vw !important;
@@ -303,7 +348,7 @@ const GlobalStyle = createGlobalStyle`
 
     span.slideTitle{
         position        : absolute;
-        top             : 5%;
+        top             : 18%;
         right           : 5%;
         color           : var(--pure-white);
         font-size       : 10vw;
@@ -311,7 +356,9 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .carousel.carousel-slider{
-        max-height      : 32em;
+        ${'' /* max-height      : 32em; */}
+        ${'' /* max-heignt: 100% !important; */}
+        max-height      : calc(100vh - 40em) !important;
     }
     
 
