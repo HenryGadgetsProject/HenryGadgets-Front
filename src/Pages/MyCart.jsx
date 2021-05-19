@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components'
+import { deleteItemFromCart } from '../Redux/Actions/Cart/CartActions'
 
 const Table = styled.table`
     border-collapse: collapse;
@@ -89,67 +90,82 @@ const DeleteIcon = styled.img`
 
 const MyCart = () => {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     // const categories = useSelector(state => state.category.categories);
-    const products = useSelector(state => state.product.products)
+    const products = useSelector(state => state.cart.cartList)
 
-    const deleteHandler = () => {
+    const [total, setTotal] = useState();
+
+
+    useEffect(() => {
+        if (products) {
+            setTotal(products.reduce((acc, item) => {
+                acc = acc + (item.price * item.quantity)
+                return acc;
+            }, 0.00))
+        }
+    }, [products])
+
+    const deleteHandler = (product) => {
+        // alert(productId)
+        dispatch(deleteItemFromCart(product))
         Swal.fire({
-          title: 'Estas seguro?',
-          text: "Vas a eliminar un producto de tu Carrito!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Eliminar',
-          cancelButtonText: 'Cancelar'
+            title: 'Estas seguro?',
+            text: "Vas a eliminar un producto de tu Carrito!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
         })
-      }
+    }
 
     return (
         <div className="container">
             <NavBar />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
-            <Table>
-                <caption>Productos agregados al Carrito</caption>
-                <thead>
-                    <tr>
-                    {/* <th>Id</th> */}
-                    <th>Imágen</th>
-                    <th className="name">Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Eliminar</th>
-                    <th>Comprar</th>
-                    </tr>
-                </thead>
+            {(products.length === 0)
+                ?
+                <h2 className="text-center">No hay productos en el carrito</h2>
+                :
+                <Table>
+                    <caption>Productos agregados al Carrito</caption>
+                    <thead>
+                        <tr>
+                            {/* <th>Id</th> */}
+                            <th>Imágen</th>
+                            <th className="name">Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Eliminar</th>
+                            {/* <th>Comprar</th> */}
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {products.map(product => (
-                    <tr key={product.id}>
-                        {/* <td>{category.id}</td> */}
-                        <td><img className="mini" src={product.big_image} alt={product.name} /></td>
-                        <td>{product.name}</td>
-                        <td><input type="number" min="1" max={product.stock}/></td>
-                        <td>1000$</td>
-                        <td><DeleteIcon onClick={deleteHandler}/></td>
-                        <td><BuyIcon/></td>
-                    </tr>
-                    ))}
-                    <tr>
-                        <td>Total</td>
-                        <td></td>
-                        {/* <td></td> */}
-                        <td>100000$</td>
-                        <td><BuyIcon/></td>
-                    </tr>
-                </tbody>
-            </Table>
+                    <tbody>
+                        {products.map(product => (
+                            <tr key={product.id}>
+                                {/* <td>{category.id}</td> */}
+                                <td><img className="mini" src={product.big_image} alt={product.name} /></td>
+                                <td>{product.name}</td>
+                                <td><input type="number" min="1" max="{product.stock}" value={Number(product.quantity)} /></td>
+                                <td>{product.price}</td>
+                                <td><DeleteIcon onClick={() => deleteHandler(product)} /></td>
+                                {/* <td><BuyIcon /></td> */}
+                            </tr>
+                        ))}
+                        <tr>
+                            <td>Total</td>
+
+                            <td>{total}</td>
+
+                        </tr>
+                    </tbody>
+                </Table>
+            }
 
             <Footer />
         </div>
