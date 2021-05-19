@@ -8,7 +8,7 @@ import Footer from '../Components/Organisms/Footer'
 const About = () => {
     return (
         <div className="container">
-            <NavBar className="nav" />
+            <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
             {/* <Header id="header">
                 <h1>Henry Gadgets</h1>

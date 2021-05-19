@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import SearchBar from '../../Molecules/SearchBar'
@@ -10,20 +10,15 @@ import LogoDark from '../../../Images/Logo-dark.png'
 import styled from 'styled-components'
 // import Logo from '../../../Images/Logo.png'
 
-const Nav = styled.nav`
-    ${'' /* background      : ${ props => props.theme.background || '#000000' }; */}
-    background      : var(--pure-black);
-    ${'' /* border-bottom   : .2em solid white; */}
+const NavHome = styled.nav`
+    ${'' /* border-bottom   : .2em solid blue; */}
     ${'' /* color           : ${ props => props.theme.fontColor || '#393E46' }; */}
     color           : var(--pure-white);
     display         : flex;
     height          : 7em;
     justify-content : space-between;
     padding         : 0 2em;
-    ${'' /* position        : fixed; */}
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    position        : fixed;
     width           : 100%;
     z-index         : 900;
 
@@ -31,7 +26,7 @@ const Nav = styled.nav`
         padding     : 18px 0;
     } */}
 `
-const LogoDiv = styled.div`
+const LogoDivHome = styled.div`
     align-items     : center;
     display         : flex;
     justify-content : space-between;
@@ -44,14 +39,26 @@ const LogoDiv = styled.div`
 //     margin-left     : .5em;
 // `
 
-const NavBar = () => {
+const NavBarHome = () => {
+    const [ navHomeState, setNavHomeState ] = useState(false)
     const mode = useSelector((state) => state.global.theme)
-    
+
     const location = useLocation()
 
+    const changeNavHomeBackground = () => {
+        // console.log(window.scrollY)
+        if (window.scrollY >= 200) {
+            setNavHomeState(true)
+        } else {
+            setNavHomeState(false)
+        }
+    }
+
+    window.addEventListener('scroll', changeNavHomeBackground)
+
     return (
-        <Nav className="nav">
-            <LogoDiv>
+        <NavHome className={ navHomeState ? "nav-solid" : "nav-cristal" }>
+            <LogoDivHome>
                 <Link to="/home">
                     {
                         !mode ?
@@ -77,14 +84,14 @@ const NavBar = () => {
                         HandyX App
                     </Link>
                 </H2> */}
-            </LogoDiv>
+            </LogoDivHome>
 
             {location.pathname === '/home' ? <SearchBar /> : null}
             {/* <SearchBar /> */}
 
             <MenuBurgerOptBar />
-        </Nav>
+        </NavHome>
     )
 }
 
-export default NavBar
+export default NavBarHome
