@@ -4,6 +4,7 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
+import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -50,6 +51,10 @@ const NotFound = () => {
                     <p>Probablemente el producto que estás buscando no existe".</p>
                     <p>Si lo deseas también puedes repetir la busqueda verificando el nombre, intentar una nueva busqueda con otro producto o regresar a la página principal para ver más opciones.</p>
                 </NotFoundContainer>
+
+                <Link to="/home">
+                    <button>Regresar</button>
+                </Link>
             </Main>
 
             <Footer />

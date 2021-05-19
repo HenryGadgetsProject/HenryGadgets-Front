@@ -7,7 +7,8 @@ import {
     GET_USERS_SUCCESS,
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
-    DELETE_USER_SUCCESS
+    DELETE_USER_SUCCESS,
+    TOGGLE_USER_ADMIN_SUCCESS
 } from '../Actions/User/UserActionTypes'
 
 
@@ -87,6 +88,14 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: {},
+                loading: false
+            }
+        }
+
+        case TOGGLE_USER_ADMIN_SUCCESS: {
+            return {
+                ...state,
+                users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, first_name: 'cualquierCosa' } : user),
                 loading: false
             }
         }

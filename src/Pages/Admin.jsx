@@ -14,13 +14,34 @@ import AdminProductAdd from "./Admin/AdminProductAdd"
 import AdminCategoryAdd from './Admin/AdminCategoryAdd'
 import AdminCategoryEdit from './Admin/AdminCategoryEdit'
 import AdminProductEdit from './Admin/AdminProductEdit'
+import AdminUsers from './Admin/AdminUsers'
 
+// import { useSelector, useDispatch } from 'react-redux'
+// import { getProductsByCategoryName } from '../Redux/Actions/Product/ProductActions'
 
 const Admin = () => {
+  // const dispatch = useDispatch()
+
+  // const categories = useSelector(state => state.category.categories)
+
+  // const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
+
+  // const arrPrdActive = [{id: true, name: 'activo'}, {id: false, name: 'inactivo'}]
+
+  // const handleChangeCat = e => {
+  //   dispatch(getProductsByCategoryName(e.target.value))
+  // }
+
+  // const handleChangeCPrd = e => {
+  //   // if (e.target.value === 'false' || e.target.value === 'true') {
+  //       console.log('En handle', typeof(e.target.value))
+  //       // const toBoolean = Boolean(e.target.value)
+  //       dispatch(getProductsByStock(e.target.value))
+  //   // }
 
   return (
     <div className="container">
-      <NavBar className="nav" />
+      <NavBar id="nav-general" />
       <Breadcrumb id="breadcrumb" />
       {/* <Header id="header">
         <h1>Henry Gadgets</h1>
@@ -31,6 +52,8 @@ const Admin = () => {
         <AdminSection>
           <Route exact path={['/admin', '/admin/products']} render={() => <AdminProducts />} />
           <Route exact path='/admin/categories' render={() => <AdminCategories />} />
+          <Route exact path='/admin/users' render={() => <AdminUsers />} />
+
           <Route exact path='/admin/category' render={() => <AdminCategoryAdd />} />
           <Route exact path='/admin/categories-edit/:categoryId'
             render={({ match }) => <AdminCategoryEdit categoryId={match.params.categoryId} />}

@@ -10,7 +10,8 @@ import {
     GET_USERS_SUCCESS,
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
-    DELETE_USER_SUCCESS
+    DELETE_USER_SUCCESS,
+    TOGGLE_USER_ADMIN_SUCCESS
 } from './UserActionTypes'
 
 
@@ -107,7 +108,12 @@ export const addUser = (body) => {
         dispatch({ type: USER_LOADING })
         axios.post(`${HOST}/register`, body)
             .then(response => {
-                const user = response.data
+                const user = response.data.user
+                const jwt = response.data.token
+                localStorage.setItem("JWT", JSON.stringify(jwt))
+
+                console.log(user)
+                
                 if(user) {
                     dispatch(
                         {
@@ -136,7 +142,7 @@ export const updateUser = (id, body) => {
         dispatch({ type: USER_LOADING })
         axios.put(`${HOST}/users/${id}`, body)
             .then(response => {
-                const user = response.data
+                // const user = response.data
                 dispatch(
                     {
                         type: EDIT_USER_SUCCESS,
@@ -165,6 +171,31 @@ export const deleteUser = (id) => {
                     {
                         type: DELETE_USER_SUCCESS,
                         payload: parseInt(id)
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const toggleAdmin = (id, body) => {
+    return (dispatch) => {
+        dispatch({ type: USER_LOADING })
+        axios.put(`${HOST}/users/${id}`, body)
+            .then(response => {
+                // const user = response.data
+                dispatch(
+                    {
+                        type: TOGGLE_USER_ADMIN_SUCCESS,
+                        payload: id
                     }
                 )
             })

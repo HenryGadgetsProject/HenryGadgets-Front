@@ -6,12 +6,13 @@ const Breadcrumb = styled.div`
     display         : flex;
     flex-direction  : row;
     height          : 7.5vh;
+    justify-content : center;
     padding         : 0 3vw;
     position        : -webkit-sticky;
     position        : sticky;
     top             : 7em;
     width           : 100%;
-    z-index         : 100;
+    z-index         : 800;
 `
 
 export default Breadcrumb

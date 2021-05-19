@@ -9,7 +9,7 @@ import Footer from '../Components/Organisms/Footer'
 const MyChart = () => {
     return (
         <div className="container">
-            <NavBar className="nav" />
+            <NavBar />
             <Breadcrumb id="breadcrumb" />
             {/* <Header id="header">
                 <h1>Henry Gadgets</h1>

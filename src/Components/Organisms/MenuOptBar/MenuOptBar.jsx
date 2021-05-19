@@ -29,6 +29,7 @@ const Ul = styled.ul`
         transform       : ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
         transition      : all .5s linear;
         width           : 300px;
+        z-index: 900;
 
         li {
             color       : var(--pure-white);
@@ -51,7 +52,7 @@ const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=whit
 const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
 const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
-// const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
+const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
 
@@ -65,34 +66,50 @@ const MenuOptBar = ({ open }) => {
 
     return (
         <Ul open={open}>
-            {/* <li>
-                <Link to="/MyChart" className="link">
-                    <Img src={chartIcon} alt='chart'></Img>
-                </Link>
-            </li> */}
-
             {user.token ?
                 user.is_admin ?
                 <>
-                    <li>{
+                    <li>
+                        {/* <Link to="/user" className="link">
+                            <Img src={userIcon} alt='user'></Img>
+                        </Link> */}
+                        <span>{user.first_name}</span>
+                    </li>
+                    <li>
                         <Link to="/home" className="link" onClick={handleClick}>
                             <Img src={logoutIcon} alt='logout'></Img>
                         </Link>
-                        }
                     </li>
                     <li>
                         <Link to="/admin" className="link">
                             <Img src={adminIcon} alt='admin'></Img>
                         </Link>
                     </li>
+                    <li>
+                        <Link to="/chart" className="link">
+                            <Img src={chartIcon} alt='chart'></Img>
+                        </Link>
+                    </li>
                 </>
                 :
-                <li>{
-                    <Link to="/home" className="link" onClick={handleClick}>
-                        <Img src={logoutIcon} alt='logout'></Img>
-                    </Link>
-                    }
-                </li>
+                <>
+                    <li>
+                        {/* <Link to="/user" className="link">
+                            <Img src={userIcon} alt='user'></Img>
+                        </Link> */}
+                        <span>{user.first_name}</span>
+                    </li>
+                    <li>
+                        <Link to="/home" className="link" onClick={handleClick}>
+                            <Img src={logoutIcon} alt='logout'></Img>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/chart" className="link">
+                            <Img src={chartIcon} alt='chart'></Img>
+                        </Link>
+                    </li>
+                </>
             :
             <>
                 <li>
@@ -107,16 +124,6 @@ const MenuOptBar = ({ open }) => {
                 </li>
             </>
             }
-
-
-            {user.token ?
-            <li>
-                {/* <Link to="/user" className="link">
-                    <Img src={userIcon} alt='user'></Img>
-                </Link> */}
-                <span>{user.first_name}</span>
-            </li>
-            : null}
 
 
             {/* <li>

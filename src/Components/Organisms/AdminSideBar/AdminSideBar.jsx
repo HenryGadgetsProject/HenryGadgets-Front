@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 const AdminAside = styled.aside`
   background: black;
-  height: 100vh;
+  ${'' /* height: 100vh; */}
+  min-height      : 100%;
 
   button {
     align-items: center;
@@ -62,6 +63,8 @@ const AdminSideBar = () => {
     <AdminAside>
       <Link to='/admin/products'><button><ProductIcon /> Productos</button></Link>
       <Link to='/admin/categories'><button><CategoryIcon /> Categorías</button></Link>
+      <Link to='/admin/users'><button><ProductIcon /> Usuarios</button></Link>
+
       <Link to='/admin/product'><button><AddProductIcon /> Agregar Productos</button></Link>
       <Link to='/admin/category'><button><AddCategoryIcon /> Agregar Categorías</button></Link>
     </AdminAside>
