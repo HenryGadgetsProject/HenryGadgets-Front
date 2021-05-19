@@ -87,7 +87,7 @@ const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-const MyChart = () => {
+const MyCart = () => {
 
     // const dispatch = useDispatch();
 
@@ -122,6 +122,7 @@ const MyChart = () => {
                     {/* <th>Id</th> */}
                     <th>Imágen</th>
                     <th className="name">Nombre</th>
+                    <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Eliminar</th>
                     <th>Comprar</th>
@@ -134,6 +135,7 @@ const MyChart = () => {
                         {/* <td>{category.id}</td> */}
                         <td><img className="mini" src={product.big_image} alt={product.name} /></td>
                         <td>{product.name}</td>
+                        <td><input type="number" min="1" max={product.stock}/></td>
                         <td>1000$</td>
                         <td><DeleteIcon onClick={deleteHandler}/></td>
                         <td><BuyIcon/></td>
@@ -154,4 +156,4 @@ const MyChart = () => {
     )
 }
 
-export default MyChart
+export default MyCart

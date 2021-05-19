@@ -150,12 +150,7 @@ const ProductReducer = (state = initialState, action) => {
                     loading: false
                 }
             }
-
-            // return {
-            //     ...state,
-            //     filteredProducts: state.products.filter(product => product.is_active === action.payload),
-            //     loading: false
-            // }
+            return state
         }
 
         case CREATE_PRODUCT_SUCCESS: {
@@ -166,14 +161,6 @@ const ProductReducer = (state = initialState, action) => {
                 loading: false
             }
         }
-
-        // case GET_SEARCH_SUCCESS: {
-        //     return {
-        //         ...state,
-        //         filteredProducts: action.payload,
-        //         loading: false,
-        //     }
-        // }
 
         case GET_PRODUCTS_BY_NAME: {
             return {

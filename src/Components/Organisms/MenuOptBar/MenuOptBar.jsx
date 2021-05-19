@@ -86,7 +86,7 @@ const MenuOptBar = ({ open }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/chart" className="link">
+                        <Link to="/cart" className="link">
                             <Img src={chartIcon} alt='chart'></Img>
                         </Link>
                     </li>

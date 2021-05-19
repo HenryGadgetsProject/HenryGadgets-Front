@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import Landing from '../Pages/Landing'
 import About from '../Pages/About'
 import Home from '../Pages/Home'
-import MyChart from '../Pages/MyChart'
+import MyCart from '../Pages/MyCart'
 import Category from '../Pages/Category'
 import Product from '../Pages/Product'
 import NotFound from '../Pages/NotFound'
@@ -20,7 +20,7 @@ const ClientRouter = () => {
                 <Route exact path="/" component={Landing} />
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
-                <Route path="/cart" component={MyChart} />
+                <Route path="/cart" component={MyCart} />
                 <Route path="/login" component={Login} />
                 <Route path="/logout" component={Logout} />
                 <Route path="/register" component={Register} />
