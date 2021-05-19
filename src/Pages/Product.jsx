@@ -71,9 +71,9 @@ const Product = ({ productId }) => {
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
 
-                    {/* <button class="buy">
+                    <button class="buy">
                         Comprar
-                    </button> */}
+                    </button>
 
                 </BigCard>
             </Main>
