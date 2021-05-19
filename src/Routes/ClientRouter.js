@@ -20,7 +20,7 @@ const ClientRouter = () => {
                 <Route exact path="/" component={Landing} />
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
-                <Route path="/chart" component={MyChart} />
+                <Route path="/cart" component={MyChart} />
                 <Route path="/login" component={Login} />
                 <Route path="/logout" component={Logout} />
                 <Route path="/register" component={Register} />

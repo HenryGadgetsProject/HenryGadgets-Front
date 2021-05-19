@@ -49,7 +49,7 @@ const Img = styled.img`
 `
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
 const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
-const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
+// const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
 const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
 const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
@@ -105,8 +105,8 @@ const MenuOptBar = ({ open }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/chart" className="link">
-                            <Img src={chartIcon} alt='chart'></Img>
+                        <Link to="/cart" className="link">
+                            <Img src={chartIcon} alt='cart'></Img>
                         </Link>
                     </li>
                 </>
