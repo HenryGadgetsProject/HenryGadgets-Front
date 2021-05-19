@@ -11,7 +11,11 @@ const FooterBox = styled.footer`
     font-size       : 1.8em;
     justify-content : center;
     height          : 4em;
-    ${'' /* margin-top      : 2em; */}
+
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 `
 
 const Footer = () => {

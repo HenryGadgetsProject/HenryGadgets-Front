@@ -29,6 +29,7 @@ const Ul = styled.ul`
         transform       : ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
         transition      : all .5s linear;
         width           : 300px;
+        z-index: 900;
 
         li {
             color       : var(--pure-white);

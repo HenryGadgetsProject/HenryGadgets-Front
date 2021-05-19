@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 const AdminAside = styled.aside`
   background: black;
-  height: 100vh;
+  ${'' /* height: 100vh; */}
+  min-height      : 100%;
 
   button {
     align-items: center;

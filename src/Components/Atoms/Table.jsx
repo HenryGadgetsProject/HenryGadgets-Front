@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const Table = styled.table`
     border-collapse: collapse;
     display:block;
+    
     ${'' /* margin: 0 auto; */}
 
     caption {
