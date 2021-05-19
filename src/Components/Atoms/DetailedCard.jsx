@@ -1,3 +1,7 @@
+// **************Limpiar - No se va a usar**************
+// ************Se usara el componente BigCard***********
+// *****************************************************
+
 import styled from 'styled-components'
 
 const DetailedCard = styled.div`

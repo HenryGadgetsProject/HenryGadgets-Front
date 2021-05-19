@@ -60,9 +60,7 @@ const Product = ({ productId }) => {
             <Breadcrumb id="breadcrumb" />
 
             <Main id="main">
-
                 <BigCard>
-
                     <div class="thumbnail">
                         <img class="left" src={product.big_image} alt='left' />
                     </div>

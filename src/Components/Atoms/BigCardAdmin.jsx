@@ -1,3 +1,6 @@
+// **************Limpiar - No se va a usar**************
+// ************Se usara el componente BigCard***********
+// *****************************************************
 
 import React from 'react'
 import styled from 'styled-components'

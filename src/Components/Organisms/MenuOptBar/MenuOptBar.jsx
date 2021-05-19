@@ -50,11 +50,11 @@ const Ul = styled.ul`
 `
 
 const Img = styled.img`
-    width: 2em;
-    height: 2em;
-    transition: 0.5s;
+    height              : 2em;
+    transition          : 0.5s;
+    width               : 2em;
     &:hover {
-        transform: scale(1.30)
+        transform       : scale(1.30)
     }
 `
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
@@ -84,7 +84,7 @@ const MenuOptBar = ({ open }) => {
                             {/* <Link to="/user" className="link">
                             <Img src={userIcon} alt='user'></Img>
                         </Link> */}
-                            <span>{user.first_name}</span>
+                        <span>{user.first_name}</span>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -96,17 +96,11 @@ const MenuOptBar = ({ open }) => {
                                 <Img src={adminIcon} alt='admin'></Img>
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/cart" className="link">
-                                <Img src={chartIcon} alt='chart'></Img>
-                            </Link>
-                        </li>
-                        <li><span className="badge">{itemCount}</span></li>
                     </>
-                    :
-                    <>
-                        <li>
-                            {/* <Link to="/user" className="link">
+                :
+                <>
+                    <li>
+                        {/* <Link to="/user" className="link">
                             <Img src={userIcon} alt='user'></Img>
                         </Link> */}
                             <span>{user.first_name}</span>
@@ -144,9 +138,16 @@ const MenuOptBar = ({ open }) => {
                     Acerca de
                 </Link>
             </li> */}
-            {/* <li>Contact Us</li>
-            <li>Sign In</li>
-            <li>Sign Up</li> */}
+            {/* <li>Contact Us</li> */}
+            
+            <li>
+                <Link to="/cart" className="link">
+                    <Img src={chartIcon} alt='chart'></Img>
+                </Link>
+            </li>
+            <li>
+                <span className="badge">{itemCount}</span>
+            </li>
         </Ul>
     )
 }
