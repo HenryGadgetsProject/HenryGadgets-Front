@@ -8,6 +8,7 @@ import { getProductsById } from '../Redux/Actions/Product/ProductActions'
 import StarRatings from 'react-star-ratings'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { addItemCart } from '../Redux/Actions/Cart/CartActions'
 
 import BigCard from '../Components/Atoms/BigCard'
 import NotFound from './NotFound'
@@ -34,19 +35,23 @@ const Product = ({ productId }) => {
     }, [dispatch, productId])
 
     const product = useSelector(state => state.product.product)
-    
+
     if (!product) {
         return <NotFound />
     }
 
     const handleClick = () => {
+        const productSelected = { ...product, quantity: 1 }
+
+        dispatch(addItemCart(productSelected))
+
         Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: 'El producto se ha agregado al Carrito!',
             showConfirmButton: false,
             timer: 2000,
-          })
+        })
     }
 
     return (
@@ -93,7 +98,7 @@ const Product = ({ productId }) => {
                     </button>
 
                     <button class="buy" onClick={handleClick}>
-                        <CartIcon/>
+                        <CartIcon />
                     </button>
 
                 </BigCard>

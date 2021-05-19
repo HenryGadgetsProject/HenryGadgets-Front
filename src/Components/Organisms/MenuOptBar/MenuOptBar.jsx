@@ -17,6 +17,16 @@ const Ul = styled.ul`
         padding         : 1.25em 0;
     }
 
+    span.badge {
+    background-color: red;
+    width: 2em;
+    height: 2em;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.5em;
+    border-radius: 1em;
+    }
+
     @media (max-width: 768px) {
         background-color: #0D2538;
         flex-flow       : column nowrap;
@@ -59,6 +69,7 @@ const MenuOptBar = ({ open }) => {
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
+    const itemCount = useSelector(state => state.cart.itemCount)
 
     const handleClick = () => {
         dispatch(userLogut())
@@ -68,51 +79,57 @@ const MenuOptBar = ({ open }) => {
         <Ul open={open}>
             {user.token ?
                 user.is_admin ?
-                <>
-                    <li>
-                        {/* <Link to="/user" className="link">
+                    <>
+                        <li>
+                            {/* <Link to="/user" className="link">
                             <Img src={userIcon} alt='user'></Img>
                         </Link> */}
                         <span>{user.first_name}</span>
-                    </li>
-                    <li>
-                        <Link to="/home" className="link" onClick={handleClick}>
-                            <Img src={logoutIcon} alt='logout'></Img>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/admin" className="link">
-                            <Img src={adminIcon} alt='admin'></Img>
-                        </Link>
-                    </li>
-                </>
+                        </li>
+                        <li>
+                            <Link to="/home" className="link" onClick={handleClick}>
+                                <Img src={logoutIcon} alt='logout'></Img>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/admin" className="link">
+                                <Img src={adminIcon} alt='admin'></Img>
+                            </Link>
+                        </li>
+                    </>
                 :
                 <>
                     <li>
                         {/* <Link to="/user" className="link">
                             <Img src={userIcon} alt='user'></Img>
                         </Link> */}
-                        <span>{user.first_name}</span>
+                            <span>{user.first_name}</span>
+                        </li>
+                        <li>
+                            <Link to="/home" className="link" onClick={handleClick}>
+                                <Img src={logoutIcon} alt='logout'></Img>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/cart" className="link">
+                                <Img src={chartIcon} alt='cart'></Img>
+                            </Link>
+                        </li>
+                        <li><span className="badge">1</span></li>
+                    </>
+                :
+                <>
+                    <li>
+                        <Link to="/login" className="link">
+                            <Img src={loginIcon} alt='login'></Img>
+                        </Link>
                     </li>
                     <li>
-                        <Link to="/home" className="link" onClick={handleClick}>
-                            <Img src={logoutIcon} alt='logout'></Img>
+                        <Link to="/register" className="link">
+                            <Img src={registerUserIcon} alt='register'></Img>
                         </Link>
                     </li>
                 </>
-            :
-            <>
-                <li>
-                    <Link to="/login" className="link">
-                        <Img src={loginIcon} alt='login'></Img>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/register" className="link">
-                        <Img src={registerUserIcon} alt='register'></Img>
-                    </Link>
-                </li>
-            </>
             }
 
 
@@ -121,13 +138,15 @@ const MenuOptBar = ({ open }) => {
                     Acerca de
                 </Link>
             </li> */}
-            {/* <li>Contact Us</li>
-            <li>Sign In</li>
-            <li>Sign Up</li> */}
+            {/* <li>Contact Us</li> */}
+            
             <li>
                 <Link to="/cart" className="link">
                     <Img src={chartIcon} alt='chart'></Img>
                 </Link>
+            </li>
+            <li>
+                <span className="badge">{itemCount}</span>
             </li>
         </Ul>
     )
