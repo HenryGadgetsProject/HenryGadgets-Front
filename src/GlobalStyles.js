@@ -50,11 +50,10 @@ export const darkTheme = {
 }
 
 const GlobalStyle = createGlobalStyle`
-    ${'' /* =============================================
+    ${'' /* =================================================
     GLOBAL
-    ================================================= */}
-
-    ${'' /* Color Palette */}
+    ===================================================== */}
+    ${'' /* Color Palette Inheritance */}
     :root {
         --font-color        : ${props => props.theme.fontColor};
         --dark-primary      : ${props => props.theme.colorPalette.darkPrimary};
@@ -68,6 +67,7 @@ const GlobalStyle = createGlobalStyle`
         --pure-white        : #FFFFFF;
         --pure-black        : #000000;
     }
+
 
     ${'' /* Reset - Apply a natural box layout model to all elements, but allowing components to change */}
     html {
@@ -133,14 +133,12 @@ const GlobalStyle = createGlobalStyle`
         height          : auto;
     }
 
-    
-
     a {
         text-decoration : none;
     }
 
 
-    ${'' /* Layout */}
+    ${'' /* Initial Layout */}
     .container {
         ${'' /* border: .2em solid lime; */}
         display                 : grid;
@@ -155,6 +153,10 @@ const GlobalStyle = createGlobalStyle`
         overflow: hidden; */}
     }
 
+
+    ${'' /* =================================================
+    SECTION 1 / SECTION 2
+    ===================================================== */}
     nav {
         grid-column : 1 / 25;
         ${'' /* grid-row    : 10; */}
@@ -180,75 +182,16 @@ const GlobalStyle = createGlobalStyle`
     ${'' /* #nav-general {
         background      : ${ props => props.theme.background || '#000000' };
         ${'' /* background      : var(--pure-black); */}
-        position        : -webkit-sticky !important;
+        ${'' /* position        : -webkit-sticky !important;
         position        : sticky !important;
-        top             : 0 !important;
+        top             : 0 !important; */}
         ${'' /* width           : 100% !important; */}
         ${'' /* z-index         : 900; */}
     } */}
 
-    #breadcrumb-home {
-        grid-column : 1 / 25;
-    }
-
-    #breadcrumb {
-        grid-column : 1 / 25;
-        ${'' /* margin-top  : 7em; */}
-    }
-
     #header {
         grid-column : 1 / 25;
         margin: 2em auto;
-    }
-
-    #main {
-        ${'' /* border: .2em solid blue; */}
-        grid-column : 1 / 25;
-        ${'' /* grid-row    : 3 / 10; */}
-        place-self  : center;
-    }
-
-    aside {
-        ${'' /* border: .2em solid purple; */}
-        grid-column : 1 / 4;
-
-        align-self: left;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        padding: 2.2em 0;
-        width: 20%;
-    }
-
-    label {
-        font-size: 1.8em;
-        color       : ${props => props.theme.fontColor || '#393E46'};
-    }
-
-    section {
-        ${'' /* border: .2em solid #AF0000; */}
-        grid-column : 4 / 25;
-        ${'' /* place-self  : center; */}
-
-        align-self: right;
-        display         : flex;
-        flex-direction  : column;
-        ${'' /* justify-content : center; */}
-        margin: 0 auto;
-        ${'' /* padding         : .5em; */}
-        padding: .3em 6em;
-        width           : 80%;
-        ${'' /* @media(min-width: 99.2em) and (max-width: 120em) {
-            border: .3em dotted #AF0000;
-            display     : block;
-            grid-column : 1 / 25;
-        } */}
-    }
-
-    footer {
-        grid-column : 1 / 25;
-        ${'' /* grid-row    : 10; */}
     }
 
     h1 {
@@ -257,19 +200,11 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
-    h2, .slideTitle {
-        color       : var(--text-primary);
-        font-size   : 3.5em;
-        margin      : .3em 0 0 1em;
+    .carousel-root, .carousel, .carousel.carousel-slider {
+        max-height  : calc(100vh - 40em) !important;
     }
 
-    h3 {
-        color       : var(--text-primary);
-        font-size   : 3em;
-    }
-
-    ${'' /* Classes */}
-    .carousel-root{
+    .carousel-root {
         ${'' /* width: 100%; */}
         ${'' /* border: 2px solid lime; */}
 
@@ -279,8 +214,8 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* justify-content : center; */}
         ${'' /* min-height      : calc(100vh - 20em); */}
         ${'' /* max-height      : 100%; */}
-        max-height      : calc(100vh - 40em);
-        width           : calc(100vw - 1.65em);
+        ${'' /* max-height      : calc(100vh - 40em); */}
+        width       : calc(100vw - 1.65em) !important;
 
         /* max-width: 85%; */
         ${'' /* margin-top      : .5em; */}
@@ -290,7 +225,8 @@ const GlobalStyle = createGlobalStyle`
     .carousel {
         margin      : 0;
         ${'' /* max-height  : 50em; */}
-        max-height  : calc(100vh - 40em) !important;
+        ${'' /* max-height  : calc(100vh - 40em) !important; */}
+
         ${'' /* height: 100% !important; */}
         ${'' /* max-width   : 110em; */}
         ${'' /* max-width   : 151em; */}
@@ -298,6 +234,12 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* min-width   : calc(100vw - 3em); */}
         padding     : 0;
     }
+
+    ${'' /* .carousel.carousel-slider { */}
+        ${'' /* max-height      : 32em; */}
+        ${'' /* max-heignt: 100% !important; */}
+        ${'' /* max-height      : calc(100vh - 40em) !important; */}
+    ${'' /* } */}
 
     .control-prev, .control-arrow, .control-next, .control-arrow {
         background      : var(--light-primary) !important;
@@ -342,27 +284,116 @@ const GlobalStyle = createGlobalStyle`
         border          : .35em solid var(--dark-primary);
     }
 
-    .carousel-status{
+    .carousel-status {
         visibility      : hidden;
     }
 
-    span.slideTitle{
+    span.slideTitle {
         position        : absolute;
-        top             : 18%;
+        top             : 10%;
         right           : 5%;
         color           : var(--pure-white);
         font-size       : 10vw;
-        text-shadow: 3px 5px 8px var(--pure-black);
+        text-shadow     : 3px 5px 8px var(--pure-black);
     }
 
-    .carousel.carousel-slider{
-        ${'' /* max-height      : 32em; */}
-        ${'' /* max-heignt: 100% !important; */}
-        max-height      : calc(100vh - 40em) !important;
+    .category-slide{
+        cursor: pointer;
     }
-    
 
-    ${'' /* Links */}
+    #breadcrumb-home {
+        grid-column : 1 / 25;
+    }
+
+    #breadcrumb {
+        grid-column : 1 / 25;
+        ${'' /* margin-top  : 7em; */}
+    }
+
+
+    ${'' /* =================================================
+    SECTION 3
+    ===================================================== */}
+    #main {
+        ${'' /* border: .2em solid blue; */}
+        grid-column : 1 / 25;
+        ${'' /* grid-row    : 3 / 10; */}
+        place-self  : center;
+    }
+
+    h2, .slideTitle {
+        color       : var(--text-primary);
+        font-size   : 3.5em;
+        margin      : .3em 0 0 1em;
+    }
+
+    h3 {
+        color       : var(--text-primary);
+        font-size   : 3em;
+    }
+
+    label {
+        font-size: 1.8em;
+        color       : ${props => props.theme.fontColor || '#393E46'};
+    }
+
+    aside {
+        ${'' /* border: .2em solid purple; */}
+        grid-column : 1 / 4;
+
+        align-self: left;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 2.2em 0;
+        width: 20%;
+    }
+
+    section {
+        ${'' /* border: .2em solid #AF0000; */}
+        grid-column : 4 / 25;
+        ${'' /* place-self  : center; */}
+
+        align-self: right;
+        display         : flex;
+        flex-direction  : column;
+        ${'' /* justify-content : center; */}
+        margin: 0 auto;
+        ${'' /* padding         : .5em; */}
+        padding: .3em 6em;
+        width           : 80%;
+        ${'' /* @media(min-width: 99.2em) and (max-width: 120em) {
+            border: .3em dotted #AF0000;
+            display     : block;
+            grid-column : 1 / 25;
+        } */}
+    }
+
+    .popular-products {
+        display         :flex;
+        flex-direction  : row;
+        flex-wrap       : wrap;
+        justify-content :center;
+        width           : 100%;
+    }
+
+    ${'' /* .category-page{
+        display:flex;
+        justify-content:center;
+        padding-top:10em;
+    } */}
+
+    ${'' /* .product-page-container{
+        padding-top:10em;
+    } */}
+
+    .filters {
+        display         : flex;
+        justify-content : space-between;
+        align-items     : center;
+    }
+
     .link {
         color               : #FFFFFF;
         font-size           : 1.4em;
@@ -382,7 +413,6 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
-    ${'' /* Buttons */}
     .btn-sm {
         padding : .5em;
         width   : 5em;
@@ -396,39 +426,51 @@ const GlobalStyle = createGlobalStyle`
         width   : 15em;
     }
 
-    ${'' /* Inputs */}
 
-
-    ${'' /* Others */}
-    .popular-products{
-        display:flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content:center;
-        width: 100%;
+    ${'' /* =================================================
+    SECTION 4
+    ===================================================== */}
+    footer {
+        grid-column : 1 / 25;
+        ${'' /* grid-row    : 10; */}
     }
 
-    .category-slide{
-        cursor: pointer;
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET OR MOBILE VIEW 768px
+    ===================================================== */}
+    @media(max-width: 768px) {
+        ${'' /* =============================================
+        SECTION 1 / SECTION 2
+        ================================================= */}
+        span.slideTitle {
+            top             : 50%;
+        }
+
+
+        ${'' /* =============================================
+        SECTION 3
+        ================================================= */}
+        aside {
+            ${'' /* border: .2em solid purple; */}
+            grid-column     : 1 / 25;
+
+            ${'' /* padding: 2.2em 0; */}
+            width           : 100%;
+        }
+
+        section {
+            ${'' /* border: .2em solid #AF0000; */}
+            grid-column     : 1 / 25;
+
+            ${'' /* display         : flex; */}
+            flex-direction  : block;
+            ${'' /* padding         : .5em; */}
+            padding         : .3em;
+            width           : 100%;
+        }
     }
-
-    ${'' /* .category-page{
-        display:flex;
-        justify-content:center;
-        padding-top:10em;
-    } */}
-
-    ${'' /* .product-page-container{
-        padding-top:10em;
-    } */}
-
-    .filters {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-   
 `
 
 export default GlobalStyle
