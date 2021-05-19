@@ -70,23 +70,23 @@ const ProductCards = ({products}) => {
         <>
             {products?.map(p => {
                 return(
-                    <Cards key={p?.id}>
-                        <Link to={`/product/${p.id}`}>
+                    <Link to={`/product/${p.id}`}>
+                        <Cards key={p?.id}>
                             <img src={p.big_image} alt={p.name}></img><br />
-                        </Link>
-                        <p>{p.name}</p>
-                        <p>{p.price} $</p>
-                        {/* <p>{p.rating}</p> */}
-                        <p className="center"><StarRatings
-                        rating={p.rating}
-                        starDimension="1em"
-                        starSpacing=".2em"
-                        numberOfStars={5}
-                        starRatedColor="gold"
-                        /></p>
-                        {/* REVIEWS MODAL (Probablemente) */}
-                        {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
-                    </Cards>
+                            <p>{p.name}</p>
+                            <p>{p.price} $</p>
+                            {/* <p>{p.rating}</p> */}
+                            <p className="center"><StarRatings
+                            rating={p.rating}
+                            starDimension="1em"
+                            starSpacing=".2em"
+                            numberOfStars={5}
+                            starRatedColor="gold"
+                            /></p>
+                            {/* REVIEWS MODAL (Probablemente) */}
+                            {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                        </Cards>
+                    </Link>
                 )
             })}
             {/* <h3>No hay productos disponibles</h3> */}
