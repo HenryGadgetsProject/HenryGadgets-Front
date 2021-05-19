@@ -102,11 +102,11 @@ const BigCard = styled.div`
     }
 
     h6 {
+        color: var(--pure-black);
         position: absolute;
-        left: 43px;
-        bottom: -15px;
+        left: 35px;
+        bottom: -30px;
         font-size: 2rem;
-        color: #C3C3C3;
     }
 
     /* Those futur buttons */
@@ -128,6 +128,28 @@ const BigCard = styled.div`
         color: white;
         border: .15em solid #ff1744;
         right: 70px;
+        bottom: -20px;
+        font-size: 1.4em;
+        border-radius: 3em;
+        font-size: 1.6em;
+        width: 120px;
+        height: 60px;
+        text-align: center;
+        box-sizing: border-box;
+        -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+        transition: .3s;
+        &:hover{
+            transform: scale(1.10);
+        }
+    }
+    .review {
+        position: absolute;
+        background-color: #ff1744;
+        color: white;
+        border: .15em solid #ff1744;
+        right: 230px;
         bottom: -20px;
         font-size: 1.4em;
         border-radius: 3em;
