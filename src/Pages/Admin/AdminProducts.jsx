@@ -14,7 +14,7 @@ import { getProductsByCategoryName, getProductsByStock, getProductsByIsActive } 
 import styled from "styled-components"
 
 const StatusIcon = styled.img`
-background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;`
+    background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;`
 
 const EditIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
@@ -29,126 +29,127 @@ const InfoIcon = styled.img`
 `
 
 const AdminProducts = () => {
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const products = useSelector(state => state.product.filteredProducts)
-  const loading = useSelector(state => state.product.loading)
-  const categories = useSelector(state => state.category.categories)
+    const products = useSelector(state => state.product.filteredProducts)
+    const loading = useSelector(state => state.product.loading)
+    const categories = useSelector(state => state.category.categories)
 
-  const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
-  const arrPrdActive = [{id: 'true', name: 'activo'}, {id: 'false', name: 'inactivo'}]
+    const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
+    const arrPrdActive = [{id: 'true', name: 'activo'}, {id: 'false', name: 'inactivo'}]
 
-  useEffect(() => {
-    dispatch(getProductsByCategoryName('todas'))
-  }, [dispatch, getProductsByCategoryName])
+    useEffect(() => {
+        dispatch(getProductsByCategoryName('todas'))
+    }, [dispatch, getProductsByCategoryName])
 
-  const deleteHandler = (id) => {
-    Swal.fire({
-      title: 'Estas seguro?',
-      text: "vas a eliminar un producto",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteProducts(id))
-        Swal.fire(
-          'Eliminado!',
-          'Tu producto fue eliminado.',
-          'success'
+    const deleteHandler = (id) => {
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: "vas a eliminar un producto",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteProducts(id))
+                Swal.fire(
+                    'Eliminado!',
+                    'Tu producto fue eliminado.',
+                    'success'
+                )
+            }
+        })
+    }
+
+    const handleChangeCat = e => {
+        console.log('entra al handler con', e.target.value);
+        dispatch(getProductsByCategoryName(e.target.value))
+    }
+
+    const handleChangeStock = e => {
+        dispatch(getProductsByStock(e.target.value))
+    }
+
+    const handleChangeActive = e => {
+        console.log('entra al handlechance', e.target.value)
+        // if (e.target.value === 'inactivo') {
+        //   dispatch(getProductsByIsActive('false'))
+        // }
+
+        // if (e.target.value === 'activo') {
+        //   dispatch(getProductsByIsActive('true'))
+        // }
+
+        dispatch(getProductsByIsActive(e.target.value))
+    }
+
+    if (loading) {
+        return <h3>Cargando</h3>
+    } else {
+        return (
+            <>
+                <div className="filters">
+                    <FilterBy 
+                        array={categories}
+                        handleChange={handleChangeCat}
+                    />
+                    <FilterBy 
+                        array={arrPrdStock}
+                        handleChange={handleChangeStock}
+                    />
+                    <FilterBy 
+                        array={arrPrdActive}
+                        handleChange={handleChangeActive}
+                    />
+                </div>
+
+                <Table>
+                    <caption>Productos</caption>
+                    <thead>
+                        <tr>
+                            <th>*</th>
+                            <th className="name">Nombre</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Rating</th>
+                            <th>Categorías</th>
+                            <th>Activo</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {products.map(product => (
+                            <tr key={product.id}>
+                                <td data-label="*">*</td>
+                                <td data-label="Nombre">{product.name}</td>
+                                <td data-label="Precio">{product.price}</td>
+                                <td data-label="Stock" className="center-text">{product.stock}</td>
+                                <td data-label="Rating" className="center"><StarRatings
+                                    rating={product.rating}
+                                    starDimension="1em"
+                                    starSpacing=".2em"
+                                    numberOfStars={5}
+                                    starRatedColor="gold" />
+                                </td>
+                                <td data-label="Categorías">{product.categories.map(cat => (<span key={cat.name} className="cat">{cat.name}</span>))}</td>
+                                <td data-label="Activo" className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
+                                <td data-label="Editar" className="center-text" ><Link to={`/admin/products-edit/${product.id}`}><EditIcon /></Link></td>
+                                <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(product.id)}><DeleteIcon /></td>
+                                <td data-label="Info" className="center-text" ><Link to={`/admin/products/${product.id}`}><InfoIcon /></Link></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </>
         )
-      }
-    })
-  }
-
-  const handleChangeCat = e => {
-    console.log('entra al handler con', e.target.value);
-    dispatch(getProductsByCategoryName(e.target.value))
-  }
-
-  const handleChangeStock = e => {
-    dispatch(getProductsByStock(e.target.value))
-  }
-
-  const handleChangeActive = e => {
-    console.log('entra al handlechance', e.target.value)
-    // if (e.target.value === 'inactivo') {
-    //   dispatch(getProductsByIsActive('false'))
-    // }
-
-    // if (e.target.value === 'activo') {
-    //   dispatch(getProductsByIsActive('true'))
-    // }
-
-    dispatch(getProductsByIsActive(e.target.value))
-  }
-
-  if (loading) {
-    return <h3>Cargando</h3>
-  } else {
-    return (
-      <>
-        <div className="filters">
-          <FilterBy 
-            array={categories}
-            handleChange={handleChangeCat}
-          />
-          <FilterBy 
-            array={arrPrdStock}
-            handleChange={handleChangeStock}
-          />
-          <FilterBy 
-            array={arrPrdActive}
-            handleChange={handleChangeActive}
-          />
-        </div>
-
-      <Table>
-        <caption>Productos</caption>
-        <thead>
-          <tr>
-            <th>*</th>
-            <th className="name">Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Rating</th>
-            <th>Categorías</th>
-            <th>Activo</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-            <th>Info</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {products.map(product => (
-            <tr key={product.id}>
-              <td>*</td>
-              <td>{product.name}</td>
-              <td>{product.price}</td>
-              <td className="center-text">{product.stock}</td>
-              <td className="center"><StarRatings
-                rating={product.rating}
-                starDimension="1em"
-                starSpacing=".2em"
-                numberOfStars={5}
-                starRatedColor="gold"
-              /></td>
-              <td>{product.categories.map(cat => (<span key={cat.name} className="cat">{cat.name}</span>))}</td>
-              <td className="center-text">{(product.is_active) ? <StatusIcon /> : null}</td>
-              <td className="center-text" ><Link to={`/admin/products-edit/${product.id}`}><EditIcon /></Link></td>
-              <td className="center-text" onClick={() => deleteHandler(product.id)}><DeleteIcon /></td>
-              <td className="center-text" ><Link to={`/admin/products/${product.id}`}><InfoIcon /></Link></td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      </>
-    )
-  }
+    }
 
 }
 

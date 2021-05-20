@@ -12,12 +12,6 @@ const StyledBurger = styled.div`
     width               : 2em;
     z-index             : 1000;
 
-    @media (max-width: 768px) {
-        display         : flex;
-        flex-flow       : column nowrap;
-        justify-content : space-around;
-    }
-
     div {
         background-color: ${ ({ open }) => open ? '#808080' : '#FFFFFF' };
         border-radius   : 2em;
@@ -38,6 +32,15 @@ const StyledBurger = styled.div`
         &:nth-child(3) {
             transform   : ${ ({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)' };
         }
+    }
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media (max-width: 992px) {
+        display         : flex;
+        flex-flow       : column nowrap;
+        justify-content : space-around;
     }
 `
 

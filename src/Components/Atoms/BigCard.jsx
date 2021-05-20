@@ -135,48 +135,48 @@ const BigCard = styled.div`
 
     /* Floating action button */
     .buy {
-        position            : absolute;
-        background-color    : #ff1744;
-        color               : white;
+        background          : #ff1744;
         border              : .15em solid #ff1744;
-        right               : 2em;
-        bottom              : -1.5em;
-        font-size           : 1.4em;
         border-radius       : 3em;
-        font-size           : 1.6em;
-        width               : 8em;
-        height              : 3.7em;
-        text-align          : center;
+        bottom              : -1.5em;
+        box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-sizing          : border-box;
+        color               : white;
+        font-size           : 1.6em;
+        height              : 3.7em;
+        outline             : none;
+        position            : absolute;
+        right               : 2em;
+        text-align          : center;
+        transition          : .5s;
+        width               : 8em;
+        z-index             : 30;
         -webkit-box-shadow  : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        transition          : .5s;
-        z-index             : 30;
         &:hover {
             transform       : scale(1.10);
         }
     }
 
     .review {
-        position            : absolute;
         background-color    : #ff1744;
-        color               : white;
         border              : .15em solid #ff1744;
-        right               : 14em;
-        bottom              : -1.5em;
-        font-size           : 1.4em;
         border-radius       : 3em;
-        font-size           : 1.6em;
-        width               : 11em;
-        height              : 3.7em;
-        text-align          : center;
+        bottom              : -1.5em;
+        box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-sizing          : border-box;
+        color               : white;
+        font-size           : 1.6em;
+        height              : 3.7em;
+        outline             : none;
+        position            : absolute;
+        right               : 14em;
+        text-align          : center;
+        transition          : .5s;
+        width               : 11em;
+        z-index             : 30;
         -webkit-box-shadow  : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        transition          : .5s;
-        z-index             : 30;
         &:hover {
             transform       : scale(1.10);
         }
@@ -193,9 +193,9 @@ const BigCard = styled.div`
 
 
     ${'' /* =================================================
-    SMALL - CHECK TABLET OR MOBILE VIEW 768px
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
-    @media(max-width: 768px) {
+    @media(max-width: 992px) {
         ${'' /* margin      : 0; */}
         width       : 100%;
     }
