@@ -2,45 +2,65 @@ import React from 'react'
 import styled from "styled-components"
 import { Link } from 'react-router-dom'
 
-
 const AdminAside = styled.aside`
-  background: black;
-  ${'' /* height: 100vh; */}
-  min-height      : 100%;
+    align-items : center;
+    background  : black;
+    border      : none;
+    display     : flex;
+    min-height  : 100%;
+    outline     : none;
+    padding     : 2em;
 
-  button {
-    align-items: center;
-    background: black;
-    ${'' /* border: .2em solid black; */}
-    border: none;
-    outline: none;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: flex;
-    font-size: 1.8em;
-    margin: .5em auto;
-    padding: .5em;
-    transition: .5s;
-    width: 92%;
-    &:hover {
-      transform: scale(1.08)
-    }
-    &:active {
-      color: #ff1744;
+    a {
+        align-items     : center;
+        cursor          : pointer;
+        display         : flex;
+        justify-content : flex-start;
+        margin          : 1em auto;
+        padding         : 1em;
+        transition      : .5s;
+        width           : 90%;
+        &:hover {
+            transform   : scale(1.08)
+        }
     }
 
     img {
-      border: none;
-      margin-right: 1em;
-      outline: none;
-      padding: 1em;
-      width: 2em;
+        border          : none;
+        margin-right    : 1.6em;
+        outline         : none;
+        padding         : 1em;
+        width           : 2em;
     }
-  }
 
-  h4 {
-    color: #FFFFFF;
-  }
+    span {
+        color           : #FFFFFF;
+        font-size       : 2em;
+    }
+
+
+    ${'' /* =================================================
+    MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
+    ===================================================== */}
+    @media(min-width: 992px) and (max-width: 1199px) {
+        img {
+            margin      : 1em auto;
+        }
+
+        span {
+            display     : none;
+        }
+    }
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        a {
+            justify-content : center;
+        }
+    }
 `
 
 const ProductIcon = styled.img`
@@ -59,16 +79,31 @@ const AddCategoryIcon = styled.img`
 `
 
 const AdminSideBar = () => {
-  return (
-    <AdminAside>
-      <Link to='/admin/products'><button><ProductIcon /> Productos</button></Link>
-      <Link to='/admin/categories'><button><CategoryIcon /> Categorías</button></Link>
-      <Link to='/admin/users'><button><ProductIcon /> Usuarios</button></Link>
+    return (
+        <AdminAside>
+            <Link to='/admin/products'>
+                <ProductIcon />
+                <span>Productos</span>
+            </Link>
+            <Link to='/admin/categories'>
+                <CategoryIcon />
+                <span>Categorías</span>
+            </Link>
+            <Link to='/admin/users'>
+                <ProductIcon />
+                <span>Usuarios</span>
+            </Link>
 
-      <Link to='/admin/product'><button><AddProductIcon /> Agregar Productos</button></Link>
-      <Link to='/admin/category'><button><AddCategoryIcon /> Agregar Categorías</button></Link>
-    </AdminAside>
-  )
+            <Link to='/admin/product'>
+                <AddProductIcon />
+                <span>Agregar Productos</span>
+            </Link>
+            <Link to='/admin/category'>
+                <AddCategoryIcon />
+                <span>Agregar Categorías</span>
+            </Link>
+        </AdminAside>
+    )
 }
 
 export default AdminSideBar

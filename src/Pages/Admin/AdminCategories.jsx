@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from '../../Components/Atoms/Table'
@@ -24,66 +23,65 @@ const InfoIcon = styled.img`
 
 const AdminCategories = () => {
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const categories = useSelector(state => state.category.categories);
-
-
-  const deleteHandler = (id) => {
-    Swal.fire({
-      title: 'Estas seguro?',
-      text: "vas a eliminar una categoría",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteCategories(id))
-        Swal.fire(
-          'Eliminado!',
-          'Tu categoría fue eliminada.',
-          'success'
-        )
-      }
-    })
-  }
+    const categories = useSelector(state => state.category.categories);
 
 
-  return (
-    <Table>
-      <caption>Categorías</caption>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th className="name">Nombre</th>
-          <th>Descripcion</th>
-          <th>photo</th>
-          <th>Editar</th>
-          <th>Borrar</th>
-          {/* <th>Info</th> */}
-        </tr>
-      </thead>
+    const deleteHandler = (id) => {
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: "vas a eliminar una categoría",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteCategories(id))
+                Swal.fire(
+                    'Eliminado!',
+                    'Tu categoría fue eliminada.',
+                    'success'
+                )
+            }
+        })
+    }
 
-      <tbody>
-        {categories.map(category => (
-          <tr key={category.id}>
-            <td>{category.id}</td>
-            <td>{category.name}</td>
-            <td>{category.description}</td>
-            <td><img className="mini" src={category.photo} alt={category.name} /></td>
-            <td className="center-text"><Link to={`/admin/categories-edit/${category.id}`}><EditIcon /></Link></td>
-            <td className="center-text" onClick={() => deleteHandler(category.id)}><DeleteIcon /></td>
-            {/* <td className="center-text"><Link to={`/admin/categories/${category.id}`}><InfoIcon /></Link></td> */}
 
-          </tr>
-        ))}
-      </tbody>
-    </Table>
+    return (
+        <Table>
+            <caption>Categorías</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th className="name">Nombre</th>
+                    <th>Descripción</th>
+                    <th>Foto</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                    {/* <th>Info</th> */}
+                </tr>
+            </thead>
 
-  )
+            <tbody>
+                {categories.map(category => (
+                    <tr key={category.id}>
+                        <td data-label="ID">{category.id}</td>
+                        <td data-label="Nombre">{category.name}</td>
+                        <td data-label="Descripción">{category.description}</td>
+                        <td data-label="Foto"><img className="mini" src={category.photo} alt={category.name} /></td>
+                        <td data-label="Editar" className="center-text"><Link to={`/admin/categories-edit/${category.id}`}><EditIcon /></Link></td>
+                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(category.id)}><DeleteIcon /></td>
+                        {/* <td className="center-text"><Link to={`/admin/categories/${category.id}`}><InfoIcon /></Link></td> */}
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    )
 }
 
 export default AdminCategories

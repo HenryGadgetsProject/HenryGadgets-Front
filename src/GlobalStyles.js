@@ -146,8 +146,6 @@ const GlobalStyle = createGlobalStyle`
         /* grid-auto-rows          : minmax(3.5em, auto);
         grid-gap                : 0.2em; */
 
-        ${'' /* height                  : calc(100vh - 7em - 3em); */}
-
         ${'' /* min-height: 0;
         min-width: 0;
         overflow: hidden; */}
@@ -171,24 +169,6 @@ const GlobalStyle = createGlobalStyle`
         background      : var(--pure-black);
     }
 
-    ${'' /* #nav-home {
-        background      : transparent !important;
-        position        : fixed !important;
-        top             : 0 !important;
-        ${'' /* width           : 100% !important; */}
-        ${'' /* z-index         : 900; */}
-    } */}
-
-    ${'' /* #nav-general {
-        background      : ${ props => props.theme.background || '#000000' };
-        ${'' /* background      : var(--pure-black); */}
-        ${'' /* position        : -webkit-sticky !important;
-        position        : sticky !important;
-        top             : 0 !important; */}
-        ${'' /* width           : 100% !important; */}
-        ${'' /* z-index         : 900; */}
-    } */}
-
     #header {
         grid-column : 1 / 25;
         margin: 2em auto;
@@ -205,41 +185,14 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .carousel-root {
-        ${'' /* width: 100%; */}
-        ${'' /* border: 2px solid lime; */}
-
-        ${'' /* display         : flex; */}
-        ${'' /* flex-direction  : row; */}
-        ${'' /* flex-wrap       : wrap; */}
-        ${'' /* justify-content : center; */}
-        ${'' /* min-height      : calc(100vh - 20em); */}
-        ${'' /* max-height      : 100%; */}
-        ${'' /* max-height      : calc(100vh - 40em); */}
         width       : calc(100vw - 1.65em) !important;
-
-        /* max-width: 85%; */
-        ${'' /* margin-top      : .5em; */}
-        ${'' /* margin-top  : 7em; */}
     }
 
     .carousel {
         margin      : 0;
-        ${'' /* max-height  : 50em; */}
-        ${'' /* max-height  : calc(100vh - 40em) !important; */}
-
-        ${'' /* height: 100% !important; */}
-        ${'' /* max-width   : 110em; */}
-        ${'' /* max-width   : 151em; */}
         max-width   : 100vw !important;
-        ${'' /* min-width   : calc(100vw - 3em); */}
         padding     : 0;
     }
-
-    ${'' /* .carousel.carousel-slider { */}
-        ${'' /* max-height      : 32em; */}
-        ${'' /* max-heignt: 100% !important; */}
-        ${'' /* max-height      : calc(100vh - 40em) !important; */}
-    ${'' /* } */}
 
     .control-prev, .control-arrow, .control-next, .control-arrow {
         background      : var(--light-primary) !important;
@@ -267,11 +220,7 @@ const GlobalStyle = createGlobalStyle`
         width           : 1.6em !important;
     }
 
-    ${'' /* .carousel-root, */}
-    ${'' /* .slider, */}
-    .animated,
-    ${'' /* .slide, */}
-    .selected {
+    .animated, .selected {
         padding         : 0;
         margin          : 0 0 1em 0;
     }
@@ -317,7 +266,6 @@ const GlobalStyle = createGlobalStyle`
     #main {
         ${'' /* border: .2em solid blue; */}
         grid-column : 1 / 25;
-        ${'' /* grid-row    : 3 / 10; */}
         place-self  : center;
     }
 
@@ -353,21 +301,13 @@ const GlobalStyle = createGlobalStyle`
     section {
         ${'' /* border: .2em solid #AF0000; */}
         grid-column : 4 / 25;
-        ${'' /* place-self  : center; */}
 
         align-self: right;
         display         : flex;
         flex-direction  : column;
-        ${'' /* justify-content : center; */}
         margin: 0 auto;
-        ${'' /* padding         : .5em; */}
         padding: .3em 6em;
         width           : 80%;
-        ${'' /* @media(min-width: 99.2em) and (max-width: 120em) {
-            border: .3em dotted #AF0000;
-            display     : block;
-            grid-column : 1 / 25;
-        } */}
     }
 
     .popular-products {
@@ -378,20 +318,10 @@ const GlobalStyle = createGlobalStyle`
         width           : 100%;
     }
 
-    ${'' /* .category-page{
-        display:flex;
-        justify-content:center;
-        padding-top:10em;
-    } */}
-
-    ${'' /* .product-page-container{
-        padding-top:10em;
-    } */}
-
     .filters {
+        align-items     : center;
         display         : flex;
         justify-content : space-between;
-        align-items     : center;
     }
 
     .link {
@@ -432,15 +362,35 @@ const GlobalStyle = createGlobalStyle`
     ===================================================== */}
     footer {
         grid-column : 1 / 25;
-        ${'' /* grid-row    : 10; */}
     }
 
 
 
     ${'' /* =================================================
-    SMALL - CHECK TABLET OR MOBILE VIEW 768px
+    MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
     ===================================================== */}
-    @media(max-width: 768px) {
+    @media(min-width: 992px) and (max-width: 1199px) {
+        ${'' /* =============================================
+        SECTION 3
+        ================================================= */}
+        aside {
+            grid-column     : 1 / 2;
+            width           : 10%;
+        }
+
+        section {
+            grid-column     : 2 / 25;
+            flex-direction  : block;
+            width           : 90%;
+        }
+    }
+
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
         ${'' /* =============================================
         SECTION 1 / SECTION 2
         ================================================= */}
@@ -452,23 +402,22 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* =============================================
         SECTION 3
         ================================================= */}
-        aside {
-            ${'' /* border: .2em solid purple; */}
-            grid-column     : 1 / 25;
-
-            ${'' /* padding: 2.2em 0; */}
+        aside, section, .filters {
+            padding         : 2vw 3vw;
             width           : 100%;
         }
 
-        section {
-            ${'' /* border: .2em solid #AF0000; */}
+        aside, section {
             grid-column     : 1 / 25;
+        }
 
-            ${'' /* display         : flex; */}
+        section {
             flex-direction  : block;
-            ${'' /* padding         : .5em; */}
-            padding         : .3em;
-            width           : 100%;
+        }
+
+        .filters {
+            flex-direction  : column;
+            justify-content : space-between;
         }
     }
 `

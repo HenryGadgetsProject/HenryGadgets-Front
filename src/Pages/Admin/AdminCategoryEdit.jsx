@@ -3,7 +3,6 @@ import Main from '../../Components/Atoms/Main'
 import EditCategoryForm from '../../Components/Organisms/EditCategoryForm'
 
 const AdminCategoryEdit = ({ categoryId }) => {
-
     return (
         <div className="container">
             <Main id="main">
