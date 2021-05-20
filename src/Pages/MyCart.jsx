@@ -58,11 +58,13 @@ const Table = styled.table`
     }
 
     img {
-        height: 2em;
-        width: 2em;
+        ${'' /* height: 2em;
+        width: 2em; */}
+        object-fit: contain;
         outline: none;
         padding: 1em;
         transition: .3s;
+        width: 100%;
         &:hover {
             transform: scale(1.20)
         }
