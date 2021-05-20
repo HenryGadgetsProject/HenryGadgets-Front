@@ -98,6 +98,7 @@ const MyCart = () => {
     const [total, setTotal] = useState();
 
 
+
     useEffect(() => {
         if (products) {
             setTotal(products.reduce((acc, item) => {
@@ -151,7 +152,10 @@ const MyCart = () => {
                                 {/* <td>{category.id}</td> */}
                                 <td><img className="mini" src={product.big_image} alt={product.name} /></td>
                                 <td>{product.name}</td>
-                                <td><input type="number" min="1" max="{product.stock}" value={Number(product.quantity)} /></td>
+                                <td>
+                                    <button className="btn-quantity">-</button>
+                                    <span className="quantity">{product.quantity}</span>
+                                    <button className="btn-quantity">+</button></td>
                                 <td>{product.price}</td>
                                 <td><DeleteIcon onClick={() => deleteHandler(product)} /></td>
                                 {/* <td><BuyIcon /></td> */}
