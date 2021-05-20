@@ -17,17 +17,32 @@ const Ul = styled.ul`
         padding         : 1.25em 0;
     }
 
-    span.badge {
-    background-color: red;
-    width: 2em;
-    height: 2em;
-    color: white;
-    font-size: 1.5em;
-    padding: 0.5em;
-    border-radius: 1em;
+    a > * {
+        transition      : .5s;
+        &:hover {
+            transform   : scale(1.30)
+        }
     }
 
-    @media (max-width: 768px) {
+    img {
+        height          : 2em;
+        width           : 2em;
+    }
+
+    sub.badge {
+        background      : red;
+        border-radius   : 100%;
+        color           : white;
+        font-size       : .8em;
+        padding         : .1em .4em;
+        ${'' /* height          : 1em; */}
+        ${'' /* width           : 1em; */}
+    }
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media (max-width: 992px) {
         background-color: #0D2538;
         flex-flow       : column nowrap;
         ${'' /* height: 100vh; */}
@@ -49,20 +64,21 @@ const Ul = styled.ul`
     }
 `
 
-const Img = styled.img`
-    height              : 2em;
-    transition          : 0.5s;
-    width               : 2em;
-    &:hover {
-        transform       : scale(1.30)
-    }
-`
+// const Img = styled.img`
+//     height              : 2em;
+//     transition          : .5s;
+//     width               : 2em;
+//     &:hover {
+//         transform       : scale(1.30)
+//     }
+// `
+
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
 const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
 // const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
 const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
-const chartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
+const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
 
@@ -82,51 +98,50 @@ const MenuOptBar = ({ open }) => {
                     <>
                         <li>
                             {/* <Link to="/user" className="link">
-                            <Img src={userIcon} alt='user'></Img>
-                        </Link> */}
-                        <span>{user.first_name}</span>
-                        </li>
-                        <li>
-                            <Link to="/home" className="link" onClick={handleClick}>
-                                <Img src={logoutIcon} alt='logout'></Img>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/admin" className="link">
-                                <Img src={adminIcon} alt='admin'></Img>
-                            </Link>
-                        </li>
-                    </>
-                :
-                <>
-                    <li>
-                        {/* <Link to="/user" className="link">
-                            <Img src={userIcon} alt='user'></Img>
-                        </Link> */}
+                                <Img src={userIcon} alt='user'></Img>
+                            </Link> */}
                             <span>{user.first_name}</span>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
-                                <Img src={logoutIcon} alt='logout'></Img>
+                                <img src={logoutIcon} alt='logout' />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/admin" className="link">
+                                <img src={adminIcon} alt='admin' />
+                            </Link>
+                        </li>
+                    </>
+                    :
+                    <>
+                        <li>
+                            {/* <Link to="/user" className="link">
+                                <Img src={userIcon} alt='user'></Img>
+                            </Link> */}
+                            <span>{user.first_name}</span>
+                        </li>
+                        <li>
+                            <Link to="/home" className="link" onClick={handleClick}>
+                                <img src={logoutIcon} alt='logout' />
                             </Link>
                         </li>
                         <li>
                             <Link to="/cart" className="link">
-                                <Img src={chartIcon} alt='cart'></Img>
+                                <img src={cartIcon} alt='cart' />
                             </Link>
                         </li>
-                        <li><span className="badge">1</span></li>
                     </>
                 :
                 <>
                     <li>
                         <Link to="/login" className="link">
-                            <Img src={loginIcon} alt='login'></Img>
+                            <img src={loginIcon} alt='login' />
                         </Link>
                     </li>
                     <li>
                         <Link to="/register" className="link">
-                            <Img src={registerUserIcon} alt='register'></Img>
+                            <img src={registerUserIcon} alt='register' />
                         </Link>
                     </li>
                 </>
@@ -139,15 +154,16 @@ const MenuOptBar = ({ open }) => {
                 </Link>
             </li> */}
             {/* <li>Contact Us</li> */}
-            
+
             <li>
                 <Link to="/cart" className="link">
-                    <Img src={chartIcon} alt='chart'></Img>
+                    <img src={cartIcon} alt='chart' />
+                    <sub className="badge">{itemCount}</sub>
                 </Link>
             </li>
-            <li>
+            {/* <li>
                 <span className="badge">{itemCount}</span>
-            </li>
+            </li> */}
         </Ul>
     )
 }

@@ -180,26 +180,45 @@ const Home = () => {
 
             {/* ya tiene preparado el onClick para que vaya a /products/id */}
             <Carousel
-                    autoPlay={true}
-                    dynamicHeight={true}
-                    infiniteLoop={true}
-                    interval={3000}
-                    renderIndicator={false}
-                    showIndicators={false}
-                    showThumbs={false}
-                    stopOnHover={true}>
-                    {categories.map((category) => (
-                        <Link to={`/category/${category.id}`} key={category.id}>
-                            <div className="category-slide" id={category.id} >
-                                <span className="slideTitle">{category.name}</span>
-                                <img src={category.photo} alt={category.name} />
-                            </div>
-                        </Link>
-                    )
-                    )}
-                </Carousel>
+                autoPlay={true}
+                dynamicHeight={true}
+                infiniteLoop={true}
+                interval={3000}
+                renderIndicator={false}
+                showIndicators={false}
+                showThumbs={false}
+                stopOnHover={true}>
+                {categories.map((category) => (
+                    <Link to={`/category/${category.id}`} key={category.id}>
+                        <div className="category-slide" id={category.id} >
+                            <span className="slideTitle">{category.name}</span>
+                            <img src={category.photo} alt={category.name} />
+                        </div>
+                    </Link>
+                ))}
+            </Carousel>
 
-                {/* <Breadcrumb id="breadcrumb-home" /> */}
+            {/* <Breadcrumb id="breadcrumb-home" /> */}
+
+            <div className="filters">
+                {/* <FilterBy
+                    array={categories}
+                    handleChange={handleChangeCat}
+                />
+
+                <FilterBy
+                    array={arrPrdStock}
+                    handleChange={handleChangePrd}
+                /> */}
+
+                {/* <SortBy />
+
+                    <SortBy />
+
+                    <SortBy />
+
+                    <SortBy /> */}
+            </div>
 
             <Main id="main">
 
@@ -209,9 +228,6 @@ const Home = () => {
                 </Header>
 
                 <aside>
-
-                    {/* <SearchBar/> */}
-
                     <FilterBy
                         array={categories}
                         handleChange={handleChangeCat}
