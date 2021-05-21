@@ -33,8 +33,6 @@ const initialState = {
 }
 
 const ProductReducer = (state = initialState, action) => {
-    // console.log('en reducer', typeof(action.payload))
-    console.log('en reducer trae un', action.payload)
 
     switch (action.type) {
 

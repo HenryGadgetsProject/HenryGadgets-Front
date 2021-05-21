@@ -17,9 +17,9 @@ const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-const InfoIcon = styled.img`
-    background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
-`
+// const InfoIcon = styled.img`
+//     background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
+// `
 
 const AdminCategories = () => {
 
@@ -39,16 +39,16 @@ const AdminCategories = () => {
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })
-        .then((result) => {
-            if (result.isConfirmed) {
-                dispatch(deleteCategories(id))
-                Swal.fire(
-                    'Eliminado!',
-                    'Tu categoría fue eliminada.',
-                    'success'
-                )
-            }
-        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteCategories(id))
+                    Swal.fire(
+                        'Eliminado!',
+                        'Tu categoría fue eliminada.',
+                        'success'
+                    )
+                }
+            })
     }
 
 

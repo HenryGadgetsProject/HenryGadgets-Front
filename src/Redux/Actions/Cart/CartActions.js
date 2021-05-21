@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 import {
     CREATE_CART,
     ADD_ITEM_TO_CART,
@@ -9,10 +10,12 @@ import {
     LOADING_CART
 } from './CartActionsType'
 
+
+
 export const createCart = () => {
     const cart = JSON.parse(localStorage.getItem('cart'))
     if (!cart) {
-        localStorage.setItem('cart', '{}')
+        localStorage.setItem('cart', JSON.stringify({}))
         return {
             type: CREATE_CART,
             payload: []
@@ -21,11 +24,10 @@ export const createCart = () => {
 }
 
 export const addItemCart = (selectedProduct) => {
-    if (selectedProduct.id)
-        return {
-            type: ADD_ITEM_TO_CART,
-            payload: selectedProduct
-        }
+    return {
+        type: ADD_ITEM_TO_CART,
+        payload: selectedProduct
+    }
 }
 
 export const deleteItemFromCart = (selectedProduct) => {

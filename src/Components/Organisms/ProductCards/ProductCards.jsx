@@ -55,8 +55,8 @@ const Cards = styled.div`
     }
 `
 
-const ProductCards = ({products}) => {
-    
+const ProductCards = ({ products }) => {
+
     // No funciona el dispatch de Redux, llega como 'undefined'
     // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
     // const dispatch = useDispatch()
@@ -69,20 +69,20 @@ const ProductCards = ({products}) => {
     return (
         <>
             {products?.map(p => {
-                return(
-                    <Link to={`/product/${p.id}`}>
-                        <Cards key={p?.id}>
+                return (
+                    <Link to={`/product/${p.id}`} key={p?.id}>
+                        <Cards >
                             <img src={p.big_image} alt={p.name}></img><br />
                             <p>{p.name}</p>
                             <p>{p.price} $</p>
                             {/* <p>{p.rating}</p> */}
-                            <p className="center"><StarRatings
-                            rating={p.rating}
-                            starDimension="1em"
-                            starSpacing=".2em"
-                            numberOfStars={5}
-                            starRatedColor="gold"
-                            /></p>
+                            <div className="center"><StarRatings
+                                rating={p.rating}
+                                starDimension="1em"
+                                starSpacing=".2em"
+                                numberOfStars={5}
+                                starRatedColor="gold"
+                            /></div>
                             {/* REVIEWS MODAL (Probablemente) */}
                             {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                         </Cards>

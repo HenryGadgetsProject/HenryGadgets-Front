@@ -12,9 +12,11 @@ import {
     createCart
 } from '../Actions/Cart/CartActions'
 
+const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
+
 const initialState = {
     loading: false,
-    cartList: [],
+    cartList: cartFromLocalStorage,
     error: '',
     total: 0.00,
     itemCount: 0
@@ -36,6 +38,9 @@ const CartReducer = ((state = initialState, action) => {
         }
 
         case ADD_ITEM_TO_CART: {
+
+            localStorage.setItem('cart', [...state.cartList, action.payload])
+
             return {
                 ...state,
                 cartList: [...state.cartList, action.payload],

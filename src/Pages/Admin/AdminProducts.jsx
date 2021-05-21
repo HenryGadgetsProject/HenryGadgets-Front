@@ -52,13 +52,13 @@ const Button = styled.button`
         outline: none;
     }
 `
-const LoadMoreButton = styled.button`
-    padding: 1rem;
-    background-color: #ff1744;
-    color: black;
-    font-size: 1.2em;
-    border: 1px solid black;
-`
+// const LoadMoreButton = styled.button`
+//     padding: 1rem;
+//     background-color: #ff1744;
+//     color: black;
+//     font-size: 1.2em;
+//     border: 1px solid black;
+// `
 
 const StatusIcon = styled.img`
     background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;`
@@ -82,12 +82,12 @@ const AdminProducts = () => {
     const loading = useSelector(state => state.product.loading)
     const categories = useSelector(state => state.category.categories)
 
-    const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
-    const arrPrdActive = [{id: 'true', name: 'activo'}, {id: 'false', name: 'inactivo'}]
+    const arrPrdStock = [{ id: 1, name: 'disponible' }, { id: 2, name: 'no disponible' }]
+    const arrPrdActive = [{ id: 'true', name: 'activo' }, { id: 'false', name: 'inactivo' }]
 
     useEffect(() => {
         dispatch(getProductsByCategoryName('todas'))
-    }, [dispatch, getProductsByCategoryName])
+    }, [dispatch])
 
     const deleteHandler = (id) => {
         Swal.fire({
@@ -100,16 +100,16 @@ const AdminProducts = () => {
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })
-        .then((result) => {
-            if (result.isConfirmed) {
-                dispatch(deleteProducts(id))
-                Swal.fire(
-                    'Eliminado!',
-                    'Tu producto fue eliminado.',
-                    'success'
-                )
-            }
-        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteProducts(id))
+                    Swal.fire(
+                        'Eliminado!',
+                        'Tu producto fue eliminado.',
+                        'success'
+                    )
+                }
+            })
     }
 
     const handleChangeCat = e => {
@@ -142,10 +142,10 @@ const AdminProducts = () => {
     // Página actual, inicializada en 1
     const [currentPage, setCurrentPage] = useState(1)
     // Cards o Items que voy a mostrar por página
-    const [itemsPerPage, setItemsPerPage] = useState(12)
+    const [itemsPerPage] = useState(12)
 
     // Número de páginas que quiero mostrar
-    const [pageNumberLimit, setPageNumberLimit] = useState(5)
+    const [pageNumberLimit] = useState(5)
     // Máximo de páginas
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
     // Mínimo de páginas
@@ -153,7 +153,7 @@ const AdminProducts = () => {
 
     // En cada página voy a insertar las cards
     const pages = [];
-    for(let i = 1; i <= Math.ceil(products.length/itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
         pages.push(i)
     }
 
@@ -179,9 +179,9 @@ const AdminProducts = () => {
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
         }
     }
-    const handleMoreBtn = () => {
-        setItemsPerPage(itemsPerPage + 5)
-    }
+    // const handleMoreBtn = () => {
+    //     setItemsPerPage(itemsPerPage + 5)
+    // }
 
     let pageIncrementBtn = null
     if (pages.length > maxPageNumberLimit) {
@@ -196,12 +196,12 @@ const AdminProducts = () => {
     // Renderizamos los números de las páginas como (<Li>)
     const renderPageNumbers = pages.map(number => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-            return(
-                <PageNumbers 
-                className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
+            return (
+                <PageNumbers
+                    className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
                     {number}
                 </PageNumbers>
-            ) 
+            )
         } else {
             return null;
         }
@@ -215,15 +215,15 @@ const AdminProducts = () => {
         return (
             <>
                 <div className="filters">
-                    <FilterBy 
+                    <FilterBy
                         array={categories}
                         handleChange={handleChangeCat}
                     />
-                    <FilterBy 
+                    <FilterBy
                         array={arrPrdStock}
                         handleChange={handleChangeStock}
                     />
-                    <FilterBy 
+                    <FilterBy
                         array={arrPrdActive}
                         handleChange={handleChangeActive}
                     />
@@ -269,7 +269,7 @@ const AdminProducts = () => {
                         ))}
                         <NumbersContainer>
 
-                            <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>                    
+                            <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
                             {pageDecrementBtn}
                             {renderPageNumbers}
                             {pageIncrementBtn}

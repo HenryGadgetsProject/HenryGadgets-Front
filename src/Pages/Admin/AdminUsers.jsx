@@ -21,9 +21,9 @@ const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-const InfoIcon = styled.img`
-    background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
-`
+// const InfoIcon = styled.img`
+//     background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
+// `
 
 const AdminUsers = () => {
     const dispatch = useDispatch();
@@ -41,16 +41,16 @@ const AdminUsers = () => {
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })
-        .then((result) => {
-            if (result.isConfirmed) {
-                dispatch(deleteUser(id))
-                Swal.fire(
-                    'Eliminado!',
-                    'El usuario fue eliminado.',
-                    'success'
-                )
-            }
-        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteUser(id))
+                    Swal.fire(
+                        'Eliminado!',
+                        'El usuario fue eliminado.',
+                        'success'
+                    )
+                }
+            })
     }
 
 
@@ -76,7 +76,7 @@ const AdminUsers = () => {
                         <td data-label="Nombres">{user.first_name}</td>
                         <td data-label="Apellidos">{user.last_name}</td>
                         <td data-label="Correo">{user.email}</td>
-                        <td data-label="Administrador">{(user.is_admin) ? <StatusIcon /> : null }</td>
+                        <td data-label="Administrador">{(user.is_admin) ? <StatusIcon /> : null}</td>
                         <td data-label="Editar" className="center-text"><Link to={`/admin/users-edit/${user.id}`}><EditIcon /></Link></td>
                         <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id)}><DeleteIcon /></td>
                     </tr>
