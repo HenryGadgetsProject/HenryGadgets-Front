@@ -15,12 +15,9 @@ import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
 import { ThemeProvider } from 'styled-components'
 
 function App() {
-
     const mode = useSelector((state) => state.global.theme)
 
     const dispatch = useDispatch()
-
-
 
     useEffect(() => {
         dispatch(getCategories());

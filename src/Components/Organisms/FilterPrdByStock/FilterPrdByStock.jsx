@@ -8,8 +8,6 @@ import Select from '../../Atoms/Select'
 const FilterPrdByStock = () => {
     const dispatch = useDispatch()
 
-    // const stock = useSelector(state => state.product.products.stock)
-
     const handleChange = e => {
         dispatch(setProductsByStock(e.target.value))
     }

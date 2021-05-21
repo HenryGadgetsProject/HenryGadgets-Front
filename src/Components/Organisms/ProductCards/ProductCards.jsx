@@ -60,17 +60,6 @@ const Cards = styled.div`
 `
 
 const ProductCards = () => {
-    
-    // No funciona el dispatch de Redux, llega como 'undefined'
-    // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
-    // const dispatch = useDispatch()
-    // const products = useSelector((state) => state.product.products)
-
-    // useEffect(() => {
-    //     dispatch(getProducts());
-    // }, [dispatch])
-
-
     const dispatch = useDispatch()
 
     const products = useSelector(state => filteredProductsSelector(state))
@@ -105,7 +94,6 @@ const ProductCards = () => {
                         </Link>
                     )
                 })}
-                {/* <h3>No hay productos disponibles</h3> */}
             </>
         )
     } else {
