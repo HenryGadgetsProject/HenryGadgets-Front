@@ -1,5 +1,6 @@
 import axios from 'axios'
 import HOST from '../../../constants'
+import { useSelector } from 'react-redux'
 
 import {
     USER_LOGIN_SUCCESS,
@@ -13,6 +14,20 @@ import {
     DELETE_USER_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS
 } from './UserActionTypes'
+
+
+
+
+export const saveCartToDB = (userId, list) => {
+
+
+    list.forEach(element => {
+
+        console.log(element)
+
+    });
+
+}
 
 
 
@@ -48,6 +63,7 @@ export const userLogin = (input) => {
 }
 export const userLogut = () => {
     localStorage.removeItem("JWT")
+    localStorage.removeItem('cart')
     return {
         type: USER_LOGOUT_SUCCESS
     }

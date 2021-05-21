@@ -31,12 +31,14 @@ function App() {
         dispatch(getPopularProducts());
         dispatch(getProducts());
         dispatch(getUsers());
-        dispatch(
-            {
-                type: USER_LOGIN_SUCCESS,
-                payload: fullUser
-            }
-        )
+        if (fullUser) {
+            dispatch(
+                {
+                    type: USER_LOGIN_SUCCESS,
+                    payload: fullUser
+                }
+            )
+        }
 
     }, [dispatch])
 
