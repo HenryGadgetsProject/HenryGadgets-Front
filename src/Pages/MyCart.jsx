@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
-import Main from '../Components/Atoms/Main'
+//import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import Swal from 'sweetalert2'
 
@@ -82,9 +82,9 @@ const Table = styled.table`
 
 `
 // Icons
-const BuyIcon = styled.img`
-    background: url('https://api.iconify.design/bi:credit-card-2-back.svg?color=%23ff1744') no-repeat center center / contain;
-`
+// const BuyIcon = styled.img`
+//     background: url('https://api.iconify.design/bi:credit-card-2-back.svg?color=%23ff1744') no-repeat center center / contain;
+// `
 
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
@@ -96,6 +96,8 @@ const MyCart = () => {
 
     // const categories = useSelector(state => state.category.categories);
     const products = useSelector(state => state.cart.cartList)
+
+    console.log(products)
 
     const [total, setTotal] = useState();
 

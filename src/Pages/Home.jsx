@@ -73,13 +73,13 @@ const Home = () => {
         // ****** Paginate Data ******
         // setData(products)
         // ****** Paginate Data ******
-    }, [dispatch, getProductsByCategoryName])
+    }, [dispatch])
 
     const products = useSelector((state) => state.product.filteredProducts)
 
     const categories = useSelector((state) => state.category.categories)
 
-    const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
+    const arrPrdStock = [{ id: 1, name: 'disponible' }, { id: 2, name: 'no disponible' }]
 
     const handleChangeCat = e => {
         dispatch(getProductsByCategoryName(e.target.value))
@@ -87,9 +87,9 @@ const Home = () => {
 
     const handleChangePrd = e => {
         // if (e.target.value === 'false' || e.target.value === 'true') {
-            console.log('En handle', typeof(e.target.value))
-            // const toBoolean = Boolean(e.target.value)
-            dispatch(getProductsByStock(e.target.value))
+        console.log('En handle', typeof (e.target.value))
+        // const toBoolean = Boolean(e.target.value)
+        dispatch(getProductsByStock(e.target.value))
         // }
 
         // else {
@@ -109,7 +109,7 @@ const Home = () => {
     const [itemsPerPage, setItemsPerPage] = useState(12)
 
     // Número de páginas que quiero mostrar
-    const [pageNumberLimit, setPageNumberLimit] = useState(5)
+    const [pageNumberLimit] = useState(5)
     // Máximo de páginas
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
     // Mínimo de páginas
@@ -117,7 +117,7 @@ const Home = () => {
 
     // En cada página voy a insertar las cards
     const pages = [];
-    for(let i = 1; i <= Math.ceil(products.length/itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
         pages.push(i)
     }
 
@@ -160,12 +160,12 @@ const Home = () => {
     // Renderizamos los números de las páginas como (<Li>)
     const renderPageNumbers = pages.map(number => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-            return(
-                <PageNumbers 
-                className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
+            return (
+                <PageNumbers
+                    className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
                     {number}
                 </PageNumbers>
-            ) 
+            )
         } else {
             return null;
         }
@@ -255,20 +255,20 @@ const Home = () => {
 
                         {/* <ProductCards products={products} /> */}
                         <ProductCards products={currentItems} />
-                        
+
                         {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                     </div>
 
-                    {/* <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton> */}
+                    <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton>
 
                     <NumbersContainer>
 
-                        <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>                    
+                        <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
                         {pageDecrementBtn}
                         {renderPageNumbers}
                         {pageIncrementBtn}
                         <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-            
+
                     </NumbersContainer>
 
 

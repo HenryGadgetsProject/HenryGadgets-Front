@@ -24,9 +24,9 @@ const CartIcon = styled.img`
 
 const Product = ({ productId }) => {
 
-    const eyeIcon = 'https://api.iconify.design/bi-eye.svg?height=16'
-    const heartIcon = 'https://api.iconify.design/ant-design:heart-filled.svg'
-    const shareIcon = 'https://api.iconify.design/bi:share-fill.svg'
+    // const eyeIcon = 'https://api.iconify.design/bi-eye.svg?height=16'
+    // const heartIcon = 'https://api.iconify.design/ant-design:heart-filled.svg'
+    // const shareIcon = 'https://api.iconify.design/bi:share-fill.svg'
 
     const dispatch = useDispatch()
 

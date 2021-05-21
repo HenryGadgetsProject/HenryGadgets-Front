@@ -61,12 +61,12 @@ const ButtonContainer = styled.div`
 `
 
 // Iconos
-const NameIcon = styled.img`
-    height: 2em;
-    width: 2em;
-    padding: 1em;
-    background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
-`
+// const NameIcon = styled.img`
+//     height: 2em;
+//     width: 2em;
+//     padding: 1em;
+//     background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
+// `
 const EmailIcon = styled.img`
     margin-top: 2em;
     height: 2em;
