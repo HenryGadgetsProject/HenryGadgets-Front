@@ -37,7 +37,7 @@ const Ldr = styled.div`
 
 const Loader = () => {
     return (
-        <Ldr class="lds-ripple">
+        <Ldr className="lds-ripple">
             <div></div>
             <div></div>
         </Ldr>

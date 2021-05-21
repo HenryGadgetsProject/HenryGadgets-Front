@@ -38,7 +38,7 @@ function App() {
                 }
             )
         }
-    }, [dispatch])
+    }, [dispatch, fullUser])
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))

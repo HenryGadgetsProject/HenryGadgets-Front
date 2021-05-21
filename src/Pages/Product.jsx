@@ -61,11 +61,11 @@ const Product = ({ productId }) => {
 
             <Main id="main">
                 <BigCard>
-                    <div class="thumbnail">
-                        <img class="left" src={product.big_image} alt='left' />
+                    <div className="thumbnail">
+                        <img className="left" src={product.big_image} alt='left' />
                     </div>
 
-                    <div class="right">
+                    <div className="right">
                         <Link to='/home'><div className="close">X</div></Link>
                         <h3>{product.name}</h3>
 
@@ -77,7 +77,7 @@ const Product = ({ productId }) => {
                             starRatedColor="gold"
                         />
 
-                        <div class="separator"></div>
+                        <div className="separator"></div>
                         <span>Descripción</span><p>{product.description}</p>
                         <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
                         <span>Precio</span><p>{product.price} $</p>
@@ -93,11 +93,11 @@ const Product = ({ productId }) => {
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
 
-                    <button class="review">
+                    <button className="review">
                         Ver Opiniones
                     </button>
 
-                    <button class="buy" onClick={handleClick}>
+                    <button className="buy" onClick={handleClick}>
                         <CartIcon />
                     </button>
 

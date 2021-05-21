@@ -1,6 +1,5 @@
 import axios from 'axios'
 import HOST from '../../../constants'
-import { useSelector } from 'react-redux'
 
 import {
     USER_LOGIN_SUCCESS,
@@ -15,16 +14,16 @@ import {
     TOGGLE_USER_ADMIN_SUCCESS
 } from './UserActionTypes'
 
+import { addItemCart } from '../Cart/CartActions'
 
-
-
-export const saveCartToDB = (userId, list) => {
-
-
+export const saveCartToDB = (userId, list, dispatch) => {
     list.forEach(element => {
-
-        console.log(element)
-
+        dispatch(addItemCart({
+            user_id: userId,
+            id: element.id,
+            quantity: element.quantity
+        }))
+        // console.log(element)
     });
 
 }

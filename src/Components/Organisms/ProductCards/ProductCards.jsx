@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
-
-import { useSelector, useDispatch } from 'react-redux'
-import { getProducts } from '../../../Redux/Actions/Product/ProductActions'
-import { filteredProductsSelector } from '../../../Helpers/filtered-products-selector'
 
 import styled from 'styled-components'
 
@@ -27,7 +23,7 @@ const Cards = styled.div`
     &:hover {
         /* border              : .20em solid var(--dark-primary); */
         box-shadow          : 0px 0px 10px var(--font-color);
-        box-sizing: border-box;
+        box-sizing          : border-box;
         transform           : scale(1.01);
     }
 
@@ -60,25 +56,16 @@ const Cards = styled.div`
 `
 
 const ProductCards = ({ products }) => {
-    const dispatch = useDispatch()
-
-    // const products = useSelector(state => filteredProductsSelector(state))
-
-    // useEffect(() => {
-    //     dispatch(getProducts())
-    // }, [dispatch])
-
     if(products.length > 0) {
         return (
             <>
                 {products?.map(p => {
                     return(
-                        <Link to={`/product/${p.id}`}>
-                            <Cards key={p?.id}>
+                        <Link to={`/product/${p.id}`} key={p?.id}>
+                            <Cards>
                                 <img src={p.big_image} alt={p.name}></img><br />
                                 <p>{p.name}</p>
                                 <p>{p.price} $</p>
-                                {/* <p>{p.rating}</p> */}
                                 <span className="center">
                                     <StarRatings
                                         rating={p.rating}
