@@ -212,9 +212,7 @@ export const updateProduct = (id, input) => {
         )
         axios.put(`${HOST}/products/${id}`, input)
             .then(response => {
-                const product = response.data
-
-
+                // const product = response.data
                 dispatch(
                     {
                         type: EDIT_PRODUCT_SUCCESS,

@@ -25,8 +25,8 @@ export const userLogin = (input) => {
             .then(response => {
                 const user = response.data.user
                 const jwt = response.data.token
-                const fullUser = {...user, token: jwt}
-                localStorage.setItem("JWT", JSON.stringify(jwt))
+                const fullUser = { ...user, token: jwt }
+                localStorage.setItem("JWT", JSON.stringify(fullUser))
                 dispatch(
                     {
                         type: USER_LOGIN_SUCCESS,
@@ -110,11 +110,12 @@ export const addUser = (body) => {
             .then(response => {
                 const user = response.data.user
                 const jwt = response.data.token
-                localStorage.setItem("JWT", JSON.stringify(jwt))
+                const fullUser = { ...user, token: jwt }
+                localStorage.setItem("JWT", JSON.stringify(fullUser))
 
                 console.log(user)
-                
-                if(user) {
+
+                if (user) {
                     dispatch(
                         {
                             type: ADD_USER_SUCCESS,

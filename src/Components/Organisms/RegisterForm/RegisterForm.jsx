@@ -49,9 +49,9 @@ const ErrorMsg = styled.p`
     color: #ff1744;
     font-size: 1.2em;
 `
-const Divider = styled.div`
-    display: flex;
-`
+// const Divider = styled.div`
+//     display: flex;
+// `
 const Item = styled.div`
     padding-left: 2em;
     padding-right: 2em;
@@ -159,7 +159,7 @@ const RegisterForm = () => {
             'Listo!',
             'Tu cuenta se ha registrado con éxito!',
             'success'
-            )
+        )
         history.push('/login')
     }
 
@@ -183,7 +183,7 @@ const RegisterForm = () => {
                     <Input name='first_name' value={input.first_name} onBlur={handleBlur} onChange={handleChange}></Input>
                     {isTouch.first_name && error.first_name ? (<ErrorMsg>{error.first_name}</ErrorMsg>) : null}
                 </Item>
-                    <br/>
+                <br />
 
                 <Item>
                     <NameIcon />
@@ -202,7 +202,7 @@ const RegisterForm = () => {
                 </Item>
 
                 <Item>
-                    <PasswordIcon/>
+                    <PasswordIcon />
                     <Label>Contraseña </Label>
                     <br />
                     <Input type='password' name='password' value={input.password} onBlur={handleBlur} onChange={handleChange}></Input>
