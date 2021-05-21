@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import NavBarHome from '../Components/Organisms/NavBarHome'
 import Header from '../Components/Atoms/Header'
@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setProductsByCategoryName, setProductsByStock } from '../Redux/Actions/Product/ProductActions'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-// import { filteredProductsSelector } from '../Helpers/filtered-products-selector.js'
+import { filteredProductsSelector } from '../Helpers/filtered-products-selector.js'
 
 import styled from 'styled-components'
 
@@ -20,6 +20,7 @@ const NumbersContainer = styled.ul`
     display: flex;
     align-self: center;
     background: var(--pure-white);
+    padding: 0;
 `
 const PageNumbers = styled.li`
     font-size: 1.2em;
@@ -67,6 +68,9 @@ const Home = () => {
 
     const categories = useSelector((state) => state.category.categories)
     // const categories = useSelector(filteredProductsSelector)
+
+    // const products = useSelector((state) => state.product.filteredProducts)
+    const products = useSelector(state => filteredProductsSelector(state))
 
     useEffect(() => {
         dispatch(setProductsByCategoryName(''))
@@ -203,7 +207,9 @@ const Home = () => {
 
                     <div className="popular-products">
                         {/* <TopServices - Cards /> */}
-                        <ProductCards />
+                        <ProductCards
+                            products = { currentItems }
+                        />
 
                         {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                     </div>
@@ -211,13 +217,11 @@ const Home = () => {
                     <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton>
 
                     <NumbersContainer>
-
                         <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
                         {pageDecrementBtn}
                         {renderPageNumbers}
                         {pageIncrementBtn}
                         <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-
                     </NumbersContainer>
 
 

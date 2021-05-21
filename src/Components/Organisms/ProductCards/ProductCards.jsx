@@ -59,14 +59,14 @@ const Cards = styled.div`
     }
 `
 
-const ProductCards = () => {
+const ProductCards = ({ products }) => {
     const dispatch = useDispatch()
 
-    const products = useSelector(state => filteredProductsSelector(state))
+    // const products = useSelector(state => filteredProductsSelector(state))
 
-    useEffect(() => {
-        dispatch(getProducts())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getProducts())
+    // }, [dispatch])
 
     if(products.length > 0) {
         return (

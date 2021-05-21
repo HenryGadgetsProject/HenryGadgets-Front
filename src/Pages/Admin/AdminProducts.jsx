@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 import Swal from 'sweetalert2'
@@ -17,6 +17,7 @@ const NumbersContainer = styled.ul`
     display: flex;
     align-self: center;
     background: var(--pure-white);
+    padding: 0;
 `
 const PageNumbers = styled.li`
     font-size: 1.2em;
@@ -239,17 +240,16 @@ const AdminProducts = () => {
                                 <td data-label="Info" className="center-text" ><Link to={`/admin/products/${product.id}`}><InfoIcon /></Link></td>
                             </tr>
                         ))}
-                        <NumbersContainer>
-
-                            <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
-                            {pageDecrementBtn}
-                            {renderPageNumbers}
-                            {pageIncrementBtn}
-                            <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-
-                        </NumbersContainer>
                     </tbody>
                 </Table>
+
+                <NumbersContainer>
+                    <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
+                        {pageDecrementBtn}
+                        {renderPageNumbers}
+                        {pageIncrementBtn}
+                    <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
+                </NumbersContainer>
             </>
         )
     }
