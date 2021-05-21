@@ -79,8 +79,8 @@ const userReducer = (state = initialState, action) => {
         case USER_LOGIN_SUCCESS: {
             return {
                 ...state,
-                user:action.payload,
-                loading:false
+                user: action.payload,
+                loading: false
             }
         }
 

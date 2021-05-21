@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
@@ -107,6 +107,8 @@ const validate = (input) => {
 
 const LoginForm = () => {
 
+    const user = useSelector(state => state.user.user)
+
     let history = useHistory()
 
     const dispatch = useDispatch()
@@ -133,7 +135,7 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(userLogin(input))
+        const usuario = dispatch(userLogin(input))
         if (error.email || input.email === "" || error.password) {
             Swal.fire({
                 icon: 'error',
@@ -141,6 +143,9 @@ const LoginForm = () => {
                 text: 'Debes ingresar correctamente los campos!'
             })
             return
+        }
+        if (usuario) {
+            console.log('USUARIO LOGUEADO', user)
         }
         Swal.fire(
             'Listo!',
