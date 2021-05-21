@@ -15,7 +15,10 @@ import {
     GET_PRODUCTS_BY_CATEGORY_ID,
     GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
     GET_PRODUCTS_BY_STOCK_SUCCESS,
-    GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS
+    GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS,
+
+    SET_PROD_BY_CAT_NAME,
+    SET_PROD_BY_AVAILABILITY
     // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
@@ -77,6 +80,22 @@ export const getProductsByProductName = (name) => {
         payload: name
     }
 }
+
+////////////////////////////
+export function setProductsByCategoryName(selectedCategory) {
+    return {
+        type: SET_PROD_BY_CAT_NAME,
+        payload: selectedCategory
+    }
+}
+
+export function setProductsByStock(selectedAvailability) {
+    return {
+        type: SET_PROD_BY_AVAILABILITY,
+        payload: selectedAvailability
+    }
+}
+////////////////////////////
 
 export const addProduct = (body) => {
     return (dispatch) => {

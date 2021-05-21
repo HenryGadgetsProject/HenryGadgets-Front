@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { getProducts } from '../../../Redux/Actions/Product/ProductActions'
+import { filteredProductsSelector } from '../../../Helpers/filtered-products-selector'
 
 import styled from 'styled-components'
 
@@ -55,7 +59,7 @@ const Cards = styled.div`
     }
 `
 
-const ProductCards = ({products}) => {
+const ProductCards = () => {
     
     // No funciona el dispatch de Redux, llega como 'undefined'
     // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
@@ -66,32 +70,49 @@ const ProductCards = ({products}) => {
     //     dispatch(getProducts());
     // }, [dispatch])
 
-    return (
-        <>
-            {products?.map(p => {
-                return(
-                    <Link to={`/product/${p.id}`}>
-                        <Cards key={p?.id}>
-                            <img src={p.big_image} alt={p.name}></img><br />
-                            <p>{p.name}</p>
-                            <p>{p.price} $</p>
-                            {/* <p>{p.rating}</p> */}
-                            <p className="center"><StarRatings
-                            rating={p.rating}
-                            starDimension="1em"
-                            starSpacing=".2em"
-                            numberOfStars={5}
-                            starRatedColor="gold"
-                            /></p>
-                            {/* REVIEWS MODAL (Probablemente) */}
-                            {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
-                        </Cards>
-                    </Link>
-                )
-            })}
-            {/* <h3>No hay productos disponibles</h3> */}
-        </>
-    )
+
+    const dispatch = useDispatch()
+
+    const products = useSelector(state => filteredProductsSelector(state))
+
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch])
+
+    if(products.length > 0) {
+        return (
+            <>
+                {products?.map(p => {
+                    return(
+                        <Link to={`/product/${p.id}`}>
+                            <Cards key={p?.id}>
+                                <img src={p.big_image} alt={p.name}></img><br />
+                                <p>{p.name}</p>
+                                <p>{p.price} $</p>
+                                {/* <p>{p.rating}</p> */}
+                                <span className="center">
+                                    <StarRatings
+                                        rating={p.rating}
+                                        starDimension="1em"
+                                        starSpacing=".2em"
+                                        numberOfStars={5}
+                                        starRatedColor="gold"
+                                    />
+                                </span>
+                                {/* REVIEWS MODAL (Probablemente) */}
+                                {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                            </Cards>
+                        </Link>
+                    )
+                })}
+                {/* <h3>No hay productos disponibles</h3> */}
+            </>
+        )
+    } else {
+        return (
+            <h2>Actualmente sin productos disponibles.</h2>
+        )
+    }
 }
 
 export default ProductCards
