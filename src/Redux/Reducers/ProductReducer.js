@@ -12,9 +12,12 @@ import {
     // GET_SEARCH_SUCCESS,
     GET_PRODUCTS_BY_NAME,
     REMOVE_PRODUCT_SUCCESS,
-    GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
-    GET_PRODUCTS_BY_STOCK_SUCCESS,
-    GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS
+    // GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS,
+    // GET_PRODUCTS_BY_STOCK_SUCCESS,
+    GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS,
+
+    SET_PROD_BY_CAT_NAME,
+    SET_PROD_BY_AVAILABILITY
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -29,11 +32,13 @@ const initialState = {
     searchProducts: [],
     popularProducts: [],
     product: {},
-    error: ''
+    error: '',
+
+    selectedCategory: '',
+    selectedAvailability: ''
 }
 
 const ProductReducer = (state = initialState, action) => {
-
     switch (action.type) {
 
         case PRODUCT_REQUEST: {
@@ -82,43 +87,59 @@ const ProductReducer = (state = initialState, action) => {
             }
         }
 
-        case GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS: {
-            if (action.payload === 'todas') {
-                return {
-                    ...state,
-                    filteredProducts: state.products,
-                    loading: false
-                }
-            }
+        // case GET_PRODUCTS_BY_CATEGORY_NAME_SUCCESS: {
+        //     if (action.payload === 'todas') {
+        //         return {
+        //             ...state,
+        //             filteredProducts: state.products,
+        //             loading: false
+        //         }
+        //     }
+        //     return {
+        //         ...state,
+        //         filteredProducts: state.products.filter(product => product.categories.some(category => category.name === action.payload))
+        //     }
+        // }
+
+        ////////////////////////////
+        case SET_PROD_BY_CAT_NAME:
             return {
                 ...state,
-                filteredProducts: state.products.filter(product => product.categories.some(category => category.name === action.payload))
-            }
-        }
-
-        case GET_PRODUCTS_BY_STOCK_SUCCESS: {
-            if (action.payload === 'todas') {
-                return {
-                    ...state,
-                    filteredProducts: state.products,
-                    loading: false
-                }
-            }
-
-            if (action.payload === 'disponible') {
-                return {
-                    ...state,
-                    filteredProducts: state.products.filter(product => product.stock > 0),
-                    loading: false
-                }
-            }
-
-            return {
-                ...state,
-                filteredProducts: state.products.filter(product => product.stock === 0),
+                selectedCategory: action.payload,
                 loading: false
             }
-        }
+
+        case SET_PROD_BY_AVAILABILITY:
+            return {
+                ...state,
+                selectedAvailability: action.payload,
+                loading: false
+            }
+        ////////////////////////////
+
+        // case GET_PRODUCTS_BY_STOCK_SUCCESS: {
+        //     if (action.payload === 'todas') {
+        //         return {
+        //             ...state,
+        //             filteredProducts: state.products,
+        //             loading: false
+        //         }
+        //     }
+
+        //     if (action.payload === 'disponible') {
+        //         return {
+        //             ...state,
+        //             filteredProducts: state.products.filter(product => product.stock > 0),
+        //             loading: false
+        //         }
+        //     }
+
+        //     return {
+        //         ...state,
+        //         filteredProducts: state.products.filter(product => product.stock === 0),
+        //         loading: false
+        //     }
+        // }
 
         case GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS: {
             if (action.payload === 'todas') {

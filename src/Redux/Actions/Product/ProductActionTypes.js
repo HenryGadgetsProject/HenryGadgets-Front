@@ -21,3 +21,8 @@ export const EDIT_PRODUCT_SUCCESS = 'EDIT_PRODUCT_SUCCESS'
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
 
 export const GET_SEARCH_SUCCESS = 'GET_SEARCH_SUCCESS'
+
+////////////////////////////
+export const SET_PROD_BY_CAT_NAME = 'SET_PRODUCT_BY_CATEGORY_NAME'
+export const SET_PROD_BY_AVAILABILITY = 'SET_PRODUCT_BY_AVAILABILITY'
+////////////////////////////

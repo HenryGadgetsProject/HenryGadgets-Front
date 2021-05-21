@@ -126,11 +126,7 @@ const MenuOptBar = ({ open }) => {
                                 <img src={logoutIcon} alt='logout' />
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/cart" className="link">
-                                <img src={cartIcon} alt='cart' />
-                            </Link>
-                        </li>
+
                     </>
                 :
                 <>
@@ -144,6 +140,7 @@ const MenuOptBar = ({ open }) => {
                             <img src={registerUserIcon} alt='register' />
                         </Link>
                     </li>
+
                 </>
             }
 

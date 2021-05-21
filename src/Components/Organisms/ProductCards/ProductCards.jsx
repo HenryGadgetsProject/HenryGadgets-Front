@@ -23,7 +23,7 @@ const Cards = styled.div`
     &:hover {
         /* border              : .20em solid var(--dark-primary); */
         box-shadow          : 0px 0px 10px var(--font-color);
-        box-sizing: border-box;
+        box-sizing          : border-box;
         transform           : scale(1.01);
     }
 
@@ -56,42 +56,38 @@ const Cards = styled.div`
 `
 
 const ProductCards = ({ products }) => {
-
-    // No funciona el dispatch de Redux, llega como 'undefined'
-    // Nunca se visualiza en Redux Dev Tools que se ejecutó el dispatch
-    // const dispatch = useDispatch()
-    // const products = useSelector((state) => state.product.products)
-
-    // useEffect(() => {
-    //     dispatch(getProducts());
-    // }, [dispatch])
-
-    return (
-        <>
-            {products?.map(p => {
-                return (
-                    <Link to={`/product/${p.id}`} key={p?.id}>
-                        <Cards >
-                            <img src={p.big_image} alt={p.name}></img><br />
-                            <p>{p.name}</p>
-                            <p>{p.price} $</p>
-                            {/* <p>{p.rating}</p> */}
-                            <div className="center"><StarRatings
-                                rating={p.rating}
-                                starDimension="1em"
-                                starSpacing=".2em"
-                                numberOfStars={5}
-                                starRatedColor="gold"
-                            /></div>
-                            {/* REVIEWS MODAL (Probablemente) */}
-                            {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
-                        </Cards>
-                    </Link>
-                )
-            })}
-            {/* <h3>No hay productos disponibles</h3> */}
-        </>
-    )
+    if(products.length > 0) {
+        return (
+            <>
+                {products?.map(p => {
+                    return(
+                        <Link to={`/product/${p.id}`} key={p?.id}>
+                            <Cards>
+                                <img src={p.big_image} alt={p.name}></img><br />
+                                <p>{p.name}</p>
+                                <p>{p.price} $</p>
+                                <span className="center">
+                                    <StarRatings
+                                        rating={p.rating}
+                                        starDimension="1em"
+                                        starSpacing=".2em"
+                                        numberOfStars={5}
+                                        starRatedColor="gold"
+                                    />
+                                </span>
+                                {/* REVIEWS MODAL (Probablemente) */}
+                                {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                            </Cards>
+                        </Link>
+                    )
+                })}
+            </>
+        )
+    } else {
+        return (
+            <h2>Actualmente sin productos disponibles.</h2>
+        )
+    }
 }
 
 export default ProductCards

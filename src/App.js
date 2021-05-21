@@ -17,7 +17,6 @@ import { ThemeProvider } from 'styled-components'
 // const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
 
 function App() {
-
     const mode = useSelector((state) => state.global.theme)
 
     const cart = useSelector(state => state.cart.cartList)
@@ -31,14 +30,15 @@ function App() {
         dispatch(getPopularProducts());
         dispatch(getProducts());
         dispatch(getUsers());
-        dispatch(
-            {
-                type: USER_LOGIN_SUCCESS,
-                payload: fullUser
-            }
-        )
-
-    }, [dispatch])
+        if (fullUser) {
+            dispatch(
+                {
+                    type: USER_LOGIN_SUCCESS,
+                    payload: fullUser
+                }
+            )
+        }
+    }, [dispatch, fullUser])
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))

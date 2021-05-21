@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
-// import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 import Swal from 'sweetalert2'
 import Table from '../../Components/Atoms/Table'
-import { Link } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
+import FilterPrdByCatName from '../../Components/Organisms/FilterPrdByCatName'
+import FilterPrdByStock from '../../Components/Organisms/FilterPrdByStock'
 import { deleteProducts } from '../../Redux/Actions/Product/ProductActions'
-
-import FilterBy from '../../Components/Organisms/FilterBy'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductsByCategoryName, getProductsByStock, getProductsByIsActive } from '../../Redux/Actions/Product/ProductActions'
+import { setProductsByCategoryName, setProductsByStock } from '../../Redux/Actions/Product/ProductActions'
+import { filteredProductsSelector } from '../../Helpers/filtered-products-selector.js'
 
 import styled from "styled-components"
 
@@ -18,6 +17,7 @@ const NumbersContainer = styled.ul`
     display: flex;
     align-self: center;
     background: var(--pure-white);
+    padding: 0;
 `
 const PageNumbers = styled.li`
     font-size: 1.2em;
@@ -78,15 +78,13 @@ const InfoIcon = styled.img`
 const AdminProducts = () => {
     const dispatch = useDispatch()
 
-    const products = useSelector(state => state.product.filteredProducts)
+    const products = useSelector(state => filteredProductsSelector(state))
     const loading = useSelector(state => state.product.loading)
-    const categories = useSelector(state => state.category.categories)
-
-    const arrPrdStock = [{ id: 1, name: 'disponible' }, { id: 2, name: 'no disponible' }]
-    const arrPrdActive = [{ id: 'true', name: 'activo' }, { id: 'false', name: 'inactivo' }]
 
     useEffect(() => {
-        dispatch(getProductsByCategoryName('todas'))
+        dispatch(setProductsByCategoryName(''))
+        dispatch(setProductsByStock(''))
+
     }, [dispatch])
 
     const deleteHandler = (id) => {
@@ -112,27 +110,6 @@ const AdminProducts = () => {
             })
     }
 
-    const handleChangeCat = e => {
-        console.log('entra al handler con', e.target.value);
-        dispatch(getProductsByCategoryName(e.target.value))
-    }
-
-    const handleChangeStock = e => {
-        dispatch(getProductsByStock(e.target.value))
-    }
-
-    const handleChangeActive = e => {
-        console.log('entra al handlechance', e.target.value)
-        // if (e.target.value === 'inactivo') {
-        //   dispatch(getProductsByIsActive('false'))
-        // }
-
-        // if (e.target.value === 'activo') {
-        //   dispatch(getProductsByIsActive('true'))
-        // }
-
-        dispatch(getProductsByIsActive(e.target.value))
-    }
 
     // ******************** Paginado ********************
 
@@ -215,18 +192,14 @@ const AdminProducts = () => {
         return (
             <>
                 <div className="filters">
-                    <FilterBy
-                        array={categories}
-                        handleChange={handleChangeCat}
-                    />
-                    <FilterBy
-                        array={arrPrdStock}
-                        handleChange={handleChangeStock}
-                    />
-                    <FilterBy
+                    <FilterPrdByCatName />
+
+                    <FilterPrdByStock />
+
+                    {/* <FilterBy 
                         array={arrPrdActive}
                         handleChange={handleChangeActive}
-                    />
+                    /> */}
                 </div>
 
                 <Table>
@@ -267,17 +240,16 @@ const AdminProducts = () => {
                                 <td data-label="Info" className="center-text" ><Link to={`/admin/products/${product.id}`}><InfoIcon /></Link></td>
                             </tr>
                         ))}
-                        <NumbersContainer>
-
-                            <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
-                            {pageDecrementBtn}
-                            {renderPageNumbers}
-                            {pageIncrementBtn}
-                            <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-
-                        </NumbersContainer>
                     </tbody>
                 </Table>
+
+                <NumbersContainer>
+                    <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
+                        {pageDecrementBtn}
+                        {renderPageNumbers}
+                        {pageIncrementBtn}
+                    <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
+                </NumbersContainer>
             </>
         )
     }
