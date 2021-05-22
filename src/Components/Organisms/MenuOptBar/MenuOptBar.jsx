@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userLogut } from '../../../Redux/Actions/User/UserActions'
+import { clearCart, saveCartToDB } from '../../../Redux/Actions/Cart/CartActions'
 
 import styled from 'styled-components'
 
@@ -86,9 +87,12 @@ const MenuOptBar = ({ open }) => {
 
     const user = useSelector(state => state.user.user)
     const itemCount = useSelector(state => state.cart.itemCount)
+    const cart = useSelector(state => state.cart.cartList)
 
     const handleClick = () => {
         dispatch(userLogut())
+        saveCartToDB(cart, user.id)
+        dispatch(clearCart())
     }
 
     return (

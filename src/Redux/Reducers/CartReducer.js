@@ -91,6 +91,15 @@ const CartReducer = ((state = initialState, action) => {
             }
         }
 
+        case CLEAR_CART: {
+            return {
+                ...state,
+                cartList: [],
+                itemCount: 0
+            }
+
+        }
+
         default: return state
     }
 })

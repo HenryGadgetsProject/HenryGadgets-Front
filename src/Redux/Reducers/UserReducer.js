@@ -8,7 +8,8 @@ import {
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
     DELETE_USER_SUCCESS,
-    TOGGLE_USER_ADMIN_SUCCESS
+    TOGGLE_USER_ADMIN_SUCCESS,
+    PROMOTE_USER_SUCCESS
 } from '../Actions/User/UserActionTypes'
 
 
@@ -98,6 +99,15 @@ const userReducer = (state = initialState, action) => {
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, first_name: 'cualquierCosa' } : user),
                 loading: false
             }
+        }
+        case PROMOTE_USER_SUCCESS: {
+            return {
+                ...state,
+                users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, is_admin: true } : user),
+                loading: false
+
+            }
+
         }
 
         default: {
