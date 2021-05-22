@@ -4,7 +4,9 @@ import {
     CLEAR_CART,
     ERROR_CART,
     LOADING_CART,
-    CREATE_CART
+    CREATE_CART,
+    INCREMENT_QUANTITY,
+    DECREMENT_QUANTITY
 } from '../Actions/Cart/CartActionsType'
 
 import {
@@ -65,6 +67,26 @@ const CartReducer = ((state = initialState, action) => {
                 ...state,
                 cartList: [...state.cartList.filter(product => product.id !== action.payload.id)],
                 itemCount: ([...state.cartList].length) - 1
+
+            }
+        }
+
+        case INCREMENT_QUANTITY: {
+            return {
+                ...state,
+                cartList: state.cartList.map((elem) =>
+                    elem.id === action.payload.id ? { ...elem, quantity: elem.quantity + 1 } : elem
+                ),
+
+            }
+        }
+
+        case DECREMENT_QUANTITY: {
+            return {
+                ...state,
+                cartList: state.cartList.map((elem) =>
+                    elem.id === action.payload.id ? { ...elem, quantity: elem.quantity - 1 } : elem
+                ),
 
             }
         }
