@@ -1,4 +1,5 @@
 import axios from 'axios'
+import HOST from '../../../constants'
 
 
 import {
@@ -7,7 +8,10 @@ import {
     DELETE_ITEM_FROM_CART,
     CLEAR_CART,
     ERROR_CART,
-    LOADING_CART
+    LOADING_CART,
+    INCREMENT_QUANTITY,
+    DECREMENT_QUANTITY,
+    SAVE_CART_TO_DB
 } from './CartActionsType'
 
 
@@ -36,3 +40,43 @@ export const deleteItemFromCart = (selectedProduct) => {
         payload: selectedProduct
     }
 }
+
+export const incrementQuantity = (product) => {
+    return {
+        type: INCREMENT_QUANTITY,
+        payload: product
+    }
+}
+
+export const decrementQuantity = (product) => {
+    return {
+        type: DECREMENT_QUANTITY,
+        payload: product
+    }
+}
+
+export const clearCart = () => {
+    return {
+        type: CLEAR_CART
+    }
+}
+
+
+
+export const saveCartToDB = (cart, userId) => {
+
+    const body = cart.map(item => {
+        return {
+            id: item.id,
+            quantity: item.quantity,
+            unit_price: item.price
+        }
+    });
+    axios.post(`${HOST}/cart/${userId}/items/create/guest`, body)
+        .then((response) => {
+            console.log(response)
+        })
+
+}
+
+

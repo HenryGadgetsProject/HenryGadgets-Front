@@ -4,7 +4,9 @@ import {
     CLEAR_CART,
     ERROR_CART,
     LOADING_CART,
-    CREATE_CART
+    CREATE_CART,
+    INCREMENT_QUANTITY,
+    DECREMENT_QUANTITY
 } from '../Actions/Cart/CartActionsType'
 
 import {
@@ -39,22 +41,63 @@ const CartReducer = ((state = initialState, action) => {
 
         case ADD_ITEM_TO_CART: {
 
-            localStorage.setItem('cart', [...state.cartList, action.payload])
+            const item = action.payload;
+            const existItem = state.cartList.find((p) => p.id === item.id);
 
-            return {
-                ...state,
-                cartList: [...state.cartList, action.payload],
-                itemCount: state.itemCount + action.payload.quantity
+            if (existItem) {
+
+                return {
+                    ...state,
+                    cartList: state.cartList.map((elem) =>
+                        elem.id === existItem.id ? { ...item, quantity: elem.quantity + 1 } : elem
+                    ),
+                };
+            } else {
+                return {
+                    ...state,
+                    cartList: [...state.cartList, item],
+                    itemCount: [...state.cartList, action.payload].length
+                };
             }
+
         }
 
         case DELETE_ITEM_FROM_CART: {
             return {
                 ...state,
                 cartList: [...state.cartList.filter(product => product.id !== action.payload.id)],
-                itemCount: state.itemCount - action.payload.quantity
+                itemCount: ([...state.cartList].length) - 1
 
             }
+        }
+
+        case INCREMENT_QUANTITY: {
+            return {
+                ...state,
+                cartList: state.cartList.map((elem) =>
+                    elem.id === action.payload.id ? { ...elem, quantity: elem.quantity + 1 } : elem
+                ),
+
+            }
+        }
+
+        case DECREMENT_QUANTITY: {
+            return {
+                ...state,
+                cartList: state.cartList.map((elem) =>
+                    elem.id === action.payload.id ? { ...elem, quantity: elem.quantity - 1 } : elem
+                ),
+
+            }
+        }
+
+        case CLEAR_CART: {
+            return {
+                ...state,
+                cartList: [],
+                itemCount: 0
+            }
+
         }
 
         default: return state

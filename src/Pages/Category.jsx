@@ -17,7 +17,7 @@ const Category = ({ categoryId }) => {
         dispatch(getProductsByCategoryId(parseInt(categoryId)))
     }, [dispatch, categoryId])
 
-    const products = useSelector(state => state.product.filteredProducts);
+    const products = useSelector(state => state.product.filteredProducts)
 
     return (
         <div className="container">
@@ -33,7 +33,7 @@ const Category = ({ categoryId }) => {
                 </Main>
                 :
                 <Main id="main">
-                    <ProductCards products={products}/>
+                    <ProductCards products={products} />
                 </Main>
             }
 
