@@ -92,10 +92,12 @@ const Product = ({ productId }) => {
                         <li><img src={ heartIcon } alt='heart' /></li>
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
-
-                    <button class="review">
-                        Ver Opiniones
-                    </button>
+                    
+                    <Link to='/reviews'>
+                        <button class="review">
+                            Ver Opiniones
+                        </button>
+                    </Link>
 
                     <button class="buy" onClick={handleClick}>
                         <CartIcon />
