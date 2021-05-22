@@ -18,7 +18,6 @@ const Category = ({ categoryId }) => {
     }, [dispatch, categoryId])
 
     const products = useSelector(state => state.product.filteredProducts);
-    console.log('desde category page', products)
 
     return (
         <div className="container">

@@ -23,7 +23,6 @@ export const saveCartToDB = (userId, list, dispatch) => {
             id: element.id,
             quantity: element.quantity
         }))
-        // console.log(element)
     });
 
 }

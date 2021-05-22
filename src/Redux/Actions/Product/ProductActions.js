@@ -18,7 +18,10 @@ import {
     GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS,
 
     SET_PROD_BY_CAT_NAME,
-    SET_PROD_BY_AVAILABILITY
+    SET_PROD_BY_AVAILABILITY,
+    SET_PROD_BY_ACTIVE,
+    SET_PROD_BY_PRICE,
+    SET_PROD_BY_RATING
     // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
@@ -93,6 +96,27 @@ export function setProductsByStock(selectedAvailability) {
     return {
         type: SET_PROD_BY_AVAILABILITY,
         payload: selectedAvailability
+    }
+}
+
+export function setProductsByActive(selectedActive) {
+    return {
+        type: SET_PROD_BY_ACTIVE,
+        payload: selectedActive
+    }
+}
+
+export function setProductsByPrice(selectedPrice) {
+    return {
+        type: SET_PROD_BY_PRICE,
+        payload: selectedPrice
+    }
+}
+
+export function setProductsByRating(selectedRating) {
+    return {
+        type: SET_PROD_BY_RATING,
+        payload: selectedRating
     }
 }
 ////////////////////////////
@@ -195,7 +219,6 @@ export const getProductsByStock = (term) => {
 }
 
 export const getProductsByIsActive = (term) => {
-    console.log('en el action', term)
     return {
         type: GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS,
         payload: term

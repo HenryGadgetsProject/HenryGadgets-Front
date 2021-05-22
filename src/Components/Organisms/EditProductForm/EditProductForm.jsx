@@ -195,8 +195,6 @@ const EditProductForm = ({ productId }) => {
 
     //const [options] = useState(cate)
 
-    // console.log('OPTIONS', options)
-
     const [input, setInput] = useState({
         id: product.id,
         name: product.name,
@@ -246,7 +244,6 @@ const EditProductForm = ({ productId }) => {
         }
 
         // const newInput = {...input, rating: parseInt(input.rating)}
-        // console.log(newInput);
 
         dispatch(updateProduct(productId, input))
         Swal.fire(

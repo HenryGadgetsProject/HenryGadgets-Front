@@ -6,6 +6,8 @@ import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
 import FilterPrdByStock from '../Components/Organisms/FilterPrdByStock'
+import FilterPrdByPrice from '../Components/Organisms/FilterPrdByPrice'
+import FilterPrdByRating from '../Components/Organisms/FilterPrdByRating'
 import ProductCards from '../Components/Organisms/ProductCards'
 import { useSelector, useDispatch } from 'react-redux'
 import { setProductsByCategoryName, setProductsByStock } from '../Redux/Actions/Product/ProductActions'
@@ -177,17 +179,19 @@ const Home = () => {
                 ))}
             </Carousel>
 
+            <Header id="header">
+                <h1>Henry Gadgets</h1>
+            </Header>
+
             <Main id="main">
-
-                {/* <div> */}
-                <Header id="header">
-                    <h1>Henry Gadgets</h1>
-                </Header>
-
                 <aside>
                     <FilterPrdByCatName />
 
                     <FilterPrdByStock />
+
+                    <FilterPrdByPrice />
+
+                    <FilterPrdByRating />
 
                     {/* <SortBy />
 
@@ -226,7 +230,6 @@ const Home = () => {
 
 
                 </section>
-                {/* </div> */}
             </Main>
             <Footer />
         </div>

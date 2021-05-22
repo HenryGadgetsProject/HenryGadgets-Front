@@ -5,6 +5,9 @@ import Swal from 'sweetalert2'
 import Table from '../../Components/Atoms/Table'
 import FilterPrdByCatName from '../../Components/Organisms/FilterPrdByCatName'
 import FilterPrdByStock from '../../Components/Organisms/FilterPrdByStock'
+import FilterPrdByActive from '../../Components/Organisms/FilterPrdByActive'
+import FilterPrdByPrice from '../../Components/Organisms/FilterPrdByPrice'
+import FilterPrdByRating from '../../Components/Organisms/FilterPrdByRating'
 import { deleteProducts } from '../../Redux/Actions/Product/ProductActions'
 import { useSelector, useDispatch } from 'react-redux'
 import { setProductsByCategoryName, setProductsByStock } from '../../Redux/Actions/Product/ProductActions'
@@ -196,10 +199,11 @@ const AdminProducts = () => {
 
                     <FilterPrdByStock />
 
-                    {/* <FilterBy 
-                        array={arrPrdActive}
-                        handleChange={handleChangeActive}
-                    /> */}
+                    <FilterPrdByActive />
+
+                    <FilterPrdByPrice />
+
+                    <FilterPrdByRating />
                 </div>
 
                 <Table>
