@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components'
-import { deleteItemFromCart } from '../Redux/Actions/Cart/CartActions'
+import { deleteItemFromCart, incrementQuantity, decrementQuantity } from '../Redux/Actions/Cart/CartActions'
 
 const Table = styled.table`
     border-collapse: collapse;
@@ -80,6 +80,10 @@ const Table = styled.table`
         text-align:center;
     }
 
+    span.quantity{
+        padding:0 1em;
+    }
+
 `
 // Icons
 // const BuyIcon = styled.img`
@@ -127,6 +131,18 @@ const MyCart = () => {
         })
     }
 
+    const incrementHandler = (product) => {
+        dispatch(incrementQuantity(product))
+    }
+
+    const decrementHandler = (product) => {
+        if (product.quantity === 1) {
+            dispatch(deleteItemFromCart(product))
+        }
+        dispatch(decrementQuantity(product))
+    }
+
+
     return (
         <div className="container">
             <NavBar />
@@ -157,9 +173,9 @@ const MyCart = () => {
                                 <td><img className="mini" src={product.big_image} alt={product.name} /></td>
                                 <td>{product.name}</td>
                                 <td>
-                                    <button className="btn-quantity">-</button>
+                                    <button className="btn-quantity" onClick={() => decrementHandler(product)}>-</button>
                                     <span className="quantity">{product.quantity}</span>
-                                    <button className="btn-quantity">+</button></td>
+                                    <button className="btn-quantity" onClick={() => incrementHandler(product)}>+</button></td>
                                 <td>{product.price}</td>
                                 <td><DeleteIcon onClick={() => deleteHandler(product)} /></td>
                                 {/* <td><BuyIcon /></td> */}
