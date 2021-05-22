@@ -80,6 +80,10 @@ const Table = styled.table`
         text-align:center;
     }
 
+    span.quantity{
+        padding:0 1em;
+    }
+
 `
 // Icons
 // const BuyIcon = styled.img`
@@ -128,7 +132,6 @@ const MyCart = () => {
     }
 
     const incrementHandler = (product) => {
-
         dispatch(incrementQuantity(product))
     }
 
