@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import ClientRouter from './Routes/ClientRouter'
 import AdminRouter from './Routes/AdminRouter'
-import ToggleForm from './Components/Molecules/Toggle'
 import { USER_LOGIN_SUCCESS } from './Redux/Actions/User/UserActionTypes'
 
 import { getCategories } from './Redux/Actions/Categories/CategoriesActions'
@@ -49,7 +48,6 @@ function App() {
     return (
         <ThemeProvider theme={mode === false ? lightTheme : darkTheme}>
             <GlobalStyles />
-            <ToggleForm />
 
             <Switch>
                 <Route path='/admin' component={AdminRouter} />

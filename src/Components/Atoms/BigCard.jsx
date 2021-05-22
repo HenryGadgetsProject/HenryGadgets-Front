@@ -34,8 +34,6 @@ const BigCard = styled.div`
         -moz-box-shadow     : 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
     }
 
-    /*object-fit: cover;*/
-    /*object-position: center;*/
     img.left {
         ${'' /* border: 2px solid red; */}
         height              : 100%;
@@ -135,8 +133,8 @@ const BigCard = styled.div`
 
     /* Floating action button */
     .buy {
-        background          : #ff1744;
-        border              : .15em solid #ff1744;
+        background          : #FF1744;
+        border              : .15em solid #FF1744;
         border-radius       : 3em;
         bottom              : -1.5em;
         box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
@@ -159,8 +157,8 @@ const BigCard = styled.div`
     }
 
     .review {
-        background-color    : #ff1744;
-        border              : .15em solid #ff1744;
+        background-color    : #FF1744;
+        border              : .15em solid #FF1744;
         border-radius       : 3em;
         bottom              : -1.5em;
         box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);

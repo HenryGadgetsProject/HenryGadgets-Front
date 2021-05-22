@@ -15,7 +15,7 @@ const Table = styled.table`
     th, td {
         padding         : .8em;
         text-align      : left;
-        border-bottom   : .1em solid #b6b6b6;
+        border-bottom   : .1em solid #B6B6B6;
     }
 
     th {
@@ -34,7 +34,7 @@ const Table = styled.table`
 
     tbody tr td {
         text-align      : left;
-        color           : #b6b6b6;
+        color           : #B6B6B6;
         font-size       : 1.4em;
     }
 
@@ -97,7 +97,7 @@ const Table = styled.table`
         }
 
         tr {
-            border          : .2em solid #b6b6b6;
+            border          : .2em solid #B6B6B6;
             margin-bottom   : 4em;
             width           : 100%;
             :hover {
@@ -107,7 +107,7 @@ const Table = styled.table`
 
         td, td:nth-child(even) {
             border          : none;
-            border-bottom   : 1px solid #eee; 
+            border-bottom   : 1px solid #EEEEEE; 
             position        : relative;
             padding-left    : 50%;
             :hover {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import ToggleForm from '../../Molecules/Toggle'
 import { userLogut } from '../../../Redux/Actions/User/UserActions'
 
 import styled from 'styled-components'
@@ -17,11 +18,20 @@ const Ul = styled.ul`
         padding         : 1.25em 0;
     }
 
-    a > * {
+    li > div {
+        padding         : .4em .6em;
+    }
+
+    li > div, a > * {
         transition      : .5s;
         &:hover {
-            transform   : scale(1.30)
+            transform   : scale(1.30);
         }
+    }
+
+    svg {
+        height          : 2.2em;
+        width           : 2.2em;
     }
 
     img {
@@ -61,17 +71,20 @@ const Ul = styled.ul`
             font-size   : 1.18em;
             margin      : 0 2em .5em 4em;
         }
+
+        li > div {
+            color: #FFFFFF;
+            font-size: 1.4em;
+            padding: .8em;
+            transition      : .5s;
+            &:hover {
+                transform   : scale(1.30);
+                transform-origin: 0;
+            }
+        }
     }
 `
 
-// const Img = styled.img`
-//     height              : 2em;
-//     transition          : .5s;
-//     width               : 2em;
-//     &:hover {
-//         transform       : scale(1.30)
-//     }
-// `
 
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
 const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
@@ -161,6 +174,10 @@ const MenuOptBar = ({ open }) => {
             {/* <li>
                 <span className="badge">{itemCount}</span>
             </li> */}
+
+            <li>
+                <ToggleForm />
+            </li>
         </Ul>
     )
 }

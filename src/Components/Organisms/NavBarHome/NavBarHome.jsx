@@ -34,11 +34,6 @@ const LogoDivHome = styled.div`
     width           : auto;
 `
 
-// const H2 = styled.h2`
-//     font-size       : 1.4em;
-//     margin-left     : .5em;
-// `
-
 const NavBarHome = () => {
     const [ navHomeState, setNavHomeState ] = useState(false)
     const mode = useSelector((state) => state.global.theme)
@@ -46,7 +41,6 @@ const NavBarHome = () => {
     const location = useLocation()
 
     const changeNavHomeBackground = () => {
-        // console.log(window.scrollY)
         if (window.scrollY >= 200) {
             setNavHomeState(true)
         } else {

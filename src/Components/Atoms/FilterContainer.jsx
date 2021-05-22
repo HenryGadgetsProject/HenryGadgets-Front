@@ -6,6 +6,8 @@ const FilterContainer = styled.div`
     justify-self    : center;
     padding         : .5em 2em 0 0;
     width           : 60%;
+
+    
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}

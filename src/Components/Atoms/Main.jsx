@@ -10,13 +10,6 @@ const Main = styled.main`
     ${'' /* max-height      : 100%; */}
     min-height      : calc(100vh - 20em);
     width           : 100%;
-    ${'' /* =================================================
-    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
-    ===================================================== */}
-    ${'' /* @media(max-width: 992px) { */}
-        ${'' /* padding     : 4em .5em; */}
-        ${'' /* width       : 100%; */}
-    ${'' /* } */}
 `
 
 export default Main

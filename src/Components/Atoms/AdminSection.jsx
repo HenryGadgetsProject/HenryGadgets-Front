@@ -3,6 +3,8 @@ import styled from "styled-components"
 const AdminSection = styled.section`
     background      : #424242;
     min-height      : 100%;
+
+    
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
