@@ -39,20 +39,32 @@ const CartReducer = ((state = initialState, action) => {
 
         case ADD_ITEM_TO_CART: {
 
-            localStorage.setItem('cart', [...state.cartList, action.payload])
+            const item = action.payload;
+            const existItem = state.cartList.find((p) => p.id === item.id);
 
-            return {
-                ...state,
-                cartList: [...state.cartList, action.payload],
-                itemCount: state.itemCount + action.payload.quantity
+            if (existItem) {
+
+                return {
+                    ...state,
+                    cartList: state.cartList.map((elem) =>
+                        elem.id === existItem.id ? { ...item, quantity: elem.quantity + 1 } : elem
+                    ),
+                };
+            } else {
+                return {
+                    ...state,
+                    cartList: [...state.cartList, item],
+                    itemCount: [...state.cartList, action.payload].length
+                };
             }
+
         }
 
         case DELETE_ITEM_FROM_CART: {
             return {
                 ...state,
                 cartList: [...state.cartList.filter(product => product.id !== action.payload.id)],
-                itemCount: state.itemCount - action.payload.quantity
+                itemCount: ([...state.cartList].length) - 1
 
             }
         }
