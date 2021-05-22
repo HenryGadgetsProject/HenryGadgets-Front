@@ -24,9 +24,9 @@ const CartIcon = styled.img`
 
 const Product = ({ productId }) => {
 
-    const eyeIcon = 'https://api.iconify.design/bi-eye.svg?height=16'
-    const heartIcon = 'https://api.iconify.design/ant-design:heart-filled.svg'
-    const shareIcon = 'https://api.iconify.design/bi:share-fill.svg'
+    // const eyeIcon = 'https://api.iconify.design/bi-eye.svg?height=16'
+    // const heartIcon = 'https://api.iconify.design/ant-design:heart-filled.svg'
+    // const shareIcon = 'https://api.iconify.design/bi:share-fill.svg'
 
     const dispatch = useDispatch()
 
@@ -61,11 +61,11 @@ const Product = ({ productId }) => {
 
             <Main id="main">
                 <BigCard>
-                    <div class="thumbnail">
-                        <img class="left" src={product.big_image} alt='left' />
+                    <div className="thumbnail">
+                        <img className="left" src={product.big_image} alt='left' />
                     </div>
 
-                    <div class="right">
+                    <div className="right">
                         <Link to='/home'><div className="close">X</div></Link>
                         <h3>{product.name}</h3>
 
@@ -77,7 +77,7 @@ const Product = ({ productId }) => {
                             starRatedColor="gold"
                         />
 
-                        <div class="separator"></div>
+                        <div className="separator"></div>
                         <span>Descripción</span><p>{product.description}</p>
                         <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
                         <span>Precio</span><p>{product.price} $</p>
@@ -92,14 +92,21 @@ const Product = ({ productId }) => {
                         <li><img src={ heartIcon } alt='heart' /></li>
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
+<<<<<<< HEAD
                     
                     <Link to='/reviews'>
                         <button class="review">
                             Ver Opiniones
                         </button>
                     </Link>
+=======
 
-                    <button class="buy" onClick={handleClick}>
+                    <button className="review">
+                        Ver Opiniones
+                    </button>
+>>>>>>> f2093db35c7a8ae5c97bc42b6da3ad322addf473
+
+                    <button className="buy" onClick={handleClick}>
                         <CartIcon />
                     </button>
 

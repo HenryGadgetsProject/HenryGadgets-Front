@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import NavBarHome from '../Components/Organisms/NavBarHome'
-// import NavBar from '../Components/Organisms/NavBar'
-// import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
-import FilterBy from '../Components/Organisms/FilterBy'
-//import SortBy from '../Components/Organisms/SortBy'
+import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
+import FilterPrdByStock from '../Components/Organisms/FilterPrdByStock'
 import ProductCards from '../Components/Organisms/ProductCards'
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductsByCategoryName, getProductsByStock } from '../Redux/Actions/Product/ProductActions'
+import { setProductsByCategoryName, setProductsByStock } from '../Redux/Actions/Product/ProductActions'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-//import data from '../Data/categories'
-import { Link } from 'react-router-dom'
+import { filteredProductsSelector } from '../Helpers/filtered-products-selector.js'
 
 import styled from 'styled-components'
 
@@ -22,6 +20,7 @@ const NumbersContainer = styled.ul`
     display: flex;
     align-self: center;
     background: var(--pure-white);
+    padding: 0;
 `
 const PageNumbers = styled.li`
     font-size: 1.2em;
@@ -65,38 +64,18 @@ const LoadMoreButton = styled.button`
 `
 
 const Home = () => {
-
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getProductsByCategoryName('todas'))
-        // ****** Paginate Data ******
-        // setData(products)
-        // ****** Paginate Data ******
-    }, [dispatch, getProductsByCategoryName])
-
-    const products = useSelector((state) => state.product.filteredProducts)
-
     const categories = useSelector((state) => state.category.categories)
+    // const categories = useSelector(filteredProductsSelector)
 
-    const arrPrdStock = [{id: 1, name: 'disponible'}, {id: 2, name: 'no disponible'}]
+    // const products = useSelector((state) => state.product.filteredProducts)
+    const products = useSelector(state => filteredProductsSelector(state))
 
-    const handleChangeCat = e => {
-        dispatch(getProductsByCategoryName(e.target.value))
-    }
-
-    const handleChangePrd = e => {
-        // if (e.target.value === 'false' || e.target.value === 'true') {
-            console.log('En handle', typeof(e.target.value))
-            // const toBoolean = Boolean(e.target.value)
-            dispatch(getProductsByStock(e.target.value))
-        // }
-
-        // else {
-        //     dispatch(getProductsByIsActive(e.target.value))
-        // }
-        // console.log('Tipo', typeof(toBoolean))
-    }
+    useEffect(() => {
+        dispatch(setProductsByCategoryName(''))
+        dispatch(setProductsByStock(''))
+    }, [dispatch])
 
     // ******************** Paginado ********************
 
@@ -109,7 +88,7 @@ const Home = () => {
     const [itemsPerPage, setItemsPerPage] = useState(12)
 
     // Número de páginas que quiero mostrar
-    const [pageNumberLimit, setPageNumberLimit] = useState(5)
+    const [pageNumberLimit] = useState(5)
     // Máximo de páginas
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
     // Mínimo de páginas
@@ -117,7 +96,7 @@ const Home = () => {
 
     // En cada página voy a insertar las cards
     const pages = [];
-    for(let i = 1; i <= Math.ceil(products.length/itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
         pages.push(i)
     }
 
@@ -160,12 +139,12 @@ const Home = () => {
     // Renderizamos los números de las páginas como (<Li>)
     const renderPageNumbers = pages.map(number => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-            return(
-                <PageNumbers 
-                className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
+            return (
+                <PageNumbers
+                    className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
                     {number}
                 </PageNumbers>
-            ) 
+            )
         } else {
             return null;
         }
@@ -198,28 +177,6 @@ const Home = () => {
                 ))}
             </Carousel>
 
-            {/* <Breadcrumb id="breadcrumb-home" /> */}
-
-            <div className="filters">
-                {/* <FilterBy
-                    array={categories}
-                    handleChange={handleChangeCat}
-                />
-
-                <FilterBy
-                    array={arrPrdStock}
-                    handleChange={handleChangePrd}
-                /> */}
-
-                {/* <SortBy />
-
-                    <SortBy />
-
-                    <SortBy />
-
-                    <SortBy /> */}
-            </div>
-
             <Main id="main">
 
                 {/* <div> */}
@@ -228,15 +185,9 @@ const Home = () => {
                 </Header>
 
                 <aside>
-                    <FilterBy
-                        array={categories}
-                        handleChange={handleChangeCat}
-                    />
+                    <FilterPrdByCatName />
 
-                    <FilterBy
-                        array={arrPrdStock}
-                        handleChange={handleChangePrd}
-                    />
+                    <FilterPrdByStock />
 
                     {/* <SortBy />
 
@@ -248,27 +199,29 @@ const Home = () => {
                 </aside>
 
                 <section>
-                    <h2>Catálogo</h2>
+                    <div>
+                        {/* <Pagination /> */}
+                    </div>
+
+                    {/* <h2>Catálogo</h2> */}
 
                     <div className="popular-products">
                         {/* <TopServices - Cards /> */}
+                        <ProductCards
+                            products = { currentItems }
+                        />
 
-                        {/* <ProductCards products={products} /> */}
-                        <ProductCards products={currentItems} />
-                        
                         {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                     </div>
 
-                    {/* <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton> */}
+                    <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton>
 
                     <NumbersContainer>
-
-                        <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>                    
+                        <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
                         {pageDecrementBtn}
                         {renderPageNumbers}
                         {pageIncrementBtn}
                         <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-            
                     </NumbersContainer>
 
 

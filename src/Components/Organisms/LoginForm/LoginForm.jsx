@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
@@ -61,12 +61,12 @@ const ButtonContainer = styled.div`
 `
 
 // Iconos
-const NameIcon = styled.img`
-    height: 2em;
-    width: 2em;
-    padding: 1em;
-    background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
-`
+// const NameIcon = styled.img`
+//     height: 2em;
+//     width: 2em;
+//     padding: 1em;
+//     background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
+// `
 const EmailIcon = styled.img`
     margin-top: 2em;
     height: 2em;
@@ -107,6 +107,8 @@ const validate = (input) => {
 
 const LoginForm = () => {
 
+    const user = useSelector(state => state.user.user)
+
     let history = useHistory()
 
     const dispatch = useDispatch()
@@ -133,7 +135,7 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(userLogin(input))
+        const usuario = dispatch(userLogin(input))
         if (error.email || input.email === "" || error.password) {
             Swal.fire({
                 icon: 'error',
@@ -141,6 +143,12 @@ const LoginForm = () => {
                 text: 'Debes ingresar correctamente los campos!'
             })
             return
+        }
+        if (usuario) {
+            const list = localStorage.getItem('cart')
+            console.log('despues del handleSub', list)
+            console.log('despues del handleSub', usuario.id)
+            // console.log('USUARIO LOGUEADO', user)
         }
         Swal.fire(
             'Listo!',

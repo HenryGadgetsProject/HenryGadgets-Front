@@ -14,6 +14,20 @@ import {
     TOGGLE_USER_ADMIN_SUCCESS
 } from './UserActionTypes'
 
+import { addItemCart } from '../Cart/CartActions'
+
+export const saveCartToDB = (userId, list, dispatch) => {
+    list.forEach(element => {
+        dispatch(addItemCart({
+            user_id: userId,
+            id: element.id,
+            quantity: element.quantity
+        }))
+        // console.log(element)
+    });
+
+}
+
 
 
 export const userLogin = (input) => {
@@ -25,8 +39,8 @@ export const userLogin = (input) => {
             .then(response => {
                 const user = response.data.user
                 const jwt = response.data.token
-                const fullUser = {...user, token: jwt}
-                localStorage.setItem("JWT", JSON.stringify(jwt))
+                const fullUser = { ...user, token: jwt }
+                localStorage.setItem("JWT", JSON.stringify(fullUser))
                 dispatch(
                     {
                         type: USER_LOGIN_SUCCESS,
@@ -48,6 +62,7 @@ export const userLogin = (input) => {
 }
 export const userLogut = () => {
     localStorage.removeItem("JWT")
+    localStorage.removeItem('cart')
     return {
         type: USER_LOGOUT_SUCCESS
     }
@@ -110,11 +125,12 @@ export const addUser = (body) => {
             .then(response => {
                 const user = response.data.user
                 const jwt = response.data.token
-                localStorage.setItem("JWT", JSON.stringify(jwt))
+                const fullUser = { ...user, token: jwt }
+                localStorage.setItem("JWT", JSON.stringify(fullUser))
 
                 console.log(user)
-                
-                if(user) {
+
+                if (user) {
                     dispatch(
                         {
                             type: ADD_USER_SUCCESS,

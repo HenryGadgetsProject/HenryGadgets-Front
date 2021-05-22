@@ -171,11 +171,11 @@ const BigCardAdmin = ({ product }) => {
 
         <Link to='/admin/products'>
             <BCA>
-                <div class="thumbnail">
-                    <img class="left" src={product.big_image} alt='left' />
+                <div className="thumbnail">
+                    <img className="left" src={product.big_image} alt='left' />
                 </div>
 
-                <div class="right">
+                <div className="right">
 
                     <div className="close">X</div>
                     <h3>{product.name}</h3>
@@ -188,14 +188,14 @@ const BigCardAdmin = ({ product }) => {
                         starRatedColor="gold"
                     />
 
-                    <div class="separator"></div>
+                    <div className="separator"></div>
                     <span>Descripción</span><p>{product.description}</p>
                     <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
                     <span>Precio</span><p>{product.price} $</p>
 
                 </div>
 
-                <button class="buy">
+                <button className="buy">
                     Comprar
                 </button>
 

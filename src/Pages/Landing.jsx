@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 // import { getProducts } from '../Redux/Actions/Handy/HandyActions'
-import { getCategories } from '../Redux/Actions/Categories/CategoriesActions'
-import { getPopularProducts, getProducts } from '../Redux/Actions/Product/ProductActions'
-import { getUsers } from '../Redux/Actions/User/UserActions'
+// import { getCategories } from '../Redux/Actions/Categories/CategoriesActions'
+// import { getPopularProducts, getProducts } from '../Redux/Actions/Product/ProductActions'
+//import { getUsers } from '../Redux/Actions/User/UserActions'
 import { Link } from 'react-router-dom'
-import Loader from '../Components/Molecules/Loader'
+//import Loader from '../Components/Molecules/Loader'
 
 import styled from 'styled-components';
 
