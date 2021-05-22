@@ -5,11 +5,12 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 //import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components'
-import { deleteItemFromCart, incrementQuantity, decrementQuantity } from '../Redux/Actions/Cart/CartActions'
+import { deleteItemFromCart, incrementQuantity, decrementQuantity, clearCart } from '../Redux/Actions/Cart/CartActions'
 
 const Table = styled.table`
     border-collapse: collapse;
@@ -98,10 +99,12 @@ const MyCart = () => {
 
     const dispatch = useDispatch();
 
+    const history = useHistory()
+
     // const categories = useSelector(state => state.category.categories);
     const products = useSelector(state => state.cart.cartList)
 
-    console.log(products)
+
 
     const [total, setTotal] = useState();
 
@@ -152,43 +155,50 @@ const MyCart = () => {
                 ?
                 <h2 className="text-center">No hay productos en el carrito</h2>
                 :
-                <Table>
-                    <caption>Productos agregados al Carrito</caption>
-                    <thead>
-                        <tr>
-                            {/* <th>Id</th> */}
-                            <th>Imágen</th>
-                            <th className="name">Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Eliminar</th>
-                            {/* <th>Comprar</th> */}
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {products.map(product => (
-                            <tr key={product.id}>
-                                {/* <td>{category.id}</td> */}
-                                <td><img className="mini" src={product.big_image} alt={product.name} /></td>
-                                <td>{product.name}</td>
-                                <td>
-                                    <button className="btn-quantity" onClick={() => decrementHandler(product)}>-</button>
-                                    <span className="quantity">{product.quantity}</span>
-                                    <button className="btn-quantity" onClick={() => incrementHandler(product)}>+</button></td>
-                                <td>{product.price}</td>
-                                <td><DeleteIcon onClick={() => deleteHandler(product)} /></td>
-                                {/* <td><BuyIcon /></td> */}
+                <>
+                    <Table>
+                        <caption>Productos agregados al Carrito</caption>
+                        <thead>
+                            <tr>
+                                {/* <th>Id</th> */}
+                                <th>Imágen</th>
+                                <th className="name">Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Eliminar</th>
+                                {/* <th>Comprar</th> */}
                             </tr>
-                        ))}
-                        <tr>
-                            <td>Total</td>
+                        </thead>
 
-                            <td>{total}</td>
+                        <tbody>
+                            {products.map(product => (
+                                <tr key={product.id}>
+                                    {/* <td>{category.id}</td> */}
+                                    <td><img className="mini" src={product.big_image} alt={product.name} /></td>
+                                    <td>{product.name}</td>
+                                    <td>
+                                        <button className="btn-quantity" onClick={() => decrementHandler(product)}>-</button>
+                                        <span className="quantity">{product.quantity}</span>
+                                        <button className="btn-quantity" onClick={() => incrementHandler(product)}>+</button></td>
+                                    <td>{product.price}</td>
+                                    <td><DeleteIcon onClick={() => deleteHandler(product)} /></td>
+                                    {/* <td><BuyIcon /></td> */}
+                                </tr>
+                            ))}
+                            <tr>
+                                <td>Total</td>
 
-                        </tr>
-                    </tbody>
-                </Table>
+                                <td>{total}</td>
+
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <div className="buttons">
+                        <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
+                        <button onClick={() => history.push('/home')}>Seguir Comprando</button>
+                        <button>Confirmar Compra</button>
+                    </div>
+                </>
             }
 
             <Footer />

@@ -11,7 +11,8 @@ import {
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
     DELETE_USER_SUCCESS,
-    TOGGLE_USER_ADMIN_SUCCESS
+    TOGGLE_USER_ADMIN_SUCCESS,
+    PROMOTE_USER_SUCCESS
 } from './UserActionTypes'
 
 import { addItemCart } from '../Cart/CartActions'
@@ -211,6 +212,30 @@ export const toggleAdmin = (id, body) => {
                 dispatch(
                     {
                         type: TOGGLE_USER_ADMIN_SUCCESS,
+                        payload: id
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const promoteUser = (id) => {
+    return (dispatch) => {
+        dispatch({ type: USER_LOADING })
+        axios.post(`${HOST}/promote/${id}`)
+            .then(response => {
+                dispatch(
+                    {
+                        type: PROMOTE_USER_SUCCESS,
                         payload: id
                     }
                 )
