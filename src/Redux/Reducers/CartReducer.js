@@ -6,7 +6,9 @@ import {
     LOADING_CART,
     CREATE_CART,
     INCREMENT_QUANTITY,
-    DECREMENT_QUANTITY
+    DECREMENT_QUANTITY,
+    GET_CART_SUCCESS,
+
 } from '../Actions/Cart/CartActionsType'
 
 import {
@@ -98,6 +100,29 @@ const CartReducer = ((state = initialState, action) => {
                 itemCount: 0
             }
 
+        }
+
+        case LOADING_CART: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case GET_CART_SUCCESS: {
+            return {
+                ...state,
+                cartList: action.payload,
+                loading: false,
+                error: ''
+            }
+        }
+        case ERROR_CART: {
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
         }
 
         default: return state

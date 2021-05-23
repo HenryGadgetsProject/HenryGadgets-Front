@@ -11,7 +11,8 @@ import {
     LOADING_CART,
     INCREMENT_QUANTITY,
     DECREMENT_QUANTITY,
-    SAVE_CART_TO_DB
+    SAVE_CART_TO_DB,
+    GET_CART_SUCCESS
 } from './CartActionsType'
 
 
@@ -69,7 +70,9 @@ export const saveCartToDB = (cart, userId) => {
         return {
             id: item.id,
             quantity: item.quantity,
-            unit_price: item.price
+            unit_price: item.price,
+            image: item.big_image,
+            name: item.name
         }
     });
     axios.post(`${HOST}/cart/${userId}/items/create/guest`, body)
@@ -77,6 +80,31 @@ export const saveCartToDB = (cart, userId) => {
             console.log(response)
         })
 
+}
+
+export const getCart = (id) => {
+    return (dispatch) => {
+        dispatch({ type: LOADING_CART })
+        axios.get(`${HOST}/cart/${id}/cart`)
+            .then(response => {
+                const cart = response.data
+                dispatch(
+                    {
+                        type: GET_CART_SUCCESS,
+                        payload: cart
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: ERROR_CART,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
 }
 
 
