@@ -115,6 +115,14 @@ const MyCart = () => {
         }
     }, [products])
 
+    const handleConfirmation = () => {
+
+        if (products.length > 0) {
+            history.push('/confirmation')
+        }
+
+    }
+
     const deleteHandler = (product) => {
         // alert(productId)
         dispatch(deleteItemFromCart(product))
@@ -192,7 +200,7 @@ const MyCart = () => {
                     <div className="buttons">
                         <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
                         <button onClick={() => history.push('/home')}>Seguir Comprando</button>
-                        <button>Confirmar Compra</button>
+                        <button onClick={handleConfirmation}>Confirmar Compra</button>
                     </div>
                 </>
             }

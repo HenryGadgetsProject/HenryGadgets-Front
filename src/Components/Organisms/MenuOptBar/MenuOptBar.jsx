@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ToggleForm from '../../Molecules/Toggle'
 import { userLogut } from '../../../Redux/Actions/User/UserActions'
-import { clearCart, saveCartToDB } from '../../../Redux/Actions/Cart/CartActions'
+import { clearCart, saveCartToDB, deleteCartFromDB } from '../../../Redux/Actions/Cart/CartActions'
 
 import styled from 'styled-components'
 
@@ -103,8 +103,10 @@ const MenuOptBar = ({ open }) => {
     const cart = useSelector(state => state.cart.cartList)
 
     const handleClick = () => {
-        dispatch(userLogut())
+        deleteCartFromDB(user.id)
         saveCartToDB(cart, user.id)
+        dispatch(userLogut())
+
         dispatch(clearCart())
     }
 

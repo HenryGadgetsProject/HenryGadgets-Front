@@ -35,7 +35,7 @@ const LogoDivHome = styled.div`
 `
 
 const NavBarHome = () => {
-    const [ navHomeState, setNavHomeState ] = useState(false)
+    const [navHomeState, setNavHomeState] = useState(false)
     const mode = useSelector((state) => state.global.theme)
 
     const location = useLocation()
@@ -48,25 +48,28 @@ const NavBarHome = () => {
         }
     }
 
-    window.addEventListener('scroll', changeNavHomeBackground)
+    // console.log(location)
+    if (location.pathname === '/home') {
+        window.addEventListener('scroll', changeNavHomeBackground)
+    }
 
     return (
-        <NavHome className={ navHomeState ? "nav-solid" : "nav-cristal" }>
+        <NavHome className={navHomeState ? "nav-solid" : "nav-cristal"}>
             <LogoDivHome>
                 <Link to="/home">
                     {
                         !mode ?
                             <img
                                 id="logo-productman"
-                                src={ LogoLight }
+                                src={LogoLight}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
-                        :
+                            :
                             <img
                                 id="logo-productman"
-                                src={ LogoDark }
+                                src={LogoDark}
                                 width="50"
                                 height="50"
                                 alt=""

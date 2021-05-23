@@ -366,6 +366,24 @@ const GlobalStyle = createGlobalStyle`
         grid-column : 1 / 25;
     }
 
+    .container-confirmation{
+    display:flex;
+    flex-direction: column;
+    }
+
+    .line{
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem;
+        font-size: 2rem;
+    }
+
+    .total{
+    display: flex;
+    justify-content: flex-end;    
+    font-size: 2rem;
+    }
+
 
 
     ${'' /* =================================================
@@ -423,5 +441,8 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 `
+
+
+
 
 export default GlobalStyle
