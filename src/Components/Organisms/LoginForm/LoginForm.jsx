@@ -105,22 +105,41 @@ const validate = (input) => {
     return error
 }
 
+
 const LoginForm = () => {
 
+    const JWT = JSON.parse(localStorage.getItem('JWT'))
+    
     const user = useSelector(state => state.user.user)
-
+    
     let history = useHistory()
-
+    
+    const dbError = useSelector(state => state.user.error)
+    
+    const loading = useSelector(state => state.user.loading)
+    
     const dispatch = useDispatch()
-
+    
     const [isTouch, setIsTouch] = useState({})
-
+    
     const [error, setError] = useState('')
-
+    
     const [input, setInput] = useState({
         // user: "",
         email: "",
         password: ""
+    })
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
     })
 
     const handleChange = (e) => {
@@ -134,8 +153,11 @@ const LoginForm = () => {
     }
 
     const handleSubmit = (e) => {
+
         e.preventDefault()
-        const usuario = dispatch(userLogin(input))
+
+        dispatch(userLogin(input))
+        
         if (error.email || input.email === "" || error.password) {
             Swal.fire({
                 icon: 'error',
@@ -144,15 +166,22 @@ const LoginForm = () => {
             })
             return
         }
-        if (usuario) {
-            const list = localStorage.getItem('cart')
-        }
-        Swal.fire(
-            'Listo!',
-            'Te has Logeado con éxito!',
-            'success'
-        )
-        history.push("/home");
+
+        // setTimeout(() => {            
+        //     if (dbError !== '' && loading === false) {
+        //         Toast.fire({
+        //             icon: 'error',
+        //             title: 'Datos incorrectos'
+        //         })
+        //         return
+        //     } 
+            Toast.fire({
+                icon: 'success',
+                title: 'Te has logeado correctamente!'
+            })
+            history.push("/home");              
+        // },1000)
+        
     }
 
     const handleBlur = (e) => {
@@ -164,7 +193,7 @@ const LoginForm = () => {
 
     return (
         <FormContainer>
-            <h3>Login</h3>
+        <h3>Login</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>

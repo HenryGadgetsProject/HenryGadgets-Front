@@ -106,7 +106,6 @@ const MenuOptBar = ({ open }) => {
         deleteCartFromDB(user.id)
         saveCartToDB(cart, user.id)
         dispatch(userLogut())
-
         dispatch(clearCart())
     }
 

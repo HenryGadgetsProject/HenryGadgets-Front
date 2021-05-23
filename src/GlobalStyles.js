@@ -352,6 +352,7 @@ const GlobalStyle = createGlobalStyle`
 
     .btn-md {
         width   : 10em;
+        height: 6em;
     }
 
     .btn-lg {

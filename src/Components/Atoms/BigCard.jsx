@@ -3,32 +3,32 @@ import styled from 'styled-components'
 const BigCard = styled.div`
     ${'' /* border: 2px solid lime; */}
     background-color        : #FFFFFF;
-    box-shadow              : 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+    box-shadow              : 8px 8px 90px 0px rgba(0, 0, 0, 0.75);
     margin                  : 7em auto;
-    max-height              : 45.5em;
+    max-height              : 45em;
     position                : relative;
-    ${'' /* width                   : 110em; */}
-    width                   : calc(100vw - 40em);
+    width                   : 110em;
+    ${'' /* width                   : calc(100vw - 40em); */}
     z-index                 : 10;
-    -webkit-box-shadow      : 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow         : 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow      : 8px 8px 90px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow         : 8px 8px 90px 0px rgba(0, 0, 0, 0.75);
 
-    /* Image on the left side */
+    /* Left side */
     .thumbnail {
         ${'' /* border: 2px solid blue; */}
         background          : #FFFFFF;
         box-shadow          : 5px 5px 60px 0px rgba(0, 0, 0, 0.75);
         float               : left;
-        ${'' /* height              : 50em; */}
-        height              : calc(100vh - 29em);
+        height              : 50em;
+        ${'' /* height              : calc(100vh - 29em); */}
         ${'' /* object-fit          : contain; */}
         left                : 3em;
         overflow            : hidden;
         position            : relative;
         ${'' /* position            : absolute; */}
         top                 : -2.5em;
-        ${'' /* width               : 50em; */}
-        width               : calc(100vh - 29em);
+        width               : 50em;
+        ${'' /* width               : calc(100vh - 29em); */}
         z-index             : 20;
         -webkit-box-shadow  : 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
@@ -47,11 +47,11 @@ const BigCard = styled.div`
         -ms-transform       : translate(-50%, -50%);
     }
 
-    /* Right side of the card */
+    /* Right side */
     .right {
         margin-left         : 60em;
         margin-right        : 2em;
-        max-width: 43%
+        width: 43%
     }
 
     h3 {
@@ -191,11 +191,69 @@ const BigCard = styled.div`
 
 
     ${'' /* =================================================
+    MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
+    ===================================================== */}
+    @media(min-width: 992px) and (max-width: 1199px) {
+        height: 40em;
+        width: 90em;
+    }
+
+
+    ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
         ${'' /* margin      : 0; */}
-        width       : 100%;
+        display         : flex;
+        flex-direction  : column;
+        width           : 100%;
+        margin          : 5em 2em;
+
+        /* Left side */
+        .thumbnail {
+            ${'' /* border: 2px solid blue; */}
+            display     : flex;
+            height      : 50em;
+            width       : 50em;
+            left        : 0;
+            margin      : 0 auto;
+        }
+
+        ${'' /* img.left {
+            display: flex;
+        } */}
+
+        /* Right side of the card */
+        .right {
+            margin: 1em auto;
+            width: 80%;
+        }
+
+        /* Floating action button */
+        .buy {
+            ${'' /* display: flex; */}
+            width               : 60%;
+            right               : 2em;
+            bottom              : 3em;
+            margin: 0 auto;
+        }
+
+        .review {
+            ${'' /* display: flex; */}
+            width               : 60%;
+            right               : 2em;
+            bottom              : 1em;
+            right               : 0;
+        }
+
+        .close {
+            cursor              : pointer;
+            font-size           : 2.5em;
+            position            : absolute;
+            right               : .8em;
+            top                 : .1em;
+            z-index             : 30;
+        }
     }
 `
 
