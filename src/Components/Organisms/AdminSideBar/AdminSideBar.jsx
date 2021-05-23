@@ -6,7 +6,6 @@ const AdminAside = styled.aside`
     align-items : center;
     background  : black;
     border      : none;
-    display     : flex;
     min-height  : 100%;
     outline     : none;
     padding     : 2em;

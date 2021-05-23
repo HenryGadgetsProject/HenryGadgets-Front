@@ -146,9 +146,6 @@ const LoginForm = () => {
         }
         if (usuario) {
             const list = localStorage.getItem('cart')
-            // console.log('despues del handleSub', list)
-            // console.log('despues del handleSub', usuario.id)
-            // console.log('USUARIO LOGUEADO', user)
         }
         Swal.fire(
             'Listo!',
@@ -164,8 +161,6 @@ const LoginForm = () => {
             [e.target.name]: true
         })
     }
-
-    // console.log(input)
 
     return (
         <FormContainer>

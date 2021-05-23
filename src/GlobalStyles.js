@@ -264,7 +264,7 @@ const GlobalStyle = createGlobalStyle`
     SECTION 3
     ===================================================== */}
     #main {
-        ${'' /* border: .2em solid blue; */}
+        ${'' /* border: .2em solid #AF0000; */}
         grid-column : 1 / 25;
         place-self  : center;
     }
@@ -286,42 +286,44 @@ const GlobalStyle = createGlobalStyle`
     }
 
     aside {
-        ${'' /* border: .2em solid purple; */}
-        grid-column : 1 / 4;
+        ${'' /* border: .2em solid cyan; */}
+        grid-column     : 1 / 4;
 
-        align-self: left;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
-        padding: 2.2em 0;
-        width: 20%;
+        align-self      : left;
+        box-sizing      : border-box;
+        display         : flex;
+        flex-direction  : column;
+        margin          : 0 auto;
+        padding         : 2.2em 0;
+        width           : 20%;
     }
 
     section {
-        ${'' /* border: .2em solid #AF0000; */}
-        grid-column : 4 / 25;
+        ${'' /* border: .2em solid blue; */}
+        grid-column     : 4 / 25;
 
-        align-self: right;
+        align-self      : right;
         display         : flex;
         flex-direction  : column;
-        margin: 0 auto;
-        padding: .3em 6em;
+        margin          : 0 auto;
+        padding         : .3em 6em;
         width           : 80%;
     }
 
     .popular-products {
-        display         :flex;
+        display         : flex;
         flex-direction  : row;
         flex-wrap       : wrap;
-        justify-content :center;
+        justify-content : center;
         width           : 100%;
     }
 
     .filters {
         align-items     : center;
         display         : flex;
+        flex-wrap       : wrap;
         justify-content : space-between;
+        ${'' /* width: 100%; */}
     }
 
     .link {

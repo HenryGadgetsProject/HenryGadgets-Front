@@ -104,11 +104,7 @@ const MyCart = () => {
     // const categories = useSelector(state => state.category.categories);
     const products = useSelector(state => state.cart.cartList)
 
-
-
-    const [total, setTotal] = useState();
-
-
+    const [total, setTotal] = useState()
 
     useEffect(() => {
         if (products) {
