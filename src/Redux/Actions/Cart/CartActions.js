@@ -77,23 +77,83 @@ export const saveCartToDB = (cart, userId) => {
     });
     axios.post(`${HOST}/cart/${userId}/items/create/guest`, body)
         .then((response) => {
-            console.log(response)
+            console.log('carrito creado en db')
         })
 
 }
 
+export const deleteCartFromDB = (userId) => {
+
+    const url = `${HOST}/cart/${userId}/items/delete`
+    console.log('borrando url', url)
+    axios.delete(url)
+        .then((response) => {
+            console.log('carrito eliminado de db')
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+
+}
+
+
+
+
+// export const getCart = (id) => {
+//     return (dispatch) => {
+//         dispatch({ type: LOADING_CART })
+//         axios.get(`${HOST}/cart/${id}/cart`)
+//             .then(response => {
+//                 const cart = response.data
+//                 dispatch(
+//                     {
+//                         type: GET_CART_SUCCESS,
+//                         payload: cart
+//                     }
+//                 )
+//             })
+//             .catch(error => {
+//                 const errorMsg = error.message
+//                 dispatch(
+//                     {
+//                         type: ERROR_CART,
+//                         payload: errorMsg
+//                     }
+//                 )
+//             })
+//     }
+// }
+
 export const getCart = (id) => {
+    const cartLS = JSON.parse(localStorage.getItem('cart'))
     return (dispatch) => {
         dispatch({ type: LOADING_CART })
         axios.get(`${HOST}/cart/${id}/cart`)
             .then(response => {
-                const cart = response.data
-                dispatch(
-                    {
-                        type: GET_CART_SUCCESS,
-                        payload: cart
+                console.log(response.data)
+                const cart = response.data.map(item => {
+                    return {
+                        id: item.product.id,
+                        quantity: item.quantity,
+                        price: item.product.price,
+                        big_image: item.product.big_image,
+                        name: item.product.name
                     }
-                )
+                })
+                if (!cart || cart.length === 0) {
+                    return dispatch({
+                        type: GET_CART_SUCCESS,
+                        payload: cartLS
+                    })
+                } else {
+                    return dispatch(
+                        {
+                            type: GET_CART_SUCCESS,
+                            payload: cart
+                        }
+                    )
+                }
+
             })
             .catch(error => {
                 const errorMsg = error.message

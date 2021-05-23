@@ -8,6 +8,7 @@ import { USER_LOGIN_SUCCESS } from './Redux/Actions/User/UserActionTypes'
 import { getCategories } from './Redux/Actions/Categories/CategoriesActions'
 import { getPopularProducts, getProducts } from './Redux/Actions/Product/ProductActions'
 import { getUsers } from './Redux/Actions/User/UserActions'
+import { getCart } from './Redux/Actions/Cart/CartActions'
 
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
@@ -19,6 +20,7 @@ function App() {
     const mode = useSelector((state) => state.global.theme)
 
     const cart = useSelector(state => state.cart.cartList)
+    const user = useSelector(state => state.user.user)
 
     const fullUser = JSON.parse(localStorage.getItem('JWT'))
 
@@ -26,9 +28,16 @@ function App() {
 
     useEffect(() => {
         dispatch(getCategories());
-        dispatch(getPopularProducts());
+        // dispatch(getPopularProducts());
         dispatch(getProducts());
-        dispatch(getUsers());
+        dispatch(getUsers())
+    }, [dispatch])
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
+
+    useEffect(() => {
         if (fullUser) {
             dispatch(
                 {
@@ -37,11 +46,13 @@ function App() {
                 }
             )
         }
-    }, [dispatch, fullUser])
+    }, [dispatch])
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])
+        if (user.id) {
+            dispatch(getCart(user.id))
+        }
+    }, [user.id])
 
 
 

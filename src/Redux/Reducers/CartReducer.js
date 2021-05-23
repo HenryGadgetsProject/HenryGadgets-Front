@@ -23,7 +23,7 @@ const initialState = {
     cartList: cartFromLocalStorage,
     error: '',
     total: 0.00,
-    itemCount: 0
+    itemCount: cartFromLocalStorage.length
 }
 
 const CartReducer = ((state = initialState, action) => {
@@ -114,7 +114,8 @@ const CartReducer = ((state = initialState, action) => {
                 ...state,
                 cartList: action.payload,
                 loading: false,
-                error: ''
+                error: '',
+                itemCount: action.payload.length
             }
         }
         case ERROR_CART: {
