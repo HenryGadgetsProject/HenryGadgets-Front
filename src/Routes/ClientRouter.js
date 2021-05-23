@@ -13,6 +13,7 @@ import Register from '../Pages/User/Register'
 import UserProfile from '../Pages/User/UserProfile'
 import Logout from '../Pages/User/Logout'
 import Reviews from '../Pages/Reviews'
+import ConfirmBuy from '../Pages/ConfirmBuy'
 
 const ClientRouter = () => {
     return (
@@ -22,7 +23,7 @@ const ClientRouter = () => {
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/cart" component={MyCart} />
-                <Route path="/reviews" component={Reviews}/>
+                <Route path="/reviews" component={Reviews} />
                 <Route path="/login" component={Login} />
                 <Route path="/logout" component={Logout} />
                 <Route path="/register" component={Register} />
@@ -34,6 +35,7 @@ const ClientRouter = () => {
                     exact path='/product/:productId'
                     render={({ match }) => <Product productId={match.params.productId} />}
                 />
+                <Route path="/confirmation" component={ConfirmBuy} />
                 <Route component={NotFound} />
 
             </Switch>
