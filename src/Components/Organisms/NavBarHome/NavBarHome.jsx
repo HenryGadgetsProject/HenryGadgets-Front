@@ -51,6 +51,8 @@ const NavBarHome = () => {
     // console.log(location)
     if (location.pathname === '/home') {
         window.addEventListener('scroll', changeNavHomeBackground)
+    } else {
+        window.removeEventListener('scroll', changeNavHomeBackground);
     }
 
     return (

@@ -139,28 +139,28 @@ const LavaLoader = () => {
                 </defs>
             </svg>
 
-            <div class="container top-con">
-                <div class="blob-container">
-                    <div class="blob"></div>
+            <div className="container top-con">
+                <div className="blob-container">
+                    <div className="blob"></div>
                 </div>
-                <div class="blob-container">
-                    <div class="blob"></div>
+                <div className="blob-container">
+                    <div className="blob"></div>
                 </div>
-                <div class="blob-container">
-                    <div class="blob"></div>
+                <div className="blob-container">
+                    <div className="blob"></div>
                 </div>
-                <div class="blob-container">
-                    <div class="blob"></div>
+                <div className="blob-container">
+                    <div className="blob"></div>
                 </div>
-                <div class="blob-container">
-                    <div class="blob"></div>
+                <div className="blob-container">
+                    <div className="blob"></div>
                 </div>
-                <div class="blob-container">
-                    <div class="blob"></div>
+                <div className="blob-container">
+                    <div className="blob"></div>
                 </div>
 
             </div>
-                <div class="container bottom-con">
+            <div className="container bottom-con">
             </div>
         </Lava>
     )
