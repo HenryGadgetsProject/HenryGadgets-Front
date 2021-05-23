@@ -12,10 +12,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { deleteItemFromCart, incrementQuantity, decrementQuantity, clearCart } from '../Redux/Actions/Cart/CartActions'
 
+// Table
 const Table = styled.table`
     border-collapse: collapse;
     display:block;
     ${'' /* margin: 0 auto; */}
+    margin-bottom: 10em;
 
     caption {
         color: var(--pure-black);
@@ -86,11 +88,19 @@ const Table = styled.table`
     }
 
 `
+
+// Buttons
+const Container = styled.div`
+    display: flex;
+`
+const Item = styled.div`
+    
+`
+
 // Icons
 // const BuyIcon = styled.img`
 //     background: url('https://api.iconify.design/bi:credit-card-2-back.svg?color=%23ff1744') no-repeat center center / contain;
 // `
-
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
@@ -190,18 +200,28 @@ const MyCart = () => {
                                 </tr>
                             ))}
                             <tr>
+                                <td></td>
+                                <td></td>
                                 <td>Total</td>
-
                                 <td>{total}</td>
-
                             </tr>
                         </tbody>
                     </Table>
-                    <div className="buttons">
-                        <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
-                        <button onClick={() => history.push('/home')}>Seguir Comprando</button>
-                        <button onClick={handleConfirmation}>Confirmar Compra</button>
-                    </div>
+                    <Container>
+
+                        <Item>
+                            <button className="btn-md" onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
+                        </Item>
+
+                        <Item>
+                            <button className="btn-md" onClick={() => history.push('/home')}>Seguir Comprando</button>
+                        </Item>
+
+                        <Item>
+                            <button className="btn-md" onClick={handleConfirmation}>Confirmar Compra</button>
+                        </Item>
+
+                    </Container>
                 </>
             }
 

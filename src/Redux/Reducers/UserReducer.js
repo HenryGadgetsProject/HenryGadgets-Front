@@ -81,7 +81,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload,
-                loading: false
+                loading: false,
+                error: ''
             }
         }
 

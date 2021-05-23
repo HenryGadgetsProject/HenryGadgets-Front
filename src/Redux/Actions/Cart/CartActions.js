@@ -77,7 +77,7 @@ export const saveCartToDB = (cart, userId) => {
     });
     axios.post(`${HOST}/cart/${userId}/items/create/guest`, body)
         .then((response) => {
-            console.log('carrito creado en db')
+
         })
 
 }
@@ -85,13 +85,13 @@ export const saveCartToDB = (cart, userId) => {
 export const deleteCartFromDB = (userId) => {
 
     const url = `${HOST}/cart/${userId}/items/delete`
-    console.log('borrando url', url)
+
     axios.delete(url)
         .then((response) => {
-            console.log('carrito eliminado de db')
+
         })
         .catch((e) => {
-            console.log(e)
+
         })
 
 }
@@ -130,7 +130,7 @@ export const getCart = (id) => {
         dispatch({ type: LOADING_CART })
         axios.get(`${HOST}/cart/${id}/cart`)
             .then(response => {
-                console.log(response.data)
+
                 const cart = response.data.map(item => {
                     return {
                         id: item.product.id,

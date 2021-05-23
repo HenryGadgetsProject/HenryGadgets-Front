@@ -11,7 +11,6 @@ const Register = () => {
         <div className="container">
             <NavBar className="nav" />
             <Main id="main">
-                <h2>Register.</h2>
                 <RegisterForm/>
             </Main>
         </div>

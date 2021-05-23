@@ -128,7 +128,7 @@ export const addUser = (body) => {
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
 
-                console.log(user)
+
 
                 if (user) {
                     dispatch(

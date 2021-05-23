@@ -125,7 +125,7 @@ const Home = () => {
         }
     }
     const handleMoreBtn = () => {
-        setItemsPerPage(itemsPerPage + 5)
+        setItemsPerPage(itemsPerPage + 8)
     }
 
     let pageIncrementBtn = null
@@ -179,9 +179,9 @@ const Home = () => {
                 ))}
             </Carousel>
 
-            <Header id="header">
+            {/* <Header id="header">
                 <h1>Henry Gadgets</h1>
-            </Header>
+            </Header> */}
 
             <Main id="main">
                 <aside>
@@ -218,7 +218,7 @@ const Home = () => {
                         {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                     </div>
 
-                    <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton>
+                    {/* <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton> */}
 
                     <NumbersContainer>
                         <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
