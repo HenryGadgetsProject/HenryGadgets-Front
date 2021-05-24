@@ -11,10 +11,7 @@ import {
 
 } from '../Actions/Cart/CartActionsType'
 
-import {
-    addItemCart,
-    createCart
-} from '../Actions/Cart/CartActions'
+
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
 

@@ -106,7 +106,6 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, is_admin: true } : user),
                 loading: false
-
             }
 
         }

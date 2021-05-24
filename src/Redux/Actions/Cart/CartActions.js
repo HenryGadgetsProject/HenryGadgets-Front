@@ -11,7 +11,7 @@ import {
     LOADING_CART,
     INCREMENT_QUANTITY,
     DECREMENT_QUANTITY,
-    SAVE_CART_TO_DB,
+    //SAVE_CART_TO_DB,
     GET_CART_SUCCESS
 } from './CartActionsType'
 
