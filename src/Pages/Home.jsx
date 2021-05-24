@@ -58,13 +58,13 @@ const Button = styled.button`
         outline: none;
     }
 `
-const LoadMoreButton = styled.button`
-    padding: 1rem;
-    background-color: #ff1744;
-    color: black;
-    font-size: 1.2em;
-    border: 1px solid black;
-`
+// const LoadMoreButton = styled.button`
+//     padding: 1rem;
+//     background-color: #ff1744;
+//     color: black;
+//     font-size: 1.2em;
+//     border: 1px solid black;
+// `
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -125,9 +125,9 @@ const Home = () => {
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
         }
     }
-    const handleMoreBtn = () => {
-        setItemsPerPage(itemsPerPage + 5)
-    }
+    // const handleMoreBtn = () => {
+    //     setItemsPerPage(itemsPerPage + 8)
+    // }
 
     let pageIncrementBtn = null
     if (pages.length > maxPageNumberLimit) {
@@ -227,13 +227,13 @@ const Home = () => {
                     <div className="popular-products">
                         {/* <TopServices - Cards /> */}
                         <ProductCards
-                            products = { currentItems }
+                            products={currentItems}
                         />
 
                         {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}
                     </div>
 
-                    <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton>
+                    {/* <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton> */}
 
                     <NumbersContainer>
                         <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>

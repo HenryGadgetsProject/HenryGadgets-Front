@@ -36,16 +36,11 @@ const NotFoundContainer = styled.div`
     }
 `
 
-const NotFound = () => {
+const NotFoundAdmin = () => {
 
     const history = useHistory();
     return (
         <div className="container">
-            <NavBar className="nav" />
-            <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
             <Main id="main">
                 <NotFoundContainer>
@@ -55,19 +50,16 @@ const NotFound = () => {
                         history.push('/home')
                     }, 3000)} */}
 
-                    {/* <p>Lo sentimos, tu busqueda no ha retornado ningún resultado.</p>
-                    <p>Probablemente el producto que estás buscando no existe".</p>
-                    <p>Si lo deseas también puedes repetir la busqueda verificando el nombre, intentar una nueva busqueda con otro producto o regresar a la página principal para ver más opciones.</p> */}
                 </NotFoundContainer>
 
-                <Link to="/home">
+                <Link to="/admin">
                     <button className="review">Regresar</button>
                 </Link>
             </Main>
 
-            <Footer />
+
         </div>
     )
 }
 
-export default NotFound
+export default NotFoundAdmin

@@ -85,16 +85,17 @@ const AdminAside = styled.aside`
 const ProductIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:tag.svg?color=white') no-repeat center center / contain;
 `
-
 const AddProductIcon = styled.img`
     background: url('https://api.iconify.design/carbon:tag-edit.svg?color=white') no-repeat center center / contain;
 `
 const CategoryIcon = styled.img`
     background: url('https://api.iconify.design/bx:bx-category-alt.svg?color=white') no-repeat center center / contain;
 `
-
 const AddCategoryIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
+`
+const UserIcon = styled.img`
+background: url('https://api.iconify.design/bx:bxs-user.svg?color=white') no-repeat center center / contain;
 `
 
 const AdminSideBar = () => {
@@ -109,7 +110,7 @@ const AdminSideBar = () => {
                 <span>Categorías</span>
             </Link>
             <Link to='/admin/users'>
-                <ProductIcon />
+                <UserIcon/>
                 <span>Usuarios</span>
             </Link>
 

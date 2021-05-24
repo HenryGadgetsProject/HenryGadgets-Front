@@ -16,6 +16,8 @@ import AdminProductEdit from './Admin/AdminProductEdit'
 import AdminUsers from './Admin/AdminUsers'
 import Footer from "../Components/Organisms/Footer"
 
+import NotFoundAdmin from "./NotFoundAdmin"
+
 const Admin = () => {
 
     return (
@@ -45,6 +47,7 @@ const Admin = () => {
                     <Route exact path='/admin/categories/:categoryId'
                         render={({ match }) => <AdminCategoryDetails categoryId={match.params.categoryId} />}
                     />
+                    <Route component={NotFoundAdmin} />
                 </AdminSection>
             </Main>
 

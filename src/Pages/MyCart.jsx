@@ -19,6 +19,7 @@ import {
 import styled from 'styled-components'
 
 
+// Table
 const Table = styled.table`
     border-collapse         : collapse;
     display                 :block;
@@ -169,11 +170,16 @@ const Table = styled.table`
     }
 `
 
+const Container = styled.div`
+    display: flex;
+`
+const Item = styled.div`   
+`
+
 // Icons
 // const BuyIcon = styled.img`
 //     background: url('https://api.iconify.design/bi:credit-card-2-back.svg?color=%23ff1744') no-repeat center center / contain;
 // `
-
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
@@ -184,9 +190,9 @@ const MyCart = () => {
 
     const history = useHistory()
 
-    // const categories = useSelector(state => state.category.categories);
-    const products = useSelector(state => state.cart.cartList)
 
+    const products = useSelector(state => state.cart.cartList)
+    const user = useSelector(state => state.user.user)
     const [total, setTotal] = useState()
 
     useEffect(() => {
@@ -199,6 +205,11 @@ const MyCart = () => {
     }, [products])
 
     const handleConfirmation = () => {
+
+        if (!user.id) {
+            history.push('/login')
+            return
+        }
 
         if (products.length > 0) {
             history.push('/confirmation')

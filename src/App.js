@@ -54,14 +54,25 @@ function App() {
         }
     }, [user.id])
 
+    if (user.is_admin === true) {
+        return (
+            <ThemeProvider theme={mode === false ? lightTheme : darkTheme}>
+                <GlobalStyles />
 
+                <Switch>
+                    <Route path='/admin' component={AdminRouter} />
+                    <Route path='/' component={ClientRouter} />
+                </Switch>
+            </ThemeProvider>
+        )
+    }
 
     return (
         <ThemeProvider theme={mode === false ? lightTheme : darkTheme}>
             <GlobalStyles />
 
             <Switch>
-                <Route path='/admin' component={AdminRouter} />
+
                 <Route path='/' component={ClientRouter} />
             </Switch>
         </ThemeProvider>

@@ -77,6 +77,7 @@ const NavBarHome = () => {
                                 alt=""
                             />
                     }
+                {/* <h1>Henry Gadgets</h1> */}
                 </Link>
                 {/* <H2>
                     <Link to="/home" className="link">

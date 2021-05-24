@@ -1,32 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from '../../Components/Atoms/Table'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { deleteUser, promoteUser, getUsers } from '../../Redux/Actions/User/UserActions'
-
 
 import styled from "styled-components"
 
 const StatusIcon = styled.img`
     background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;
 `
-
-const EditIcon = styled.img`
-    background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
-`
-
+// const EditIcon = styled.img`
+//     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
+// `
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
-
 const PromoteIcon = styled.img`
-    background: url('https://api.iconify.design/el:arrow-up.svg?color=chartreuse') no-repeat center center / contain;
+    background: url('https://api.iconify.design/bi:arrow-up-circle-fill.svg?color=chartreuse') no-repeat center center / contain;
 `
-
-const DegradeIcon = styled.img`
-    background: url('https://api.iconify.design/el:arrow-down.svg?color=red') no-repeat center center / contain;
+// const DegradeIcon = styled.img`
+//     background: url('https://api.iconify.design/el:arrow-down.svg?color=red') no-repeat center center / contain;
+// `
+const NotAdmin = styled.img`
+    background: url('https://api.iconify.design/entypo:circle-with-cross.svg?color=%23ff3d00') no-repeat center center / contain;
 `
 
 // const InfoIcon = styled.img`
@@ -34,18 +32,23 @@ const DegradeIcon = styled.img`
 // `
 
 const AdminUsers = () => {
+
     const dispatch = useDispatch();
 
     const users = useSelector(state => state.user.users);
+    const [change, setChange] = useState(false)
 
-
+    useEffect(() => {
+        dispatch(getUsers())
+        setChange(false)
+    }, [change])
 
 
 
     const deleteHandler = (id) => {
         Swal.fire({
             title: 'Estas seguro?',
-            text: "vas a eliminar un usuario",
+            text: "Vas a eliminar un usuario",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -64,6 +67,12 @@ const AdminUsers = () => {
                 }
             })
     }
+
+    const promoteHandler = (id) => {
+        dispatch(promoteUser(id))
+        setChange(true)
+    }
+
 
 
     return (
@@ -88,8 +97,8 @@ const AdminUsers = () => {
                         <td data-label="Nombres">{user.first_name}</td>
                         <td data-label="Apellidos">{user.last_name}</td>
                         <td data-label="Correo">{user.email}</td>
-                        <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : null}</td>
-                        <td data-label="Editar" className="center-text" ><EditIcon /></td>
+                        <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin />}</td>
+                        <td data-label="Editar" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
                         <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id)}><DeleteIcon /></td>
                     </tr>
                 ))}

@@ -128,7 +128,7 @@ export const addUser = (body) => {
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
 
-                console.log(user)
+
 
                 if (user) {
                     dispatch(
@@ -231,7 +231,7 @@ export const promoteUser = (id) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
         axios.post(`${HOST}/promote/${id}`)
-            .then(response => {
+            .then(() => {
                 dispatch(
                     {
                         type: PROMOTE_USER_SUCCESS,

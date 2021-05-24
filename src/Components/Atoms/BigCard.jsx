@@ -247,6 +247,9 @@ const BigCard = styled.div`
         .review {
             right: 12em;
         }
+
+        ${'' /* height: 40em;
+        width: 90em; */}
     }
 
 
@@ -289,6 +292,23 @@ const BigCard = styled.div`
 
         p {
             margin          : .2em 0;
+
+        ${'' /* display         : flex;
+        flex-direction  : column;
+        width           : 100%;
+        margin          : 5em 2em;
+
+        .thumbnail {
+            display     : flex;
+            height      : 50em;
+            width       : 50em;
+            left        : 0;
+            margin      : 0 auto;
+        }
+
+        .right {
+            margin: 1em auto;
+            width: 80%; */}
         }
 
         /* Floating action button */
@@ -302,6 +322,27 @@ const BigCard = styled.div`
             width           : 10em;
             right           : 11.3em !important;
             bottom          : -2.5em;
+
+            ${'' /* width               : 60%;
+            right               : 2em;
+            bottom              : 3em;
+            margin: 0 auto;
+        }
+
+        .review {
+            width               : 60%;
+            right               : 2em;
+            bottom              : 1em;
+            right               : 0;
+        }
+
+        .close {
+            cursor              : pointer;
+            font-size           : 2.5em;
+            position            : absolute;
+            right               : .8em;
+            top                 : .1em;
+            z-index             : 30; */}
         }
     }
 `

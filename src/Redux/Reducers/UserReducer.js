@@ -81,7 +81,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload,
-                loading: false
+                loading: false,
+                error: ''
             }
         }
 
@@ -105,7 +106,6 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, is_admin: true } : user),
                 loading: false
-
             }
 
         }

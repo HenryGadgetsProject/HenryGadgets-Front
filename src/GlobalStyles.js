@@ -401,6 +401,9 @@ const GlobalStyle = createGlobalStyle`
         height              : 3.5em;
         margin              : 2em auto;
         width               : 13em;
+
+        ${'' /* width   : 10em;
+        height: 6em; */}
     }
 
     .btn-lg {
