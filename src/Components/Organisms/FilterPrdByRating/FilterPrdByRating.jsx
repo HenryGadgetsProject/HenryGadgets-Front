@@ -14,11 +14,11 @@ const FilterPrdByRating = () => {
 
     return (
         <FilterContainer>
-            <label htmlFor="rating">Buscar por calificación: </label>
+            <label htmlFor="rating">Calificación</label>
             <Select
                 onChange={handleChange}
                 name="rating">
-                <option value = "">Todo</option>
+                <option value = "">Todas</option>
                 <option value = "1">1 Estrella</option>
                 <option value = "2">2 Estrellas</option>
                 <option value = "3">3 Estrellas</option>

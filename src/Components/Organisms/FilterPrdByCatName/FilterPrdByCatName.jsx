@@ -16,7 +16,7 @@ const FilterPrdByCatName = () => {
 
     return (
         <FilterContainer>
-            <label htmlFor="category">Buscar por categoría: </label>
+            <label htmlFor="category">Categoría</label>
             <Select
                 onChange={handleChange}
                 name="category">

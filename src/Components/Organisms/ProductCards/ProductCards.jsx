@@ -2,6 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 
+// import { useDispatch, useSelector } from 'react-redux'
+// import Swal from 'sweetalert2'
+// import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
+
 import styled from 'styled-components'
 
 const Cards = styled.div`
@@ -14,9 +18,9 @@ const Cards = styled.div`
     grid-auto-rows          : minmax(2em, auto);
     grid-gap                : 0.1em; */}
     
-    margin                  : 1.8em;
-    max-height              : 35em;
-    padding                 : 2em 2.5em;
+    ${'' /* margin                  : 1.8em; */}
+    height                  : 35em;
+    ${'' /* padding                 : 2em 2.5em; */}
     text-align              : center;
     transition              : all .3s ease;
     width                   : 30em;
@@ -52,16 +56,43 @@ const Cards = styled.div`
     }
 
     button {
+
     }
 `
 
+const CartIcon = styled.img`
+    background: url('https://api.iconify.design/icons8:buy.svg?color=white') no-repeat center center / contain;
+    height: 1em;
+    width: 1em;
+    padding: .1em;
+`
+
 const ProductCards = ({ products }) => {
+    // const dispatch = useDispatch()
+
+    // const product = useSelector(state => state.product.product)
+
+    // const handleClick = () => {
+    //     const productSelected = { ...product, quantity: 1 }
+
+    //     dispatch(addItemCart(productSelected))
+
+    //     Swal.fire({
+    //         position: 'top-end',
+    //         icon: 'success',
+    //         title: 'El producto se ha agregado al Carrito!',
+    //         showConfirmButton: false,
+    //         timer: 2000,
+    //     })
+    // }
+
     if(products.length > 0) {
         return (
             <>
                 {products?.map(p => {
                     return(
-                        <Link to={`/product/${p.id}`} key={p?.id}>
+                        <div className="card-container" key={p?.id}>
+                        <Link to={`/product/${p.id}`}>
                             <Cards>
                                 <img src={p.big_image} alt={p.name}></img><br />
                                 <p>{p.name}</p>
@@ -79,6 +110,10 @@ const ProductCards = ({ products }) => {
                                 {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                             </Cards>
                         </Link>
+                        {/* <button className="buy" onClick={handleClick}>
+                            <CartIcon />
+                        </button> */}
+                        </div>
                     )
                 })}
             </>

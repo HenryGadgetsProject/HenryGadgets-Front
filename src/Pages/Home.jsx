@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import NavBarHome from '../Components/Organisms/NavBarHome'
-import Header from '../Components/Atoms/Header'
+import Breadcrumb from '../Components/Atoms/Breadcrumb'
+// import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
@@ -179,19 +180,33 @@ const Home = () => {
                 ))}
             </Carousel>
 
-            <Header id="header">
+            {/* <Header id="header">
                 <h1>Henry Gadgets</h1>
-            </Header>
+            </Header> */}
+
+            <Breadcrumb id="breadcrumb" />
 
             <Main id="main">
                 <aside>
-                    <FilterPrdByCatName />
+                    <div className="filters">
+                        <h6>Buscar por: </h6>
+                        
+                        <FilterPrdByCatName />
+
+                        <FilterPrdByStock />
+
+                        <FilterPrdByPrice />
+
+                        <FilterPrdByRating />
+                    </div>
+
+                    {/* <FilterPrdByCatName />
 
                     <FilterPrdByStock />
 
                     <FilterPrdByPrice />
 
-                    <FilterPrdByRating />
+                    <FilterPrdByRating /> */}
 
                     {/* <SortBy />
 

@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components'
 
 export const lightTheme = {
     // background          : 'linear-gradient(to right, #FE4918, #FFF8DC)',
-    background: 'linear-gradient(to right, #ff1744, #ff1744)',
+    background: 'linear-gradient(to right, #FF1744 , #AF0000)',
     fontColor: '#212121',
 
     // Color Palette - Light Theme
@@ -27,7 +27,7 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    background: 'linear-gradient(to right, #04C8D4, #512DA8)',
+    background: 'linear-gradient(to right, #04C8D4 , #512DA8)',
     fontColor: '#FFFFFF',
 
     // Color Palette - Dark Theme
@@ -289,11 +289,14 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* border: .2em solid cyan; */}
         grid-column     : 1 / 4;
 
+        align-items     : center;
         align-self      : left;
         box-sizing      : border-box;
         display         : flex;
         flex-direction  : column;
         margin          : 0 auto;
+        min-height      : 100%;
+        outline         : none;
         padding         : 2.2em 0;
         width           : 20%;
     }
@@ -310,6 +313,12 @@ const GlobalStyle = createGlobalStyle`
         width           : 80%;
     }
 
+    .card-container {
+        ${'' /* border: 2px solid red; */}
+        margin                  : 1.8em;
+        padding                 : 0;
+    }
+
     .popular-products {
         display         : flex;
         flex-direction  : row;
@@ -318,12 +327,29 @@ const GlobalStyle = createGlobalStyle`
         width           : 100%;
     }
 
-    .filters {
+    .filters-org {
         align-items     : center;
         display         : flex;
         flex-wrap       : wrap;
         justify-content : space-between;
         ${'' /* width: 100%; */}
+    }
+
+    .filters {
+        align-items     : center;
+        display         : flex;
+        flex-direction: column;
+        ${'' /* width: 100%; */}
+
+        h6 {
+            color: var(--font-color);
+            font-size: 1.8em;
+            margin: 0 auto .5em;
+        }
+
+        label {
+            color: var(--font-color);
+        }
     }
 
     .link {
@@ -345,17 +371,40 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
+    .btn {
+        background          : #FFFFFF;
+        border              : .1em solid #AF0000;
+        border-radius       : 3em;
+        color               : #AF0000;
+        margin              : 2em auto;
+        outline             : none;
+        transition-duration : .5s;
+        &:hover {
+            background      : linear-gradient(to right, #FF1744 , #AF0000);
+            border-color    : #AF0000;
+            color           : #FFFFFF;
+            transform       : scale(1.10);
+        }
+        &:active {
+            background      : linear-gradient(to right, #FF1744 , #000000);
+            color           : #FFFFFF;
+            font-weight     : bold;
+        }
+    }
+
     .btn-sm {
-        padding : .5em;
-        width   : 5em;
+        padding             : .5em;
+        width               : 5em;
     }
 
     .btn-md {
-        width   : 10em;
+        height              : 3.5em;
+        margin              : 2em auto;
+        width               : 13em;
     }
 
     .btn-lg {
-        width   : 15em;
+        width               : 15em;
     }
 
 
@@ -363,25 +412,25 @@ const GlobalStyle = createGlobalStyle`
     SECTION 4
     ===================================================== */}
     footer {
-        grid-column : 1 / 25;
+        grid-column         : 1 / 25;
     }
 
     .container-confirmation{
-    display:flex;
-    flex-direction: column;
+        display             :flex;
+        flex-direction      : column;
     }
 
     .line{
-        display: flex;
-        justify-content: space-around;
-        padding: 1rem;
-        font-size: 2rem;
+        display             : flex;
+        justify-content     : space-around;
+        padding             : 1em;
+        font-size           : 2em;
     }
 
     .total{
-    display: flex;
-    justify-content: flex-end;    
-    font-size: 2rem;
+        display             : flex;
+        justify-content     : flex-end;    
+        font-size           : 2em;
     }
 
 
@@ -402,6 +451,19 @@ const GlobalStyle = createGlobalStyle`
             grid-column     : 2 / 25;
             flex-direction  : block;
             width           : 90%;
+        }
+
+        .filters {
+            width: 160%;
+        }
+
+        .btn {
+            margin: 2em 0 2em 6em;
+        }
+
+        .btn-md {
+            width: 10em;
+            height: 3em;
         }
     }
 
@@ -439,10 +501,12 @@ const GlobalStyle = createGlobalStyle`
             flex-direction  : column;
             justify-content : space-between;
         }
+
+        .btn-md {
+            margin: 1em auto;
+            width: 14em;
+        }
     }
 `
-
-
-
 
 export default GlobalStyle

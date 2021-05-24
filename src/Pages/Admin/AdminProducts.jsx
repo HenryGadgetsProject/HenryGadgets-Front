@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import StarRatings from 'react-star-ratings'
 import Swal from 'sweetalert2'
 import Table from '../../Components/Atoms/Table'
-import FilterPrdByCatName from '../../Components/Organisms/FilterPrdByCatName'
-import FilterPrdByStock from '../../Components/Organisms/FilterPrdByStock'
-import FilterPrdByActive from '../../Components/Organisms/FilterPrdByActive'
-import FilterPrdByPrice from '../../Components/Organisms/FilterPrdByPrice'
-import FilterPrdByRating from '../../Components/Organisms/FilterPrdByRating'
+// import FilterPrdByCatName from '../../Components/Organisms/FilterPrdByCatName'
+// import FilterPrdByStock from '../../Components/Organisms/FilterPrdByStock'
+// import FilterPrdByActive from '../../Components/Organisms/FilterPrdByActive'
+// import FilterPrdByPrice from '../../Components/Organisms/FilterPrdByPrice'
+// import FilterPrdByRating from '../../Components/Organisms/FilterPrdByRating'
 import { deleteProducts } from '../../Redux/Actions/Product/ProductActions'
 import { useSelector, useDispatch } from 'react-redux'
-import { setProductsByCategoryName, setProductsByStock } from '../../Redux/Actions/Product/ProductActions'
+// import { setProductsByCategoryName, setProductsByStock } from '../../Redux/Actions/Product/ProductActions'
 import { filteredProductsSelector } from '../../Helpers/filtered-products-selector.js'
 
 import styled from "styled-components"
@@ -21,6 +21,7 @@ const NumbersContainer = styled.ul`
     align-self: center;
     background: var(--pure-white);
     padding: 0;
+    margin-top: 4em;
 `
 const PageNumbers = styled.li`
     font-size: 1.2em;
@@ -84,11 +85,11 @@ const AdminProducts = () => {
     const products = useSelector(state => filteredProductsSelector(state))
     const loading = useSelector(state => state.product.loading)
 
-    useEffect(() => {
-        dispatch(setProductsByCategoryName(''))
-        dispatch(setProductsByStock(''))
+    // useEffect(() => {
+    //     dispatch(setProductsByCategoryName(''))
+    //     dispatch(setProductsByStock(''))
 
-    }, [dispatch])
+    // }, [dispatch])
 
     const deleteHandler = (id) => {
         Swal.fire({
@@ -194,7 +195,7 @@ const AdminProducts = () => {
     } else {
         return (
             <>
-                <div className="filters">
+                {/* <div className="filters">
                     <FilterPrdByCatName />
 
                     <FilterPrdByStock />
@@ -204,7 +205,7 @@ const AdminProducts = () => {
                     <FilterPrdByPrice />
 
                     <FilterPrdByRating />
-                </div>
+                </div> */}
 
                 <Table>
                     <caption>Productos</caption>
