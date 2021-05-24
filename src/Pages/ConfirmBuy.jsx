@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components'
 import { deleteItemFromCart, incrementQuantity, decrementQuantity, clearCart } from '../Redux/Actions/Cart/CartActions'
+import OrderForm from '../Components/Organisms/OrderForm/OrderForm'
 
 
 const ConfirmBuy = () => {
@@ -54,6 +55,7 @@ const ConfirmBuy = () => {
                     <div className="total">{`Total: ${total}`}</div>
                 </div>
 
+                <OrderForm/>
 
             </div>
 
