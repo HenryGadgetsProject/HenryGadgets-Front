@@ -11,7 +11,6 @@ const Login = () => {
         <div className="container">
             <NavBar className="nav" />
             <Main id="main">
-                <h3>Login Page</h3>
                 <LoginForm/>
             </Main>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateCategory, getCategoryById } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -101,6 +102,8 @@ const EditCategoryForm = ({ categoryId }) => {
 
     const dispatch = useDispatch()
 
+    const history = useHistory()
+
     dispatch(getCategoryById(parseInt(categoryId)))
 
     const category = useSelector(state => state.category.category);
@@ -133,6 +136,7 @@ const EditCategoryForm = ({ categoryId }) => {
             'La categoría se ha agregado con éxito!',
             'success'
         )
+        history.push('/admin/categories')
     }
 
     const handleBlur = (e) => {

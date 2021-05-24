@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
@@ -7,10 +8,20 @@ import Footer from '../Components/Organisms/Footer'
 import { getProductsById } from '../Redux/Actions/Product/ProductActions'
 import StarRatings from 'react-star-ratings'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import { addItemCart } from '../Redux/Actions/Cart/CartActions'
 
 import BigCard from '../Components/Atoms/BigCard'
 import NotFound from './NotFound'
 
+import styled from 'styled-components'
+
+const CartIcon = styled.img`
+    background: url('https://api.iconify.design/icons8:buy.svg?color=white') no-repeat center center / contain;
+    height: 3em;
+    width: 3em;
+    padding: 1.5em;
+`
 
 const Product = ({ productId }) => {
 
@@ -20,14 +31,32 @@ const Product = ({ productId }) => {
 
     const dispatch = useDispatch()
 
+    const history = useHistory()
+
     useEffect(() => {
         dispatch(getProductsById(productId))
     }, [dispatch, productId])
 
     const product = useSelector(state => state.product.product)
-    
+
     if (!product) {
         return <NotFound />
+    }
+
+    const handleClick = () => {
+        const productSelected = { ...product, quantity: 1 }
+
+        dispatch(addItemCart(productSelected))
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El producto se ha agregado al Carrito!',
+            showConfirmButton: false,
+            timer: 2000,
+        })
+
+        history.push('/home')
     }
 
     return (
@@ -36,14 +65,12 @@ const Product = ({ productId }) => {
             <Breadcrumb id="breadcrumb" />
 
             <Main id="main">
-
                 <BigCard>
-
-                    <div class="thumbnail">
-                        <img class="left" src={product.big_image} alt='left' />
+                    <div className="thumbnail">
+                        <img className="left" src={product.big_image} alt='left' />
                     </div>
 
-                    <div class="right">
+                    <div className="right">
                         <Link to='/home'><div className="close">X</div></Link>
                         <h3>{product.name}</h3>
 
@@ -55,15 +82,15 @@ const Product = ({ productId }) => {
                             starRatedColor="gold"
                         />
 
-                        <div class="separator"></div>
+                        <div className="separator"></div>
                         <span>Descripción</span><p>{product.description}</p>
                         <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
                         <span>Precio</span><p>{product.price} $</p>
 
                     </div>
 
-                    {/* <h5>17</h5>
-                    <h6>Mayo</h6> */}
+                    {/* <h5>17</h5> */}
+                    {/* <h6>Ver Opiniones</h6> */}
 
                     {/* <ul>
                         <li><img src={ eyeIcon } alt='eye' /></li>
@@ -71,9 +98,18 @@ const Product = ({ productId }) => {
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
 
-                    <button class="buy">
-                        Comprar
-                    </button>
+                    <Link to='/reviews'>
+                        <button className="review">
+                            Ver Opiniones
+                        </button>
+                    </Link>
+
+                    {product.stock > 0 ? <button className="buy" onClick={handleClick}>
+                        <CartIcon />
+                        </button>
+                        :
+                        null
+                    }
 
                 </BigCard>
             </Main>

@@ -34,19 +34,13 @@ const LogoDivHome = styled.div`
     width           : auto;
 `
 
-// const H2 = styled.h2`
-//     font-size       : 1.4em;
-//     margin-left     : .5em;
-// `
-
 const NavBarHome = () => {
-    const [ navHomeState, setNavHomeState ] = useState(false)
+    const [navHomeState, setNavHomeState] = useState(false)
     const mode = useSelector((state) => state.global.theme)
 
     const location = useLocation()
 
     const changeNavHomeBackground = () => {
-        // console.log(window.scrollY)
         if (window.scrollY >= 200) {
             setNavHomeState(true)
         } else {
@@ -54,30 +48,36 @@ const NavBarHome = () => {
         }
     }
 
-    window.addEventListener('scroll', changeNavHomeBackground)
+    // console.log(location)
+    if (location.pathname === '/home') {
+        window.addEventListener('scroll', changeNavHomeBackground)
+    } else {
+        window.removeEventListener('scroll', changeNavHomeBackground);
+    }
 
     return (
-        <NavHome className={ navHomeState ? "nav-solid" : "nav-cristal" }>
+        <NavHome className={navHomeState ? "nav-solid" : "nav-cristal"}>
             <LogoDivHome>
                 <Link to="/home">
                     {
                         !mode ?
                             <img
                                 id="logo-productman"
-                                src={ LogoLight }
+                                src={LogoLight}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
-                        :
+                            :
                             <img
                                 id="logo-productman"
-                                src={ LogoDark }
+                                src={LogoDark}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
                     }
+                {/* <h1>Henry Gadgets</h1> */}
                 </Link>
                 {/* <H2>
                     <Link to="/home" className="link">

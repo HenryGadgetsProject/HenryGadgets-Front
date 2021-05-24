@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import Select from 'react-select'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateProduct, getProductsById } from '../../../Redux/Actions/Product/ProductActions'
 import Swal from 'sweetalert2'
@@ -105,26 +104,26 @@ const DescriptionIcon = styled.img`
     padding: 1em;
     background: url('https://api.iconify.design/ic:baseline-description.svg?color=white') no-repeat center center / contain;
 `
-const SelectIcon = styled.img`
-    height: 2em;
-    width: 2em;
-    padding: 1em;
-    background: url('https://api.iconify.design/bx:bxs-select-multiple.svg?color=white') no-repeat center center / contain;
-`
+// const SelectIcon = styled.img`
+//     height: 2em;
+//     width: 2em;
+//     padding: 1em;
+//     background: url('https://api.iconify.design/bx:bxs-select-multiple.svg?color=white') no-repeat center center / contain;
+// `
 
-function customStyles(theme) {
-    return {
-        ...theme,
-        colors: {
-            ...theme.colors,
-            primary: 'none',
-            primary25: '#ff1744',
-            neutral10: '#ff1744',
-            danger: 'black',
-            dangerLight: 'gray'
-        }
-    }
-}
+// function customStyles(theme) {
+//     return {
+//         ...theme,
+//         colors: {
+//             ...theme.colors,
+//             primary: 'none',
+//             primary25: '#ff1744',
+//             neutral10: '#ff1744',
+//             danger: 'black',
+//             dangerLight: 'gray'
+//         }
+//     }
+// }
 
 const validate = (input) => {
 
@@ -185,18 +184,16 @@ const EditProductForm = ({ productId }) => {
 
     const product = useSelector(state => state.product.product);
 
-    const cate = product.categories.map(cat => ({ value: cat.id, label: cat.name }))
+    //const cate = product.categories.map(cat => ({ value: cat.id, label: cat.name }))
 
 
-    const categories = useSelector((state) => state.category.categories)
+    //const categories = useSelector((state) => state.category.categories)
 
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
 
-    const [options, setOptions] = useState(cate)
-
-    // console.log('OPTIONS', options)
+    //const [options] = useState(cate)
 
     const [input, setInput] = useState({
         id: product.id,
@@ -213,17 +210,17 @@ const EditProductForm = ({ productId }) => {
 
 
     // Mapeo categories para darle el formato correcto para las opciones de React-Select
-    const selectCategories = categories.map((categories) => {
-        return { value: categories.id, label: categories.name }
-    })
+    // const selectCategories = categories.map((categories) => {
+    //     return { value: categories.id, label: categories.name }
+    // })
 
     // Me hago una copia de los input para luego concatenarle los valores de React-Select. Ej: categories: [1,2,3]
-    const inputCopy = { ...input }
-    const categoriesCopy = [...options]
-    const categoriesValues = categoriesCopy.map((cat) => cat.value)
+    //const inputCopy = { ...input }
+    //const categoriesCopy = [...options]
+    //const categoriesValues = categoriesCopy.map((cat) => cat.value)
 
     // Y finalmente submitData será mi resultado final para el /POST
-    const submitData = Object.assign({}, inputCopy, { categories: categoriesValues })
+    //const submitData = Object.assign({}, inputCopy, { categories: categoriesValues })
 
     const handleChange = (e) => {
         setInput({
@@ -237,7 +234,7 @@ const EditProductForm = ({ productId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (error.name || error.price || error.rating || error.big_image || error.description || error.is_active || error.stock ) {
+        if (error.name || error.price || error.big_image || error.description || error.is_active || error.stock) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -247,7 +244,6 @@ const EditProductForm = ({ productId }) => {
         }
 
         // const newInput = {...input, rating: parseInt(input.rating)}
-        // console.log(newInput);
 
         dispatch(updateProduct(productId, input))
         Swal.fire(
@@ -277,14 +273,14 @@ const EditProductForm = ({ productId }) => {
                             <Label>Nombre </Label>
                             <br />
                             <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange}  ></Input>
-                            {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : <p></p>}
+                            {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
                         </Item>
                         <Item>
                             <PriceIcon />
                             <Label>Precio </Label>
                             <br />
                             <Input name='price' value={input.price} onBlur={handleBlur} onChange={handleChange}  ></Input>
-                            {isTouch.price && error.price ? (<ErrorMsg>{error.price}</ErrorMsg>) : <p></p>}
+                            {isTouch.price && error.price ? (<ErrorMsg>{error.price}</ErrorMsg>) : null}
                         </Item>
                     </Divider>
 
@@ -293,15 +289,15 @@ const EditProductForm = ({ productId }) => {
                             <RatingIcon />
                             <Label>Rating </Label>
                             <br />
-                            <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange}  ></Input>
-                            {isTouch.rating && error.rating ? (<ErrorMsg>{error.rating}</ErrorMsg>) : <p></p>}
+                            <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange} disabled  ></Input>
+                            {isTouch.rating && error.rating ? (<ErrorMsg>{error.rating}</ErrorMsg>) : null}
                         </Item>
                         <Item>
                             <ImageIcon />
                             <Label>Imágen </Label>
                             <br />
                             <Input name='big_image' value={input.big_image} onBlur={handleBlur} onChange={handleChange}  ></Input>
-                            {isTouch.big_image && error.big_image ? (<ErrorMsg>{error.big_image}</ErrorMsg>) : <p></p>}
+                            {isTouch.big_image && error.big_image ? (<ErrorMsg>{error.big_image}</ErrorMsg>) : null}
                         </Item>
                     </Divider>
                     <Divider>
@@ -309,8 +305,8 @@ const EditProductForm = ({ productId }) => {
                             <ActiveIcon />
                             <Label>Publicación Activa </Label>
                             <br />
-                            <Input name='is_active' value={input.is_active} onBlur={handleBlur} onChange={handleChange}   placeholder='True / False'></Input>
-                            {isTouch.is_active && error.is_active ? (<ErrorMsg>{error.is_active}</ErrorMsg>) : <p></p>}
+                            <Input name='is_active' value={input.is_active} onBlur={handleBlur} onChange={handleChange} placeholder='True / False'></Input>
+                            {isTouch.is_active && error.is_active ? (<ErrorMsg>{error.is_active}</ErrorMsg>) : null}
                             {/* <select onChange={handleChange} value={input.is_active}>
                             <option value="true">Activa</option>
                             <option value="false">Oculta</option>
@@ -321,7 +317,7 @@ const EditProductForm = ({ productId }) => {
                             <Label>Cant. de Stock </Label>
                             <br />
                             <Input name='stock' value={input.stock} onBlur={handleBlur} onChange={handleChange}  ></Input>
-                            {isTouch.stock && error.stock ? (<ErrorMsg>{error.stock}</ErrorMsg>) : <p></p>}
+                            {isTouch.stock && error.stock ? (<ErrorMsg>{error.stock}</ErrorMsg>) : null}
                         </Item>
                     </Divider>
 
@@ -330,7 +326,7 @@ const EditProductForm = ({ productId }) => {
                         <Label>Descripción </Label>
                         <br />
                         <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange}  ></LongInput>
-                        {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : <p></p>}
+                        {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
                     </Item>
 
 

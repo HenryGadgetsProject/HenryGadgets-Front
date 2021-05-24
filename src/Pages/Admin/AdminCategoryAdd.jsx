@@ -1,10 +1,6 @@
-
 import React from 'react'
 import Main from '../../Components/Atoms/Main'
-
-
 import CategoryForm from '../../Components/Organisms/CategoryForm'
-
 
 const AdminCategoryAdd = () => {
 

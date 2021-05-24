@@ -5,13 +5,15 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 
 const NotFoundContainer = styled.div`
     display             : flex;
     flex-direction      : column;
-    justify-self        : center;
+    justify-content     : center;
+    align-items         : center;
     margin              : 2vw 10vw;
     max-width           : 100vw;
     padding             : .5em;
@@ -35,6 +37,8 @@ const NotFoundContainer = styled.div`
 `
 
 const NotFound = () => {
+
+    const history = useHistory();
     return (
         <div className="container">
             <NavBar className="nav" />
@@ -47,13 +51,17 @@ const NotFound = () => {
                 <NotFoundContainer>
                     <h3>Error 404 | La página no existe.</h3>
 
-                    <p>Lo sentimos, tu busqueda no ha retornado ningún resultado.</p>
+                    {/* {setTimeout(() => {
+                        history.push('/home')
+                    }, 3000)} */}
+
+                    {/* <p>Lo sentimos, tu busqueda no ha retornado ningún resultado.</p>
                     <p>Probablemente el producto que estás buscando no existe".</p>
-                    <p>Si lo deseas también puedes repetir la busqueda verificando el nombre, intentar una nueva busqueda con otro producto o regresar a la página principal para ver más opciones.</p>
+                    <p>Si lo deseas también puedes repetir la busqueda verificando el nombre, intentar una nueva busqueda con otro producto o regresar a la página principal para ver más opciones.</p> */}
                 </NotFoundContainer>
 
                 <Link to="/home">
-                    <button>Regresar</button>
+                    <button className="review">Regresar</button>
                 </Link>
             </Main>
 

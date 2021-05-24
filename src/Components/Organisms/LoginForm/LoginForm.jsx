@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
@@ -61,12 +61,12 @@ const ButtonContainer = styled.div`
 `
 
 // Iconos
-const NameIcon = styled.img`
-    height: 2em;
-    width: 2em;
-    padding: 1em;
-    background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
-`
+// const NameIcon = styled.img`
+//     height: 2em;
+//     width: 2em;
+//     padding: 1em;
+//     background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
+// `
 const EmailIcon = styled.img`
     margin-top: 2em;
     height: 2em;
@@ -105,20 +105,41 @@ const validate = (input) => {
     return error
 }
 
+
 const LoginForm = () => {
 
+    const JWT = JSON.parse(localStorage.getItem('JWT'))
+    
+    const user = useSelector(state => state.user.user)
+    
     let history = useHistory()
-
+    
+    const dbError = useSelector(state => state.user.error)
+    
+    const loading = useSelector(state => state.user.loading)
+    
     const dispatch = useDispatch()
-
+    
     const [isTouch, setIsTouch] = useState({})
-
+    
     const [error, setError] = useState('')
-
+    
     const [input, setInput] = useState({
         // user: "",
         email: "",
         password: ""
+    })
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
     })
 
     const handleChange = (e) => {
@@ -132,8 +153,11 @@ const LoginForm = () => {
     }
 
     const handleSubmit = (e) => {
+
         e.preventDefault()
+
         dispatch(userLogin(input))
+        
         if (error.email || input.email === "" || error.password) {
             Swal.fire({
                 icon: 'error',
@@ -142,12 +166,22 @@ const LoginForm = () => {
             })
             return
         }
-        Swal.fire(
-            'Listo!',
-            'Te has Logeado con éxito!',
-            'success'
-        )
-        history.push("/home");
+
+        // setTimeout(() => {            
+        //     if (dbError !== '' && loading === false) {
+        //         Toast.fire({
+        //             icon: 'error',
+        //             title: 'Datos incorrectos'
+        //         })
+        //         return
+        //     } 
+            Toast.fire({
+                icon: 'success',
+                title: 'Te has logeado correctamente!'
+            })
+            history.push("/home");              
+        // },1000)
+        
     }
 
     const handleBlur = (e) => {
@@ -157,11 +191,9 @@ const LoginForm = () => {
         })
     }
 
-    // console.log(input)
-
     return (
         <FormContainer>
-            <h3>Login</h3>
+        <h3>Login</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>

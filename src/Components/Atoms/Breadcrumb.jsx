@@ -5,11 +5,11 @@ const Breadcrumb = styled.div`
     color           : ${ props => props.theme.fontColor || '#393E46' };
     display         : flex;
     flex-direction  : row;
-    height          : 7.5vh;
+    height          : 5vh;
     justify-content : center;
-    padding         : 0 3vw;
-    position        : -webkit-sticky;
+    ${'' /* padding         : 0 3vw; */}
     position        : sticky;
+    position        : -webkit-sticky;
     top             : 7em;
     width           : 100%;
     z-index         : 800;

@@ -173,4 +173,3 @@ export default products;
 
 
 // const popularProducts = products.filter(h => h.rating > 4)
-// console.log(popularProducts);
