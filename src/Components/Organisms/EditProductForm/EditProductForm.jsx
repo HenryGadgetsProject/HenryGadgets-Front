@@ -234,7 +234,7 @@ const EditProductForm = ({ productId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (error.name || error.price || error.rating || error.big_image || error.description || error.is_active || error.stock) {
+        if (error.name || error.price || error.big_image || error.description || error.is_active || error.stock) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -289,7 +289,7 @@ const EditProductForm = ({ productId }) => {
                             <RatingIcon />
                             <Label>Rating </Label>
                             <br />
-                            <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange}  ></Input>
+                            <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange} disabled  ></Input>
                             {isTouch.rating && error.rating ? (<ErrorMsg>{error.rating}</ErrorMsg>) : null}
                         </Item>
                         <Item>

@@ -14,27 +14,35 @@ const Input = styled.input`
     font-size           : 1.3em;
     font-weight         : 600;
     height              : 2.5em;
-    margin              : 1.3em 3em 0 0;
+    margin              : 1.3em;
     outline             : none;
     padding-left        : 1em;
     ${'' /* text-transform      : capitalize; */}
     min-width           : 25em;
     ${'' /* width           : 40em; */}
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        margin-right    : 3em;
+    }
 `
 
 const SuggestContainer = styled.div`
     ${'' /* display:none; */}
     ${'' /* border-radius       : .3em; */}
-    /* margin-left         : 1.8em; */
+    margin              : -1.7em 0 0 1.7em;
     height              : 25em;
     ${'' /* max-width           : 21.35em; */}
-    width               : 32.5em;
     overflow            : scroll;
+    scrollbar-width     : none; /* Firefox */
+    width               : 32.5em;
+    -ms-overflow-style  : none; /* IE and Edge */
     &::-webkit-scrollbar {
         display         : none;
     }
-    -ms-overflow-style  : none; /* IE and Edge */
-    scrollbar-width     : none; /* Firefox */
 
     ul {
         display         : contents;
@@ -120,7 +128,7 @@ const SearchBar = () => {
     }
 
     return (
-        <>
+        <div className="search-container">
             <form onSubmit={handleSubmit}>
                 <Input
                     value={inputValue}
@@ -146,7 +154,7 @@ const SearchBar = () => {
                     null
                 }
             </form>
-        </>
+        </div>
     )
 }
 

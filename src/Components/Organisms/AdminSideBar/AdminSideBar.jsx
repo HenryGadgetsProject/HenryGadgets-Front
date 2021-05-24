@@ -2,12 +2,18 @@ import React from 'react'
 import styled from "styled-components"
 import { Link } from 'react-router-dom'
 
+import FilterPrdByCatName from '../FilterPrdByCatName'
+import FilterPrdByStock from '../FilterPrdByStock'
+import FilterPrdByActive from '../FilterPrdByActive'
+import FilterPrdByPrice from '../FilterPrdByPrice'
+import FilterPrdByRating from '../FilterPrdByRating'
+
 const AdminAside = styled.aside`
-    align-items : center;
+    ${'' /* align-items : center; */}
     background  : black;
     border      : none;
-    min-height  : 100%;
-    outline     : none;
+    ${'' /* min-height  : 100%; */}
+    ${'' /* outline     : none; */}
     padding     : 2em;
 
     a {
@@ -37,6 +43,12 @@ const AdminAside = styled.aside`
         font-size       : 2em;
     }
 
+    div.filters {
+        border-top      : .2em solid #FFFFFF;
+        margin          : 4em auto 0;
+        padding         : 2em 0;
+    }
+
 
     ${'' /* =================================================
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
@@ -48,6 +60,14 @@ const AdminAside = styled.aside`
 
         span {
             display     : none;
+        }
+
+        .filters {
+            margin: .5em 0 !important;
+
+            div {
+                width: 90%
+            }
         }
     }
 
@@ -102,6 +122,20 @@ const AdminSideBar = () => {
                 <AddCategoryIcon />
                 <span>Agregar Categorías</span>
             </Link>
+
+            <div className="filters">
+                <h6>Buscar por: </h6>
+
+                <FilterPrdByCatName />
+
+                <FilterPrdByStock />
+
+                <FilterPrdByActive />
+
+                <FilterPrdByPrice />
+
+                <FilterPrdByRating />
+            </div>
         </AdminAside>
     )
 }

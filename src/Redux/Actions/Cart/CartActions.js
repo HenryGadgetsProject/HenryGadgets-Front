@@ -130,7 +130,6 @@ export const getCart = (id) => {
         dispatch({ type: LOADING_CART })
         axios.get(`${HOST}/cart/${id}/cart`)
             .then(response => {
-
                 const cart = response.data.map(item => {
                     return {
                         id: item.product.id,

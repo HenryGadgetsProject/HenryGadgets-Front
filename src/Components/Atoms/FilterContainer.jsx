@@ -5,8 +5,18 @@ const FilterContainer = styled.div`
     display         : flex;
     flex-direction  : column;
     justify-self    : center;
-    padding         : .5em 2em 0 0;
-    width           : 30%;
+    margin          : .5em;
+    padding         : .5em;
+    width           : 100%;
+
+
+    ${'' /* =================================================
+    MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
+    ===================================================== */}
+    @media(min-width: 992px) and (max-width: 1199px) {
+        ${'' /* margin         : .5em; */}
+        width           : 50%;
+    }
 
     
     ${'' /* =================================================
@@ -15,7 +25,7 @@ const FilterContainer = styled.div`
     @media(max-width: 992px) {
         margin      : 0;
         padding     : 0;
-        width       : 100%;
+        width       : 80%;
     }
 `
 

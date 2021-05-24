@@ -14,11 +14,11 @@ const FilterPrdByPrice = () => {
 
     return (
         <FilterContainer>
-            <label htmlFor="price">Buscar por precio: </label>
+            <label htmlFor="price">Precio</label>
             <Select
                 onChange={handleChange}
                 name="price">
-                <option value = "">Todo</option>
+                <option value = "">Todos</option>
                 <option value = "0-20000">Menos de 20.000</option>
                 <option value = "20001-40000">Entre 20.001 y 40.000</option>
                 <option value = "40001-60000">Entre 40.001 y 60.000</option>

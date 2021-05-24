@@ -195,9 +195,9 @@ const BigCardAdmin = ({ product }) => {
 
                 </div>
 
-                <button className="buy">
+                {/* <button className="buy">
                     Comprar
-                </button>
+                </button> */}
 
             </BCA>
         </Link>

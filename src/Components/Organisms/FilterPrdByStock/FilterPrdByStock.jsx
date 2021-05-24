@@ -14,11 +14,11 @@ const FilterPrdByStock = () => {
 
     return (
         <FilterContainer>
-            <label htmlFor="stock">Buscar por existencia: </label>
+            <label htmlFor="stock">Existencia</label>
             <Select
                 onChange={handleChange}
                 name="stock">
-                <option value = "">Todo</option>
+                <option value = "">Todas</option>
                 <option value = "available">Disponible</option>
                 <option value = "not available">No disponible</option>
             </Select>

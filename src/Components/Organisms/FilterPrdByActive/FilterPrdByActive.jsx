@@ -14,11 +14,11 @@ const FilterPrdByActive = () => {
 
     return (
         <FilterContainer>
-            <label htmlFor="is_active">Buscar por activo: </label>
+            <label htmlFor="is_active">Activo</label>
             <Select
                 onChange={handleChange}
                 name="is_active">
-                <option value = "">Todo</option>
+                <option value = "">Todos</option>
                 <option value = "true">Activo</option>
                 <option value = "false">Inactivo</option>
             </Select>

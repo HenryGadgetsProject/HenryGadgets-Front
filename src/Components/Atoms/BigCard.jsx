@@ -51,7 +51,7 @@ const BigCard = styled.div`
     .right {
         margin-left         : 60em;
         margin-right        : 2em;
-        width: 43%
+        width               : 43%
     }
 
     h3 {
@@ -133,51 +133,93 @@ const BigCard = styled.div`
 
     /* Floating action button */
     .buy {
-        background          : #FF1744;
-        border              : .15em solid #FF1744;
+        background          : linear-gradient(to right, #AF0000 , #FF1744);
+        border              : .1em solid #AF0000;
         border-radius       : 3em;
+        cursor              : pointer;
+        ${'' /* color               : #AF0000; */}
+        ${'' /* margin              : 2em auto; */}
+        outline             : none;
+        transition-duration : .5s;
+        &:hover {
+            background      : linear-gradient(to right, #000000 , #FF1744);
+            border-color    : #AF0000;
+            color           : #FFFFFF;
+            transform       : scale(1.10);
+        }
+        &:active {
+            background      : linear-gradient(to right, #000000 , #AF0000);
+            color           : #FFFFFF;
+            font-weight     : bold;
+        }
+
+
+        ${'' /* background          : #FF1744;
+        border              : .15em solid #FF1744;
+        border-radius       : 3em; */}
         bottom              : -1.5em;
         box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-sizing          : border-box;
-        color               : white;
+        ${'' /* color               : white; */}
         font-size           : 1.6em;
         height              : 3.7em;
-        outline             : none;
+        ${'' /* outline             : none; */}
         position            : absolute;
         right               : 2em;
         text-align          : center;
-        transition          : .5s;
+        ${'' /* transition          : .5s; */}
         width               : 8em;
         z-index             : 30;
         -webkit-box-shadow  : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        &:hover {
+        ${'' /* &:hover {
             transform       : scale(1.10);
-        }
+        } */}
     }
 
     .review {
-        background-color    : #FF1744;
-        border              : .15em solid #FF1744;
+        background          : linear-gradient(to right, #AF0000 , #FF1744);
+        border              : .1em solid #AF0000;
         border-radius       : 3em;
+        ${'' /* color               : #AF0000; */}
+        ${'' /* margin              : 2em auto; */}
+        cursor              : pointer;
+        outline             : none;
+        transition-duration : .5s;
+        &:hover {
+            background      : linear-gradient(to right, #000000 , #FF1744);
+            border-color    : #AF0000;
+            color           : #FFFFFF;
+            transform       : scale(1.10);
+        }
+        &:active {
+            background      : linear-gradient(to right, #000000 , #AF0000);
+            color           : #FFFFFF;
+            font-weight     : bold;
+        }
+
+
+        ${'' /* background-color    : #FF1744;
+        border              : .15em solid #FF1744;
+        border-radius       : 3em; */}
         bottom              : -1.5em;
         box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-sizing          : border-box;
         color               : white;
         font-size           : 1.6em;
         height              : 3.7em;
-        outline             : none;
+        ${'' /* outline             : none; */}
         position            : absolute;
         right               : 14em;
         text-align          : center;
-        transition          : .5s;
+        ${'' /* transition          : .5s; */}
         width               : 11em;
         z-index             : 30;
         -webkit-box-shadow  : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        &:hover {
+        ${'' /* &:hover {
             transform       : scale(1.10);
-        }
+        } */}
     }
 
     .close {
@@ -194,8 +236,20 @@ const BigCard = styled.div`
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
-        height: 40em;
-        width: 90em;
+        ${'' /* height: 90em; */}
+        width: 95em;
+
+        .right {
+            margin-left: 58em;
+            width: 35%;
+        }
+
+        .review {
+            right: 12em;
+        }
+
+        ${'' /* height: 40em;
+        width: 90em; */}
     }
 
 
@@ -203,15 +257,48 @@ const BigCard = styled.div`
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
-        ${'' /* margin      : 0; */}
-        display         : flex;
+        ${'' /* display             : flex; */}
+        ${'' /* flex-direction      : column; */}
+        margin              : 5em 2em;
+        min-height          : 100% !important;
+        width               : 100%;
+
+        /* Left side */
+        .thumbnail {
+            ${'' /* display         : flex; */}
+            height          : 20em !important;
+            ${'' /* width           : 44.3em; */}
+            width           : 100%;
+            position        : absolute;
+            left            : 0;
+            margin          : 0 auto;
+        }
+
+        /* Right side of the card */
+        .right {
+            margin          : 19em auto 2em;
+            width           : 80%;
+        }
+
+        /* Right side */
+        h3 {
+            margin-bottom   : 0;
+            padding         : 0;
+        }
+
+        .separator {
+            margin          : .5em 0;
+        }
+
+        p {
+            margin          : .2em 0;
+
+        ${'' /* display         : flex;
         flex-direction  : column;
         width           : 100%;
         margin          : 5em 2em;
 
-        /* Left side */
         .thumbnail {
-            ${'' /* border: 2px solid blue; */}
             display     : flex;
             height      : 50em;
             width       : 50em;
@@ -219,27 +306,30 @@ const BigCard = styled.div`
             margin      : 0 auto;
         }
 
-        ${'' /* img.left {
-            display: flex;
-        } */}
-
-        /* Right side of the card */
         .right {
             margin: 1em auto;
-            width: 80%;
+            width: 80%; */}
         }
 
         /* Floating action button */
         .buy {
-            ${'' /* display: flex; */}
-            width               : 60%;
+            width           : 10em;
+            right           : .5em !important;
+            bottom          : -2.5em;
+        }
+
+        .review {
+            width           : 10em;
+            right           : 11.3em !important;
+            bottom          : -2.5em;
+
+            ${'' /* width               : 60%;
             right               : 2em;
             bottom              : 3em;
             margin: 0 auto;
         }
 
         .review {
-            ${'' /* display: flex; */}
             width               : 60%;
             right               : 2em;
             bottom              : 1em;
@@ -252,7 +342,7 @@ const BigCard = styled.div`
             position            : absolute;
             right               : .8em;
             top                 : .1em;
-            z-index             : 30;
+            z-index             : 30; */}
         }
     }
 `
