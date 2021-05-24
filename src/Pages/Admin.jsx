@@ -47,7 +47,7 @@ const Admin = () => {
                     <Route exact path='/admin/categories/:categoryId'
                         render={({ match }) => <AdminCategoryDetails categoryId={match.params.categoryId} />}
                     />
-                    <Route component={NotFoundAdmin} />
+                    {/* <Route component={NotFoundAdmin} /> */}
                 </AdminSection>
             </Main>
 

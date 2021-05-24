@@ -10,8 +10,8 @@ export const lightTheme = {
     // Color Palette - Light Theme
     colorPalette: {
         darkPrimary: '#c4001d',
-        defaultPrimary: '#FFC107',
-        lightPrimary: '#FFECB3',
+        defaultPrimary: '#FF1744',
+        lightPrimary: '#FF1744',
         textPrimary: '#212121',
         accent: '#A67D02',
         primaryText: '#212121',
@@ -242,7 +242,7 @@ const GlobalStyle = createGlobalStyle`
         top             : 10%;
         right           : 5%;
         color           : var(--pure-white);
-        font-size       : 10vw;
+        font-size       : 10em;
         text-shadow     : 3px 5px 8px var(--pure-black);
     }
 
@@ -481,6 +481,7 @@ const GlobalStyle = createGlobalStyle`
         ================================================= */}
         span.slideTitle {
             top             : 50%;
+            font-size       : 5em;
         }
 
 

@@ -128,7 +128,7 @@ const SearchBar = () => {
     }
 
     return (
-        <>
+        <div className="search-container">
             <form onSubmit={handleSubmit}>
                 <Input
                     value={inputValue}
@@ -154,7 +154,7 @@ const SearchBar = () => {
                     null
                 }
             </form>
-        </>
+        </div>
     )
 }
 

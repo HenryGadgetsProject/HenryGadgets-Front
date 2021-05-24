@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
@@ -30,6 +31,8 @@ const Product = ({ productId }) => {
 
     const dispatch = useDispatch()
 
+    const history = useHistory()
+
     useEffect(() => {
         dispatch(getProductsById(productId))
     }, [dispatch, productId])
@@ -52,6 +55,8 @@ const Product = ({ productId }) => {
             showConfirmButton: false,
             timer: 2000,
         })
+
+        history.push('/home')
     }
 
     return (
@@ -99,9 +104,12 @@ const Product = ({ productId }) => {
                         </button>
                     </Link>
 
-                    <button className="buy" onClick={handleClick}>
+                    {product.stock > 0 ? <button className="buy" onClick={handleClick}>
                         <CartIcon />
-                    </button>
+                        </button>
+                        :
+                        null
+                    }
 
                 </BigCard>
             </Main>
