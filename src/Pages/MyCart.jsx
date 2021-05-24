@@ -111,9 +111,9 @@ const MyCart = () => {
 
     const history = useHistory()
 
-    // const categories = useSelector(state => state.category.categories);
-    const products = useSelector(state => state.cart.cartList)
 
+    const products = useSelector(state => state.cart.cartList)
+    const user = useSelector(state => state.user.user)
     const [total, setTotal] = useState()
 
     useEffect(() => {
@@ -126,6 +126,11 @@ const MyCart = () => {
     }, [products])
 
     const handleConfirmation = () => {
+
+        if (!user.id) {
+            history.push('/login')
+            return
+        }
 
         if (products.length > 0) {
             history.push('/confirmation')

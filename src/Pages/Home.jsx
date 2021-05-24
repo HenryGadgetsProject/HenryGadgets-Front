@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import NavBarHome from '../Components/Organisms/NavBarHome'
-import Header from '../Components/Atoms/Header'
+// import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
@@ -57,13 +57,13 @@ const Button = styled.button`
         outline: none;
     }
 `
-const LoadMoreButton = styled.button`
-    padding: 1rem;
-    background-color: #ff1744;
-    color: black;
-    font-size: 1.2em;
-    border: 1px solid black;
-`
+// const LoadMoreButton = styled.button`
+//     padding: 1rem;
+//     background-color: #ff1744;
+//     color: black;
+//     font-size: 1.2em;
+//     border: 1px solid black;
+// `
 
 const Home = () => {
     const dispatch = useDispatch()
@@ -124,9 +124,9 @@ const Home = () => {
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
         }
     }
-    const handleMoreBtn = () => {
-        setItemsPerPage(itemsPerPage + 8)
-    }
+    // const handleMoreBtn = () => {
+    //     setItemsPerPage(itemsPerPage + 8)
+    // }
 
     let pageIncrementBtn = null
     if (pages.length > maxPageNumberLimit) {
@@ -212,7 +212,7 @@ const Home = () => {
                     <div className="popular-products">
                         {/* <TopServices - Cards /> */}
                         <ProductCards
-                            products = { currentItems }
+                            products={currentItems}
                         />
 
                         {/* Pasamos la parte lógica hacia ProductCards para ahorrar código en Home */}

@@ -231,7 +231,7 @@ export const promoteUser = (id) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
         axios.post(`${HOST}/promote/${id}`)
-            .then(response => {
+            .then(() => {
                 dispatch(
                     {
                         type: PROMOTE_USER_SUCCESS,

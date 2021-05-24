@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from '../../Components/Atoms/Table'
 
@@ -36,6 +36,14 @@ const AdminUsers = () => {
     const dispatch = useDispatch();
 
     const users = useSelector(state => state.user.users);
+    const [change, setChange] = useState(false)
+
+    useEffect(() => {
+        dispatch(getUsers())
+        setChange(false)
+    }, [change])
+
+
 
     const deleteHandler = (id) => {
         Swal.fire({
@@ -58,6 +66,11 @@ const AdminUsers = () => {
                     )
                 }
             })
+    }
+
+    const promoteHandler = (id) => {
+        dispatch(promoteUser(id))
+        setChange(true)
     }
 
 
@@ -84,8 +97,8 @@ const AdminUsers = () => {
                         <td data-label="Nombres">{user.first_name}</td>
                         <td data-label="Apellidos">{user.last_name}</td>
                         <td data-label="Correo">{user.email}</td>
-                        <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin/>}</td>
-                        <td data-label="Editar" className="center-text" >{(user.is_admin) ? null : <PromoteIcon/>}</td>
+                        <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin />}</td>
+                        <td data-label="Editar" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
                         <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id)}><DeleteIcon /></td>
                     </tr>
                 ))}
