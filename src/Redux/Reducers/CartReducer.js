@@ -8,6 +8,9 @@ import {
     INCREMENT_QUANTITY,
     DECREMENT_QUANTITY,
     GET_CART_SUCCESS,
+    SAVE_ORDER_ID,
+    ORDER_LOADING,
+    ORDER_ERROR,
 
 } from '../Actions/Cart/CartActionsType'
 
@@ -20,7 +23,8 @@ const initialState = {
     cartList: cartFromLocalStorage,
     error: '',
     total: 0.00,
-    itemCount: cartFromLocalStorage.length
+    itemCount: cartFromLocalStorage.length,
+    orderId: null
 }
 
 const CartReducer = ((state = initialState, action) => {
@@ -120,6 +124,30 @@ const CartReducer = ((state = initialState, action) => {
                 ...state,
                 error: action.payload,
                 loading: false
+            }
+        }
+
+        case SAVE_ORDER_ID: {
+            return {
+                ...state,
+                loading: false,
+                error: '',
+                orderId: action.payload
+            }
+        }
+
+        case ORDER_LOADING: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+
+        case ORDER_ERROR: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
             }
         }
 

@@ -12,7 +12,10 @@ import {
     INCREMENT_QUANTITY,
     DECREMENT_QUANTITY,
     //SAVE_CART_TO_DB,
-    GET_CART_SUCCESS
+    GET_CART_SUCCESS,
+    SAVE_ORDER_ID,
+    ORDER_LOADING,
+    ORDER_ERROR,
 } from './CartActionsType'
 
 
@@ -95,6 +98,36 @@ export const deleteCartFromDB = (userId) => {
         })
 
 }
+
+
+
+
+export const createOrder = (userId, body,) => {
+    return (dispatch) => {
+        dispatch({ type: ORDER_LOADING })
+        axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
+            .then(response => {
+                const id = response.data.id
+                console.log(response.data.id)
+                dispatch(
+                    {
+                        type: SAVE_ORDER_ID,
+                        payload: id
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: ORDER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
 
 
 

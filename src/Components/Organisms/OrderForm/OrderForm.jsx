@@ -4,9 +4,11 @@ import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
 
+
 import styled from 'styled-components'
 
 import axios from 'axios'
+import { createOrder } from '../../../Redux/Actions/Cart/CartActions'
 
 const FormContainer = styled.div`
     padding: 2em;
@@ -113,6 +115,7 @@ const validate = (input) => {
 const OrderForm = ({ total }) => {
 
     const user = useSelector(state => state.user.user)
+    const orderId = useSelector(state => state.cart.orderId)
 
     const dispatch = useDispatch()
 
@@ -120,7 +123,7 @@ const OrderForm = ({ total }) => {
 
     const [error, setError] = useState('')
 
-    const [orderId, setOrderId] = useState(null)
+
 
     const [input, setInput] = useState({
         street: "",
@@ -138,22 +141,23 @@ const OrderForm = ({ total }) => {
             ...input, [e.target.name]: e.target.value
         }))
     }
-    
+
     const handleBlur = (e) => {
         setIsTouch({
             ...isTouch,
             [e.target.name]: true
         })
     }
-    
+
     const handleSubmit = (e) => {
         e.preventDefault()
-
         const body = { ...input, state: 'created', total_price: total }
-        axios.put(`http://localhost:3001/orders/orders/${user.id}`, body)
-            .then(response => {setOrderId(response.data.id)
-                console.log('Listo papi te lo puse en Created', response.data)
-            })
+        dispatch(createOrder(user.id, body))
+
+        // axios.put(`http://localhost:3001/orders/orders/${user.id}`, body)
+        //     .then(response => {setOrderId(response.data.id)
+        //         console.log('Listo papi te lo puse en Created', response.data)
+        //     })
 
         // console.log(JSON.stringify({ ...input, state: 'created', total_price: total }, null, 3))
         // Swal.fire(
@@ -164,10 +168,27 @@ const OrderForm = ({ total }) => {
     }
 
 
-    const handleProcessing = () => {
+    const handleAdressProcessing = () => {
+        console.log('entro a processing')
+        console.log(orderId)
         axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
-            .then(response => console.log('Listo papi te lo puse en Processing ahora', response.data))
-        
+            .then(response => {
+                console.log(response.data)
+
+            })
+
+        // const order = {
+        //     description: "Henry Gadgets",
+        //     price: total,
+        //     quantity: 1
+        // }
+
+        // axios.post(`http://localhost:3001/payment/${orderId}`, order)
+        //     .then(response => window.open(response.data.url))
+    }
+
+    const handlePayment = () => {
+
         const order = {
             description: "Henry Gadgets",
             price: total,
@@ -176,6 +197,7 @@ const OrderForm = ({ total }) => {
 
         axios.post(`http://localhost:3001/payment/${orderId}`, order)
             .then(response => window.open(response.data.url))
+
     }
 
 
@@ -227,7 +249,11 @@ const OrderForm = ({ total }) => {
             </Form>
 
             <ButtonContainer>
-                    <Button onClick={handleProcessing}>Processing</Button>
+                <Button onClick={handleAdressProcessing}>Processing</Button>
+            </ButtonContainer>
+
+            <ButtonContainer>
+                <Button onClick={handlePayment}>Pagar</Button>
             </ButtonContainer>
 
         </FormContainer>

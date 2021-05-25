@@ -44,7 +44,7 @@ const ConfirmBuy = () => {
 
                 <div className="resume">
                     {products.map(product => (
-                        <div className="line">
+                        <div className="line" key={product.id}>
                             <div className="name">{product.name}</div>
                             <div className="quantity">{product.quantity}</div>
                             <div className="price">{product.price}</div>
