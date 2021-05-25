@@ -5,6 +5,7 @@ import NavBar from '../Components/Organisms/NavBar'
 import StarRatings from 'react-star-ratings'
 
 import styled from 'styled-components'
+import ReviewsForm from '../Components/Organisms/ReviewsForm'
 
 const Container = styled.div`
     display: flex;
@@ -45,32 +46,7 @@ const Reviews = ({id, description, rating}) => {
                 <h1>Pagina de Reviews</h1>
 
                 <Container>
-                    <Item>
-                        <Title>Opinion</Title>
-                        <Description>"El mejor del mercadoEl mejor del mercadoEl mejor del mercadoEl mejor del mercado"</Description>
-                        <Title>Puntaje</Title>
-                        <StarRatings
-                                rating={rating5}
-                                starDimension="1.2em"
-                                starSpacing=".2em"
-                                numberOfStars={5}
-                                starRatedColor="gold"
-                        />
-                    </Item>
-
-                    <Item>
-                        <Title>Opinion</Title>
-                        <Description>"El mejor del mercadoEl mejor del mercadoEl mejor del mercadoEl mejor del mercado"</Description>
-                        <Title>Puntaje</Title>
-                        <StarRatings
-                                rating={rating5}
-                                starDimension="1.2em"
-                                starSpacing=".2em"
-                                numberOfStars={5}
-                                starRatedColor="gold"
-                        />
-                    </Item>
-
+                    {/* Mapear Items */}
                     <Item>
                         <Title>Opinion</Title>
                         <Description>"El mejor del mercadoEl mejor del mercadoEl mejor del mercadoEl mejor del mercado"</Description>
@@ -84,6 +60,8 @@ const Reviews = ({id, description, rating}) => {
                         />
                     </Item>
                 </Container>
+
+                <ReviewsForm/>
 
             <Footer/>
         </>
