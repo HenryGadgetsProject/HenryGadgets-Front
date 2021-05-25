@@ -138,18 +138,24 @@ const OrderForm = ({ total }) => {
             ...input, [e.target.name]: e.target.value
         }))
     }
-
+    
+    const handleBlur = (e) => {
+        setIsTouch({
+            ...isTouch,
+            [e.target.name]: true
+        })
+    }
+    
     const handleSubmit = (e) => {
         e.preventDefault()
 
         const body = { ...input, state: 'created', total_price: total }
         axios.put(`http://localhost:3001/orders/orders/${user.id}`, body)
-            .then(response => setOrderId(response.data.id))
+            .then(response => {setOrderId(response.data.id)
+                console.log('Listo papi te lo puse en Created', response.data)
+            })
 
-        console.log(orderId)
-
-
-        console.log(JSON.stringify({ ...input, state: 'created', total_price: total }, null, 3))
+        // console.log(JSON.stringify({ ...input, state: 'created', total_price: total }, null, 3))
         // Swal.fire(
         //     'Listo!',
         //     'La categoría se ha agregado con éxito!',
@@ -157,13 +163,20 @@ const OrderForm = ({ total }) => {
         // )
     }
 
-    const handleBlur = (e) => {
-        setIsTouch({
-            ...isTouch,
-            [e.target.name]: true
-        })
-    }
 
+    const handleProcessing = () => {
+        axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
+            .then(response => console.log('Listo papi te lo puse en Processing ahora', response.data))
+        
+        const order = {
+            description: "Henry Gadgets",
+            price: total,
+            quantity: 1
+        }
+
+        axios.post('http://localhost:3001/payment/', order)
+            .then(response => console.log('Este es tu link de Mercado Pago', response.data))
+    }
 
 
     return (
@@ -212,6 +225,11 @@ const OrderForm = ({ total }) => {
                 </ButtonContainer>
 
             </Form>
+
+            <ButtonContainer>
+                    <Button onClick={handleProcessing}>Processing</Button>
+            </ButtonContainer>
+
         </FormContainer>
     )
 }
