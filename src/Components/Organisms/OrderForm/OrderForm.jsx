@@ -174,8 +174,8 @@ const OrderForm = ({ total }) => {
             quantity: 1
         }
 
-        axios.post('http://localhost:3001/payment/', order)
-            .then(response => console.log('Este es tu link de Mercado Pago', response.data))
+        axios.post(`http://localhost:3001/payment/${orderId}`, order)
+            .then(response => window.open(response.data.url))
     }
 
 
