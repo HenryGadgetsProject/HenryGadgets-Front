@@ -13,7 +13,9 @@ import {
     deleteItemFromCart,
     incrementQuantity,
     decrementQuantity,
-    clearCart
+    clearCart,
+    deleteCartFromDB,
+    saveCartToDB
 } from '../Redux/Actions/Cart/CartActions'
 
 import styled from 'styled-components'
@@ -187,6 +189,7 @@ const DeleteIcon = styled.img`
 const MyCart = () => {
 
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.cartList)
 
     const history = useHistory()
 
@@ -211,6 +214,8 @@ const MyCart = () => {
             return
         }
 
+        deleteCartFromDB(user.id)
+        saveCartToDB(cart, user.id)
         if (products.length > 0) {
             history.push('/confirmation')
         }
@@ -258,9 +263,9 @@ const MyCart = () => {
                 <Main id="main">
                     <aside>
                         {/* <div className="buttons"> */}
-                            <button className="btn btn-md" onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
-                            <button className="btn btn-md" onClick={() => history.push('/home')}>Seguir Comprando</button>
-                            <button className="btn btn-md" onClick={handleConfirmation}>Confirmar Compra</button>
+                        <button className="btn btn-md" onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
+                        <button className="btn btn-md" onClick={() => history.push('/home')}>Seguir Comprando</button>
+                        <button className="btn btn-md" onClick={handleConfirmation}>Confirmar Compra</button>
                         {/* </div> */}
                     </aside>
 

@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 
+import axios from 'axios'
+
 const FormContainer = styled.div`
     padding: 2em;
     background: #424242;
@@ -108,13 +110,17 @@ const validate = (input) => {
     return error
 }
 
-const OrderForm = () => {
+const OrderForm = ({ total }) => {
+
+    const user = useSelector(state => state.user.user)
 
     const dispatch = useDispatch()
 
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
+
+    const [orderId, setOrderId] = useState(null)
 
     const [input, setInput] = useState({
         street: "",
@@ -135,6 +141,15 @@ const OrderForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        const body = { ...input, state: 'created', total_price: total }
+        axios.put(`http://localhost:3001/orders/orders/${user.id}`, body)
+            .then(response => setOrderId(response.data.id))
+
+        console.log(orderId)
+
+
+        console.log(JSON.stringify({ ...input, state: 'created', total_price: total }, null, 3))
         // Swal.fire(
         //     'Listo!',
         //     'La categoría se ha agregado con éxito!',
@@ -149,7 +164,7 @@ const OrderForm = () => {
         })
     }
 
-    console.log(input)
+
 
     return (
         <FormContainer>

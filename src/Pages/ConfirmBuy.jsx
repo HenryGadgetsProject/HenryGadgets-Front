@@ -55,7 +55,8 @@ const ConfirmBuy = () => {
                     <div className="total">{`Total: ${total}`}</div>
                 </div>
 
-                <OrderForm/>
+                {console.log('TOTAL', total)}
+                <OrderForm total={total} />
 
             </div>
 
