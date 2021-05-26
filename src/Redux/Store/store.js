@@ -5,14 +5,15 @@ import productReducer from '../Reducers/ProductReducer'
 import userReducer from '../Reducers/UserReducer'
 import globalReducer from '../Reducers/GlobalReducer'
 import cartReducer from '../Reducers/CartReducer'
-
+import reviewReducer from '../Reducers/ReviewReducer'
 
 const rootReducer = combineReducers({
     product: productReducer,
     category: categoriesReducer,
     global: globalReducer,
     user: userReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    review: reviewReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
