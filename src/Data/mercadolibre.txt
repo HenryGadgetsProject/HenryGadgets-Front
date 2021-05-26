@@ -1,0 +1,11 @@
+? collection_id=1237078377
+& collection_status=approved
+& payment_id=1237078377
+& status=approved
+& external_reference=null
+& payment_type=credit_card
+& merchant_order_id=2718711397
+& preference_id=334254407-c13ae7a3-1b0f-438f-b706-6bc18cc3abb9
+& site_id=MLA
+& processing_mode=aggregator
+& merchant_account_id=null

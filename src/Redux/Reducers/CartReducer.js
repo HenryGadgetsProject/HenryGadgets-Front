@@ -11,6 +11,9 @@ import {
     SAVE_ORDER_ID,
     ORDER_LOADING,
     ORDER_ERROR,
+    MAIL_SENDING,
+    MAIL_SUCCESS,
+    MAIL_ERROR,
 
 } from '../Actions/Cart/CartActionsType'
 
@@ -24,7 +27,8 @@ const initialState = {
     error: '',
     total: 0.00,
     itemCount: cartFromLocalStorage.length,
-    orderId: null
+    orderId: null,
+    status: null
 }
 
 const CartReducer = ((state = initialState, action) => {
@@ -144,6 +148,29 @@ const CartReducer = ((state = initialState, action) => {
         }
 
         case ORDER_ERROR: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+        case MAIL_SENDING: {
+            return {
+                ...state,
+                loading: true,
+                error: ''
+            }
+        }
+        case MAIL_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: '',
+                status: action.payload
+            }
+        }
+
+        case MAIL_ERROR: {
             return {
                 ...state,
                 loading: false,

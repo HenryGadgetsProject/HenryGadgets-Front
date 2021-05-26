@@ -16,6 +16,9 @@ import {
     SAVE_ORDER_ID,
     ORDER_LOADING,
     ORDER_ERROR,
+    MAIL_SENDING,
+    MAIL_SUCCESS,
+    MAIL_ERROR,
 } from './CartActionsType'
 
 
@@ -127,6 +130,36 @@ export const createOrder = (userId, body,) => {
             })
     }
 }
+
+export const sendMail = (body) => {
+    console.log(body)
+    return (dispatch) => {
+        dispatch({ type: MAIL_SENDING })
+        axios.post(`http://localhost:3001/email/buy-confirmation`, body)
+            .then(response => {
+
+                console.log("RESPONSE", response.status)
+                dispatch(
+                    {
+                        type: MAIL_SUCCESS,
+                        payload: response.status
+
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: MAIL_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+
 
 
 
