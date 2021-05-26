@@ -13,3 +13,7 @@ export const SAVE_ORDER_ID = 'SAVE_ORDER_ID'
 export const ORDER_LOADING = 'ORDER_LOADING'
 export const ORDER_ERROR = 'ORDER_ERROR'
 
+export const MAIL_SENDING = 'MAIL_SENDING'
+export const MAIL_SUCCESS = 'MAIL_SUCCESS'
+export const MAIL_ERROR = 'MAIL_ERROR'
+

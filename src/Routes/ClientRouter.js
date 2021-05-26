@@ -14,6 +14,7 @@ import UserProfile from '../Pages/User/UserProfile'
 import Logout from '../Pages/User/Logout'
 import Reviews from '../Pages/Reviews'
 import ConfirmBuy from '../Pages/ConfirmBuy'
+import BuySuccess from '../Pages/BuySuccess'
 
 const ClientRouter = () => {
     return (
@@ -36,6 +37,10 @@ const ClientRouter = () => {
                     render={({ match }) => <Product productId={match.params.productId} />}
                 />
                 <Route path="/confirmation" component={ConfirmBuy} />
+                <Route path="/success/:orderId"
+                    render={({ match }) => <BuySuccess orderId={match.params.orderId} />}
+                />
+
                 <Route component={NotFound} />
 
             </Switch>
