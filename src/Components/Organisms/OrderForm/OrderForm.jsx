@@ -18,6 +18,7 @@ const FormContainer = styled.div`
       text-align: center;
       color: #FFFFFF;
     }
+    margin-bottom: 10em;
 `
 const Form = styled.form`
     padding: 2em;
@@ -46,6 +47,10 @@ const Button = styled.button`
     border-radius: .3em;
     transition: box-shadow 300ms ease-in-out,
     color 300ms ease-in-out;
+    &:disabled {
+        background: gray;
+        border: .15em solid white;
+    }
     &:hover {
         color: black;
         box-shadow: 0 0 40px 40px #ff1744 inset;
@@ -123,7 +128,9 @@ const OrderForm = ({ total }) => {
 
     const [error, setError] = useState('')
 
+    const [process, setProcess] = useState('false')
 
+    const [payment, setPayment] = useState('false')
 
     const [input, setInput] = useState({
         street: "",
@@ -150,14 +157,13 @@ const OrderForm = ({ total }) => {
     }
 
     const handleSubmit = (e) => {
+
+        setProcess('true')
+
         e.preventDefault()
+
         const body = { ...input, state: 'created', total_price: total }
         dispatch(createOrder(user.id, body))
-
-        // axios.put(`http://localhost:3001/orders/orders/${user.id}`, body)
-        //     .then(response => {setOrderId(response.data.id)
-        //         console.log('Listo papi te lo puse en Created', response.data)
-        //     })
 
         // console.log(JSON.stringify({ ...input, state: 'created', total_price: total }, null, 3))
         // Swal.fire(
@@ -169,6 +175,9 @@ const OrderForm = ({ total }) => {
 
 
     const handleAdressProcessing = () => {
+
+        setPayment('true')
+
         console.log('entro a processing')
         console.log(orderId)
         axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
@@ -176,15 +185,7 @@ const OrderForm = ({ total }) => {
                 console.log(response.data)
 
             })
-
-        // const order = {
-        //     description: "Henry Gadgets",
-        //     price: total,
-        //     quantity: 1
-        // }
-
-        // axios.post(`http://localhost:3001/payment/${orderId}`, order)
-        //     .then(response => window.open(response.data.url))
+        
     }
 
     const handlePayment = () => {
@@ -249,7 +250,7 @@ const OrderForm = ({ total }) => {
             </Form>
 
             <ButtonContainer>
-                <Button onClick={handleAdressProcessing}>Processing</Button>
+                <Button onClick={handleAdressProcessing}>Procesar</Button>
             </ButtonContainer>
 
             <ButtonContainer>
