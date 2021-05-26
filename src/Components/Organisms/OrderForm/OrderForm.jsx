@@ -160,8 +160,6 @@ const OrderForm = ({ total }) => {
 
         setProcess('true')
 
-        console.log(process)
-
         e.preventDefault()
 
         const body = { ...input, state: 'created', total_price: total }
@@ -252,11 +250,11 @@ const OrderForm = ({ total }) => {
             </Form>
 
             <ButtonContainer>
-                <Button onClick={handleAdressProcessing} disabled={process}>Procesar</Button>
+                <Button onClick={handleAdressProcessing}>Procesar</Button>
             </ButtonContainer>
 
             <ButtonContainer>
-                <Button onClick={handlePayment} disabled={payment}>Pagar</Button>
+                <Button onClick={handlePayment}>Pagar</Button>
             </ButtonContainer>
 
         </FormContainer>
