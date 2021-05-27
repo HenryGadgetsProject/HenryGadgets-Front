@@ -14,7 +14,7 @@ import {
     MAIL_SENDING,
     MAIL_SUCCESS,
     MAIL_ERROR,
-
+    CHANGE_ORDER_STATUS_SUCCESS
 } from '../Actions/Cart/CartActionsType'
 
 
@@ -175,6 +175,15 @@ const CartReducer = ((state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        }
+
+        case CHANGE_ORDER_STATUS_SUCCESS: {
+            return {
+                ...state,
+                cartList: state.cartList.map((elem) =>
+                    elem.id === action.payload.id ? { ...elem, status: 'completed' } : elem
+                ),
             }
         }
 
