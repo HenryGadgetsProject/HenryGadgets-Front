@@ -95,7 +95,10 @@ const AddCategoryIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
 `
 const UserIcon = styled.img`
-background: url('https://api.iconify.design/bx:bxs-user.svg?color=white') no-repeat center center / contain;
+    background: url('https://api.iconify.design/bx:bxs-user.svg?color=white') no-repeat center center / contain;
+`
+const OrderIcon = styled.img`
+    background: url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white') no-repeat center center / contain;
 `
 
 const AdminSideBar = () => {
@@ -112,6 +115,11 @@ const AdminSideBar = () => {
             <Link to='/admin/users'>
                 <UserIcon/>
                 <span>Usuarios</span>
+            </Link>
+
+            <Link to='/admin/orders'>
+                <OrderIcon/>
+                <span>Ordenes</span>
             </Link>
 
             <Link to='/admin/product'>

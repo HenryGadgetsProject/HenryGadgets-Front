@@ -437,6 +437,80 @@ const GlobalStyle = createGlobalStyle`
     }
 
 
+    ${'' /* =================================================
+    SECTION BUYSUCCESS
+    ===================================================== */}
+
+    .success-container{
+        display: flex;
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:center
+    }
+
+    .success-cart{
+        padding:2rem;
+        /* border:1px solid #000000;
+        border-radius:2.5rem */
+    }
+    .success-product{
+        display: flex;
+        justify-content:flex-start;        
+        border-bottom:1px dotted #000000;
+        padding: 2rem;
+        font-size:1.6rem;
+    }
+
+    .success-product div{
+        margin-right:2.5rem;
+    }
+
+    .product-name{
+        width:200px;
+    }
+
+    .product-quantity{
+        width:20px;
+    }
+
+    .product-price{
+        width:50px;
+        text-align: right;
+    }
+    .product-total{
+        width:50px;
+        text-align: right;
+    }
+
+    .success-total{
+        width:100%;
+        padding:2rem;
+        font-size:1.6rem;
+        text-align: right;
+        padding-right: 4.5rem;
+    }
+
+    .success-payment{
+        display: flex;
+        flex-direction: column;
+        align-items :flex-start ;
+        border-top:1px dotted #000000;       
+        border-bottom:1px dotted #000000;
+        padding: 2rem;
+        font-size:1.6rem;
+    }
+
+    .mail{
+        margin-top:2rem;
+    }
+
+    .mail button{
+        background-color:red;
+        padding:1rem 2rem;
+        border-color:#FFFFFF;
+    }
+
+
 
     ${'' /* =================================================
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
