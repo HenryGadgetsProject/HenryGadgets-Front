@@ -12,7 +12,8 @@ import {
     EDIT_USER_SUCCESS,
     DELETE_USER_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
-    PROMOTE_USER_SUCCESS
+    PROMOTE_USER_SUCCESS,
+    RESET_PASSWORD_SUCCESS
 } from './UserActionTypes'
 
 import { addItemCart } from '../Cart/CartActions'
@@ -235,6 +236,31 @@ export const promoteUser = (id) => {
                 dispatch(
                     {
                         type: PROMOTE_USER_SUCCESS,
+                        payload: id
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const resetPassword = (id) => {
+    return (dispatch) => {
+        dispatch({ type: USER_LOADING })
+        axios.post(`${HOST}/forcepassword/${id}`)
+            .then((response) => {
+                console.log('LO QUE DEVUELVE EL RESET', response.data)
+                dispatch(
+                    {
+                        type: RESET_PASSWORD_SUCCESS,
                         payload: id
                     }
                 )

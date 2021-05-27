@@ -41,10 +41,7 @@ const AdminOrders = () => {
 
     const [term, setTerm] = useState('')
 
-    // useEffect(() => {
-    //     dispatch(getOrders())
-    //     // setChange(false)
-    // }, [term])
+
 
     const handleTerm = (term) => {
         dispatch(filterOrders(term))
