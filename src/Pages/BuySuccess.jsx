@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import { useSelector } from 'react-redux'
@@ -21,22 +21,12 @@ const BuySuccess = ({ orderId }) => {
     const cart = useSelector(state => state.cart.cartList)
     const status = useSelector(state => state.cart.status)
 
+    const [flag, setFlag] = useState({})
+
     // const newCart = cart;
 
-    const client = {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email
-    }
 
     const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
-
-    const body = {
-        products: cart,
-        client: client,
-        orderId: orderId,
-        total: total
-    }
 
     const Toast = Swal.mixin({
         toast: true,
@@ -50,14 +40,58 @@ const BuySuccess = ({ orderId }) => {
         }
     })
 
+    // dispatch(sendMail(body))
+    // dispatch(dispatch(clearCart))
+    // Toast.fire({
+    //     icon: 'success',
+    //     title: 'Te hemos enviado un mail'
+    // })
+
+    console.log(values.status);
+    
+    const client = {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email
+    }
+
+
+    const body = {
+        products: cart,
+        client: client,
+        orderId: orderId,
+        total: total
+    }
+
+    useEffect(() => {
+        if(values.status === 'approved') {
+            console.log(body)
+            // setFlag(body)
+            console.log('entre a useEffect con value', values.status, 'y body de', body)
+            console.log('user de', user)
+            setTimeout(() => {
+                dispatch(sendMail(body))
+                dispatch(dispatch(clearCart))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Te hemos enviado un mail'
+                })
+                history.push("/home")
+            }, 4000)
+            
+            return
+        }
+    }, [user])
+
+
     const handleClick = () => {
-        dispatch(sendMail(body))
-        dispatch(dispatch(clearCart))
-        Toast.fire({
-            icon: 'success',
-            title: 'Te hemos enviado un mail'
-        })
-        history.push("/home");
+        // dispatch(sendMail(body))
+        // dispatch(dispatch(clearCart))
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Te hemos enviado un mail'
+        // })
+        // history.push("/home");
 
     }
 
@@ -94,7 +128,7 @@ const BuySuccess = ({ orderId }) => {
                         <div className="payment-id"><span>Id de pago:</span>{values.payment_id}</div>
 
                     </div>
-                    <div className="mail"><button onClick={handleClick}>Recir mail</button></div>
+                    {/* <div className="mail"><button onClick={handleClick}>Recir mail</button></div> */}
                     {(status === 200) ? <h2>enviado</h2> : null}
                     {/* <div><h2>{JSON.stringify(values, null, 2)}</h2></div> */}
                 </div>

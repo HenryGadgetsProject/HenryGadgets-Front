@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components'
 // THEME CREATION
 
 export const lightTheme = {
-    // background          : 'linear-gradient(to right, #FE4918, #FFF8DC)',
     background: 'linear-gradient(to right, #FF1744 , #AF0000)',
     fontColor: '#212121',
 
@@ -185,7 +184,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .carousel-root {
-        width       : calc(100vw - 1.65em) !important;
+        ${'' /* width       : calc(100vw - 1.65em) !important; */}
+        width       : 100vw !important;
     }
 
     .carousel {
@@ -247,7 +247,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .category-slide{
-        cursor: pointer;
+        cursor          : pointer;
     }
 
     #breadcrumb-home {

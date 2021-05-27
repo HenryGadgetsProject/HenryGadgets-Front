@@ -105,29 +105,71 @@ export const deleteCartFromDB = (userId) => {
 
 
 
+// export const createOrder = (userId, body,) => {
+//     return (dispatch) => {
+//         dispatch({ type: ORDER_LOADING })
+//         axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
+//             .then(response => {
+//                 const id = response.data.id
+//                 console.log(response.data.id)
+//                 dispatch(
+//                     {
+//                         type: SAVE_ORDER_ID,
+//                         payload: id
+//                     }
+//                 )
+//             })
+//             .catch(error => {
+//                 const errorMsg = error.message
+//                 dispatch(
+//                     {
+//                         type: ORDER_ERROR,
+//                         payload: errorMsg
+//                     }
+//                 )
+//             })
+//     }
+// }
+
+
 export const createOrder = (userId, body,) => {
-    return (dispatch) => {
-        dispatch({ type: ORDER_LOADING })
-        axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
-            .then(response => {
-                const id = response.data.id
-                console.log(response.data.id)
-                dispatch(
-                    {
-                        type: SAVE_ORDER_ID,
-                        payload: id
-                    }
-                )
-            })
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(
-                    {
-                        type: ORDER_ERROR,
-                        payload: errorMsg
-                    }
-                )
-            })
+    return async (dispatch) => {
+        try {
+            dispatch({ type: ORDER_LOADING })
+            
+            const idReq = await axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
+            const id = idReq.data.id
+            console.log(idReq.data.id)
+            
+            dispatch(
+                {
+                    type: SAVE_ORDER_ID,
+                    payload: id
+                }
+            )
+
+            const dataReq = await axios.put(`http://localhost:3001/orders/admin/${id}/processing`)
+            console.log(dataReq.data)
+
+            const order = {
+                description: "Henry Gadgets",
+                price: dataReq.data.total_price,
+                quantity: 1
+            }
+            
+            console.log(dataReq.data.id)
+            const paymentUrlReq = await axios.post(`http://localhost:3001/payment/${dataReq.data.id}`, order)
+            window.open(paymentUrlReq.data.url)
+            
+        } catch (error) {
+            const errorMsg = error.message
+            dispatch(
+                {
+                    type: ORDER_ERROR,
+                    payload: errorMsg
+                }
+            )
+        }
     }
 }
 
