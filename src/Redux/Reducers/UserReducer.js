@@ -81,8 +81,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload,
-                loading: false,
-                error: ''
+                loading: false
             }
         }
 
@@ -104,8 +103,10 @@ const userReducer = (state = initialState, action) => {
         case PROMOTE_USER_SUCCESS: {
             return {
                 ...state,
-                users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, is_admin: true } : user),
+                users: state.users.map(user => (user.id === parseInt(action.payload.id)) 
+                ? { ...user, is_admin: action.payload.is_admin} : user),
                 loading: false
+
             }
 
         }
