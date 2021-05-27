@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../../Redux/Actions/User/UserActions";
 import { useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import {
-  addReview,
-  getReview,
-} from "../../../Redux/Actions/Review/ReviewActions";
+import { addReview,getReview,createdFalse } from "../../../Redux/Actions/Review/ReviewActions";
 
 import Swal from "sweetalert2";
 import styled from "styled-components";
@@ -84,7 +81,8 @@ const PasswordIcon = styled.img`
 `;
 
 const ReviewsForm = ({ execSubmit, user, productId }) => {
-  // const history = useHistory();
+
+  const created = useSelector(state => state.review.created)
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
@@ -100,18 +98,18 @@ const ReviewsForm = ({ execSubmit, user, productId }) => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    // setError(validate({
-    //     ...input, [e.target.name]: e.target.value
-    // }))
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    dispatch(addReview(input));
-
-    execSubmit(true);
+    dispatch(addReview(input))
+    console.log("entro en el handlesubmit");
   };
+  
+  useEffect(() => {
+    dispatch(getReview(productId));
+    dispatch(createdFalse(false))
+  }, [created]);
 
   return (
     <FormContainer>

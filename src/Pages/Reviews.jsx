@@ -15,6 +15,12 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
+const ContainerReviewForm = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Item = styled.div`
   background: var(--pure-white);
   border: 0.1em solid var(--divider);
@@ -40,30 +46,27 @@ const Description = styled.span`
 `;
 
 const Reviews = ({ productId }) => {
-  const [execSubmitForm, setExecSubmitForm] = useState(false);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getReview(productId));
-    console.log("Entro en useEffect");
-  }, [dispatch, productId, execSubmitForm]);
 
   const products = useSelector((state) => state.product.product);
   const reviews = useSelector((state) => state.review.reviews);
   const user = useSelector((state) => state.user.user);
-  console.log(products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getReview(productId));
+  }, [dispatch, productId]);
 
   return (
     <>
       <NavBar />
       <Breadcrumb id="breadcrumb" />
 
-      <h1>Reviews sobre {reviews[0] ? reviews[0].name : null}</h1>
+      <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1>
 
       <Container>
-        {reviews && reviews[0] && reviews[0].reviews
-          ? reviews[0].reviews.map((review) => (
+     
+        {reviews[0] && reviews[0].reviews
+          ? reviews[reviews.length-1].reviews.map((review) => (
               <Item key={review.id}>
                 <Title>{review.title}</Title>
                 <Description>{review.description}</Description>
@@ -78,18 +81,18 @@ const Reviews = ({ productId }) => {
               </Item>
             ))
           : null}
-      </Container>
+          </Container>
+      
+
+      <ContainerReviewForm>   
       {user && user.email ? (
         <ReviewsForm
-          execSubmit={(parameter) => {
-            console.log("Ejecuto la funcion");
-            setExecSubmitForm(parameter);
-          }}
           user={user}
           productId={productId}
         />
       ) : null}
-
+     </ContainerReviewForm>
+  
       <Footer />
     </>
   );

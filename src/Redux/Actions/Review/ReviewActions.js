@@ -7,7 +7,8 @@ import {
     REVIEW_ADD,
     REVIEW_REQUEST,
     GET_REVIEW_REQUEST,
-    EDIT_REVIEW_SUCCESS
+    EDIT_REVIEW_SUCCESS,
+    CREATED_FALSE
 } from './ReviewActionTypes'
 
 export const getReview = (productId) => {
@@ -94,6 +95,16 @@ export const updateReview = () => {
                     }
                 )
             })
+    }
+}
+
+export const createdFalse = (bool) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: CREATED_FALSE
+            }
+        )
     }
 }
 

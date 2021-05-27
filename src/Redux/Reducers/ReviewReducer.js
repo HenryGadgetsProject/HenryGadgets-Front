@@ -5,12 +5,14 @@ import {
     REVIEW_ADD,
     REVIEW_REQUEST,
     GET_REVIEW_REQUEST,
-    EDIT_REVIEW_SUCCESS
+    EDIT_REVIEW_SUCCESS,
+    CREATED_FALSE
 } from '../Actions/Review/ReviewActionTypes'
 
 const initialState = {
     loading: false,
     reviews: [],
+    created: false,
     //filteredreviews: [],
     //searchProducts: [],
     error: '',
@@ -45,9 +47,8 @@ const reviewReducer = (state = initialState, action) => {
         case CREATE_REVIEW_SUCCESS: {
             return {
                 ...state,
-                reviews: [...state.reviews, action.payload],
-              
-                loading: false
+                loading: false,
+                created: true
             }
         }
 
@@ -63,6 +64,13 @@ const reviewReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            }
+        }
+        
+        case CREATED_FALSE: {
+            return {
+                ...state,
+                created: false
             }
         }
 

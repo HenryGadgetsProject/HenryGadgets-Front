@@ -37,15 +37,13 @@ const ClientRouter = () => {
                     render={({ match }) => <Product productId={match.params.productId} />}
                 />
                 <Route path="/confirmation" component={ConfirmBuy} />
-<<<<<<< HEAD
-
                 <Route
                     path='/product/:productId/reviews'
                     render={({ match }) => <Reviews productId={match.params.productId}/>}
-=======
+                    />
                 <Route path="/success/:orderId"
                     render={({ match }) => <BuySuccess orderId={match.params.orderId} />}
->>>>>>> 0c5f6c18145930e9f3cc72b3db009b159d392d3e
+
                 />
 
                 <Route component={NotFound} />
