@@ -7,7 +7,8 @@ import {
     GET_ORDERS_SUCCESS,
     DELETE_ORDER_SUCCESS,
     GET_ORDER_BY_ID_SUCCESS,
-    UPDATE_ORDER_SUCCESS
+    UPDATE_ORDER_SUCCESS,
+    FILTER_ORDERS,
 } from '../Order/OrderActionTypes'
 
 export const getOrders = () => {
@@ -94,6 +95,32 @@ export const deleteOrder = (id) => {
                     {
                         type: DELETE_ORDER_SUCCESS,
                         payload: parseInt(id)
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: ORDER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const filterOrders = (term) => {
+    return (dispatch) => {
+        dispatch({ type: ORDER_LOADING })
+        axios.get(`${HOST}/orders/admin/${term}`)
+            .then(response => {
+                const orders = response.data
+                console.log('FILTRADAS', orders)
+                dispatch(
+                    {
+                        type: FILTER_ORDERS,
+                        payload: orders
                     }
                 )
             })
