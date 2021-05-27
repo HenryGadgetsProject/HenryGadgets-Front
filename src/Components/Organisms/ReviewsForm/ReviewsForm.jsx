@@ -4,18 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../../Redux/Actions/User/UserActions";
 import { useHistory } from "react-router-dom";
 import StarRatings from "react-star-ratings";
-import { addReview,getReview,createdFalse } from "../../../Redux/Actions/Review/ReviewActions";
+import { addReview, getReview, createdFalse, getReviewsByProduct } from "../../../Redux/Actions/Review/ReviewActions";
 
 import Swal from "sweetalert2";
 import styled from "styled-components";
 
 const FormContainer = styled.div`
-  margin-top: 10em;
   margin-bottom: 10em;
   padding: 2em;
   width: 50%;
   justify-content: center;
-  background: Grey;
+  background-color: #424242;
   border-radius: 2em;
   h3 {
     text-align: center;
@@ -82,8 +81,7 @@ const PasswordIcon = styled.img`
 
 const ReviewsForm = ({ execSubmit, user, productId }) => {
 
-  const created = useSelector(state => state.review.created)
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const [input, setInput] = useState({
     description: "",
@@ -105,11 +103,6 @@ const ReviewsForm = ({ execSubmit, user, productId }) => {
     dispatch(addReview(input))
     console.log("entro en el handlesubmit");
   };
-  
-  useEffect(() => {
-    dispatch(getReview(productId));
-    dispatch(createdFalse(false))
-  }, [created]);
 
   return (
     <FormContainer>
@@ -117,15 +110,13 @@ const ReviewsForm = ({ execSubmit, user, productId }) => {
       <Form onSubmit={handleSubmit}>
         <Divider>
           <Item>
-            {/* <NameIcon /> */}
-            <Label>
-              Hola! {user.first_name} {user.last_name}
-            </Label>
+            <Label>Hola! {user.first_name} {user.last_name}</Label>
             <br />
             {/* <Input name='user' value={input.user} onBlur={handleBlur} onChange={handleChange}></Input>
                         {isTouch.user && error.user ? (<ErrorMsg>{error.user}</ErrorMsg>) : null} */}
           </Item>
         </Divider>
+
 
         <Item>
           <EmailIcon />
@@ -133,37 +124,40 @@ const ReviewsForm = ({ execSubmit, user, productId }) => {
           <br />
         </Item>
 
-        <Item>
-          <PasswordIcon />
-          <Label>Titulo</Label>
-          <Input
-            name="title"
-            value={input.title}
-            onChange={handleChange}
-          ></Input>
-          <br />
-        </Item>
-        <Item>
-          <PasswordIcon />
-          <Label>Comment</Label>
-          <Input
-            name="description"
-            value={input.description}
-            onChange={handleChange}
-          ></Input>
-          <br />
-        </Item>
-        <Item>
-          <PasswordIcon />
-          <Label>Rating </Label>
-          <Input
-          type="number"
+        <Divider>
+          <Item>
+            <PasswordIcon />
+            <Label>Titulo</Label>
+            <Input
+              name="title"
+              value={input.title}
+              onChange={handleChange}
+              ></Input>
+            <br />
+          </Item>
+          <Item>
+            <PasswordIcon />
+            <Label>Rating </Label>
+            <Input
+            type="number"
             name="rating"
             value={input.rating}
             onChange={handleChange}
-          ></Input>
-          <br />
-        </Item>
+            ></Input>
+            <br />
+          </Item>
+        </Divider>
+
+          <Item>
+            <PasswordIcon />
+            <Label>Comment</Label>
+            <Input
+              name="description"
+              value={input.description}
+              onChange={handleChange}
+              ></Input>
+            <br />
+          </Item>
 
         <ButtonContainer>
           <Button type="submit">Enviar review!</Button>

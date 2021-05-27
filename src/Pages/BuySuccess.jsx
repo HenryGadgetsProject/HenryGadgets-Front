@@ -9,6 +9,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { clearCart, sendMail } from '../Redux/Actions/Cart/CartActions'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
+import ReviewsForm from '../Components/Organisms/ReviewsForm/ReviewsForm'
 
 
 const BuySuccess = ({ orderId }) => {
@@ -71,8 +72,8 @@ const BuySuccess = ({ orderId }) => {
                     icon: 'success',
                     title: 'Te hemos enviado un mail'
                 })
-                history.push("/home")
-            }, 4000)
+                // history.push("/home")
+            }, 4500)
             
             return
         }
@@ -123,6 +124,9 @@ const BuySuccess = ({ orderId }) => {
                     {(status === 200) ? <h2>enviado</h2> : null}
                     {/* <div><h2>{JSON.stringify(values, null, 2)}</h2></div> */}
                 </div>
+
+                <ReviewsForm/>
+                
             </Main>
 
 
