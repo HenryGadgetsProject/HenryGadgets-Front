@@ -55,7 +55,6 @@ const BuySuccess = ({ orderId }) => {
         email: user.email
     }
 
-
     const body = {
         products: cart,
         client: client,
@@ -65,10 +64,6 @@ const BuySuccess = ({ orderId }) => {
 
     useEffect(() => {
         if(values.status === 'approved') {
-            console.log(body)
-            // setFlag(body)
-            console.log('entre a useEffect con value', values.status, 'y body de', body)
-            console.log('user de', user)
             setTimeout(() => {
                 dispatch(sendMail(body))
                 dispatch(dispatch(clearCart))
@@ -83,7 +78,6 @@ const BuySuccess = ({ orderId }) => {
         }
     }, [user])
 
-
     const handleClick = () => {
         // dispatch(sendMail(body))
         // dispatch(dispatch(clearCart))
@@ -92,10 +86,7 @@ const BuySuccess = ({ orderId }) => {
         //     title: 'Te hemos enviado un mail'
         // })
         // history.push("/home");
-
     }
-
-
 
     return (
 
