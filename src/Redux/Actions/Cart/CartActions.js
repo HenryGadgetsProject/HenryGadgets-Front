@@ -19,6 +19,7 @@ import {
     MAIL_SENDING,
     MAIL_SUCCESS,
     MAIL_ERROR,
+    CHANGE_ORDER_STATUS_SUCCESS
 } from './CartActionsType'
 
 
@@ -136,11 +137,11 @@ export const createOrder = (userId, body,) => {
     return async (dispatch) => {
         try {
             dispatch({ type: ORDER_LOADING })
-            
+
             const idReq = await axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
             const id = idReq.data.id
             console.log(idReq.data.id)
-            
+
             dispatch(
                 {
                     type: SAVE_ORDER_ID,
@@ -149,18 +150,18 @@ export const createOrder = (userId, body,) => {
             )
 
             const dataReq = await axios.put(`http://localhost:3001/orders/admin/${id}/processing`)
-            console.log(dataReq.data)
+
 
             const order = {
                 description: "Henry Gadgets",
                 price: dataReq.data.total_price,
                 quantity: 1
             }
-            
+
             console.log(dataReq.data.id)
             const paymentUrlReq = await axios.post(`http://localhost:3001/payment/${dataReq.data.id}`, order)
             window.open(paymentUrlReq.data.url)
-            
+
         } catch (error) {
             const errorMsg = error.message
             dispatch(
@@ -201,37 +202,6 @@ export const sendMail = (body) => {
     }
 }
 
-
-
-
-
-
-
-// export const getCart = (id) => {
-//     return (dispatch) => {
-//         dispatch({ type: LOADING_CART })
-//         axios.get(`${HOST}/cart/${id}/cart`)
-//             .then(response => {
-//                 const cart = response.data
-//                 dispatch(
-//                     {
-//                         type: GET_CART_SUCCESS,
-//                         payload: cart
-//                     }
-//                 )
-//             })
-//             .catch(error => {
-//                 const errorMsg = error.message
-//                 dispatch(
-//                     {
-//                         type: ERROR_CART,
-//                         payload: errorMsg
-//                     }
-//                 )
-//             })
-//     }
-// }
-
 export const getCart = (id) => {
     const cartLS = JSON.parse(localStorage.getItem('cart'))
     return (dispatch) => {
@@ -271,6 +241,36 @@ export const getCart = (id) => {
                     }
                 )
             })
+    }
+}
+
+
+
+export const changeToCompleted = (orderId) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: ORDER_LOADING })
+
+            const dataReq = await axios.put(`http://localhost:3001/orders/admin/${orderId}/completed`)
+
+
+
+            dispatch(
+                {
+                    type: CHANGE_ORDER_STATUS_SUCCESS,
+                    payload: orderId
+                }
+            )
+
+        } catch (error) {
+            const errorMsg = error.message
+            dispatch(
+                {
+                    type: ORDER_ERROR,
+                    payload: errorMsg
+                }
+            )
+        }
     }
 }
 

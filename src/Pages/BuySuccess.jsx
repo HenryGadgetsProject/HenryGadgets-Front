@@ -6,7 +6,7 @@ import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import queryString from 'query-string'
 import { useLocation, useHistory } from 'react-router-dom'
-import { clearCart, sendMail } from '../Redux/Actions/Cart/CartActions'
+import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 
@@ -48,7 +48,7 @@ const BuySuccess = ({ orderId }) => {
     // })
 
     console.log(values.status);
-    
+
     const client = {
         first_name: user.first_name,
         last_name: user.last_name,
@@ -63,9 +63,10 @@ const BuySuccess = ({ orderId }) => {
     }
 
     useEffect(() => {
-        if(values.status === 'approved') {
+        if (values.status === 'approved') {
             setTimeout(() => {
                 dispatch(sendMail(body))
+                dispatch(changeToCompleted(orderId))
                 dispatch(dispatch(clearCart))
                 Toast.fire({
                     icon: 'success',
@@ -73,7 +74,7 @@ const BuySuccess = ({ orderId }) => {
                 })
                 history.push("/home")
             }, 4000)
-            
+
             return
         }
     }, [user])
