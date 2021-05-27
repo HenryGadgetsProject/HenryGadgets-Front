@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getOrders, deleteOrder } from '../../Redux/Actions/Order/OrderActions'
+import { getOrders, deleteOrder, filterOrders } from '../../Redux/Actions/Order/OrderActions'
 
 import Table from '../../Components/Atoms/Table'
 import Swal from 'sweetalert2'
@@ -12,6 +12,10 @@ const DeleteIcon = styled.img`
 `
 const EditIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
+`
+
+const ResetIcon = styled.img`
+background: url('https://api.iconify.design/bx:bx-reset.svg?color=green') no-repeat center center / contain;
 `
 const CartIcon = styled.img`
     background: url('https://api.iconify.design/el:shopping-cart-sign.svg?color=%23FF1744') no-repeat center center / contain;
@@ -33,15 +37,20 @@ const AdminOrders = () => {
 
     const dispatch = useDispatch();
 
-    const orders = useSelector(state => state.order.orders)
+    const orders = useSelector(state => state.order.filteredOrders)
 
-    const [change, setChange] = useState(false)
+    const [term, setTerm] = useState('')
 
-    useEffect(() => {
-        dispatch(getOrders())
-        setChange(false)
-    }, [change])
-    
+    // useEffect(() => {
+    //     dispatch(getOrders())
+    //     // setChange(false)
+    // }, [term])
+
+    const handleTerm = (term) => {
+        dispatch(filterOrders(term))
+        setTerm(term);
+    }
+
     const deleteHandler = (id) => {
         Swal.fire({
             title: 'Estas seguro?',
@@ -66,40 +75,50 @@ const AdminOrders = () => {
     }
 
     return (
-        <Table>
-            <caption>Ordenes</caption>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th className="name">Estado</th>
-                    <th>Precio Total</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Editar</th>
-                    <th>Borrar</th>
-                </tr>
-            </thead>
+        <>
+            <div className="filter-buttons">
+                <ResetIcon onClick={() => dispatch(getOrders())} />
+                <CartIcon onClick={() => handleTerm('cart')} />
+                <ProcessingIcon onClick={() => handleTerm('processing')} />
+                <CompletedIcon onClick={() => handleTerm('completed')} />
+                <CancelledIcon onClick={() => handleTerm('cancelled')} />
+            </div>
 
-            <tbody>
-                {orders?.map(order => (
-                    <tr key={order.id}>
-                        <td data-label="ID">{order.id}</td>
-                        <td data-label="Estado">
-                            {(order.state === 'cart' ? <CartIcon/> : null)}
-                            {(order.state === 'created' ? <CreatedIcon/> : null)}
-                            {(order.state === 'processing' ? <ProcessingIcon/> : null)}
-                            {(order.state === 'cancelled' ? <CancelledIcon/> : null)}
-                            {(order.state === 'completed' ? <CompletedIcon/> : null)}
-                        </td>
-                        <td data-label="Total">{order.total_price}</td>
-                        <td data-label="Nombre">{order.user.first_name}</td>
-                        <td data-label="Apellido" className="center-text">{order.user.last_name}</td>
-                        <td data-label="Editar" className="center-text"><Link to={`/admin/order-edit/${order.id}`}><EditIcon/></Link></td>
-                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(order.id)}><DeleteIcon /></td>
+            <Table>
+                <caption>Ordenes</caption>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th className="name">Estado</th>
+                        <th>Precio Total</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
                     </tr>
-                ))}
-            </tbody>
-        </Table>
+                </thead>
+
+                <tbody>
+                    {orders?.map(order => (
+                        <tr key={order.id}>
+                            <td data-label="ID">{order.id}</td>
+                            <td data-label="Estado">
+                                {(order.state === 'cart' ? <CartIcon /> : null)}
+                                {(order.state === 'created' ? <CreatedIcon /> : null)}
+                                {(order.state === 'processing' ? <ProcessingIcon /> : null)}
+                                {(order.state === 'cancelled' ? <CancelledIcon /> : null)}
+                                {(order.state === 'completed' ? <CompletedIcon /> : null)}
+                            </td>
+                            <td data-label="Total">{order.total_price}</td>
+                            <td data-label="Nombre">{order.user.first_name}</td>
+                            <td data-label="Apellido" className="center-text">{order.user.last_name}</td>
+                            <td data-label="Editar" className="center-text"><Link to={`/admin/order-edit/${order.id}`}><EditIcon /></Link></td>
+                            <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(order.id)}><DeleteIcon /></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+        </>
     )
 }
 

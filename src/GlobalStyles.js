@@ -311,6 +311,7 @@ const GlobalStyle = createGlobalStyle`
         margin          : 0 auto;
         padding         : .3em 6em;
         width           : 80%;
+        align-items     : center;
     }
 
     .card-container {
@@ -508,6 +509,19 @@ const GlobalStyle = createGlobalStyle`
         background-color:red;
         padding:1rem 2rem;
         border-color:#FFFFFF;
+    }
+
+    .filtered-buttons{
+        display: flex;
+        justify-content: center;
+        margin-top:3rem;
+        
+    }
+
+    .filter-buttons img{
+        width:5rem;
+        height:5rem;
+        margin:3rem;
     }
 
 
