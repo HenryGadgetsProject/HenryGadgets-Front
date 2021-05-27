@@ -4,20 +4,20 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
 //import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
-import Swal from 'sweetalert2'
-import { useHistory } from 'react-router-dom'
+// import Swal from 'sweetalert2'
+// import { useHistory } from 'react-router-dom'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import styled from 'styled-components'
-import { deleteItemFromCart, incrementQuantity, decrementQuantity, clearCart } from '../Redux/Actions/Cart/CartActions'
+// import styled from 'styled-components'
+// import { deleteItemFromCart, incrementQuantity, decrementQuantity, clearCart } from '../Redux/Actions/Cart/CartActions'
 import OrderForm from '../Components/Organisms/OrderForm/OrderForm'
 
 
 const ConfirmBuy = () => {
 
-    const dispatch = useDispatch();
-    const history = useHistory()
+    // const dispatch = useDispatch();
+    // const history = useHistory()
 
     const products = useSelector(state => state.cart.cartList)
     const [total, setTotal] = useState()
@@ -30,8 +30,6 @@ const ConfirmBuy = () => {
             }, 0.00))
         }
     }, [products])
-
-
 
 
     return (

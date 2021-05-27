@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { getOrders, deleteOrder } from '../../Redux/Actions/Order/OrderActions'
+
 import Table from '../../Components/Atoms/Table'
-
 import Swal from 'sweetalert2'
-import { getOrders } from '../../Redux/Actions/Order/OrderActions'
-
 import styled from "styled-components"
 
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
-
+const EditIcon = styled.img`
+    background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
+`
 const CartIcon = styled.img`
     background: url('https://api.iconify.design/el:shopping-cart-sign.svg?color=%23FF1744') no-repeat center center / contain;
 `
@@ -52,14 +54,14 @@ const AdminOrders = () => {
             cancelButtonText: 'Cancelar'
         })
             .then((result) => {
-                // if (result.isConfirmed) {
-                //     dispatch(deleteUser(id))
-                //     Swal.fire(
-                //         'Eliminado!',
-                //         'El usuario fue eliminado.',
-                //         'success'
-                //     )
-                // }
+                if (result.isConfirmed) {
+                    dispatch(deleteOrder(id))
+                    Swal.fire(
+                        'Eliminado!',
+                        'El usuario fue eliminado.',
+                        'success'
+                    )
+                }
             })
     }
 
@@ -73,6 +75,7 @@ const AdminOrders = () => {
                     <th>Precio Total</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Editar</th>
                     <th>Borrar</th>
                 </tr>
             </thead>
@@ -91,6 +94,7 @@ const AdminOrders = () => {
                         <td data-label="Total">{order.total_price}</td>
                         <td data-label="Nombre">{order.user.first_name}</td>
                         <td data-label="Apellido" className="center-text">{order.user.last_name}</td>
+                        <td data-label="Editar" className="center-text"><Link to={`/admin/order-edit/${order.id}`}><EditIcon/></Link></td>
                         <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(order.id)}><DeleteIcon /></td>
                     </tr>
                 ))}

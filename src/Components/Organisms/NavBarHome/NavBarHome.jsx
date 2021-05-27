@@ -41,7 +41,7 @@ const NavBarHome = () => {
     const location = useLocation()
 
     const changeNavHomeBackground = () => {
-        if (window.scrollY >= 200) {
+        if (window.scrollY >= 100) {
             setNavHomeState(true)
         } else {
             setNavHomeState(false)

@@ -118,11 +118,14 @@ const validate = (input) => {
 }
 
 const OrderForm = ({ total }) => {
+    const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
     const orderId = useSelector(state => state.cart.orderId)
 
-    const dispatch = useDispatch()
+    
+    const history = useHistory()
+
 
     const [isTouch, setIsTouch] = useState({})
 
@@ -131,6 +134,7 @@ const OrderForm = ({ total }) => {
     const [process, setProcess] = useState('false')
 
     const [payment, setPayment] = useState('false')
+    
 
     const [input, setInput] = useState({
         street: "",
@@ -157,54 +161,77 @@ const OrderForm = ({ total }) => {
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault()
 
         setProcess('true')
-
-        e.preventDefault()
 
         const body = { ...input, state: 'created', total_price: total }
         dispatch(createOrder(user.id, body))
 
-        // console.log(JSON.stringify({ ...input, state: 'created', total_price: total }, null, 3))
-        // Swal.fire(
-        //     'Listo!',
-        //     'La categoría se ha agregado con éxito!',
-        //     'success'
-        // )
+        /////////
+        // Swal.fire({
+        //     title: 'Tu compra se enviará a la siguiente dirección',
+        //     text: 'Información proporcionada por el usuario',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Confirmar',
+        //     cancelButtonText: 'Cancelar'
+        // })
+        //     .then((result) => {
+        //         if (result.isConfirmed) {
+        //             setPayment('true')
+
+        //             console.log('entro a processing')
+        //             console.log(orderId)
+        //             axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
+        //                 .then(response => {
+        //                     console.log(response.data)
+        //                 })
+        //             Swal.fire(
+        //                 'Ahora puedes proceder con tu pago',
+        //                 'success'
+        //             )
+        //             history.push('/confirmation')
+        //         } else {
+        //             console.log('setProcess -> false, limpiar back, y modificar state en redux');
+        //         }
+        //     })
+        /////////
     }
 
 
-    const handleAdressProcessing = () => {
+    // const handleAdressProcessing = () => {
 
-        setPayment('true')
+    //     setPayment('true')
 
-        console.log('entro a processing')
-        console.log(orderId)
-        axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
-            .then(response => {
-                console.log(response.data)
+    //     console.log('entro a processing')
+    //     console.log(orderId)
+    //     axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
+    //         .then(response => {
+    //             console.log(response.data)
 
-            })
+    //         })
         
-    }
+    // }
 
-    const handlePayment = () => {
+    // const handlePayment = () => {
 
-        const order = {
-            description: "Henry Gadgets",
-            price: total,
-            quantity: 1
-        }
+    //     const order = {
+    //         description: "Henry Gadgets",
+    //         price: total,
+    //         quantity: 1
+    //     }
 
-        axios.post(`http://localhost:3001/payment/${orderId}`, order)
-            .then(response => window.open(response.data.url))
+    //     axios.post(`http://localhost:3001/payment/${orderId}`, order)
+    //         .then(response => window.open(response.data.url))
 
-    }
+    // }
 
 
     return (
         <FormContainer>
-            <h3>Completa tus Datos</h3>
+            <h3>Completa tus datos de envío</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
@@ -249,13 +276,13 @@ const OrderForm = ({ total }) => {
 
             </Form>
 
-            <ButtonContainer>
+            {/* <ButtonContainer>
                 <Button onClick={handleAdressProcessing}>Procesar</Button>
             </ButtonContainer>
 
             <ButtonContainer>
                 <Button onClick={handlePayment}>Pagar</Button>
-            </ButtonContainer>
+            </ButtonContainer> */}
 
         </FormContainer>
     )
