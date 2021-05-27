@@ -47,26 +47,27 @@ const Description = styled.span`
 
 const Reviews = ({ productId }) => {
 
-  const products = useSelector((state) => state.product.product);
-  const reviews = useSelector((state) => state.review.reviews);
-  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
+  const reviews = useSelector((state) => state.review.reviews);
+  const loading = useSelector((state) => state.review.loading)
 
   useEffect(() => {
     dispatch(getReview(productId));
-  }, [dispatch, productId]);
+  }, [productId]);
+
+  console.log(reviews)
 
   return (
     <>
       <NavBar />
       <Breadcrumb id="breadcrumb" />
 
-      <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1>
+      {/* <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1> */}
 
-      <Container>
-     
-        {reviews[0] && reviews[0].reviews
-          ? reviews[reviews.length-1].reviews.map((review) => (
+      <Container>     
+        {(loading === false && reviews.length > 0) ? reviews?.map((review) => (
               <Item key={review.id}>
                 <Title>{review.title}</Title>
                 <Description>{review.description}</Description>
@@ -80,8 +81,8 @@ const Reviews = ({ productId }) => {
                 />
               </Item>
             ))
-          : null}
-          </Container>
+        : null}
+      </Container>
       
 
       <ContainerReviewForm>   

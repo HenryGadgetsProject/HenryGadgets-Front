@@ -6,9 +6,10 @@ import {
     REVIEW_ERROR,
     REVIEW_ADD,
     REVIEW_REQUEST,
-    GET_REVIEW_REQUEST,
+    GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
-    CREATED_FALSE
+    CREATED_FALSE,
+    GET_REVIEW_BY_PRODUCT
 } from './ReviewActionTypes'
 
 export const getReview = (productId) => {
@@ -21,9 +22,10 @@ export const getReview = (productId) => {
         axios.get(`${HOST}/products/${productId}/review`)
             .then(response => {
                 const reviews = response.data
+                console.log('ESTA ES TU REVIEW PAPURRI',reviews)
                 dispatch(
                     {
-                        type: GET_REVIEW_REQUEST,
+                        type: GET_REVIEW_SUCCESS,
                         payload: reviews
                     }
                 )
@@ -50,6 +52,7 @@ export const addReview = (input) => {
         axios.post(`${HOST}/products/${input.productId}/review`, input)
             .then(response => {
                 const reviews = response.data
+                console.log(reviews)
                 dispatch(
                     {
                         type: CREATE_REVIEW_SUCCESS,
