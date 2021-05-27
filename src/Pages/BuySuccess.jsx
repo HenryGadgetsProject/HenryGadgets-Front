@@ -6,7 +6,7 @@ import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import queryString from 'query-string'
 import { useLocation, useHistory } from 'react-router-dom'
-import { clearCart, sendMail } from '../Redux/Actions/Cart/CartActions'
+import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 import ReviewsForm from '../Components/Organisms/ReviewsForm/ReviewsForm'
@@ -49,7 +49,7 @@ const BuySuccess = ({ orderId }) => {
     // })
 
     console.log(values.status);
-    
+
     const client = {
         first_name: user.first_name,
         last_name: user.last_name,
@@ -64,34 +64,22 @@ const BuySuccess = ({ orderId }) => {
     }
 
     useEffect(() => {
-        if(values.status === 'approved') {
+        if (values.status === 'approved') {
             setTimeout(() => {
                 dispatch(sendMail(body))
+                dispatch(changeToCompleted(orderId))
                 dispatch(dispatch(clearCart))
                 Toast.fire({
                     icon: 'success',
                     title: 'Te hemos enviado un mail'
                 })
-                // history.push("/home")
+                history.push("/home")
             }, 4500)
-            
             return
         }
     }, [user])
 
-    const handleClick = () => {
-        // dispatch(sendMail(body))
-        // dispatch(dispatch(clearCart))
-        // Toast.fire({
-        //     icon: 'success',
-        //     title: 'Te hemos enviado un mail'
-        // })
-        // history.push("/home");
-    }
-
     return (
-
-
         < div className="container" >
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
@@ -120,16 +108,12 @@ const BuySuccess = ({ orderId }) => {
                         <div className="payment-id"><span>Id de pago:</span>{values.payment_id}</div>
 
                     </div>
-                    {/* <div className="mail"><button onClick={handleClick}>Recir mail</button></div> */}
                     {(status === 200) ? <h2>enviado</h2> : null}
-                    {/* <div><h2>{JSON.stringify(values, null, 2)}</h2></div> */}
                 </div>
 
                 <ReviewsForm/>
                 
             </Main>
-
-
 
             <Footer />
         </div >
