@@ -111,6 +111,7 @@ export const deleteOrder = (id) => {
 }
 
 export const filterOrders = (term) => {
+
     return (dispatch) => {
         dispatch({ type: ORDER_LOADING })
         axios.get(`${HOST}/orders/admin/${term}`)
