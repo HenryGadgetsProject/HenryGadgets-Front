@@ -5,7 +5,7 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+//import { useHistory } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -38,7 +38,7 @@ const NotFoundContainer = styled.div`
 
 const NotFound = () => {
 
-    const history = useHistory();
+    //const history = useHistory();
     return (
         <div className="container">
             <NavBar className="nav" />

@@ -88,7 +88,7 @@ const Home = () => {
     // Página actual, inicializada en 1
     const [currentPage, setCurrentPage] = useState(1)
     // Cards o Items que voy a mostrar por página
-    const [itemsPerPage, setItemsPerPage] = useState(12)
+    const [itemsPerPage] = useState(12)
 
     // Número de páginas que quiero mostrar
     const [pageNumberLimit] = useState(5)
@@ -190,7 +190,7 @@ const Home = () => {
                 <aside>
                     <div className="filters">
                         <h6>Buscar por: </h6>
-                        
+
                         <FilterPrdByCatName />
 
                         <FilterPrdByStock />

@@ -128,11 +128,11 @@ const EditOrderForm = ({ orderId }) => {
 
     // ********************  HACE UN LOOP AL BACKEND SIN EL USE EFFECT ******************** 
     useEffect(() => {
-        const getOrder = async() => {
+        const getOrder = async () => {
             await dispatch(getOrderById(parseInt(orderId)))
         }
         getOrder()
-    }, [])
+    }, [dispatch, orderId])
     // ********************  HACE UN LOOP AL BACKEND SIN EL USE EFFECT ******************** 
 
     const order = useSelector(state => state.order.order);
@@ -150,7 +150,7 @@ const EditOrderForm = ({ orderId }) => {
         city: order.city,
         street: order.street,
         phone_number: order.phone_number,
-    })    
+    })
 
     const handleChange = (e) => {
         setInput({

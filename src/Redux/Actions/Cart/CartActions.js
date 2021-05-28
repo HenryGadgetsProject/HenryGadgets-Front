@@ -251,7 +251,7 @@ export const changeToCompleted = (orderId) => {
         try {
             dispatch({ type: ORDER_LOADING })
 
-            const dataReq = await axios.put(`http://localhost:3001/orders/admin/${orderId}/completed`)
+            await axios.put(`http://localhost:3001/orders/admin/${orderId}/completed`)
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Admin from '../Pages/Admin'
-import NotFound from '../Pages/NotFound'
+//import NotFound from '../Pages/NotFound'
 
 const AdminRouter = () => {
     return (

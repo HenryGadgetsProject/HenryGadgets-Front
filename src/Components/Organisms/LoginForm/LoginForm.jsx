@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 // import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
@@ -108,22 +108,22 @@ const validate = (input) => {
 
 const LoginForm = () => {
 
-    const JWT = JSON.parse(localStorage.getItem('JWT'))
-    
-    const user = useSelector(state => state.user.user)
-    
+    // const JWT = JSON.parse(localStorage.getItem('JWT'))
+
+    // const user = useSelector(state => state.user.user)
+
     let history = useHistory()
-    
-    const dbError = useSelector(state => state.user.error)
-    
-    const loading = useSelector(state => state.user.loading)
-    
+
+    // const dbError = useSelector(state => state.user.error)
+
+    // const loading = useSelector(state => state.user.loading)
+
     const dispatch = useDispatch()
-    
+
     const [isTouch, setIsTouch] = useState({})
-    
+
     const [error, setError] = useState('')
-    
+
     const [input, setInput] = useState({
         // user: "",
         email: "",
@@ -157,7 +157,7 @@ const LoginForm = () => {
         e.preventDefault()
 
         dispatch(userLogin(input))
-        
+
         if (error.email || input.email === "" || error.password) {
             Swal.fire({
                 icon: 'error',
@@ -175,13 +175,13 @@ const LoginForm = () => {
         //         })
         //         return
         //     } 
-            Toast.fire({
-                icon: 'success',
-                title: 'Te has logeado correctamente!'
-            })
-            history.push("/home");              
+        Toast.fire({
+            icon: 'success',
+            title: 'Te has logeado correctamente!'
+        })
+        history.push("/home");
         // },1000)
-        
+
     }
 
     const handleBlur = (e) => {
@@ -193,7 +193,7 @@ const LoginForm = () => {
 
     return (
         <FormContainer>
-        <h3>Login</h3>
+            <h3>Login</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>

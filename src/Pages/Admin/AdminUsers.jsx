@@ -46,7 +46,7 @@ const AdminUsers = () => {
     useEffect(() => {
         dispatch(getUsers())
         setChange(false)
-    }, [change])
+    }, [dispatch, change])
 
 
 
