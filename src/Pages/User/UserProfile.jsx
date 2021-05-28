@@ -58,25 +58,40 @@ const UserSection = styled.section`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    height: 100%;
+    align-items: flex-start;
+
+    background: #424242;
 
     /* Me fuí al baño */
 
     table {
+        font-size: 1.2em;
         margin: 0 auto;
-        padding: 2em;
 
         caption {
-            color: black;
+            color: white;
         }
     }
+`
+const HistoryIcon = styled.img`
+    background: url('https://api.iconify.design/ant-design:history-outlined.svg?color=white') no-repeat center center / contain;
+`
+const DetailIcon = styled.img`
+    background: url('https://api.iconify.design/bx:bx-detail.svg?color=white') no-repeat center center / contain;
+`
+const AddReview = styled.img`
+    background: url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white') no-repeat center center / contain;
+`
+const GlassIcon = styled.img`
+    background: url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white') no-repeat center center / contain;
 `
 
 const UserProfile = () => {
 
     const user = useSelector(state => state.user.user)
     const orders = useSelector(state => state.order.orders)
-    console.log(orders)
+    const products = useSelector(state => state.product.products)
+    console.log(products)
 
     return (
         <div className="container">
@@ -84,9 +99,7 @@ const UserProfile = () => {
             <Breadcrumb id="breadcrumb"/>
             <Main id="main">
                 <Aside>
-
                     <img src='https://i.dlpng.com/static/png/5066008-circled-user-icon-user-profile-icon-png-png-image-transparent-profile-icon-png-820_860_preview.png' alt='profile'></img>
-
                     <div>
                         <p>Usuario</p>
                         <p>{user.first_name} {user.last_name}</p>
@@ -106,13 +119,15 @@ const UserProfile = () => {
                             </tr>
                         </thead>
 
-                        <tbody>                        
-                            <tr key="123">
-                                <td data-label="ID" className="center-text">1</td>
-                                <td data-label="Fecha" className="center-text">Fecha</td>
-                                <td data-label="Monto" className="center-text">Monto</td>                        
-                                <td data-label="Detalles">Detalles</td>
-                            </tr>                       
+                        <tbody>
+                            {orders.map(order => (                            
+                            <tr key={order.id}>
+                                <td data-label="ID" className="center-text">{order.id}</td>
+                                <td data-label="Fecha" className="center-text">28/05/2021</td>
+                                <td data-label="Monto" className="center-text">{order.total_price}$</td>                        
+                                <td data-label="Detalles" className="center-text"><GlassIcon/></td>
+                            </tr>
+                            ))}
                         </tbody>
                     </Table>
                     
@@ -120,7 +135,7 @@ const UserProfile = () => {
                         <caption>Detalles</caption>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>*</th>
                                 <th className="name">Producto</th>
                                 <th>Cantidad</th>
                                 <th>Monto</th>
@@ -128,14 +143,16 @@ const UserProfile = () => {
                             </tr>
                         </thead>
 
-                        <tbody>                        
-                            <tr key="123">
-                                <td data-label="ID" className="center-text">1</td>
-                                <td data-label="Producto">Producto</td>
-                                <td data-label="Cantidad" className="center-text">Cantidad</td>                        
-                                <td data-label="Monto" className="center-text">Monto</td>
-                                <td data-label="Review">Link al Formulario</td> 
-                            </tr>                       
+                        <tbody>
+                            {products.map(product => (
+                            <tr key={product.id}>
+                                 <td data-label="Foto"><img className="mini" src={product.big_image} alt={product.name} /></td>
+                                <td data-label="Producto">{product.name}</td>
+                                <td data-label="Cantidad" className="center-text">5</td>                        
+                                <td data-label="Monto" className="center-text">{product.price}$</td>
+                                <td data-label="Review"><AddReview/></td>
+                            </tr>  
+                            ))}                     
                         </tbody>
                     </Table>
                 </UserSection>
