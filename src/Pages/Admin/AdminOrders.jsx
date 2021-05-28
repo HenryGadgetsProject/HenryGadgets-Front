@@ -39,9 +39,9 @@ const AdminOrders = () => {
 
     const orders = useSelector(state => state.order.filteredOrders)
 
+    console.log(orders)
+
     const [term, setTerm] = useState('')
-
-
 
     const handleTerm = (term) => {
         dispatch(filterOrders(term))
@@ -107,8 +107,8 @@ const AdminOrders = () => {
                                 {(order.state === 'completed' ? <CompletedIcon /> : null)}
                             </td>
                             <td data-label="Total">{order.total_price}</td>
-                            <td data-label="Nombre">{order.user.first_name}</td>
-                            <td data-label="Apellido" className="center-text">{order.user.last_name}</td>
+                            <td data-label="Nombre">{order.user?.first_name}</td>
+                            <td data-label="Apellido" className="center-text">{order.user?.last_name}</td>
                             <td data-label="Editar" className="center-text"><Link to={`/admin/order-edit/${order.id}`}><EditIcon /></Link></td>
                             <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(order.id)}><DeleteIcon /></td>
                         </tr>

@@ -22,6 +22,7 @@ export const getReview = (productId) => {
         axios.get(`${HOST}/products/${productId}/review`)
             .then(response => {
                 const reviews = response.data.data
+                console.log(reviews)
                 dispatch(
                     {
                         type: GET_REVIEW_SUCCESS,

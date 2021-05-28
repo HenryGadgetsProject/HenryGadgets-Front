@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
-//import Main from '../Components/Atoms/Main'
+import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 // import Swal from 'sweetalert2'
 // import { useHistory } from 'react-router-dom'
@@ -37,11 +37,13 @@ const ConfirmBuy = () => {
             <NavBar />
             <Breadcrumb id="breadcrumb" />
 
-            <div className="container-confirmation">
-                <h2 className="text-center">Productos a comprar</h2>
+            <Main id='main'>
 
-                <div className="resume">
-                    {products.map(product => (
+            <div className="container-confirmation">
+                {/* <h2 className="text-center">Productos a comprar</h2> */}
+
+                {/* <div className="resume"> */}
+                    {/* {products.map(product => (
                         <div className="line" key={product.id}>
                             <div className="name">{product.name}</div>
                             <div className="quantity">{product.quantity}</div>
@@ -50,14 +52,15 @@ const ConfirmBuy = () => {
                         </div>
                     ))}
 
-                    <div className="total">{`Total: ${total}`}</div>
-                </div>
+                    <div className="total">{`Total: ${total}`}</div> */}
+                {/* </div> */}
 
                 {console.log('TOTAL', total)}
                 <OrderForm total={total} />
 
             </div>
 
+            </Main>
 
             <Footer />
         </div>

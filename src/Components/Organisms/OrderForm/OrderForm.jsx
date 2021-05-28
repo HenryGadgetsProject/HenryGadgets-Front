@@ -11,6 +11,7 @@ import axios from 'axios'
 import { createOrder } from '../../../Redux/Actions/Cart/CartActions'
 
 const FormContainer = styled.div`
+    margin-top: 10em;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
@@ -271,7 +272,7 @@ const OrderForm = ({ total }) => {
 
 
                 <ButtonContainer>
-                    <Button type='submit'>Siguiente</Button>
+                    <Button type='submit'>Generar Pago</Button>
                 </ButtonContainer>
 
             </Form>
