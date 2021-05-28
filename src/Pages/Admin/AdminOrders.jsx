@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOrders, deleteOrder, filterOrders } from '../../Redux/Actions/Order/OrderActions'
@@ -41,11 +41,11 @@ const AdminOrders = () => {
 
     console.log(orders)
 
-    const [term, setTerm] = useState('')
+    //const [term, setTerm] = useState('')
 
     const handleTerm = (term) => {
         dispatch(filterOrders(term))
-        setTerm(term);
+        //setTerm(term);
     }
 
     const deleteHandler = (id) => {

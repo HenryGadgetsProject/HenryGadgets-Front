@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
-import ReviewsForm from '../Components/Organisms/ReviewsForm/ReviewsForm'
+//import ReviewsForm from '../Components/Organisms/ReviewsForm/ReviewsForm'
 
 
 const BuySuccess = ({ orderId }) => {
@@ -21,10 +21,6 @@ const BuySuccess = ({ orderId }) => {
     const user = useSelector(state => state.user.user)
     const cart = useSelector(state => state.cart.cartList)
     const status = useSelector(state => state.cart.status)
-
-    const [flag, setFlag] = useState({})
-
-    // const newCart = cart;
 
 
     const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
@@ -111,8 +107,8 @@ const BuySuccess = ({ orderId }) => {
                     {(status === 200) ? <h2>enviado</h2> : null}
                 </div>
 
-                <ReviewsForm/>
-                
+                {/* <ReviewsForm /> */}
+
             </Main>
 
             <Footer />

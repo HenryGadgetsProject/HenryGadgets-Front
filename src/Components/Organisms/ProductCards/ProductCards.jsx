@@ -60,12 +60,12 @@ const Cards = styled.div`
     }
 `
 
-const CartIcon = styled.img`
-    background: url('https://api.iconify.design/icons8:buy.svg?color=white') no-repeat center center / contain;
-    height: 1em;
-    width: 1em;
-    padding: .1em;
-`
+// const CartIcon = styled.img`
+//     background: url('https://api.iconify.design/icons8:buy.svg?color=white') no-repeat center center / contain;
+//     height: 1em;
+//     width: 1em;
+//     padding: .1em;
+// `
 
 const ProductCards = ({ products }) => {
     // const dispatch = useDispatch()
@@ -86,31 +86,31 @@ const ProductCards = ({ products }) => {
     //     })
     // }
 
-    if(products.length > 0) {
+    if (products.length > 0) {
         return (
             <>
                 {products?.map(p => {
-                    return(
+                    return (
                         <div className="card-container" key={p?.id}>
-                        <Link to={`/product/${p.id}`}>
-                            <Cards>
-                                <img src={p.big_image} alt={p.name}></img><br />
-                                <p>{p.name}</p>
-                                <p>{p.price} $</p>
-                                <span className="center">
-                                    <StarRatings
-                                        rating={p.rating}
-                                        starDimension="1em"
-                                        starSpacing=".2em"
-                                        numberOfStars={5}
-                                        starRatedColor="gold"
-                                    />
-                                </span>
-                                {/* REVIEWS MODAL (Probablemente) */}
-                                {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
-                            </Cards>
-                        </Link>
-                        {/* <button className="buy" onClick={handleClick}>
+                            <Link to={`/product/${p.id}`}>
+                                <Cards>
+                                    <img src={p.big_image} alt={p.name}></img><br />
+                                    <p>{p.name}</p>
+                                    <p>{p.price} $</p>
+                                    <span className="center">
+                                        <StarRatings
+                                            rating={p.rating}
+                                            starDimension="1em"
+                                            starSpacing=".2em"
+                                            numberOfStars={5}
+                                            starRatedColor="gold"
+                                        />
+                                    </span>
+                                    {/* REVIEWS MODAL (Probablemente) */}
+                                    {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                                </Cards>
+                            </Link>
+                            {/* <button className="buy" onClick={handleClick}>
                             <CartIcon />
                         </button> */}
                         </div>

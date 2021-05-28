@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
-import Swal from 'sweetalert2'
-import { useHistory } from 'react-router-dom'
+//import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
+//import Swal from 'sweetalert2'
+//import { useHistory } from 'react-router-dom'
 
 
 import styled from 'styled-components'
 
-import axios from 'axios'
+//import axios from 'axios'
 import { createOrder } from '../../../Redux/Actions/Cart/CartActions'
 
 const FormContainer = styled.div`
@@ -34,10 +34,10 @@ const Input = styled.input`
     font-size: 1.5em;
     width: 16em;
 `
-const LongInput = styled.input`
-    font-size: 1.5em;
-    width: 34.7em;
-`
+// const LongInput = styled.input`
+//     font-size: 1.5em;
+//     width: 34.7em;
+// `
 const Button = styled.button`
     background: #424242;
     color: #FFFFFF;
@@ -122,20 +122,20 @@ const OrderForm = ({ total }) => {
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
-    const orderId = useSelector(state => state.cart.orderId)
+    //const orderId = useSelector(state => state.cart.orderId)
 
-    
-    const history = useHistory()
+
+    //const history = useHistory()
 
 
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
 
-    const [process, setProcess] = useState('false')
+    //const [process, setProcess] = useState('false')
 
-    const [payment, setPayment] = useState('false')
-    
+    //const [payment, setPayment] = useState('false')
+
 
     const [input, setInput] = useState({
         street: "",
@@ -164,7 +164,7 @@ const OrderForm = ({ total }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        setProcess('true')
+        //setProcess('true')
 
         const body = { ...input, state: 'created', total_price: total }
         dispatch(createOrder(user.id, body))
@@ -213,7 +213,7 @@ const OrderForm = ({ total }) => {
     //             console.log(response.data)
 
     //         })
-        
+
     // }
 
     // const handlePayment = () => {

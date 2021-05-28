@@ -40,14 +40,6 @@ const NavBarHome = () => {
 
     const location = useLocation()
 
-    // const changeNavHomeBackground = () => {
-    //     if (window.scrollY >= 100) {
-    //         setNavHomeState(true)
-    //     } else {
-    //         setNavHomeState(false)
-    //     }
-    // }
-
     useEffect(() => {
         const changeNavHomeBackground = () => {
             if (window.scrollY >= 100) {
@@ -62,17 +54,6 @@ const NavBarHome = () => {
         }
     }, [])
 
-    // useEffect(()=>{
-    //     window.addEventListener('scroll', changeNavHomeBackground)
-    //     return
-    // })
-
-    // // console.log(location)
-    // if (location.pathname === '/home') {
-    //     window.addEventListener('scroll', changeNavHomeBackground)
-    // } else {
-    //     window.removeEventListener('scroll', changeNavHomeBackground);
-    // }
 
     return (
         <NavHome className={navHomeState ? "nav-solid" : "nav-cristal"}>
