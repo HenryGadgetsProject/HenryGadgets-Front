@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ReviewsForm from "../Components/Organisms/ReviewsForm";
 
-const Container = styled.div`
+const Cont = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -64,9 +64,9 @@ const Reviews = ({ productId }) => {
       <NavBar />
       <Breadcrumb id="breadcrumb" />
 
-      {/* <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1> */}
+      <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1>
 
-      <Container>     
+      <Cont>     
         {(loading === false && reviews.length > 0) ? reviews?.map((review) => (
               <Item key={review.id}>
                 <Title>{review.title}</Title>
@@ -82,7 +82,7 @@ const Reviews = ({ productId }) => {
               </Item>
             ))
         : null}
-      </Container>
+      </Cont>
       
 
       <ContainerReviewForm>   
