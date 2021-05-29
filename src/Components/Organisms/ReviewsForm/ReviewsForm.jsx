@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { getId } from "../../../Helpers/getId";
-import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../../Redux/Actions/User/UserActions";
-import { useHistory } from "react-router-dom";
-import StarRatings from "react-star-ratings";
-import { addReview, getReview, createdFalse, getReviewsByProduct } from "../../../Redux/Actions/Review/ReviewActions";
+import React, { useState } from "react"
+// import { getId } from "../../../Helpers/getId";
+import { useSelector, useDispatch } from "react-redux"
+// import { addUser } from "../../../Redux/Actions/User/UserActions"
+import { useHistory, useLocation } from "react-router-dom"
+// import StarRatings from "react-star-ratings"
+import { addReview } from "../../../Redux/Actions/Review/ReviewActions"
+import Swal from 'sweetalert2'
 
-import Swal from "sweetalert2";
-import styled from "styled-components";
+import styled from "styled-components"
 
 const FormContainer = styled.div`
   margin-bottom: 10em;
@@ -79,16 +79,22 @@ const PasswordIcon = styled.img`
     no-repeat center center / contain;
 `;
 
-const ReviewsForm = ({ execSubmit, user, productId }) => {
-
+// const ReviewsForm = ({ execSubmit, user, productId }) => {
+const ReviewsForm = () => {
+  
   const dispatch = useDispatch()
+
+  const user = useSelector(state => state.user.user)
+
+  let history = useHistory()
+  let location = useLocation()
 
   const [input, setInput] = useState({
     description: "",
     rating: "",
     user_id: user.id,
     title: "",
-    productId,
+    productId: location.state
   });
 
   const handleChange = (e) => {
@@ -99,10 +105,16 @@ const ReviewsForm = ({ execSubmit, user, productId }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     dispatch(addReview(input))
-    console.log("entro en el handlesubmit");
-  };
+    Swal.fire(
+      'Listo!',
+      'Tu review se ha agregado con éxito!',
+      'success'
+    ).then(() => {
+      history.push('/user')
+    })
+  }
 
   return (
     <FormContainer>
