@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../../Components/Organisms/NavBar'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
 // import Header from '../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
 import Table from '../../Components/Atoms/Table'
 import Footer from '../../Components/Organisms/Footer'
 import styled from 'styled-components'
+import { filterOrdersByUserId } from '../../Redux/Actions/Order/OrderActions'
+import { getReviewsByUserId } from '../../Redux/Actions/Review/ReviewActions'
 
 const Aside = styled.aside`
 display: flex;
@@ -89,14 +91,55 @@ const GlassIcon = styled.img`
 const UserProfile = () => {
 
     const user = useSelector(state => state.user.user)
-    const orders = useSelector(state => state.order.orders)
+    const orders = useSelector(state => state.order.filteredOrders1)
     const products = useSelector(state => state.product.products)
-    console.log(products)
+    const reviews = useSelector(state => state.review.reviews)
+    //console.log(products)
+
+    const [details, setDetails] = useState([])
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(filterOrdersByUserId(user.id))
+        dispatch(getReviewsByUserId(user.id))
+    }, [dispatch, user.id])
+
+    const handleReview = (productId) => {
+        // console.log('REVIEWS', reviews)
+        // console.log(productId)
+        const reviewFound = reviews.find(rev => rev.productId === productId)
+        if (reviewFound) {
+            alert('no puedes agregar review')
+            // editar
+        } else {
+            //crear
+        }
+    }
+
+    const handleGetDetails = (order) => {
+
+        // console.log(order.orderDetails)
+
+        const linea = order.orderDetails.map(x => {
+            return {
+                product_id: x.product.id,
+                quantity: x.quantity,
+                name: x.product.name,
+                big_image: x.product.big_image,
+                price: x.product.price,
+                sub_total: x.product.price * x.quantity
+            }
+        })
+        setDetails(linea)
+    }
+
+
 
     return (
         <div className="container">
             <NavBar className="nav" />
-            <Breadcrumb id="breadcrumb"/>
+            <Breadcrumb id="breadcrumb" />
             <Main id="main">
                 <Aside>
                     <img src='https://i.dlpng.com/static/png/5066008-circled-user-icon-user-profile-icon-png-png-image-transparent-profile-icon-png-820_860_preview.png' alt='profile'></img>
@@ -114,23 +157,26 @@ const UserProfile = () => {
                             <tr>
                                 <th>ID</th>
                                 <th className="name">Fecha</th>
-                                <th>Monto</th>
+                                <th>Total</th>
                                 <th>Ver Detalles</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {orders.map(order => (                            
-                            <tr key={order.id}>
-                                <td data-label="ID" className="center-text">{order.id}</td>
-                                <td data-label="Fecha" className="center-text">28/05/2021</td>
-                                <td data-label="Monto" className="center-text">{order.total_price}$</td>                        
-                                <td data-label="Detalles" className="center-text"><GlassIcon/></td>
-                            </tr>
-                            ))}
+                            {orders.map(order => {
+
+                                return (
+                                    <tr key={order.id}>
+                                        <td data-label="ID" className="center-text">{order.id}</td>
+                                        <td data-label="Fecha" className="center-text">28/05/2021</td>
+                                        <td data-label="Total" className="center-text">{order.total_price}$</td>
+                                        <td data-label="Detalles" className="center-text"><GlassIcon onClick={() => handleGetDetails(order)} /></td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </Table>
-                    
+
                     <Table>
                         <caption>Detalles</caption>
                         <thead>
@@ -138,27 +184,27 @@ const UserProfile = () => {
                                 <th>*</th>
                                 <th className="name">Producto</th>
                                 <th>Cantidad</th>
-                                <th>Monto</th>
+                                <th>Sub Total</th>
                                 <th>Review</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {products.map(product => (
-                            <tr key={product.id}>
-                                 <td data-label="Foto"><img className="mini" src={product.big_image} alt={product.name} /></td>
-                                <td data-label="Producto">{product.name}</td>
-                                <td data-label="Cantidad" className="center-text">5</td>                        
-                                <td data-label="Monto" className="center-text">{product.price}$</td>
-                                <td data-label="Review"><AddReview/></td>
-                            </tr>  
-                            ))}                     
+                            {details.map(detail => (
+                                <tr key={detail.product_id}>
+                                    <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
+                                    <td data-label="Producto">{detail.name}</td>
+                                    <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
+                                    <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
+                                    <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </UserSection>
             </Main>
 
-            <Footer/>
+            <Footer />
 
         </div>
     )

@@ -5,13 +5,15 @@ import {
     DELETE_ORDER_SUCCESS,
     GET_ORDER_BY_ID_SUCCESS,
     UPDATE_ORDER_SUCCESS,
-    FILTER_ORDERS
+    FILTER_ORDERS,
+    FILTER_ORDERS_BY_USER_ID
 } from '../Actions/Order/OrderActionTypes'
 
 const initialState = {
     loading: false,
     orders: [],
     filteredOrders: [],
+    filteredOrders1: [],
     order: {},
     error: ''
 }
@@ -72,6 +74,15 @@ const orderReducer = (state = initialState, action) => {
                 filteredOrders: action.payload,
                 loading: false,
                 error: ''
+            }
+        }
+
+        case FILTER_ORDERS_BY_USER_ID: {
+
+
+            return {
+                ...state,
+                filteredOrders1: state.orders.filter(order => parseInt(order.user.id) === action.payload)
             }
         }
 

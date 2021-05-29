@@ -32,7 +32,7 @@ function App() {
         dispatch(getProducts());
         dispatch(getUsers())
         dispatch(getOrders())
-        // dispatch(getPopularProducts());
+
     }, [dispatch])
 
     useEffect(() => {
