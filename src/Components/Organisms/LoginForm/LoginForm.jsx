@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-// import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
-import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { userLogin, userGoogleLogin } from '../../../Redux/Actions/User/UserActions'
+import { GoogleLogin } from 'react-google-login'
+import axios from 'axios'
 
+import Swal from 'sweetalert2'
 import styled from 'styled-components'
-import { userLogin } from '../../../Redux/Actions/User/UserActions'
 
 const FormContainer = styled.div`
     margin-top: 12em;
@@ -81,6 +82,12 @@ const PasswordIcon = styled.img`
     padding: 1em;
     background: url('https://api.iconify.design/carbon:password.svg?color=white') no-repeat center center / contain;
 `
+const GoogleIcon = styled.img`
+    height: 2em;
+    width: 2em;
+    padding: 1em;
+    background: url('https://api.iconify.design/grommet-icons:google.svg') no-repeat center center / contain;
+`
 
 // Control para Formulario
 const validate = (input) => {
@@ -104,7 +111,6 @@ const validate = (input) => {
     }
     return error
 }
-
 
 const LoginForm = () => {
 
@@ -141,6 +147,13 @@ const LoginForm = () => {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
+    
+    const handleBlur = (e) => {
+        setIsTouch({
+            ...isTouch,
+            [e.target.name]: true
+        })
+    }
 
     const handleChange = (e) => {
         setInput({
@@ -152,11 +165,9 @@ const LoginForm = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
 
         e.preventDefault()
-
-        dispatch(userLogin(input))
 
         if (error.email || input.email === "" || error.password) {
             Swal.fire({
@@ -167,29 +178,40 @@ const LoginForm = () => {
             return
         }
 
-        // setTimeout(() => {            
-        //     if (dbError !== '' && loading === false) {
-        //         Toast.fire({
-        //             icon: 'error',
-        //             title: 'Datos incorrectos'
-        //         })
-        //         return
-        //     } 
-        Toast.fire({
-            icon: 'success',
-            title: 'Te has logeado correctamente!'
-        })
-        history.push("/home");
-        // },1000)
+        dispatch(userLogin(input))
 
+        // Toast.fire({
+        //     icon: 'success',
+        //     title: 'Te has logeado correctamente!'
+        // })
+
+        history.push("/home")
+
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: 'Contraseña o usuario incorrecto!'
+        // })
+        
     }
 
-    const handleBlur = (e) => {
-        setIsTouch({
-            ...isTouch,
-            [e.target.name]: true
-        })
+    /// ********** Google Login **********
+    const googleSuccess = async(res) => {
+        const result = res?.profileObj
+        const token = res?.tokenId
+        const body = {
+            email: result.email,
+            googleId: result.googleId
+        }
+        dispatch(userGoogleLogin(body, result, token))        
+        // dispatch({ type: 'AUTH', data: { result, token } })
+        history.push('/home')
     }
+    const googleFailure = (error) => {
+        console.log(error)
+        console.log('Google sign in was unsuccessful')
+    }
+    // ********** Google Login **********
 
     return (
         <FormContainer>
@@ -222,11 +244,28 @@ const LoginForm = () => {
                     {isTouch.password && error.password ? (<ErrorMsg>{error.password}</ErrorMsg>) : null}
                 </Item>
 
-                <ButtonContainer>
+                <ButtonContainer>               
                     <Button type='submit'>Ingresar</Button>
                 </ButtonContainer>
-
             </Form>
+
+            {/********** Google Login **********/}
+            <ButtonContainer>
+                <GoogleLogin
+                    clientId="786762591902-l8t2boesumop1ab4dbmc58j0ko9k3c7s.apps.googleusercontent.com"
+                    render={(renderProps) => (
+                        <Button 
+                            onClick={renderProps.onClick} 
+                            disabled={renderProps.disabled}>
+                            <GoogleIcon/>
+                        </Button>
+                    )}
+                    onSuccess={googleSuccess}
+                    onFailure={googleFailure}
+                    cookiepolicy="single_host_origin"
+                />
+            </ButtonContainer>
+            {/********** Google Login **********/}
         </FormContainer>
     )
 }

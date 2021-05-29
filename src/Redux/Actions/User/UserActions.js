@@ -1,5 +1,6 @@
 import axios from 'axios'
 import HOST from '../../../constants'
+import Swal from 'sweetalert2'
 
 import {
     USER_LOGIN_SUCCESS,
@@ -16,7 +17,23 @@ import {
     RESET_PASSWORD_SUCCESS
 } from './UserActionTypes'
 
+import {
+    AUTH
+} from '../Auth/AuthActionsType'
+
 import { addItemCart } from '../Cart/CartActions'
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
 
 export const saveCartToDB = (userId, list, dispatch) => {
     list.forEach(element => {
@@ -29,19 +46,22 @@ export const saveCartToDB = (userId, list, dispatch) => {
 
 }
 
-
-
 export const userLogin = (input) => {
     return (dispatch) => {
         dispatch({
             type: USER_LOADING
         })
-        axios.post(`${HOST}/login`, input)
+        axios.post(`${HOST}/auth/signin`, input)
             .then(response => {
-                const user = response.data.user
+                console.log(response.data)
+                const user = response.data.result
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Te has logeado correctamente!'
+                })
                 dispatch(
                     {
                         type: USER_LOGIN_SUCCESS,
@@ -51,6 +71,11 @@ export const userLogin = (input) => {
             })
             .catch(error => {
                 const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Contraseña o usuario incorrecto!'
+                })
                 dispatch(
                     {
                         type: USER_ERROR,
@@ -59,8 +84,48 @@ export const userLogin = (input) => {
                 )
             })
     }
-
 }
+
+export const userGoogleLogin = (body, result, token) => {
+    return (dispatch) => {
+        dispatch({
+            type: USER_LOADING
+        })
+        // console.log(body)
+        axios.post(`${HOST}/auth/googleSignin`, body)
+            .then(response => {
+                const user = response.data.result
+                const jwt = response.data.token
+                const fullUser = { ...user, token: jwt }
+                localStorage.setItem("JWT", JSON.stringify(fullUser))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Te has logeado correctamente!'
+                })
+                dispatch(
+                    {
+                        type: AUTH,
+                        data: { result, token }
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Contraseña o usuario incorrecto!'
+                })
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
 export const userLogut = () => {
     localStorage.removeItem("JWT")
     localStorage.removeItem('cart')

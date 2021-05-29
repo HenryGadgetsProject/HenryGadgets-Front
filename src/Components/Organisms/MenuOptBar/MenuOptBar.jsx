@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ToggleForm from '../../Molecules/Toggle'
@@ -96,17 +96,33 @@ const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
 
+    
     const dispatch = useDispatch()
-
+    
     const user = useSelector(state => state.user.user)
     const itemCount = useSelector(state => state.cart.itemCount)
     const cart = useSelector(state => state.cart.cartList)
+    
+    // ********** Google Login **********
+    const [googleUser, setGoogleUser] = useState(JSON.parse(localStorage.getItem('profile')))
+    console.log('User:', googleUser)
+    useEffect(() => {
+        const token = googleUser?.token
+        // console.log('Token:', token)
+        // JWT...
+        setGoogleUser(JSON.parse(localStorage.getItem('profile')))
+    }, [])
+    // ********** Google Login **********
 
     const handleClick = () => {
         deleteCartFromDB(user.id)
         saveCartToDB(cart, user.id)
         dispatch(userLogut())
         dispatch(clearCart())
+        // ********** Google Log Out **********
+        dispatch({ type: 'LOGOUT' })
+        setGoogleUser(null)
+        // ********** Google Log Out **********
     }
 
     return (
@@ -166,15 +182,12 @@ const MenuOptBar = ({ open }) => {
 
                 </>
             }
-
-
             {/* <li>
                 <Link to = "/about"  className = "link">
                     Acerca de
                 </Link>
             </li> */}
             {/* <li>Contact Us</li> */}
-
             <li>
                 <Link to="/cart" className="link">
                     <img src={cartIcon} alt='chart' />
@@ -184,7 +197,6 @@ const MenuOptBar = ({ open }) => {
             {/* <li>
                 <span className="badge">{itemCount}</span>
             </li> */}
-
             <li>
                 <ToggleForm />
             </li>
