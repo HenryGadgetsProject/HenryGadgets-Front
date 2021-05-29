@@ -12,9 +12,9 @@ import Login from '../Pages/User/Login'
 import Register from '../Pages/User/Register'
 import UserProfile from '../Pages/User/UserProfile'
 import Logout from '../Pages/User/Logout'
-import Reviews from '../Pages/Reviews'
 import ConfirmBuy from '../Pages/ConfirmBuy'
 import BuySuccess from '../Pages/BuySuccess'
+import Reviews from '../Pages/Reviews'
 
 const ClientRouter = () => {
     return (
@@ -24,11 +24,11 @@ const ClientRouter = () => {
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
                 <Route path="/cart" component={MyCart} />
-                <Route path="/reviews" component={Reviews} />
                 <Route path="/login" component={Login} />
                 <Route path="/logout" component={Logout} />
                 <Route path="/register" component={Register} />
                 <Route path="/user" component={UserProfile} />
+                <Route path="/reviews" component={Reviews} />
                 <Route exact path='/category/:categoryId'
                     render={({ match }) => <Category categoryId={match.params.categoryId} />}
                 />
