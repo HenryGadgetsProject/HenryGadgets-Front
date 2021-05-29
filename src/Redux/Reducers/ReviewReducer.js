@@ -7,6 +7,7 @@ import {
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
     CREATED_FALSE,
+    GET_REVIEWS_BY_USER_ID
 } from '../Actions/Review/ReviewActionTypes'
 
 const initialState = {
@@ -68,11 +69,19 @@ const reviewReducer = (state = initialState, action) => {
                 loading: true
             }
         }
-        
+
         case CREATED_FALSE: {
             return {
                 ...state,
                 created: false
+            }
+        }
+
+
+        case GET_REVIEWS_BY_USER_ID: {
+            return {
+                ...state,
+                reviews: action.payload
             }
         }
 

@@ -9,7 +9,8 @@ import {
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
     CREATED_FALSE,
-    GET_REVIEW_BY_PRODUCT
+    GET_REVIEW_BY_PRODUCT,
+    GET_REVIEWS_BY_USER_ID
 } from './ReviewActionTypes'
 
 export const getReview = (productId) => {
@@ -26,6 +27,36 @@ export const getReview = (productId) => {
                 dispatch(
                     {
                         type: GET_REVIEW_SUCCESS,
+                        payload: reviews
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: REVIEW_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const getReviewsByUserId = (userId) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: REVIEW_REQUEST
+            }
+        )
+        axios.get(`${HOST}/reviews/user/${userId}`)
+            .then(response => {
+                const reviews = response.data.data
+                console.log(reviews)
+                dispatch(
+                    {
+                        type: GET_REVIEWS_BY_USER_ID,
                         payload: reviews
                     }
                 )

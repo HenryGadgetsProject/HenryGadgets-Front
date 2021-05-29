@@ -9,6 +9,7 @@ import {
     GET_ORDER_BY_ID_SUCCESS,
     UPDATE_ORDER_SUCCESS,
     FILTER_ORDERS,
+    FILTER_ORDERS_BY_USER_ID
 } from '../Order/OrderActionTypes'
 
 export const getOrders = () => {
@@ -134,5 +135,12 @@ export const filterOrders = (term) => {
                     }
                 )
             })
+    }
+}
+
+export const filterOrdersByUserId = (userId) => {
+    return {
+        type: FILTER_ORDERS_BY_USER_ID,
+        payload: userId
     }
 }
