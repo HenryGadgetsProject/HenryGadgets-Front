@@ -21,7 +21,7 @@ const Aside = styled.aside`
     background  : black;
     border      : none;
     padding     : 2em;
-    min-height: 100%;
+    ${'' /* min-height: 100%; */}
 
     img {
         border          : none;
@@ -62,13 +62,13 @@ const Aside = styled.aside`
 `
 const UserSection = styled.section`
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    ${'' /* flex-wrap: wrap; */}
+    flex-direction: column;
     align-items: flex-start;
 
     background: #424242;
 
-    min-height: 100%;
+    ${'' /* min-height: 100%; */}
 
     table {
         font-size: 1.2em;

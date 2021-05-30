@@ -8,6 +8,7 @@ const Main = styled.main`
     margin          : 0 auto 7em;
     ${'' /* min-height      : calc(100vh - 20em); */}
     ${'' /* max-height      : 100%; */}
+    ${'' /* min-height      : 100%; */}
     min-height      : calc(100vh - 20em);
     width           : 100%;
 `
