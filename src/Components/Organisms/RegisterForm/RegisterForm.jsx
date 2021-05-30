@@ -121,7 +121,7 @@ const RegisterForm = () => {
     const users = useSelector(state => state.user.users)
 
     const dispatch = useDispatch()
-    
+
     const history = useHistory()
 
     const [isTouch, setIsTouch] = useState({})
@@ -135,8 +135,8 @@ const RegisterForm = () => {
         email: "",
         password: "",
     })
-    
-    
+
+
     const handleBlur = (e) => {
         setIsTouch({
             ...isTouch,
@@ -174,7 +174,7 @@ const RegisterForm = () => {
     }
 
     /// ********** Google Register **********
-    const googleSuccess = async(res) => {
+    const googleSuccess = async (res) => {
         const result = res?.profileObj
         const body = {
             email: result.email,
@@ -248,12 +248,13 @@ const RegisterForm = () => {
             {/********** Google Register **********/}
             <ButtonContainer>
                 <GoogleLogin
-                    clientId="786762591902-l8t2boesumop1ab4dbmc58j0ko9k3c7s.apps.googleusercontent.com"
+                    clientId="36217089803-ctj5ohpc4tecvsqg985jbvvhgd71nctq.apps.googleusercontent.com"
+
                     render={(renderProps) => (
-                        <Button 
-                            onClick={renderProps.onClick} 
+                        <Button
+                            onClick={renderProps.onClick}
                             disabled={renderProps.disabled}>
-                            <GoogleIcon/>
+                            <GoogleIcon />
                         </Button>
                     )}
                     onSuccess={googleSuccess}

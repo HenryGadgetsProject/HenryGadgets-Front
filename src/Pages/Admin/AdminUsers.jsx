@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 
 // import { Link } from 'react-router-dom'
 
-import { deleteUser, promoteUser, getUsers, resetPassword } from '../../Redux/Actions/User/UserActions'
+import { changeUserStatus, promoteUser, getUsers, resetPassword } from '../../Redux/Actions/User/UserActions'
 
 import styled from "styled-components"
 
@@ -50,23 +50,23 @@ const AdminUsers = () => {
 
 
 
-    const deleteHandler = (id) => {
+    const deleteHandler = (id, status) => {
         Swal.fire({
             title: 'Estas seguro?',
-            text: "Vas a eliminar un usuario",
+            text: "Vas a inhabilitar a un usuario",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
+            confirmButtonText: 'Inhabilitar',
             cancelButtonText: 'Cancelar'
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    dispatch(deleteUser(id))
+                    dispatch(changeUserStatus(id, status))
                     Swal.fire(
-                        'Eliminado!',
-                        'El usuario fue eliminado.',
+                        'Inhabilitado!',
+                        'El usuario fue inhabilitado.',
                         'success'
                     )
                 }
@@ -101,7 +101,8 @@ const AdminUsers = () => {
                     <th>Administrador</th>
                     <th>Promote</th>
                     <th>Reset</th>
-                    <th>Borrar</th>
+                    <th>Inhabilitar</th>
+                    <th>Habilitar</th>
                 </tr>
             </thead>
 
@@ -115,7 +116,8 @@ const AdminUsers = () => {
                         <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin />}</td>
                         <td data-label="Editar" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
                         <td data-label="Editar" className="center-text" onClick={() => resetPasswordHandler(user.id)}>{(user.is_admin) ? null : <ResetIcon />}</td>
-                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id)}><DeleteIcon /></td>
+                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id, 'disabled')}><DeleteIcon /></td>
+                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id, 'active')}><StatusIcon /></td>
                     </tr>
                 ))}
             </tbody>

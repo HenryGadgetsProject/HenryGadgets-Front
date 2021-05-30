@@ -11,7 +11,7 @@ import {
     GET_USERS_SUCCESS,
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
-    DELETE_USER_SUCCESS,
+    CHANGE_USER_STATUS_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
     PROMOTE_USER_SUCCESS,
     RESET_PASSWORD_SUCCESS
@@ -244,14 +244,15 @@ export const updateUser = (id, body) => {
     }
 }
 
-export const deleteUser = (id) => {
+export const changeUserStatus = (id, status) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
-        axios.delete(`${HOST}/users/${id}`)
+        axios.put(`${HOST}/users/${id}/${status}`)
             .then(response => {
+                console.log('CHANGESTATUS', response.data)
                 dispatch(
                     {
-                        type: DELETE_USER_SUCCESS,
+                        type: CHANGE_USER_STATUS_SUCCESS,
                         payload: parseInt(id)
                     }
                 )
