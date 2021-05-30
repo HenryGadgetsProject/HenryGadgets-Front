@@ -50,7 +50,7 @@ export const getReviewsByUserId = (userId) => {
                 type: REVIEW_REQUEST
             }
         )
-        axios.get(`${HOST}/reviews/user/${userId}`)
+        axios.get(`${HOST}/products/user/${userId}`)
             .then(response => {
                 const reviews = response.data.data
                 console.log(reviews)
