@@ -23,39 +23,39 @@ const NumbersContainer = styled.ul`
     padding: 0;
     margin-top: 4em;
 `
-const PageNumbers = styled.li`
-    font-size: 1.2em;
-    font-weight: 500;
-    text-align: center;
-    padding: 1.6em;
-    border: .1em solid var(--divider);
-    cursor: pointer;
-    transition: .5s;
-    &:hover {
-        background-color: #ff616f;
-    }
-    &.active {
-        font-weight: 700;
-        background-color: #ff1744;
-        color: black;
-    }
-`
-const Button = styled.button`
-    font-size: 1.2em;
-    text-align: center;
-    padding: 1.6em;
-    background-color: transparent;
-    border: .1em solid var(--divider);
-    color: black;
-    cursor: pointer;
-    transition: .5s;
-    &:hover {
-        background-color: #ff1744;
-    }
-    &:focus {
-        outline: none;
-    }
-`
+// const PageNumbers = styled.li`
+    // ${'' /* border: .1em solid var(--divider);
+    // cursor: pointer;
+    // font-size: 1.2em;
+    // font-weight: 500;
+    // padding: 1.6em;
+    // text-align: center;
+    // transition: .5s;
+    // &:hover {
+    //     background-color: #ff616f;
+    // } */}
+    // ${'' /* &.active {
+    //     font-weight: bold;
+    //     background-color: var(--light-primary);
+    //     color: black;
+    // } */}
+// `
+// const Button = styled.button`
+    // ${'' /* background-color: transparent;
+    // border: .1em solid var(--divider);
+    // color: black;
+    // cursor: pointer;
+    // font-size: 1.2em;
+    // padding: 1.6em;
+    // text-align: center;
+    // transition: .5s;
+    // &:hover {
+    //     background-color: #ff1744;
+    // }
+    // &:focus {
+    //     outline: none;
+    // } */}
+// `
 // const LoadMoreButton = styled.button`
 //     padding: 1rem;
 //     background-color: #ff1744;
@@ -97,8 +97,8 @@ const AdminProducts = () => {
             text: "vas a eliminar un producto",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#7FFF00',
+            cancelButtonColor: '#E90000',
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })
@@ -166,22 +166,22 @@ const AdminProducts = () => {
 
     let pageIncrementBtn = null
     if (pages.length > maxPageNumberLimit) {
-        pageIncrementBtn = <Button onClick={handleNextBtn}>&hellip;</Button>
+        pageIncrementBtn = <button onClick={handleNextBtn}>&hellip;</button>
     }
 
     let pageDecrementBtn = null
     if (minPageNumberLimit >= 1) {
-        pageDecrementBtn = <Button onClick={handlePrevBtn}>&hellip;</Button>
+        pageDecrementBtn = <button onClick={handlePrevBtn}>&hellip;</button>
     }
 
     // Renderizamos los números de las páginas como (<Li>)
     const renderPageNumbers = pages.map(number => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
             return (
-                <PageNumbers
-                    className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
+                <li
+                    className={currentPage === number ? "active btn-pag" : "btn-pag"} key={number} id={number} onClick={handleClick}>
                     {number}
-                </PageNumbers>
+                </li>
             )
         } else {
             return null;
@@ -249,11 +249,11 @@ const AdminProducts = () => {
                 </Table>
 
                 <NumbersContainer>
-                    <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
+                    <button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</button>
                         {pageDecrementBtn}
                         {renderPageNumbers}
                         {pageIncrementBtn}
-                    <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
+                    <button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</button>
                 </NumbersContainer>
             </>
         )
