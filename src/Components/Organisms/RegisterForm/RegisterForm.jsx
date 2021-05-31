@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getId } from '../../../Helpers/getId'
 import { addUser } from '../../../Redux/Actions/User/UserActions'
-import { GoogleLogin } from 'react-google-login'
-import axios from 'axios'
+// import { GoogleLogin } from 'react-google-login'
+// import axios from 'axios'
 
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
@@ -83,12 +83,12 @@ const PasswordIcon = styled.img`
     padding: 1em;
     background: url('https://api.iconify.design/carbon:password.svg?color=white') no-repeat center center / contain;
 `
-const GoogleIcon = styled.img`
-    height: 2em;
-    width: 2em;
-    padding: 1em;
-    background: url('https://api.iconify.design/grommet-icons:google.svg') no-repeat center center / contain;
-`
+// const GoogleIcon = styled.img`
+//     height: 2em;
+//     width: 2em;
+//     padding: 1em;
+//     background: url('https://api.iconify.design/grommet-icons:google.svg') no-repeat center center / contain;
+// `
 
 // Control para Formulario
 const validate = (input, reType) => {

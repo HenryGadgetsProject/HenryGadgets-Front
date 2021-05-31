@@ -7,12 +7,12 @@ import { getReviewsByUserId } from '../../../Redux/Actions/Review/ReviewActions'
 
 import styled from 'styled-components'
 
-const HistoryIcon = styled.img`
-    background: url('https://api.iconify.design/ant-design:history-outlined.svg?color=white') no-repeat center center / contain;
-`
-const DetailIcon = styled.img`
-    background: url('https://api.iconify.design/bx:bx-detail.svg?color=white') no-repeat center center / contain;
-`
+// const HistoryIcon = styled.img`
+//     background: url('https://api.iconify.design/ant-design:history-outlined.svg?color=white') no-repeat center center / contain;
+// `
+// const DetailIcon = styled.img`
+//     background: url('https://api.iconify.design/bx:bx-detail.svg?color=white') no-repeat center center / contain;
+// `
 const AddReview = styled.img`
     background: url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white') no-repeat center center / contain;
 `
@@ -25,7 +25,7 @@ const UserOrders = () => {
 
     const user = useSelector(state => state.user.user)
     const orders = useSelector(state => state.order.filteredOrders1)
-    const products = useSelector(state => state.product.products)
+    // const products = useSelector(state => state.product.products)
     const reviews = useSelector(state => state.review.reviews)
     //console.log(products)
 

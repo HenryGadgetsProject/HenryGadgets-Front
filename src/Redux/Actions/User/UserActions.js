@@ -17,9 +17,9 @@ import {
     RESET_PASSWORD_SUCCESS
 } from './UserActionTypes'
 
-import {
-    AUTH
-} from '../Auth/AuthActionsType'
+// import {
+//     AUTH
+// } from '../Auth/AuthActionsType'
 
 import { addItemCart } from '../Cart/CartActions'
 
@@ -97,10 +97,10 @@ export const userGoogleLogin = (body, result, token) => {
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Te has logeado correctamente!'
-                })
+                // Toast.fire({
+                //     icon: 'success',
+                //     title: 'Te has logeado correctamente!'
+                // })
                 dispatch(
                     {
                         type: USER_LOGIN_SUCCESS,
@@ -252,7 +252,7 @@ export const changeUserStatus = (id, status) => {
                 dispatch(
                     {
                         type: CHANGE_USER_STATUS_SUCCESS,
-                        payload: parseInt(id)
+                        payload: {id: parseInt(id), status}
                     }
                 )
             })
