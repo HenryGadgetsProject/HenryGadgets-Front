@@ -89,7 +89,7 @@ const UserProfile = () => {
             <Breadcrumb id="breadcrumb" />
             <Main id="main">
                 <Aside>
-                    <img src='https://i.dlpng.com/static/png/5066008-circled-user-icon-user-profile-icon-png-png-image-transparent-profile-icon-png-820_860_preview.png' alt='profile'></img>
+                    <img src={user.photo}></img>
                     <div>
                         <p>Usuario</p>
                         <p>{user.first_name} {user.last_name}</p>
@@ -97,7 +97,7 @@ const UserProfile = () => {
                         <p>{user.email}</p>
                     </div>
                 </Aside>
-                
+
                 <UserSection>
                     <Route exact path='/user' render={() => <UserOrders />} />
                     <Route exact path='/user/review' render={() => <ReviewsForm />} />

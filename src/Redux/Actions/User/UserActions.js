@@ -94,7 +94,9 @@ export const userGoogleLogin = (body, result, token) => {
         // console.log(body)
         axios.post(`${HOST}/auth/googleSignin`, body)
             .then(response => {
-                const user = response.data.result
+
+                console.log('USER_GOOGLE_LOGIN', response.data)
+                const user = response.data.updatedUser
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
@@ -104,8 +106,8 @@ export const userGoogleLogin = (body, result, token) => {
                 })
                 dispatch(
                     {
-                        type: AUTH,
-                        data: { result, token }
+                        type: USER_LOGIN_SUCCESS,
+                        payload: fullUser
                     }
                 )
             })
@@ -129,6 +131,7 @@ export const userGoogleLogin = (body, result, token) => {
 export const userLogut = () => {
     localStorage.removeItem("JWT")
     localStorage.removeItem('cart')
+    localStorage.clear()
     return {
         type: USER_LOGOUT_SUCCESS
     }

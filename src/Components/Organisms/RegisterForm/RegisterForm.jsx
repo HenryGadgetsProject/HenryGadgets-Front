@@ -174,35 +174,37 @@ const RegisterForm = () => {
     }
 
     /// ********** Google Register **********
-    const googleSuccess = async (res) => {
-        const result = res?.profileObj
-        const body = {
-            email: result.email,
-            googleId: result.googleId,
-            first_name: result.givenName,
-            last_name: result.familyName
-        }
-        console.log(body)
-        axios.post('http://localhost:3001/auth/googleSignup', body)
-            .then(
-                Swal.fire(
-                    'Listo!',
-                    'Tu cuenta se ha registrado con éxito!',
-                    'success'
-                )
-            )
-            .catch(
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Algo malo pasó...'
-                })
-            )
-    }
-    const googleFailure = (error) => {
-        console.log(error)
-        console.log('Google sign in was unsuccessful')
-    }
+    // const googleSuccess = async (res) => {
+    //     const result = res?.profileObj
+    //     const body = {
+    //         email: result.email,
+    //         googleId: result.googleId,
+    //         first_name: result.givenName,
+    //         last_name: result.familyName,
+    //         photo: result.photos[0]
+
+    //     }
+    //     console.log(body)
+    //     axios.post('http://localhost:3001/auth/googleSignup', body)
+    //         .then(
+    //             Swal.fire(
+    //                 'Listo!',
+    //                 'Tu cuenta se ha registrado con éxito!',
+    //                 'success'
+    //             )
+    //         )
+    //         .catch(
+    //             Swal.fire({
+    //                 icon: 'error',
+    //                 title: 'Oops...',
+    //                 text: 'Algo malo pasó...'
+    //             })
+    //         )
+    // }
+    // const googleFailure = (error) => {
+    //     console.log(error)
+    //     console.log('Google sign in was unsuccessful')
+    // }
     // ********** Google Register **********
 
     return (
@@ -246,9 +248,9 @@ const RegisterForm = () => {
             </Form>
 
             {/********** Google Register **********/}
-            <ButtonContainer>
+            {/* <ButtonContainer>
                 <GoogleLogin
-                    clientId="36217089803-ctj5ohpc4tecvsqg985jbvvhgd71nctq.apps.googleusercontent.com"
+                    clientId="786762591902-l8t2boesumop1ab4dbmc58j0ko9k3c7s.apps.googleusercontent.com"
 
                     render={(renderProps) => (
                         <Button
@@ -261,7 +263,7 @@ const RegisterForm = () => {
                     onFailure={googleFailure}
                     cookiepolicy="single_host_origin"
                 />
-            </ButtonContainer>
+            </ButtonContainer> */}
             {/********** Google Register **********/}
 
         </FormContainer>

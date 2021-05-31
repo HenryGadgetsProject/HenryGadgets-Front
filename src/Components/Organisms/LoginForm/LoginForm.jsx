@@ -259,7 +259,7 @@ const LoginForm = () => {
             {/********** Google Login **********/}
             <ButtonContainer>
                 <GoogleLogin
-                    clientId="36217089803-ctj5ohpc4tecvsqg985jbvvhgd71nctq.apps.googleusercontent.com"
+                    clientId="786762591902-l8t2boesumop1ab4dbmc58j0ko9k3c7s.apps.googleusercontent.com"
                     render={(renderProps) => (
                         <Button
                             onClick={renderProps.onClick}
