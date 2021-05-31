@@ -55,12 +55,11 @@ export const userLogin = (input) => {
             .then(response => {
                 const user = response.data.result
                 if (user.status === 'disabled') {
-                    dispatch(
-                        {
-                            type: USER_ERROR,
-                            payload: 'no estas habilitado comunicacte con el administrador'
-                        }
-                    )
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'no estas habilitado para ingresar'
+                    })
                     return
                 }
                 const jwt = response.data.token
@@ -107,12 +106,17 @@ export const userGoogleLogin = (body, result, token) => {
                 const user = response.data.updatedUser
 
                 if (response.data.updatedUser.status === 'disabled') {
-                    dispatch(
-                        {
-                            type: USER_ERROR,
-                            payload: 'no estas habilitado comunicacte con el administrador'
-                        }
-                    )
+                    // dispatch(
+                    //     {
+                    //         type: USER_ERROR,
+                    //         payload: 'no estas habilitado comunicacte con el administrador'
+                    //     }
+                    // )
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'no estas habilitado para ingresar'
+                    })
                     return
                 }
                 const jwt = response.data.token
@@ -273,7 +277,7 @@ export const changeUserStatus = (id, status) => {
                 dispatch(
                     {
                         type: CHANGE_USER_STATUS_SUCCESS,
-                        payload: {id: parseInt(id), status}
+                        payload: { id: parseInt(id), status }
                     }
                 )
             })

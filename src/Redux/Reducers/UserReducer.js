@@ -30,21 +30,24 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload,
-                loading: false
+                loading: false,
+                error: ''
             }
         }
         case GET_USER_SUCCESS: {
             return {
                 ...state,
                 user: action.payload,
-                loading: false
+                loading: false,
+                error: ''
             }
         }
         case ADD_USER_SUCCESS: {
             return {
                 ...state,
                 users: [...state.users, action.payload],
-                loading: false
+                loading: false,
+                error: ''
             }
         }
 
@@ -52,7 +55,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, ...action.payload } : user),
-                loading: false
+                loading: false,
+                error: ''
             }
         }
 
@@ -60,7 +64,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, status: action.payload.status } : user),
-                loading: false
+                loading: false,
+                error: ''
                 // users: state.users.filter(user => user.id !== parseInt(action.payload)),
                 // loading: false
             }
@@ -77,16 +82,18 @@ const userReducer = (state = initialState, action) => {
         case USER_LOADING: {
             return {
                 ...state,
-                loading: true
+                loading: true,
+                error: ''
             }
         }
 
         case USER_LOGIN_SUCCESS: {
             return {
                 ...state,
+                error: '',
                 user: action.payload,
-                loading: false,
-                error: ''
+                loading: false
+
             }
         }
 
@@ -103,7 +110,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, first_name: 'cualquierCosa' } : user),
-                loading: false
+                loading: false,
+                error: ''
             }
         }
         case PROMOTE_USER_SUCCESS: {
@@ -111,7 +119,8 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id))
                     ? { ...user, is_admin: action.payload.is_admin } : user),
-                loading: false
+                loading: false,
+                error: ''
 
             }
 
@@ -122,7 +131,7 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, reset: true } : user),
-
+                error: ''
             }
         }
 

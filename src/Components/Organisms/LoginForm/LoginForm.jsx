@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin, userGoogleLogin } from '../../../Redux/Actions/User/UserActions'
@@ -137,6 +137,8 @@ const LoginForm = () => {
         password: ""
     })
 
+
+
     // const Toast = Swal.mixin({
     //     toast: true,
     //     position: 'top-end',
@@ -185,9 +187,11 @@ const LoginForm = () => {
         //     icon: 'success',
         //     title: 'Te has logeado correctamente!'
         // })
-        if (userError) {
-            alert(userError)
-        }
+
+
+
+
+
 
         history.push("/home")
 
@@ -227,9 +231,8 @@ const LoginForm = () => {
             dispatch(userGoogleLogin(body, result, token))
         }, 2000)
         // dispatch({ type: 'AUTH', data: { result, token } })
-        if (userError) {
-            alert(userError)
-        }
+        console.log('en google', userError)
+
         history.push('/home')
     }
     const googleFailure = (error) => {
