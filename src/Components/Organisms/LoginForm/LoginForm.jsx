@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userLogin, userGoogleLogin } from '../../../Redux/Actions/User/UserActions'
 import { GoogleLogin } from 'react-google-login'
 import { userLogut } from '../../../Redux/Actions/User/UserActions'
@@ -117,7 +117,7 @@ const LoginForm = () => {
 
     // const JWT = JSON.parse(localStorage.getItem('JWT'))
 
-    // const user = useSelector(state => state.user.user)
+    const userError = useSelector(state => state.user.error)
 
     let history = useHistory()
 
@@ -136,6 +136,8 @@ const LoginForm = () => {
         email: "",
         password: ""
     })
+
+
 
     // const Toast = Swal.mixin({
     //     toast: true,
@@ -186,6 +188,11 @@ const LoginForm = () => {
         //     title: 'Te has logeado correctamente!'
         // })
 
+
+
+
+
+
         history.push("/home")
 
         // Swal.fire({
@@ -208,7 +215,14 @@ const LoginForm = () => {
             first_name: result.givenName,
             last_name: result.familyName,
             photo: result.imageUrl
+
+
+
         }
+
+
+
+
         dispatch(userGoogleLogin(body, result, token))
         setTimeout(() => {
             dispatch(userLogut)
@@ -217,6 +231,8 @@ const LoginForm = () => {
             dispatch(userGoogleLogin(body, result, token))
         }, 2000)
         // dispatch({ type: 'AUTH', data: { result, token } })
+        console.log('en google', userError)
+
         history.push('/home')
     }
     const googleFailure = (error) => {
