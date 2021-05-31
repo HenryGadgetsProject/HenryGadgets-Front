@@ -55,8 +55,18 @@ export const userLogin = (input) => {
             .then(response => {
                 console.log(response.data)
                 const user = response.data.result
+                if (user.status === 'disabled') {
+                    dispatch(
+                        {
+                            type: USER_ERROR,
+                            payload: 'no estas habilitado comunicacte con el administrador'
+                        }
+                    )
+                    return
+                }
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
+
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
                 Toast.fire({
                     icon: 'success',
@@ -93,10 +103,21 @@ export const userGoogleLogin = (body, result, token) => {
         })
         // console.log(body)
         axios.post(`${HOST}/auth/googleSignin`, body)
+
             .then(response => {
 
                 console.log('USER_GOOGLE_LOGIN', response.data)
                 const user = response.data.updatedUser
+
+                if (response.data.updatedUser.status === 'disabled') {
+                    dispatch(
+                        {
+                            type: USER_ERROR,
+                            payload: 'no estas habilitado comunicacte con el administrador'
+                        }
+                    )
+                    return
+                }
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))

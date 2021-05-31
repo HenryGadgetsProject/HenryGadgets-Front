@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userLogin, userGoogleLogin } from '../../../Redux/Actions/User/UserActions'
 import { GoogleLogin } from 'react-google-login'
 import axios from 'axios'
@@ -116,7 +116,7 @@ const LoginForm = () => {
 
     // const JWT = JSON.parse(localStorage.getItem('JWT'))
 
-    // const user = useSelector(state => state.user.user)
+    const userError = useSelector(state => state.user.error)
 
     let history = useHistory()
 
@@ -184,6 +184,9 @@ const LoginForm = () => {
         //     icon: 'success',
         //     title: 'Te has logeado correctamente!'
         // })
+        if (userError) {
+            alert(userError)
+        }
 
         history.push("/home")
 
@@ -208,10 +211,16 @@ const LoginForm = () => {
             last_name: result.familyName,
             photo: result.imageUrl
 
+
         }
+
+
 
         dispatch(userGoogleLogin(body, result, token))
         // dispatch({ type: 'AUTH', data: { result, token } })
+        if (userError) {
+            alert(userError)
+        }
         history.push('/home')
     }
     const googleFailure = (error) => {
