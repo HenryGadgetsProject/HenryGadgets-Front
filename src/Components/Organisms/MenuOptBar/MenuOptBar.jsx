@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ToggleForm from '../../Molecules/Toggle'
@@ -89,24 +89,40 @@ const Ul = styled.ul`
 
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
 const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
-// const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
+const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
 const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
 const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
 
+    
     const dispatch = useDispatch()
-
+    
     const user = useSelector(state => state.user.user)
     const itemCount = useSelector(state => state.cart.itemCount)
     const cart = useSelector(state => state.cart.cartList)
+    
+    // ********** Google Login **********
+    const [googleUser, setGoogleUser] = useState(JSON.parse(localStorage.getItem('profile')))
+    // console.log('User:', googleUser)
+    useEffect(() => {
+        const token = googleUser?.token
+        // console.log('Token:', token)
+        // JWT...
+        setGoogleUser(JSON.parse(localStorage.getItem('profile')))
+    }, [])
+    // ********** Google Login **********
 
     const handleClick = () => {
         deleteCartFromDB(user.id)
         saveCartToDB(cart, user.id)
         dispatch(userLogut())
         dispatch(clearCart())
+        // ********** Google Log Out **********
+        dispatch({ type: 'LOGOUT' })
+        setGoogleUser(null)
+        // ********** Google Log Out **********
     }
 
     return (
@@ -118,7 +134,7 @@ const MenuOptBar = ({ open }) => {
                             {/* <Link to="/user" className="link">
                                 <Img src={userIcon} alt='user'></Img>
                             </Link> */}
-                            <span>{user.first_name}</span>
+                            <Link to='/user'><span>{user.first_name}</span></Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -137,11 +153,16 @@ const MenuOptBar = ({ open }) => {
                             {/* <Link to="/user" className="link">
                                 <Img src={userIcon} alt='user'></Img>
                             </Link> */}
-                            <span>{user.first_name}</span>
+                            <Link to='/user'><span>{user.first_name}</span></Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
                                 <img src={logoutIcon} alt='logout' />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/user" className="link">
+                                <img src={userIcon} alt='user' />
                             </Link>
                         </li>
 
@@ -161,15 +182,12 @@ const MenuOptBar = ({ open }) => {
 
                 </>
             }
-
-
             {/* <li>
                 <Link to = "/about"  className = "link">
                     Acerca de
                 </Link>
             </li> */}
             {/* <li>Contact Us</li> */}
-
             <li>
                 <Link to="/cart" className="link">
                     <img src={cartIcon} alt='chart' />
@@ -179,7 +197,6 @@ const MenuOptBar = ({ open }) => {
             {/* <li>
                 <span className="badge">{itemCount}</span>
             </li> */}
-
             <li>
                 <ToggleForm />
             </li>

@@ -98,7 +98,7 @@ const Product = ({ productId }) => {
                         <li><img src={ shareIcon } alt='share' /></li>
                     </ul> */}
 
-                    <Link to='/reviews'>
+                    <Link to={`/product/${productId}/reviews`}>
                         <button className="review">
                             Ver Opiniones
                         </button>

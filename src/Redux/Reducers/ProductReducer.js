@@ -20,12 +20,11 @@ import {
     SET_PROD_BY_AVAILABILITY,
     SET_PROD_BY_ACTIVE,
     SET_PROD_BY_PRICE,
-    SET_PROD_BY_RATING
+    SET_PROD_BY_RATING,
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
     // ADD_PRODUCT
-
 } from '../Actions/Product/ProductActionTypes'
 
 const initialState = {
@@ -241,7 +240,6 @@ const ProductReducer = (state = initialState, action) => {
 
         //     }
         // }
-
         default: {
             return state
         }

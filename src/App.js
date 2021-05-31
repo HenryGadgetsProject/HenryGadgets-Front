@@ -6,9 +6,10 @@ import AdminRouter from './Routes/AdminRouter'
 import { USER_LOGIN_SUCCESS } from './Redux/Actions/User/UserActionTypes'
 
 import { getCategories } from './Redux/Actions/Categories/CategoriesActions'
-import { getPopularProducts, getProducts } from './Redux/Actions/Product/ProductActions'
+import { getProducts } from './Redux/Actions/Product/ProductActions'
 import { getUsers } from './Redux/Actions/User/UserActions'
 import { getCart } from './Redux/Actions/Cart/CartActions'
+import { getOrders } from './Redux/Actions/Order/OrderActions'
 
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
@@ -28,9 +29,10 @@ function App() {
 
     useEffect(() => {
         dispatch(getCategories());
-        // dispatch(getPopularProducts());
         dispatch(getProducts());
         dispatch(getUsers())
+        dispatch(getOrders())
+
     }, [dispatch])
 
     useEffect(() => {

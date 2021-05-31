@@ -12,7 +12,14 @@ import {
     INCREMENT_QUANTITY,
     DECREMENT_QUANTITY,
     //SAVE_CART_TO_DB,
-    GET_CART_SUCCESS
+    GET_CART_SUCCESS,
+    SAVE_ORDER_ID,
+    ORDER_LOADING,
+    ORDER_ERROR,
+    MAIL_SENDING,
+    MAIL_SUCCESS,
+    MAIL_ERROR,
+    CHANGE_ORDER_STATUS_SUCCESS
 } from './CartActionsType'
 
 
@@ -99,16 +106,17 @@ export const deleteCartFromDB = (userId) => {
 
 
 
-// export const getCart = (id) => {
+// export const createOrder = (userId, body,) => {
 //     return (dispatch) => {
-//         dispatch({ type: LOADING_CART })
-//         axios.get(`${HOST}/cart/${id}/cart`)
+//         dispatch({ type: ORDER_LOADING })
+//         axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
 //             .then(response => {
-//                 const cart = response.data
+//                 const id = response.data.id
+//                 console.log(response.data.id)
 //                 dispatch(
 //                     {
-//                         type: GET_CART_SUCCESS,
-//                         payload: cart
+//                         type: SAVE_ORDER_ID,
+//                         payload: id
 //                     }
 //                 )
 //             })
@@ -116,13 +124,79 @@ export const deleteCartFromDB = (userId) => {
 //                 const errorMsg = error.message
 //                 dispatch(
 //                     {
-//                         type: ERROR_CART,
+//                         type: ORDER_ERROR,
 //                         payload: errorMsg
 //                     }
 //                 )
 //             })
 //     }
 // }
+
+
+export const createOrder = (userId, body,) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: ORDER_LOADING })
+
+            const idReq = await axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
+            const id = idReq.data.id
+
+            dispatch(
+                {
+                    type: SAVE_ORDER_ID,
+                    payload: id
+                }
+            )
+
+            const dataReq = await axios.put(`http://localhost:3001/orders/admin/${id}/processing`)
+
+
+            const order = {
+                description: "Henry Gadgets",
+                price: dataReq.data.total_price,
+                quantity: 1
+            }
+
+            const paymentUrlReq = await axios.post(`http://localhost:3001/payment/${dataReq.data.id}`, order)
+            window.open(paymentUrlReq.data.url)
+
+        } catch (error) {
+            const errorMsg = error.message
+            dispatch(
+                {
+                    type: ORDER_ERROR,
+                    payload: errorMsg
+                }
+            )
+        }
+    }
+}
+
+export const sendMail = (body) => {
+    return (dispatch) => {
+        dispatch({ type: MAIL_SENDING })
+        axios.post(`http://localhost:3001/email/buy-confirmation`, body)
+            .then(response => {
+
+                dispatch(
+                    {
+                        type: MAIL_SUCCESS,
+                        payload: response.status
+
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: MAIL_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
 
 export const getCart = (id) => {
     const cartLS = JSON.parse(localStorage.getItem('cart'))
@@ -163,6 +237,36 @@ export const getCart = (id) => {
                     }
                 )
             })
+    }
+}
+
+
+
+export const changeToCompleted = (orderId) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: ORDER_LOADING })
+
+            await axios.put(`http://localhost:3001/orders/admin/${orderId}/completed`)
+
+
+
+            dispatch(
+                {
+                    type: CHANGE_ORDER_STATUS_SUCCESS,
+                    payload: orderId
+                }
+            )
+
+        } catch (error) {
+            const errorMsg = error.message
+            dispatch(
+                {
+                    type: ORDER_ERROR,
+                    payload: errorMsg
+                }
+            )
+        }
     }
 }
 

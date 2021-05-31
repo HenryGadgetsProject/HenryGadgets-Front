@@ -13,7 +13,9 @@ import {
     deleteItemFromCart,
     incrementQuantity,
     decrementQuantity,
-    clearCart
+    clearCart,
+    deleteCartFromDB,
+    saveCartToDB
 } from '../Redux/Actions/Cart/CartActions'
 
 import styled from 'styled-components'
@@ -170,11 +172,11 @@ const Table = styled.table`
     }
 `
 
-const Container = styled.div`
-    display: flex;
-`
-const Item = styled.div`   
-`
+// const Container = styled.div`
+//     display: flex;
+// `
+// const Item = styled.div`   
+// `
 
 // Icons
 // const BuyIcon = styled.img`
@@ -187,22 +189,23 @@ const DeleteIcon = styled.img`
 const MyCart = () => {
 
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.cartList)
 
     const history = useHistory()
 
 
-    const products = useSelector(state => state.cart.cartList)
+    //const cart = useSelector(state => state.cart.cartList)
     const user = useSelector(state => state.user.user)
     const [total, setTotal] = useState()
 
     useEffect(() => {
-        if (products) {
-            setTotal(products.reduce((acc, item) => {
+        if (cart) {
+            setTotal(cart.reduce((acc, item) => {
                 acc = acc + (item.price * item.quantity)
                 return acc;
             }, 0.00))
         }
-    }, [products])
+    }, [cart])
 
     const handleConfirmation = () => {
 
@@ -211,7 +214,9 @@ const MyCart = () => {
             return
         }
 
-        if (products.length > 0) {
+        deleteCartFromDB(user.id)
+        saveCartToDB(cart, user.id)
+        if (cart.length > 0) {
             history.push('/confirmation')
         }
 
@@ -249,7 +254,7 @@ const MyCart = () => {
             <NavBar />
             <Breadcrumb id="breadcrumb" />
 
-            {(products.length === 0)
+            {(cart.length === 0)
                 ?
                 <Main id="main">
                     <h2 className="text-center">No hay productos en el carrito</h2>
@@ -258,9 +263,9 @@ const MyCart = () => {
                 <Main id="main">
                     <aside>
                         {/* <div className="buttons"> */}
-                            <button className="btn btn-md" onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
-                            <button className="btn btn-md" onClick={() => history.push('/home')}>Seguir Comprando</button>
-                            <button className="btn btn-md" onClick={handleConfirmation}>Confirmar Compra</button>
+                        <button className="btn btn-md" onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
+                        <button className="btn btn-md" onClick={() => history.push('/home')}>Seguir Comprando</button>
+                        <button className="btn btn-md" onClick={handleConfirmation}>Confirmar Compra</button>
                         {/* </div> */}
                     </aside>
 
@@ -280,7 +285,7 @@ const MyCart = () => {
                             </thead>
 
                             <tbody>
-                                {products.map(product => (
+                                {cart.map(product => (
                                     <tr key={product.id}>
                                         {/* <td>{category.id}</td> */}
                                         <td data-label="Imágen"><img className="mini" src={product.big_image} alt={product.name} /></td>

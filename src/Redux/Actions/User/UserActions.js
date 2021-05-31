@@ -1,5 +1,6 @@
 import axios from 'axios'
 import HOST from '../../../constants'
+import Swal from 'sweetalert2'
 
 import {
     USER_LOGIN_SUCCESS,
@@ -10,12 +11,29 @@ import {
     GET_USERS_SUCCESS,
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
-    DELETE_USER_SUCCESS,
+    CHANGE_USER_STATUS_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
-    PROMOTE_USER_SUCCESS
+    PROMOTE_USER_SUCCESS,
+    RESET_PASSWORD_SUCCESS
 } from './UserActionTypes'
 
+import {
+    AUTH
+} from '../Auth/AuthActionsType'
+
 import { addItemCart } from '../Cart/CartActions'
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
 
 export const saveCartToDB = (userId, list, dispatch) => {
     list.forEach(element => {
@@ -28,19 +46,21 @@ export const saveCartToDB = (userId, list, dispatch) => {
 
 }
 
-
-
 export const userLogin = (input) => {
     return (dispatch) => {
         dispatch({
             type: USER_LOADING
         })
-        axios.post(`${HOST}/login`, input)
+        axios.post(`${HOST}/auth/signin`, input)
             .then(response => {
-                const user = response.data.user
+                const user = response.data.result
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Te has logeado correctamente!'
+                })
                 dispatch(
                     {
                         type: USER_LOGIN_SUCCESS,
@@ -50,6 +70,11 @@ export const userLogin = (input) => {
             })
             .catch(error => {
                 const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Contraseña o usuario incorrecto!'
+                })
                 dispatch(
                     {
                         type: USER_ERROR,
@@ -58,11 +83,52 @@ export const userLogin = (input) => {
                 )
             })
     }
-
 }
+
+export const userGoogleLogin = (body, result, token) => {
+    return (dispatch) => {
+        dispatch({
+            type: USER_LOADING
+        })
+        // console.log(body)
+        axios.post(`${HOST}/auth/googleSignin`, body)
+            .then(response => {
+                const user = response.data.updatedUser
+                const jwt = response.data.token
+                const fullUser = { ...user, token: jwt }
+                localStorage.setItem("JWT", JSON.stringify(fullUser))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Te has logeado correctamente!'
+                })
+                dispatch(
+                    {
+                        type: USER_LOGIN_SUCCESS,
+                        payload: fullUser
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Contraseña o usuario incorrecto!'
+                })
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
 export const userLogut = () => {
     localStorage.removeItem("JWT")
     localStorage.removeItem('cart')
+    localStorage.clear()
     return {
         type: USER_LOGOUT_SUCCESS
     }
@@ -178,14 +244,14 @@ export const updateUser = (id, body) => {
     }
 }
 
-export const deleteUser = (id) => {
+export const changeUserStatus = (id, status) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
-        axios.delete(`${HOST}/users/${id}`)
+        axios.put(`${HOST}/users/${id}/${status}`)
             .then(response => {
                 dispatch(
                     {
-                        type: DELETE_USER_SUCCESS,
+                        type: CHANGE_USER_STATUS_SUCCESS,
                         payload: parseInt(id)
                     }
                 )
@@ -235,6 +301,30 @@ export const promoteUser = (id) => {
                 dispatch(
                     {
                         type: PROMOTE_USER_SUCCESS,
+                        payload: id
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const resetPassword = (id) => {
+    return (dispatch) => {
+        dispatch({ type: USER_LOADING })
+        axios.post(`${HOST}/forcepassword/${id}`)
+            .then((response) => {
+                dispatch(
+                    {
+                        type: RESET_PASSWORD_SUCCESS,
                         payload: id
                     }
                 )
