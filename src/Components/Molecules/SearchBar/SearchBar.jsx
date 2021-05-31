@@ -27,6 +27,7 @@ const Input = styled.input`
     ===================================================== */}
     @media(max-width: 992px) {
         margin-right    : 3em;
+        width: 18em !important;
     }
 `
 
