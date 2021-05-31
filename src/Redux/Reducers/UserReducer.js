@@ -7,7 +7,7 @@ import {
     GET_USERS_SUCCESS,
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
-    DELETE_USER_SUCCESS,
+    CHANGE_USER_STATUS_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
     PROMOTE_USER_SUCCESS,
     RESET_PASSWORD_SUCCESS
@@ -56,11 +56,12 @@ const userReducer = (state = initialState, action) => {
             }
         }
 
-        case DELETE_USER_SUCCESS: {
+        case CHANGE_USER_STATUS_SUCCESS: {
             return {
                 ...state,
-                users: state.users.filter(user => user.id !== parseInt(action.payload)),
                 loading: false
+                // users: state.users.filter(user => user.id !== parseInt(action.payload)),
+                // loading: false
             }
         }
 

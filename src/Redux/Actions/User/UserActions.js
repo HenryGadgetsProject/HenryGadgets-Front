@@ -11,7 +11,7 @@ import {
     GET_USERS_SUCCESS,
     ADD_USER_SUCCESS,
     EDIT_USER_SUCCESS,
-    DELETE_USER_SUCCESS,
+    CHANGE_USER_STATUS_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
     PROMOTE_USER_SUCCESS,
     RESET_PASSWORD_SUCCESS
@@ -94,7 +94,9 @@ export const userGoogleLogin = (body, result, token) => {
         // console.log(body)
         axios.post(`${HOST}/auth/googleSignin`, body)
             .then(response => {
-                const user = response.data.result
+
+                console.log('USER_GOOGLE_LOGIN', response.data)
+                const user = response.data.updatedUser
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
@@ -104,8 +106,8 @@ export const userGoogleLogin = (body, result, token) => {
                 })
                 dispatch(
                     {
-                        type: AUTH,
-                        data: { result, token }
+                        type: USER_LOGIN_SUCCESS,
+                        payload: fullUser
                     }
                 )
             })
@@ -129,6 +131,7 @@ export const userGoogleLogin = (body, result, token) => {
 export const userLogut = () => {
     localStorage.removeItem("JWT")
     localStorage.removeItem('cart')
+    localStorage.clear()
     return {
         type: USER_LOGOUT_SUCCESS
     }
@@ -244,14 +247,15 @@ export const updateUser = (id, body) => {
     }
 }
 
-export const deleteUser = (id) => {
+export const changeUserStatus = (id, status) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
-        axios.delete(`${HOST}/users/${id}`)
+        axios.put(`${HOST}/users/${id}/${status}`)
             .then(response => {
+                console.log('CHANGESTATUS', response.data)
                 dispatch(
                     {
-                        type: DELETE_USER_SUCCESS,
+                        type: CHANGE_USER_STATUS_SUCCESS,
                         payload: parseInt(id)
                     }
                 )

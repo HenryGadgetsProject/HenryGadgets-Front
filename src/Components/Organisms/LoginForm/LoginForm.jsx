@@ -147,7 +147,7 @@ const LoginForm = () => {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-    
+
     const handleBlur = (e) => {
         setIsTouch({
             ...isTouch,
@@ -165,7 +165,7 @@ const LoginForm = () => {
         }))
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
 
         e.preventDefault()
 
@@ -192,18 +192,25 @@ const LoginForm = () => {
         //     title: 'Oops...',
         //     text: 'Contraseña o usuario incorrecto!'
         // })
-        
+
     }
 
     /// ********** Google Login **********
-    const googleSuccess = async(res) => {
+    const googleSuccess = async (res) => {
         const result = res?.profileObj
         const token = res?.tokenId
+
+
         const body = {
             email: result.email,
-            googleId: result.googleId
+            googleId: result.googleId,
+            first_name: result.givenName,
+            last_name: result.familyName,
+            photo: result.imageUrl
+
         }
-        dispatch(userGoogleLogin(body, result, token))        
+
+        dispatch(userGoogleLogin(body, result, token))
         // dispatch({ type: 'AUTH', data: { result, token } })
         history.push('/home')
     }
@@ -244,7 +251,7 @@ const LoginForm = () => {
                     {isTouch.password && error.password ? (<ErrorMsg>{error.password}</ErrorMsg>) : null}
                 </Item>
 
-                <ButtonContainer>               
+                <ButtonContainer>
                     <Button type='submit'>Ingresar</Button>
                 </ButtonContainer>
             </Form>
@@ -254,10 +261,10 @@ const LoginForm = () => {
                 <GoogleLogin
                     clientId="786762591902-l8t2boesumop1ab4dbmc58j0ko9k3c7s.apps.googleusercontent.com"
                     render={(renderProps) => (
-                        <Button 
-                            onClick={renderProps.onClick} 
+                        <Button
+                            onClick={renderProps.onClick}
                             disabled={renderProps.disabled}>
-                            <GoogleIcon/>
+                            <GoogleIcon />
                         </Button>
                     )}
                     onSuccess={googleSuccess}
