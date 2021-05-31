@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { userLogin, userGoogleLogin } from '../../../Redux/Actions/User/UserActions'
 import { GoogleLogin } from 'react-google-login'
-import axios from 'axios'
+import { userLogut } from '../../../Redux/Actions/User/UserActions'
+// import axios from 'axios'
 
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
@@ -136,17 +137,17 @@ const LoginForm = () => {
         password: ""
     })
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+    // const Toast = Swal.mixin({
+    //     toast: true,
+    //     position: 'top-end',
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //     timerProgressBar: true,
+    //     didOpen: (toast) => {
+    //         toast.addEventListener('mouseenter', Swal.stopTimer)
+    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+    //     }
+    // })
 
     const handleBlur = (e) => {
         setIsTouch({
@@ -207,10 +208,14 @@ const LoginForm = () => {
             first_name: result.givenName,
             last_name: result.familyName,
             photo: result.imageUrl
-
         }
-
         dispatch(userGoogleLogin(body, result, token))
+        setTimeout(() => {
+            dispatch(userLogut)
+        }, 1000)
+        setTimeout(() => {
+            dispatch(userGoogleLogin(body, result, token))
+        }, 2000)
         // dispatch({ type: 'AUTH', data: { result, token } })
         history.push('/home')
     }

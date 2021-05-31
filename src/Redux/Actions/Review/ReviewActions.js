@@ -9,7 +9,7 @@ import {
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
     CREATED_FALSE,
-    GET_REVIEW_BY_PRODUCT,
+    // GET_REVIEW_BY_PRODUCT,
     GET_REVIEWS_BY_USER_ID
 } from './ReviewActionTypes'
 

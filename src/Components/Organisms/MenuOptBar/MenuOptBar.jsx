@@ -162,7 +162,7 @@ const MenuOptBar = ({ open }) => {
                         </li>
                         <li>
                             <Link to="/user" className="link">
-                                <img src={userIcon} alt='user' />
+                                <img src={(user.photo) ? user.photo : userIcon} alt='user' />
                             </Link>
                         </li>
 

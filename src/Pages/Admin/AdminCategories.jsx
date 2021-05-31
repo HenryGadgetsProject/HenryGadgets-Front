@@ -5,6 +5,7 @@ import Table from '../../Components/Atoms/Table'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { deleteCategories } from '../../Redux/Actions/Categories/CategoriesActions'
+// import { getProductsByCategoryId } from '../../Redux/Actions/Product/ProductActions'
 
 
 import styled from "styled-components"
@@ -26,9 +27,22 @@ const AdminCategories = () => {
     const dispatch = useDispatch();
 
     const categories = useSelector(state => state.category.categories);
+    const products = useSelector(state => state.product.products)
 
 
     const deleteHandler = (id) => {
+
+        const foundProduct = products.filter(product => product.categories.some(category => category.id === id))
+        console.log(foundProduct)
+        if (foundProduct.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No puedes eliminar una categoría con productos asociados!',
+            })
+            return
+        }
+
         Swal.fire({
             title: 'Estas seguro?',
             text: "vas a eliminar una categoría",

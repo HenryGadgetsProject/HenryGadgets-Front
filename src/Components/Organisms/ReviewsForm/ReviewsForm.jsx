@@ -47,10 +47,10 @@ const Button = styled.button`
     box-shadow: 0 0 40px 40px #ff1744 inset;
   }
 `;
-const ErrorMsg = styled.p`
-  color: #ff1744;
-  font-size: 1.2em;
-`;
+// const ErrorMsg = styled.p`
+//   color: #ff1744;
+//   font-size: 1.2em;
+// `;
 const Divider = styled.div`
   display: flex;
 `;
