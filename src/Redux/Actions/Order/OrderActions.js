@@ -118,7 +118,6 @@ export const filterOrders = (term) => {
         axios.get(`${HOST}/orders/admin/${term}`)
             .then(response => {
                 const orders = response.data
-                console.log('FILTRADAS', orders)
                 dispatch(
                     {
                         type: FILTER_ORDERS,

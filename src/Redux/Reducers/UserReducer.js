@@ -59,6 +59,7 @@ const userReducer = (state = initialState, action) => {
         case CHANGE_USER_STATUS_SUCCESS: {
             return {
                 ...state,
+                users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, status: action.payload.status } : user),
                 loading: false
                 // users: state.users.filter(user => user.id !== parseInt(action.payload)),
                 // loading: false

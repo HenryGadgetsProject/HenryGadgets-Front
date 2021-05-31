@@ -137,8 +137,6 @@ const EditOrderForm = ({ orderId }) => {
 
     const order = useSelector(state => state.order.order);
 
-    console.log(order)
-
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
@@ -164,7 +162,6 @@ const EditOrderForm = ({ orderId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(input)
         dispatch(updateOrder(orderId, input))
         Swal.fire(
             'Listo!',

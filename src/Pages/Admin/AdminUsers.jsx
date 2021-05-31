@@ -20,7 +20,7 @@ background: url('https://api.iconify.design/bx:bx-reset.svg?color=green') no-rep
 //     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
 // `
 const DeleteIcon = styled.img`
-    background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
+    background: url('https://api.iconify.design/el:ban-circle.svg?color=red') no-repeat center center / contain;
 `
 const PromoteIcon = styled.img`
     background: url('https://api.iconify.design/bi:arrow-up-circle-fill.svg?color=chartreuse') no-repeat center center / contain;
@@ -42,35 +42,65 @@ const AdminUsers = () => {
 
     const users = useSelector(state => state.user.users);
     const [change, setChange] = useState(false)
+    const [userStatus, setUserStatus] = useState('active')
 
     useEffect(() => {
         dispatch(getUsers())
         setChange(false)
     }, [dispatch, change])
 
+    useEffect(() => {
+        dispatch(getUsers())
+    }, [dispatch, userStatus])
 
 
-    const deleteHandler = (id, status) => {
-        Swal.fire({
-            title: 'Estas seguro?',
-            text: "Vas a inhabilitar a un usuario",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Inhabilitar',
-            cancelButtonText: 'Cancelar'
-        })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    dispatch(changeUserStatus(id, status))
-                    Swal.fire(
-                        'Inhabilitado!',
-                        'El usuario fue inhabilitado.',
-                        'success'
-                    )
-                }
+    const statusHandler = (id, status) => {
+        if (status === 'disabled') {
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "Vas a inhabilitar a un usuario",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Inhabilitar',
+                cancelButtonText: 'Cancelar'
             })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        dispatch(changeUserStatus(id, status))
+                        Swal.fire(
+                            'Inhabilitado!',
+                            'El usuario fue inhabilitado.',
+                            'success'
+                        )
+                    }
+                })
+                setUserStatus(status)
+        } else {
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "Vas a habilitar a un usuario",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Habilitar',
+                cancelButtonText: 'Cancelar'
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        dispatch(changeUserStatus(id, status))
+                        Swal.fire(
+                            'Habilitado!',
+                            'El usuario fue Habilitado!',
+                            'success'
+                        )
+                    }
+                })
+                setUserStatus(status)
+        }
+        
     }
 
     const promoteHandler = (id) => {
@@ -87,8 +117,6 @@ const AdminUsers = () => {
         )
     }
 
-
-
     return (
         <Table>
             <caption>Usuarios</caption>
@@ -99,10 +127,9 @@ const AdminUsers = () => {
                     <th>Apellidos</th>
                     <th>Correo</th>
                     <th>Administrador</th>
-                    <th>Promote</th>
+                    <th>Promover</th>
                     <th>Reset</th>
-                    <th>Inhabilitar</th>
-                    <th>Habilitar</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
 
@@ -116,8 +143,12 @@ const AdminUsers = () => {
                         <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin />}</td>
                         <td data-label="Editar" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
                         <td data-label="Editar" className="center-text" onClick={() => resetPasswordHandler(user.id)}>{(user.is_admin) ? null : <ResetIcon />}</td>
-                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id, 'disabled')}><DeleteIcon /></td>
-                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(user.id, 'active')}><StatusIcon /></td>
+                        {
+                        (user.status === 'active') ? 
+                        <td data-label="Borrar" className="center-text" onClick={() => statusHandler(user.id, 'disabled')}>{(user.is_admin) ? null : <StatusIcon/>}</td>
+                        :
+                        <td data-label="Borrar" className="center-text" onClick={() => statusHandler(user.id, 'active')}>{(user.is_admin) ? null : <DeleteIcon/>}</td>
+                        }
                     </tr>
                 ))}
             </tbody>

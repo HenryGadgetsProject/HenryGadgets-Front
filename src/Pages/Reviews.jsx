@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Breadcrumb from "../Components/Atoms/Breadcrumb";
 import Footer from "../Components/Organisms/Footer";
 import NavBar from "../Components/Organisms/NavBar";
 import StarRatings from "react-star-ratings";
 import { getReview } from "../Redux/Actions/Review/ReviewActions";
-import { getProductsById } from "../Redux/Actions/Product/ProductActions";
+// import { getProductsById } from "../Redux/Actions/Product/ProductActions";
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ReviewsForm from "../Components/Organisms/ReviewsForm";
@@ -56,8 +56,6 @@ const Reviews = ({ productId }) => {
   useEffect(() => {
     dispatch(getReview(productId));
   }, [productId]);
-
-  console.log(reviews)
 
   return (
     <>

@@ -6,7 +6,6 @@ import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 
 const About = () => {
-    console.log('Saca esta huevada')
     return (
         <div className="container">
             <NavBar id="nav-general" />

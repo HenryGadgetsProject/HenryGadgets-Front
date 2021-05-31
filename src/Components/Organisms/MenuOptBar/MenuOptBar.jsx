@@ -105,7 +105,7 @@ const MenuOptBar = ({ open }) => {
     
     // ********** Google Login **********
     const [googleUser, setGoogleUser] = useState(JSON.parse(localStorage.getItem('profile')))
-    console.log('User:', googleUser)
+    // console.log('User:', googleUser)
     useEffect(() => {
         const token = googleUser?.token
         // console.log('Token:', token)
@@ -162,7 +162,7 @@ const MenuOptBar = ({ open }) => {
                         </li>
                         <li>
                             <Link to="/user" className="link">
-                                <img src={userIcon} alt='user' />
+                                <img src={(user.photo) ? user.photo : userIcon} alt='user' />
                             </Link>
                         </li>
 

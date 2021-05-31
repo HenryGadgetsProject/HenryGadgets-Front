@@ -44,8 +44,6 @@ const BuySuccess = ({ orderId }) => {
     //     title: 'Te hemos enviado un mail'
     // })
 
-    console.log(values.status);
-
     const client = {
         first_name: user.first_name,
         last_name: user.last_name,

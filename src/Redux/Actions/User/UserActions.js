@@ -17,9 +17,9 @@ import {
     RESET_PASSWORD_SUCCESS
 } from './UserActionTypes'
 
-import {
-    AUTH
-} from '../Auth/AuthActionsType'
+// import {
+//     AUTH
+// } from '../Auth/AuthActionsType'
 
 import { addItemCart } from '../Cart/CartActions'
 
@@ -53,7 +53,6 @@ export const userLogin = (input) => {
         })
         axios.post(`${HOST}/auth/signin`, input)
             .then(response => {
-                console.log(response.data)
                 const user = response.data.result
                 if (user.status === 'disabled') {
                     dispatch(
@@ -105,8 +104,6 @@ export const userGoogleLogin = (body, result, token) => {
         axios.post(`${HOST}/auth/googleSignin`, body)
 
             .then(response => {
-
-                console.log('USER_GOOGLE_LOGIN', response.data)
                 const user = response.data.updatedUser
 
                 if (response.data.updatedUser.status === 'disabled') {
@@ -121,10 +118,10 @@ export const userGoogleLogin = (body, result, token) => {
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
                 localStorage.setItem("JWT", JSON.stringify(fullUser))
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Te has logeado correctamente!'
-                })
+                // Toast.fire({
+                //     icon: 'success',
+                //     title: 'Te has logeado correctamente!'
+                // })
                 dispatch(
                     {
                         type: USER_LOGIN_SUCCESS,
@@ -273,11 +270,10 @@ export const changeUserStatus = (id, status) => {
         dispatch({ type: USER_LOADING })
         axios.put(`${HOST}/users/${id}/${status}`)
             .then(response => {
-                console.log('CHANGESTATUS', response.data)
                 dispatch(
                     {
                         type: CHANGE_USER_STATUS_SUCCESS,
-                        payload: parseInt(id)
+                        payload: {id: parseInt(id), status}
                     }
                 )
             })
@@ -347,7 +343,6 @@ export const resetPassword = (id) => {
         dispatch({ type: USER_LOADING })
         axios.post(`${HOST}/forcepassword/${id}`)
             .then((response) => {
-                console.log('LO QUE DEVUELVE EL RESET', response.data)
                 dispatch(
                     {
                         type: RESET_PASSWORD_SUCCESS,

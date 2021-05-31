@@ -89,13 +89,15 @@ const UserProfile = () => {
             <Breadcrumb id="breadcrumb" />
             <Main id="main">
                 <Aside>
-                    <img src={user.photo}></img>
+                    <img src={user.photo} alt={user.first_name}></img>
                     <div>
                         <p>Usuario</p>
                         <p>{user.first_name} {user.last_name}</p>
                         <p>Email</p>
                         <p>{user.email}</p>
                     </div>
+                    <p>Suscripciones</p>
+                    <button>Suscribirse</button>
                 </Aside>
 
                 <UserSection>

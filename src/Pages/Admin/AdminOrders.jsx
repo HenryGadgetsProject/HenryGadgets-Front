@@ -39,8 +39,6 @@ const AdminOrders = () => {
 
     const orders = useSelector(state => state.order.filteredOrders)
 
-    console.log(orders)
-
     //const [term, setTerm] = useState('')
 
     const handleTerm = (term) => {
