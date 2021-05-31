@@ -53,7 +53,6 @@ export const userLogin = (input) => {
         })
         axios.post(`${HOST}/auth/signin`, input)
             .then(response => {
-                console.log(response.data)
                 const user = response.data.result
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
@@ -94,8 +93,6 @@ export const userGoogleLogin = (body, result, token) => {
         // console.log(body)
         axios.post(`${HOST}/auth/googleSignin`, body)
             .then(response => {
-
-                console.log('USER_GOOGLE_LOGIN', response.data)
                 const user = response.data.updatedUser
                 const jwt = response.data.token
                 const fullUser = { ...user, token: jwt }
@@ -252,7 +249,6 @@ export const changeUserStatus = (id, status) => {
         dispatch({ type: USER_LOADING })
         axios.put(`${HOST}/users/${id}/${status}`)
             .then(response => {
-                console.log('CHANGESTATUS', response.data)
                 dispatch(
                     {
                         type: CHANGE_USER_STATUS_SUCCESS,
@@ -326,7 +322,6 @@ export const resetPassword = (id) => {
         dispatch({ type: USER_LOADING })
         axios.post(`${HOST}/forcepassword/${id}`)
             .then((response) => {
-                console.log('LO QUE DEVUELVE EL RESET', response.data)
                 dispatch(
                     {
                         type: RESET_PASSWORD_SUCCESS,

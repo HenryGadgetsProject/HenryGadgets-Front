@@ -140,7 +140,6 @@ export const createOrder = (userId, body,) => {
 
             const idReq = await axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
             const id = idReq.data.id
-            console.log(idReq.data.id)
 
             dispatch(
                 {
@@ -158,7 +157,6 @@ export const createOrder = (userId, body,) => {
                 quantity: 1
             }
 
-            console.log(dataReq.data.id)
             const paymentUrlReq = await axios.post(`http://localhost:3001/payment/${dataReq.data.id}`, order)
             window.open(paymentUrlReq.data.url)
 
@@ -175,13 +173,11 @@ export const createOrder = (userId, body,) => {
 }
 
 export const sendMail = (body) => {
-    console.log(body)
     return (dispatch) => {
         dispatch({ type: MAIL_SENDING })
         axios.post(`http://localhost:3001/email/buy-confirmation`, body)
             .then(response => {
 
-                console.log("RESPONSE", response.status)
                 dispatch(
                     {
                         type: MAIL_SUCCESS,

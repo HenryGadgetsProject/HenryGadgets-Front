@@ -23,7 +23,6 @@ export const getReview = (productId) => {
         axios.get(`${HOST}/products/${productId}/review`)
             .then(response => {
                 const reviews = response.data.data
-                console.log(reviews)
                 dispatch(
                     {
                         type: GET_REVIEW_SUCCESS,
@@ -53,7 +52,6 @@ export const getReviewsByUserId = (userId) => {
         axios.get(`${HOST}/products/user/${userId}`)
             .then(response => {
                 const reviews = response.data.data
-                console.log(reviews)
                 dispatch(
                     {
                         type: GET_REVIEWS_BY_USER_ID,
@@ -83,7 +81,6 @@ export const addReview = (input) => {
         axios.post(`${HOST}/products/${input.productId}/review`, input)
             .then(response => {
                 const reviews = response.data
-                console.log(reviews)
                 dispatch(
                     {
                         type: CREATE_REVIEW_SUCCESS,

@@ -57,8 +57,6 @@ const Reviews = ({ productId }) => {
     dispatch(getReview(productId));
   }, [productId]);
 
-  console.log(reviews)
-
   return (
     <>
       <NavBar />
