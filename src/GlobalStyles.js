@@ -613,7 +613,7 @@ const GlobalStyle = createGlobalStyle`
         SECTION 3
         ================================================= */}
         aside, section, .filters {
-            padding             : 2vw 3vw;
+            padding             : 2vw;
             width               : 100%;
         }
 

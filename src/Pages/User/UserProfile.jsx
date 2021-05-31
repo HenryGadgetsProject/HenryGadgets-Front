@@ -24,8 +24,10 @@ const Aside = styled.aside`
     ${'' /* min-height: 100%; */}
 
     img {
+        width: 20em;
+        border-radius   : 50%;
         border          : none;
-        margin-right    : 1.6em;
+        margin          : 0 auto;
         outline         : none;
         padding         : 1em;
     }
