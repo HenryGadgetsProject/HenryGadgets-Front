@@ -30,6 +30,11 @@ const Ul = styled.ul`
         }
     }
 
+    a > span {
+        color           : var(--pure-white);
+        font-size       : 1.6em;
+    }
+
     svg {
         height          : 2.2em;
         width           : 2.2em;
@@ -134,7 +139,7 @@ const MenuOptBar = ({ open }) => {
                             {/* <Link to="/user" className="link">
                                 <Img src={userIcon} alt='user'></Img>
                             </Link> */}
-                            <Link to='/user'><span>{user.first_name}</span></Link>
+                            <Link to='/user'><span>Hola {user.first_name}</span></Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -153,7 +158,7 @@ const MenuOptBar = ({ open }) => {
                             {/* <Link to="/user" className="link">
                                 <Img src={userIcon} alt='user'></Img>
                             </Link> */}
-                            <Link to='/user'><span>{user.first_name}</span></Link>
+                            <Link to='/user'><span>Hola {user.first_name}</span></Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
