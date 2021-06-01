@@ -42,7 +42,7 @@ const LogoDiv = styled.div`
 
 const NavBar = () => {
     const mode = useSelector((state) => state.global.theme)
-    
+
     const location = useLocation()
 
     return (
@@ -53,27 +53,24 @@ const NavBar = () => {
                         !mode ?
                             <img
                                 id="logo-productman"
-                                src={ LogoLight }
+                                src={LogoLight}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
-                        :
+                            :
                             <img
                                 id="logo-productman"
-                                src={ LogoDark }
+                                src={LogoDark}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
                     }
                 </Link>
-                {/* <H2>
-                    <Link to="/home" className="link">
-                        HandyX App
-                    </Link>
-                </H2> */}
+
             </LogoDiv>
+
 
             {location.pathname === '/home' ? <SearchBar /> : null}
             {/* <SearchBar /> */}

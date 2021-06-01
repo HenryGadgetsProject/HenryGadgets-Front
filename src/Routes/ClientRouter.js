@@ -15,6 +15,7 @@ import Logout from '../Pages/User/Logout'
 import ConfirmBuy from '../Pages/ConfirmBuy'
 import BuySuccess from '../Pages/BuySuccess'
 import Reviews from '../Pages/Reviews'
+import Branch from '../Pages/Branch'
 
 const ClientRouter = () => {
     return (
@@ -29,6 +30,7 @@ const ClientRouter = () => {
                 <Route path="/register" component={Register} />
                 <Route path="/user" component={UserProfile} />
                 <Route path="/reviews" component={Reviews} />
+                <Route path="/branches" component={Branch} />
                 <Route exact path='/category/:categoryId'
                     render={({ match }) => <Category categoryId={match.params.categoryId} />}
                 />
@@ -39,15 +41,15 @@ const ClientRouter = () => {
                 <Route path="/confirmation" component={ConfirmBuy} />
                 <Route
                     path='/product/:productId/reviews'
-                    render={({ match }) => <Reviews productId={match.params.productId}/>}
-                    />
+                    render={({ match }) => <Reviews productId={match.params.productId} />}
+                />
                 <Route path="/success/:orderId"
                     render={({ match }) => <BuySuccess orderId={match.params.orderId} />}
 
                 />
 
                 <Route component={NotFound} />
-            
+
 
 
             </Switch>

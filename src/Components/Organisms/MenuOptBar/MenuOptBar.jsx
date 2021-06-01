@@ -101,13 +101,13 @@ const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
 
-    
+
     const dispatch = useDispatch()
-    
+
     const user = useSelector(state => state.user.user)
     const itemCount = useSelector(state => state.cart.itemCount)
     const cart = useSelector(state => state.cart.cartList)
-    
+
     // ********** Google Login **********
     const [googleUser, setGoogleUser] = useState(JSON.parse(localStorage.getItem('profile')))
     // console.log('User:', googleUser)

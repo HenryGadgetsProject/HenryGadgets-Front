@@ -104,20 +104,25 @@ const UserOrders = () => {
                         <th className="name">Producto</th>
                         <th>Cantidad</th>
                         <th>Sub Total</th>
-                        <th>Review</th>
+                        <th>Crear</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {details.map(detail => (
-                        <tr key={detail.product_id}>
-                            <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
-                            <td data-label="Producto">{detail.name}</td>
-                            <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
-                            <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
-                            <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
-                        </tr>
-                    ))}
+                    {details.map(detail => {
+                        console.log(detail)
+                        return (
+                            <tr key={detail.product_id}>
+                                <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
+                                <td data-label="Producto">{detail.name}</td>
+                                <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
+                                <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
+                                <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
+                                {/* <td data-label="Review"><AddReview onClick={() => { handleDeleteReview(detail.product_id) }} /></td> */}
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </Table>
         </>
