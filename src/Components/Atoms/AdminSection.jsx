@@ -7,6 +7,16 @@ const AdminSection = styled.section`
 
     
     ${'' /* =================================================
+    MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
+    ===================================================== */}
+    @media(min-width: 992px) and (max-width: 1199px) {
+        grid-column         : 2 / 25;
+        flex-direction      : block;
+        width               : 90%;
+    }
+
+
+    ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
