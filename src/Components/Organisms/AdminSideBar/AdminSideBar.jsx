@@ -10,11 +10,12 @@ import FilterPrdByRating from '../FilterPrdByRating'
 
 const AdminAside = styled.aside`
     ${'' /* align-items : center; */}
-    background  : black;
-    border      : none;
+    ${'' /* background              : var(--aside-home); */}
+    background          : black;
+    border              : none;
     ${'' /* min-height  : 100%; */}
     ${'' /* outline     : none; */}
-    padding     : 2em;
+    padding             : 2em;
 
     a {
         align-items     : center;
@@ -62,7 +63,7 @@ const AdminAside = styled.aside`
             display     : none;
         }
 
-        .filters {
+        div.filters {
             margin: .5em 0 !important;
 
             div {
@@ -76,10 +77,23 @@ const AdminAside = styled.aside`
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
+        position            : static;
+
         a {
             justify-content : center;
         }
+
+        div.filters {
+            background      : var(--background-gradient);
+        }
     }
+`
+
+const DropIcon = styled.img`
+    width: 2em;
+    height: 2em;
+    padding: 1em;
+    background: url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white') no-repeat center center / contain;
 `
 
 const ProductIcon = styled.img`
@@ -131,6 +145,8 @@ const AdminSideBar = () => {
                 <span>Agregar Categorías</span>
             </Link>
 
+            <input type="checkbox" id="btn-drop-down-filters" />
+            <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
             <div className="filters">
                 <h6>Buscar por: </h6>
 

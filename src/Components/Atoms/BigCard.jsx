@@ -55,6 +55,7 @@ const BigCard = styled.div`
     }
 
     h3 {
+        color               : var(--pure-black);
         font-size           : 2em;
         margin-bottom       : .5em;
         padding-top         : .4em;
@@ -133,22 +134,22 @@ const BigCard = styled.div`
 
     /* Floating action button */
     .buy {
-        background          : linear-gradient(to right, #AF0000 , #FF1744);
-        border              : .1em solid #AF0000;
+        background          : var(--dark-primary);
+        border              : .1em solid var(--dark-primary);
         border-radius       : 3em;
         cursor              : pointer;
         ${'' /* color               : #AF0000; */}
         ${'' /* margin              : 2em auto; */}
         outline             : none;
-        transition-duration : .5s;
+        transition          : .3s linear;
         &:hover {
-            background      : linear-gradient(to right, #000000 , #FF1744);
-            border-color    : #AF0000;
+            background      : var(--background-gradient);
+            border-color    : var(--dark-primary);
             color           : #FFFFFF;
             transform       : scale(1.10);
         }
         &:active {
-            background      : linear-gradient(to right, #000000 , #AF0000);
+            background      : var(--background-gradient);
             color           : #FFFFFF;
             font-weight     : bold;
         }
@@ -178,22 +179,22 @@ const BigCard = styled.div`
     }
 
     .review {
-        background          : linear-gradient(to right, #AF0000 , #FF1744);
-        border              : .1em solid #AF0000;
+        background          : var(--dark-primary);
+        border              : .1em solid var(--dark-primary);
         border-radius       : 3em;
         ${'' /* color               : #AF0000; */}
         ${'' /* margin              : 2em auto; */}
         cursor              : pointer;
         outline             : none;
-        transition-duration : .5s;
+        transition          : .3s linear;
         &:hover {
-            background      : linear-gradient(to right, #000000 , #FF1744);
-            border-color    : #AF0000;
+            background      : var(--background-gradient);
+            border-color    : var(--dark-primary);
             color           : #FFFFFF;
             transform       : scale(1.10);
         }
         &:active {
-            background      : linear-gradient(to right, #000000 , #AF0000);
+            background      : var(--background-gradient);
             color           : #FFFFFF;
             font-weight     : bold;
         }

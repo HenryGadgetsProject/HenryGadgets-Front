@@ -3,84 +3,114 @@ import { Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
-// import Header from '../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
-// import Table from '../../Components/Atoms/Table'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
 import Footer from '../../Components/Organisms/Footer'
-// import { filterOrdersByUserId } from '../../Redux/Actions/Order/OrderActions'
-// import { getReviewsByUserId } from '../../Redux/Actions/Review/ReviewActions'
+// import Header from '../Components/Atoms/Header'
+// import Table from '../../Components/Atoms/Table'
 
 import styled from 'styled-components'
 
 const Aside = styled.aside`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background  : black;
-    border      : none;
-    padding     : 2em;
-    ${'' /* min-height: 100%; */}
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    background          : var(--aside-home);
+    border              : none;
+    padding             : 2em;
 
-    img {
+    .profilePic {
+        border-radius   : 50%;
+        height          : 16em;
+        width           : 16em;
+    }
+
+    div {
+        align-items     : center;
+        display         : flex;
+        flex-direction  : row;
+        ${'' /* flex-wrap       : wrap; */}
+        justify-content : flex-start;
+        margin          : .5em auto;
+        padding         : 1em;
+    }
+
+    img {        
         border          : none;
-        margin-right    : 1.6em;
+        margin          : 0 auto;
         outline         : none;
         padding         : 1em;
     }
 
+    ${'' /* .icon {
+        border-radius   : 0;
+        height          : 2em;
+        width           : 2em;
+    } */}
+
     span {
-        color           : #FFFFFF;
+        ${'' /* display         : flex;
+        justify-content : center; */}
+        color           : var(--font-color);
         font-size       : 2em;
+        margin-left: .8em;
     }
 
     p {
-        color           : #FFFFFF;
-        font-size: 2em;
+        color           : var(--font-color);
+        flex-wrap       : wrap;
+        font-size       : 2em;
+        margin          : 0 auto 1.5em;
     }
 
     ${'' /* =================================================
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
-        img {
-            margin      : 1em auto;
-        }
+        grid-column     : 1 / 25;
+        width: 100%;
 
-        span {
+        ${'' /* img {
+            margin      : 1em auto;
+        } */}
+
+        ${'' /* span {
             display     : none;
-        }
+        } */}
     }
 
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
-    @media(max-width: 992px) {
+    ${'' /* @media(max-width: 992px) {
         
-    }
+    } */}
 `
 const UserSection = styled.section`
     display: flex;
-    ${'' /* flex-wrap: wrap; */}
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
-
-    background: #424242;
-
-    ${'' /* min-height: 100%; */}
+    background: var(--body);
 
     table {
         font-size: 1.2em;
         margin: 0 auto;
-
-        caption {
-            color: white;
-        }
     }
+`
+const UserIcon = styled.img`
+    background: url('https://api.iconify.design/si-glyph:badge-name.svg?color=white') no-repeat center center / contain;
+`
+const EmailIcon = styled.img`
+    background: url('https://api.iconify.design/clarity:email-solid.svg?color=white') no-repeat center center / contain;
+`
+const BellIcon = styled.img`
+    background: url('https://api.iconify.design/bi:bell-fill.svg?color=white') no-repeat center center / contain;
 `
 
 const UserProfile = () => {
+
     const user = useSelector(state => state.user.user)
 
     return (
@@ -89,14 +119,23 @@ const UserProfile = () => {
             <Breadcrumb id="breadcrumb" />
             <Main id="main">
                 <Aside>
-                    <img src={user.photo} alt={user.first_name}></img>
+                    <img src={user.photo} alt={user.first_name} className='profilePic'></img>
                     <div>
-                        <p>Usuario</p>
-                        <p>{user.first_name} {user.last_name}</p>
-                        <p>Email</p>
-                        <p>{user.email}</p>
+                        <UserIcon className='icon'/>
+                        <span>Usuario</span>
                     </div>
-                    <p>Suscripciones</p>
+                    <p>{user.first_name} {user.last_name}</p>
+
+                    <div>
+                        <EmailIcon className='icon'/>
+                        <span>Email</span>
+                    </div>
+                    <p>{user.email}</p>
+                    
+                    <div>
+                        <BellIcon className='icon'/>
+                        <span>Suscripciones</span>
+                    </div>
                     <button>Suscribirse</button>
                 </Aside>
 

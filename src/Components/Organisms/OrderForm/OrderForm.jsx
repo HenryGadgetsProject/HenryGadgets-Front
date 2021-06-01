@@ -166,7 +166,7 @@ const OrderForm = ({ total }) => {
 
         //setProcess('true')
 
-        const body = { ...input, state: 'created', total_price: total }
+        const body = { ...input, total_price: total }
         dispatch(createOrder(user.id, body))
 
         /////////
