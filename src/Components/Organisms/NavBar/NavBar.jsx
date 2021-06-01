@@ -36,7 +36,8 @@ const LogoDiv = styled.div`
     display         : flex;
     justify-content : space-between;
     margin-left     : 2em;
-    width           : auto;
+    ${'' /* width           : auto; */}
+    width           : 4em;
 `
 
 const NavBar = () => {

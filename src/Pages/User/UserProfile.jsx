@@ -16,9 +16,14 @@ const Aside = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background  : black;
+    background  : var(--aside-home);
     border      : none;
     padding     : 2em;
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 
     img {        
         border          : none;
@@ -40,12 +45,14 @@ const Aside = styled.aside`
     }
 
     span {
-        color           : #FFFFFF;
+        display: flex;
+        justify-content: center;
+        color           : var(--font-color);
         font-size       : 2em;
     }
 
     p {
-        color           : #FFFFFF;
+        color           : var(--font-color);
         font-size: 2em;
     }
 
@@ -71,9 +78,9 @@ const Aside = styled.aside`
 `
 const UserSection = styled.section`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    background: #424242;
+    background: var(--body);
 
     table {
         font-size: 1.2em;
@@ -106,9 +113,11 @@ const UserProfile = () => {
                 <Aside>
                     <img src={user.photo} alt={user.first_name} className='profilePic'></img>
                     <div>                        
-                        <p><UserIcon className='icon'/> Usuario</p>
+                        <span><UserIcon className='icon'/>Usuario</span>
                         <p>{user.first_name} {user.last_name}</p>                        
-                        <p><EmailIcon className='icon'/> Email</p>
+                    </div>
+                    <div>
+                        <span><EmailIcon className='icon'/> Email</span>
                         <p>{user.email}</p>
                     </div>
                     

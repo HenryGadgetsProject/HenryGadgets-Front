@@ -55,17 +55,38 @@ const Cards = styled.div`
         text-transform      : uppercase;
     }
 
+    div {
+        display: flex;
+        justify-content: space-around;
+    }
+
     button {
 
     }
 `
 
-// const CartIcon = styled.img`
-//     background: url('https://api.iconify.design/icons8:buy.svg?color=white') no-repeat center center / contain;
-//     height: 1em;
-//     width: 1em;
-//     padding: .1em;
-// `
+const CartIcon = styled.img`
+    background: url('https://api.iconify.design/fa-solid:cart-arrow-down.svg?color=%23212121') no-repeat center center / contain;
+    height: 4em !important;
+    width: 4em !important;
+    padding: 2em;
+    margin-top: 1.6em;
+    transition: .3s;
+    &:hover {
+        transform: scale(1.30);
+    }
+`
+const WishIcon = styled.img`
+    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=%23212121') no-repeat center center / contain;
+    height: 4em !important;
+    width: 4em !important;
+    padding: 2em;
+    margin-top: 1.6em;
+    transition: .3s;
+    &:hover {
+        transform: scale(1.30);
+    }
+`
 
 const ProductCards = ({ products }) => {
     // const dispatch = useDispatch()
@@ -108,6 +129,9 @@ const ProductCards = ({ products }) => {
                                     </span>
                                     {/* REVIEWS MODAL (Probablemente) */}
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                                    <div>
+                                    <WishIcon/> <CartIcon/>
+                                    </div>
                                 </Cards>
                             </Link>
                             {/* <button className="buy" onClick={handleClick}>

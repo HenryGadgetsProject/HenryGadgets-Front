@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import NavBarHome from '../Components/Organisms/NavBarHome'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-// import Header from '../Components/Atoms/Header'
+import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
@@ -15,6 +15,14 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { filteredProductsSelector } from '../Helpers/filtered-products-selector.js'
 import Paginate from '../Components/Molecules/Paginate'
+import styled from 'styled-components'
+
+const DropIcon = styled.img`
+    width: 2em;
+    height: 2em;
+    padding: 1em;
+    background: url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white') no-repeat center center / contain;
+`
 
 const Home = () => {
 
@@ -31,32 +39,39 @@ const Home = () => {
 
     return (
         <div className="container">
-            <NavBarHome />
+            <Header id="header">
+                <NavBarHome />
+                {/* <NavBar /> */}
 
-            {/* ya tiene preparado el onClick para que vaya a /products/id */}
-            <Carousel
-                autoPlay={true}
-                dynamicHeight={true}
-                infiniteLoop={true}
-                interval={3000}
-                renderIndicator={false}
-                showIndicators={false}
-                showThumbs={false}
-                stopOnHover={true}>
-                {categories.map((category) => (
-                    <Link to={`/category/${category.id}`} key={category.id}>
-                        <div className="category-slide" id={category.id} >
-                            <span className="slideTitle">{category.name}</span>
-                            <img src={category.photo} alt={category.name} />
-                        </div>
-                    </Link>
-                ))}
-            </Carousel>
+                {/* ya tiene preparado el onClick para que vaya a /products/id */}
+                <Carousel
+                    autoPlay={true}
+                    dynamicHeight={true}
+                    infiniteLoop={true}
+                    interval={3000}
+                    renderIndicator={false}
+                    showIndicators={false}
+                    showThumbs={false}
+                    stopOnHover={true}>
+                    {categories.map((category) => (
+                        <Link to={`/category/${category.id}`} key={category.id}>
+                            <div className="category-slide" id={category.id} >
+                                <span className="slideTitle">{category.name}</span>
+                                <img src={category.photo} alt={category.name} />
+                            </div>
+                        </Link>
+                    ))}
+                </Carousel>
+
+            </Header>
 
             <Breadcrumb id="breadcrumb" />
 
             <Main id="main">
                 <aside>
+                    <input type="checkbox" id="btn-drop-down-filters" />
+                    <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
+
                     <div className="filters">
                         <h6>Buscar por: </h6>
                         <FilterPrdByCatName />

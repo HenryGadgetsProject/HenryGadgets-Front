@@ -9,7 +9,7 @@ import { getReview } from "../Redux/Actions/Review/ReviewActions";
 // import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import ReviewsForm from "../Components/Organisms/ReviewsForm";
+// import ReviewsForm from "../Components/Organisms/ReviewsForm";
 
 const TitleCont = styled.div`
   display: flex;

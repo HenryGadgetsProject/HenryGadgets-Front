@@ -16,6 +16,7 @@ export const lightTheme = {
         primaryText             : '#212121',
         secondaryText           : '#757575',
         divider                 : '#BDBDBD',
+        asideHome               : '#FFFFFF',
         body                    : '#F2F2F2',
         h2: {
             fontColor           : '#D32F2F'
@@ -37,7 +38,8 @@ export const darkTheme = {
         primaryText             : '#F2F2F2',
         secondaryText           : '#30363D',
         divider                 : '#BDBDBD',
-        body                    : '#212121',
+        asideHome               : '#47484D',
+        body                    : '#16171B',
         h2: {
             fontColor           : '#4F0EA6'
         },
@@ -61,6 +63,7 @@ const GlobalStyle = createGlobalStyle`
         --secondary-text        : ${ props => props.theme.colorPalette.secondaryText };
         --divider               : ${ props => props.theme.colorPalette.divider };
         --body                  : ${ props => props.theme.colorPalette.body };
+        --aside-home            : ${ props => props.theme.colorPalette.asideHome };
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
     }
@@ -80,7 +83,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         margin                  : 0;
-        font-family             : -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
+        font-family             : 'Hind Vadodara', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
                                   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
                                   'Fira Sans', 'Droid Sans', 'Helvetica Neue',
                                   'sans-serif';
@@ -169,7 +172,7 @@ const GlobalStyle = createGlobalStyle`
 
     #header {
         grid-column             : 1 / 25;
-        margin                  : 2em auto;
+        ${'' /* margin                  : 2em auto; */}
     }
 
     h1 {
@@ -180,12 +183,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .carousel-root, .carousel, .carousel.carousel-slider {
-        max-height              : calc(100vh - 40em) !important;
+        max-height              : calc(100vh - 52em) !important;
     }
 
     .carousel-root {
         ${'' /* width       : calc(100vw - 1.65em) !important; */}
-        width                   : 100vw !important;
+        width                   : 100% !important;
     }
 
     .carousel {
@@ -239,7 +242,7 @@ const GlobalStyle = createGlobalStyle`
 
     span.slideTitle {
         position                : absolute;
-        top                     : 10%;
+        top                     : 5%;
         right                   : 5%;
         color                   : var(--pure-white);
         font-size               : 10em;
@@ -248,6 +251,9 @@ const GlobalStyle = createGlobalStyle`
 
     .category-slide{
         cursor                  : pointer;
+        img {
+            object-fit: contain !important;
+        }
     }
 
     #breadcrumb-home {
@@ -288,7 +294,7 @@ const GlobalStyle = createGlobalStyle`
     aside {
         ${'' /* border: .2em solid cyan; */}
         grid-column             : 1 / 4;
-
+        background              : var(--aside-home);
         align-items             : center;
         align-self              : left;
         box-sizing              : border-box;
@@ -299,6 +305,35 @@ const GlobalStyle = createGlobalStyle`
         outline                 : none;
         padding                 : 2.2em 0;
         width                   : 20%;
+
+        #btn-drop-down-filters {
+            display: none;
+            &:checked ~ .filters {
+                display: flex !important;
+            }
+        }
+
+        .icon-drop-down-filters {
+            display: none;
+            cursor: pointer;
+        }
+
+        .filters {
+            align-items             : center;
+            display                 : flex;
+            flex-direction          : column;
+            ${'' /* width: 100%; */}
+
+            h6 {
+                color               : var(--font-color);
+                font-size           : 1.8em;
+                margin              : 0 auto .5em;
+            }
+
+            label {
+                color               : var(--font-color);
+            }
+        }
     }
 
     section {
@@ -336,23 +371,6 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* width: 100%; */}
     }
 
-    .filters {
-        align-items             : center;
-        display                 : flex;
-        flex-direction          : column;
-        ${'' /* width: 100%; */}
-
-        h6 {
-            color               : var(--font-color);
-            font-size           : 1.8em;
-            margin              : 0 auto .5em;
-        }
-
-        label {
-            color               : var(--font-color);
-        }
-    }
-
     .link {
         color                   : #FFFFFF;
         font-size               : 1.4em;
@@ -379,7 +397,7 @@ const GlobalStyle = createGlobalStyle`
         color                   : var(--dark-primary);
         margin                  : 2em auto;
         outline                 : none;
-        transition-duration     : .5s;
+        transition              : .5s linear;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -405,7 +423,7 @@ const GlobalStyle = createGlobalStyle`
         outline                 : none;
         padding                 : 1.6em;
         text-align              : center;
-        transition-duration     : .5s;
+        transition              : .5s;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -572,16 +590,20 @@ const GlobalStyle = createGlobalStyle`
         aside {
             grid-column         : 1 / 2;
             width               : 10%;
+
+            .icon-drop-down-filters {
+                display         : flex !important;
+            }
+
+            .filters {
+                width           : 160%;
+            }
         }
 
         section {
             grid-column         : 2 / 25;
             flex-direction      : block;
             width               : 90%;
-        }
-
-        .filters {
-            width               : 160%;
         }
 
         .btn {
@@ -612,6 +634,10 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* =============================================
         SECTION 3
         ================================================= */}
+        #breadcrumb {
+            display: none;
+        }
+
         aside, section, .filters {
             padding             : 2vw;
             width               : 100%;
@@ -621,13 +647,27 @@ const GlobalStyle = createGlobalStyle`
             grid-column         : 1 / 25;
         }
 
-        section {
-            flex-direction      : block;
+        aside {
+            background          : var(--background-gradient);
+            margin              : 0;
+
+            .icon-drop-down-filters {
+                display         : flex !important;
+                align-self      : flex-end;
+                margin-right    : 0.35em;
+            }
+
+            .filters {
+                display         : none;
+                flex-direction  : column;
+                justify-content : space-between;
+
+                transition: .5s linear;
+            }
         }
 
-        .filters {
-            flex-direction      : column;
-            justify-content     : space-between;
+        section {
+            flex-direction      : block;
         }
 
         .btn-md {

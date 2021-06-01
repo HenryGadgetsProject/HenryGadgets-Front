@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Breadcrumb = styled.div`
-    background      : ${ props => props.theme.background || '#FFFFFF' };
+    background      : var(--background-gradient);
     color           : ${ props => props.theme.fontColor || '#393E46' };
     display         : flex;
     flex-direction  : row;
