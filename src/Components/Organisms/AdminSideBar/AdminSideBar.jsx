@@ -131,6 +131,8 @@ const AdminSideBar = () => {
                 <span>Agregar Categorías</span>
             </Link>
 
+            <input type="checkbox" id="btn-drop-down-filters" />
+            <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters">V</label>
             <div className="filters">
                 <h6>Buscar por: </h6>
 

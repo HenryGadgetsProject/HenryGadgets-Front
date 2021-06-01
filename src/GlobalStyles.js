@@ -172,7 +172,7 @@ const GlobalStyle = createGlobalStyle`
 
     #header {
         grid-column             : 1 / 25;
-        margin                  : 2em auto;
+        ${'' /* margin                  : 2em auto; */}
     }
 
     h1 {
@@ -188,7 +188,7 @@ const GlobalStyle = createGlobalStyle`
 
     .carousel-root {
         ${'' /* width       : calc(100vw - 1.65em) !important; */}
-        width                   : 100vw !important;
+        width                   : 100% !important;
     }
 
     .carousel {
@@ -305,6 +305,35 @@ const GlobalStyle = createGlobalStyle`
         outline                 : none;
         padding                 : 2.2em 0;
         width                   : 20%;
+
+        #btn-drop-down-filters {
+            display: none;
+            &:checked ~ .filters {
+                display: flex !important;
+            }
+        }
+
+        .icon-drop-down-filters {
+            display: none;
+            cursor: pointer;
+        }
+
+        .filters {
+            align-items             : center;
+            display                 : flex;
+            flex-direction          : column;
+            ${'' /* width: 100%; */}
+
+            h6 {
+                color               : var(--font-color);
+                font-size           : 1.8em;
+                margin              : 0 auto .5em;
+            }
+
+            label {
+                color               : var(--font-color);
+            }
+        }
     }
 
     section {
@@ -342,23 +371,6 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* width: 100%; */}
     }
 
-    .filters {
-        align-items             : center;
-        display                 : flex;
-        flex-direction          : column;
-        ${'' /* width: 100%; */}
-
-        h6 {
-            color               : var(--font-color);
-            font-size           : 1.8em;
-            margin              : 0 auto .5em;
-        }
-
-        label {
-            color               : var(--font-color);
-        }
-    }
-
     .link {
         color                   : #FFFFFF;
         font-size               : 1.4em;
@@ -385,7 +397,7 @@ const GlobalStyle = createGlobalStyle`
         color                   : var(--dark-primary);
         margin                  : 2em auto;
         outline                 : none;
-        transition-duration     : .5s;
+        transition              : .5s linear;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -411,7 +423,7 @@ const GlobalStyle = createGlobalStyle`
         outline                 : none;
         padding                 : 1.6em;
         text-align              : center;
-        transition-duration     : .5s;
+        transition              : .5s;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -578,16 +590,20 @@ const GlobalStyle = createGlobalStyle`
         aside {
             grid-column         : 1 / 2;
             width               : 10%;
+
+            .icon-drop-down-filters {
+                display         : flex !important;
+            }
+
+            .filters {
+                width           : 160%;
+            }
         }
 
         section {
             grid-column         : 2 / 25;
             flex-direction      : block;
             width               : 90%;
-        }
-
-        .filters {
-            width               : 160%;
         }
 
         .btn {
@@ -618,6 +634,10 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* =============================================
         SECTION 3
         ================================================= */}
+        #breadcrumb {
+            display: none;
+        }
+
         aside, section, .filters {
             padding             : 2vw;
             width               : 100%;
@@ -627,13 +647,28 @@ const GlobalStyle = createGlobalStyle`
             grid-column         : 1 / 25;
         }
 
-        section {
-            flex-direction      : block;
+        aside {
+            background          : var(--background-gradient);
+            margin              : 0;
+
+            .icon-drop-down-filters {
+                display         : flex !important;
+                position        : absolute !important;
+                right           : 1.5em;
+                top: 50%;
+            }
+
+            .filters {
+                display         : none;
+                flex-direction  : column;
+                justify-content : space-between;
+
+                transition: .5s linear;
+            }
         }
 
-        .filters {
-            flex-direction      : column;
-            justify-content     : space-between;
+        section {
+            flex-direction      : block;
         }
 
         .btn-md {

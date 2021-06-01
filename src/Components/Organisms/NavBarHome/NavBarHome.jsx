@@ -31,7 +31,8 @@ const LogoDivHome = styled.div`
     display         : flex;
     justify-content : space-between;
     margin-left     : 2em;
-    width           : auto;
+    ${'' /* width           : auto; */}
+    width           : 4em;
 `
 
 const NavBarHome = () => {
