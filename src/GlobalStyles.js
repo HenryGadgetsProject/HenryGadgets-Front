@@ -323,6 +323,9 @@ const GlobalStyle = createGlobalStyle`
             align-items             : center;
             display                 : flex;
             flex-direction          : column;
+            position                : sticky;
+            position                : -webkit-sticky;
+            top                     : 14em;
             ${'' /* width: 100%; */}
 
             h6 {
@@ -651,6 +654,10 @@ const GlobalStyle = createGlobalStyle`
         aside {
             background          : var(--background-gradient);
             margin              : 0;
+            position            : sticky;
+            position            : -webkit-sticky;
+            top                 : 7em;
+            z-index             : 800;
 
             .icon-drop-down-filters {
                 display         : flex !important;
@@ -662,6 +669,7 @@ const GlobalStyle = createGlobalStyle`
                 display         : none;
                 flex-direction  : column;
                 justify-content : space-between;
+                position        : static;
 
                 transition: display .5s linear;
             }
@@ -674,6 +682,11 @@ const GlobalStyle = createGlobalStyle`
         .btn-md {
             margin              : 1em auto;
             width               : 14em;
+        }
+
+        .btn-pag {
+            min-height          : 2em;
+            min-width           : 2em;
         }
     }
 `
