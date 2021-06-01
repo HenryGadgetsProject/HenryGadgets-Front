@@ -212,7 +212,7 @@ export const getUser = (id) => {
 export const addUser = (body) => {
     return (dispatch) => {
         dispatch({ type: USER_LOADING })
-        axios.post(`${HOST}/register`, body)
+        axios.post(`${HOST}/auth/signup`, body)
             .then(response => {
                 const user = response.data.user
                 const jwt = response.data.token
