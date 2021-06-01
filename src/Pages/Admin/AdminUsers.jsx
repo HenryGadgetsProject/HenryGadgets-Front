@@ -61,8 +61,8 @@ const AdminUsers = () => {
                 text: "Vas a inhabilitar a un usuario",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#7FFF00',
+                cancelButtonColor: '#E90000',
                 confirmButtonText: 'Inhabilitar',
                 cancelButtonText: 'Cancelar'
             })
@@ -83,8 +83,8 @@ const AdminUsers = () => {
                 text: "Vas a habilitar a un usuario",
                 icon: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#7FFF00',
+                cancelButtonColor: '#E90000',
                 confirmButtonText: 'Habilitar',
                 cancelButtonText: 'Cancelar'
             })

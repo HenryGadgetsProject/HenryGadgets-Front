@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
+
+import Swal from 'sweetalert2'
 import StarRatings from 'react-star-ratings'
-
-// import { useDispatch, useSelector } from 'react-redux'
-// import Swal from 'sweetalert2'
-// import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
-
 import styled from 'styled-components'
 
 const Cards = styled.div`
@@ -23,7 +22,8 @@ const Cards = styled.div`
     ${'' /* padding                 : 2em 2.5em; */}
     text-align              : center;
     transition              : all .3s ease;
-    width                   : 30em;
+    ${'' /* width                   : 30em; */}
+    min-width               : 25em;
     &:hover {
         /* border              : .20em solid var(--dark-primary); */
         box-shadow          : 0px 0px 10px var(--font-color);
@@ -55,36 +55,58 @@ const Cards = styled.div`
         text-transform      : uppercase;
     }
 
+    div {
+        display: flex;
+        justify-content: space-around;
+    }
+
     button {
 
     }
 `
 
-// const CartIcon = styled.img`
-//     background: url('https://api.iconify.design/icons8:buy.svg?color=white') no-repeat center center / contain;
-//     height: 1em;
-//     width: 1em;
-//     padding: .1em;
-// `
+const CartIcon = styled.img`
+    background: url('https://api.iconify.design/fa-solid:cart-arrow-down.svg?color=%23212121') no-repeat center center / contain;
+    height: 4em !important;
+    width: 4em !important;
+    padding: 2em;
+    margin-top: 1.6em;
+    transition: .3s;
+    &:hover {
+        transform: scale(1.30);
+    }
+`
+const WishIcon = styled.img`
+    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=%23212121') no-repeat center center / contain;
+    height: 4em !important;
+    width: 4em !important;
+    padding: 2em;
+    margin-top: 1.6em;
+    transition: .3s;
+    &:hover {
+        transform: scale(1.30);
+    }
+`
 
 const ProductCards = ({ products }) => {
-    // const dispatch = useDispatch()
 
-    // const product = useSelector(state => state.product.product)
+    const dispatch = useDispatch()
 
-    // const handleClick = () => {
-    //     const productSelected = { ...product, quantity: 1 }
+    const product = useSelector(state => state.product.product)
 
-    //     dispatch(addItemCart(productSelected))
+    const handleClick = () => {
+        const productSelected = { ...product, quantity: 1 }
 
-    //     Swal.fire({
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: 'El producto se ha agregado al Carrito!',
-    //         showConfirmButton: false,
-    //         timer: 2000,
-    //     })
-    // }
+        dispatch(addItemCart(productSelected))
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El producto se ha agregado al Carrito!',
+            showConfirmButton: false,
+            timer: 2000,
+        })
+    }
 
     if (products.length > 0) {
         return (
@@ -92,8 +114,8 @@ const ProductCards = ({ products }) => {
                 {products?.map(p => {
                     return (
                         <div className="card-container" key={p?.id}>
-                            <Link to={`/product/${p.id}`}>
-                                <Cards>
+                            <Cards>
+                                <Link to={`/product/${p.id}`}>
                                     <img src={p.big_image} alt={p.name}></img><br />
                                     <p>{p.name}</p>
                                     <p>{p.price} $</p>
@@ -108,8 +130,12 @@ const ProductCards = ({ products }) => {
                                     </span>
                                     {/* REVIEWS MODAL (Probablemente) */}
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
-                                </Cards>
-                            </Link>
+                                 </Link>
+                                    <div>
+                                    <WishIcon/> 
+                                    <CartIcon onClick={handleClick}/>
+                                    </div>
+                            </Cards>
                             {/* <button className="buy" onClick={handleClick}>
                             <CartIcon />
                         </button> */}

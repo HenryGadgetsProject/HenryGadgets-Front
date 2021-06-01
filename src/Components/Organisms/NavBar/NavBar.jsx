@@ -36,13 +36,9 @@ const LogoDiv = styled.div`
     display         : flex;
     justify-content : space-between;
     margin-left     : 2em;
-    width           : auto;
+    ${'' /* width           : auto; */}
+    width           : 4em;
 `
-
-// const H2 = styled.h2`
-//     font-size       : 1.4em;
-//     margin-left     : .5em;
-// `
 
 const NavBar = () => {
     const mode = useSelector((state) => state.global.theme)

@@ -24,12 +24,12 @@ import styled from 'styled-components'
 // Table
 const Table = styled.table`
     border-collapse         : collapse;
-    display                 :block;
+    display                 : block;
     margin                  : 0 auto;
     width                   : 80%;
 
     caption {
-        color               : var(--pure-black);
+        color               : var(--font-color);
         font-size           : 2.2em;
         font-weight         : bold;
         margin              : 1.8em 0 .5em 0;
@@ -40,22 +40,25 @@ const Table = styled.table`
     th, td {
         padding             : .8em;
         text-align          : center;
-        border-bottom       : .1em solid #b6b6b6;
+        ${'' /* border-bottom       : .1em solid #b6b6b6; */}
+        border-bottom       : .1em solid var(--divider);
     }
 
     th {
-        color               : var(--pure-black);
+        color               : var(--font-color);
         /* color: #FFFFFF; */
         font-size           : 2em;
     }
 
     tr {
         /* background-color:#424242; */
+        background          : var(--body);
         transition          : background-color .5s ease;
     }
 
     tr:hover {
-        background-color    : var(--divider);
+        ${'' /* background-color    : var(--divider); */}
+        background          : var(--background-gradient);
         td {
             color           : var(--pure-black);
         }
@@ -65,7 +68,8 @@ const Table = styled.table`
     tbody tr td {
         text-align          : center;
         /* color: #b6b6b6; */
-        color               : #424242;
+        ${'' /* color               : #424242; */}
+        color               : var(--font-color);
         font-size           : 2em;
     }
 
@@ -130,31 +134,37 @@ const Table = styled.table`
         }
 
         tr {
-            border          : .2em solid #B6B6B6;
+            ${'' /* border          : .2em solid #B6B6B6; */}
+            border          : .2em solid var(--divider);
             margin-bottom   : 4em;
             width           : 100%;
             :hover {
-                background  : transparent;
+                ${'' /* background  : transparent; */}
+                background  : var(--pure-gray);
             }
         }
 
         td, td:nth-child(even) {
             border          : none;
-            border-bottom   : 1px solid #EEEEEE;
+            ${'' /* border-bottom   : 1px solid #EEEEEE; */}
+            border-bottom   : 1px solid var(--pure-white); 
             color           : black;
             position        : relative;
             padding-left    : 50%;
             :hover {
-                background  : #626262;
+                ${'' /* background  : #626262; */}
+                background  : var(--background-gradient);
             }
         }
 
         td:nth-child(even) {
-            background      : #515151;
+            ${'' /* background      : #515151; */}
+            background      : var(--aside-home);
         }
 
         td:before {
-            color           : black;
+            ${'' /* color           : black; */}
+            color           : var(--font-color);
             content         : attr(data-label);
             float           : left;
             font-weight     : bold;
@@ -230,8 +240,8 @@ const MyCart = () => {
             text: "Vas a eliminar un producto de tu Carrito!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#7FFF00',
+            cancelButtonColor: '#E90000',
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })

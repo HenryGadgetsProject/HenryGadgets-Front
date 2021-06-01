@@ -9,24 +9,28 @@ import { getReview } from "../Redux/Actions/Review/ReviewActions";
 // import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import ReviewsForm from "../Components/Organisms/ReviewsForm";
+// import ReviewsForm from "../Components/Organisms/ReviewsForm";
+
+const TitleCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    margin: 0;
+  }
+`
 
 const Cont = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 `;
-const ContainerReviewForm = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Item = styled.div`
   background: var(--pure-white);
   border: 0.1em solid var(--divider);
   padding: 1em 2em 1em 2em;
   margin: 2em;
-  width: 30%;
+  width: 40em;
   /* box-shadow: 0px 0px 5px var(--font-color); */
   box-sizing: border-box;
   transition: 0.3s;
@@ -45,11 +49,13 @@ const Description = styled.span`
   font-style: italic;
 `;
 
+
 const Reviews = ({ productId }) => {
 
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user.user);
+  const product = useSelector((state) => state.product.product)
   const reviews = useSelector((state) => state.review.reviews);
   const loading = useSelector((state) => state.review.loading)
 
@@ -62,8 +68,12 @@ const Reviews = ({ productId }) => {
       <NavBar />
       <Breadcrumb id="breadcrumb" />
 
-      <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1>
+      {/* <h1>Reviews sobre {reviews[0] ? reviews[reviews.length-1].name : null}</h1> */}
 
+      <TitleCont>
+        <h2>Opiniones acerca de</h2>
+        <h3>{product.name}</h3>
+      </TitleCont>
       <Cont>     
         {(loading === false && reviews.length > 0) ? reviews?.map((review) => (
               <Item key={review.id}>
@@ -81,16 +91,6 @@ const Reviews = ({ productId }) => {
             ))
         : null}
       </Cont>
-      
-
-      <ContainerReviewForm>   
-      {user && user.email ? (
-        <ReviewsForm
-          user={user}
-          productId={productId}
-        />
-      ) : null}
-     </ContainerReviewForm>
   
       <Footer />
     </>

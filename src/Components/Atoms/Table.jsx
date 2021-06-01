@@ -5,7 +5,7 @@ const Table = styled.table`
     display             : block;
 
     caption {
-        color           : white;
+        color           : var(--font-color);
         font-size       : 2.2em;
         font-weight     : bold;
         margin          : 1.8em 0 .5em 0;
@@ -15,26 +15,31 @@ const Table = styled.table`
     th, td {
         padding         : .8em;
         text-align      : left;
-        border-bottom   : .1em solid #B6B6B6;
+        ${'' /* border-bottom   : .1em solid #B6B6B6; */}
+        border-bottom   : .1em solid var(--divider);
     }
 
     th {
-        color           : #FFFFFF;
+        color           : var(--font-color);
+        ${'' /* color           : var(--pure-white); */}
         font-size       : 1.6em;
     }
 
     tr {
-        background      : #424242;
-        transition      : background-color .5s ease;
+        ${'' /* background      : #424242; */}
+        background      : var(--body);
+        transition      : background-color .5s linear;
     }
 
     tr:hover {
-        background      : #626262;
+        ${'' /* background      : #626262; */}
+        background      : var(--background-gradient);
     }
 
     tbody tr td {
         text-align      : left;
-        color           : #B6B6B6;
+        ${'' /* color           : #B6B6B6; */}
+        color           : var(--font-color);
         font-size       : 1.4em;
     }
 
@@ -60,7 +65,7 @@ const Table = styled.table`
 
     span.cat {
         margin-right    : .5em;
-        background-color: #686892;
+        background      : var(--secontary-text);
         border-radius   : 3em;
         padding         : .3em .5em;
     }
@@ -97,30 +102,34 @@ const Table = styled.table`
         }
 
         tr {
-            border          : .2em solid #B6B6B6;
+            border          : .2em solid var(--divider);
             margin-bottom   : 4em;
             width           : 100%;
             :hover {
-                background  : transparent;
+                ${'' /* background  : transparent; */}
+                ${'' /* background  : #626262; */}
+                background  : var(--pure-gray);
             }
         }
 
         td, td:nth-child(even) {
             border          : none;
-            border-bottom   : 1px solid #EEEEEE; 
+            border-bottom   : 1px solid var(--pure-white); 
             position        : relative;
             padding-left    : 50%;
             :hover {
-                background  : #626262;
+                ${'' /* background  : #626262; */}
+                background  : var(--background-gradient);
             }
         }
 
         td:nth-child(even) {
-            background      : #515151;
+            ${'' /* background      : #515151; */}
+            background      : var(--aside-home);
         }
 
         td:before {
-            color           : white;
+            color           : var(--font-color);
             content         : attr(data-label);
             float           : left;
             font-weight     : bold;
