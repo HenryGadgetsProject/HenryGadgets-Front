@@ -12,6 +12,7 @@ import { deleteProducts } from '../../Redux/Actions/Product/ProductActions'
 import { useSelector, useDispatch } from 'react-redux'
 // import { setProductsByCategoryName, setProductsByStock } from '../../Redux/Actions/Product/ProductActions'
 import { filteredProductsSelector } from '../../Helpers/filtered-products-selector.js'
+// import Paginate from '../../Components/Molecules/Paginate'
 
 import styled from "styled-components"
 
