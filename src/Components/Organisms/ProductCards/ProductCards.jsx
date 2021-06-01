@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
+
+import Swal from 'sweetalert2'
 import StarRatings from 'react-star-ratings'
-
-// import { useDispatch, useSelector } from 'react-redux'
-// import Swal from 'sweetalert2'
-// import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
-
 import styled from 'styled-components'
 
 const Cards = styled.div`
@@ -89,23 +88,24 @@ const WishIcon = styled.img`
 `
 
 const ProductCards = ({ products }) => {
-    // const dispatch = useDispatch()
 
-    // const product = useSelector(state => state.product.product)
+    const dispatch = useDispatch()
 
-    // const handleClick = () => {
-    //     const productSelected = { ...product, quantity: 1 }
+    const product = useSelector(state => state.product.product)
 
-    //     dispatch(addItemCart(productSelected))
+    const handleClick = () => {
+        const productSelected = { ...product, quantity: 1 }
 
-    //     Swal.fire({
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: 'El producto se ha agregado al Carrito!',
-    //         showConfirmButton: false,
-    //         timer: 2000,
-    //     })
-    // }
+        dispatch(addItemCart(productSelected))
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El producto se ha agregado al Carrito!',
+            showConfirmButton: false,
+            timer: 2000,
+        })
+    }
 
     if (products.length > 0) {
         return (
@@ -113,8 +113,8 @@ const ProductCards = ({ products }) => {
                 {products?.map(p => {
                     return (
                         <div className="card-container" key={p?.id}>
-                            <Link to={`/product/${p.id}`}>
-                                <Cards>
+                            <Cards>
+                                <Link to={`/product/${p.id}`}>
                                     <img src={p.big_image} alt={p.name}></img><br />
                                     <p>{p.name}</p>
                                     <p>{p.price} $</p>
@@ -129,11 +129,12 @@ const ProductCards = ({ products }) => {
                                     </span>
                                     {/* REVIEWS MODAL (Probablemente) */}
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
+                                 </Link>
                                     <div>
-                                    <WishIcon/> <CartIcon/>
+                                    <WishIcon/> 
+                                    <CartIcon onClick={handleClick}/>
                                     </div>
-                                </Cards>
-                            </Link>
+                            </Cards>
                             {/* <button className="buy" onClick={handleClick}>
                             <CartIcon />
                         </button> */}
