@@ -55,6 +55,9 @@ const AdminAside = styled.aside`
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
+        grid-column         : 1 / 2;
+        width               : 10%;
+
         img {
             margin      : 1em auto;
         }
@@ -64,7 +67,8 @@ const AdminAside = styled.aside`
         }
 
         div.filters {
-            margin: .5em 0 !important;
+            margin      : .5em 0 !important;
+            width       : 160%;
 
             div {
                 width: 90%
