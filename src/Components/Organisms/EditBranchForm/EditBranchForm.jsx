@@ -114,8 +114,6 @@ const EditBranchForm = ({ branchId }) => {
 
     const branch = useSelector(state => state.branch.branch);
 
-    console.log('BRANCH', branch)
-
     const [isTouch, setIsTouch] = useState({})
     const [error, setError] = useState('')
 

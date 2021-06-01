@@ -5,9 +5,10 @@ import {
     CREATE_REVIEW_SUCCESS,
     REVIEW_ERROR,
     REVIEW_ADD,
-    REVIEW_REQUEST,
+    REVIEWS_REQUEST,
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
+    DELETE_REVIEW_SUCCESS,
     CREATED_FALSE,
     // GET_REVIEW_BY_PRODUCT,
     GET_REVIEWS_BY_USER_ID
@@ -17,7 +18,7 @@ export const getReview = (productId) => {
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_REQUEST
+                type: REVIEWS_REQUEST
             }
         )
         axios.get(`${HOST}/products/${productId}/review`)
@@ -46,12 +47,13 @@ export const getReviewsByUserId = (userId) => {
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_REQUEST
+                type: REVIEWS_REQUEST
             }
         )
         axios.get(`${HOST}/products/user/${userId}`)
             .then(response => {
                 const reviews = response.data.data
+                console.log(reviews)
                 dispatch(
                     {
                         type: GET_REVIEWS_BY_USER_ID,
@@ -129,13 +131,28 @@ export const updateReview = () => {
     }
 }
 
-export const createdFalse = (bool) => {
+export const deleteReview = (id) => {
     return (dispatch) => {
-        dispatch(
-            {
-                type: CREATED_FALSE
-            }
-        )
+        dispatch({ type: REVIEWS_REQUEST })
+        axios.delete(`${HOST}/products/review/${id}`)
+            .then(response => {
+                const review = response.data
+                dispatch(
+                    {
+                        type: DELETE_REVIEW_SUCCESS,
+                        payload: parseInt(id)
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: REVIEW_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }
 
