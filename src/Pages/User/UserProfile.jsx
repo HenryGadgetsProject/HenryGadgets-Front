@@ -3,14 +3,12 @@ import { Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
-// import Header from '../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
-// import Table from '../../Components/Atoms/Table'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
 import Footer from '../../Components/Organisms/Footer'
-// import { filterOrdersByUserId } from '../../Redux/Actions/Order/OrderActions'
-// import { getReviewsByUserId } from '../../Redux/Actions/Review/ReviewActions'
+// import Header from '../Components/Atoms/Header'
+// import Table from '../../Components/Atoms/Table'
 
 import styled from 'styled-components'
 
@@ -21,15 +19,24 @@ const Aside = styled.aside`
     background  : black;
     border      : none;
     padding     : 2em;
-    ${'' /* min-height: 100%; */}
 
-    img {
-        width: 20em;
-        border-radius   : 50%;
+    img {        
         border          : none;
         margin          : 0 auto;
         outline         : none;
         padding         : 1em;
+    }
+
+    .profilePic {
+        border-radius   : 50%;
+        height          : 16em;
+        width           : 16em;
+    }
+
+    .icon {
+        border-radius   : 0;
+        height          : 2em;
+        width           : 2em;
     }
 
     span {
@@ -64,13 +71,9 @@ const Aside = styled.aside`
 `
 const UserSection = styled.section`
     display: flex;
-    ${'' /* flex-wrap: wrap; */}
     flex-direction: column;
     align-items: flex-start;
-
     background: #424242;
-
-    ${'' /* min-height: 100%; */}
 
     table {
         font-size: 1.2em;
@@ -81,8 +84,18 @@ const UserSection = styled.section`
         }
     }
 `
+const UserIcon = styled.img`
+    background: url('https://api.iconify.design/si-glyph:badge-name.svg?color=white') no-repeat center center / contain;
+`
+const EmailIcon = styled.img`
+    background: url('https://api.iconify.design/clarity:email-solid.svg?color=white') no-repeat center center / contain;
+`
+const BellIcon = styled.img`
+    background: url('https://api.iconify.design/bi:bell-fill.svg?color=white') no-repeat center center / contain;
+`
 
 const UserProfile = () => {
+
     const user = useSelector(state => state.user.user)
 
     return (
@@ -91,14 +104,15 @@ const UserProfile = () => {
             <Breadcrumb id="breadcrumb" />
             <Main id="main">
                 <Aside>
-                    <img src={user.photo} alt={user.first_name}></img>
-                    <div>
-                        <p>Usuario</p>
-                        <p>{user.first_name} {user.last_name}</p>
-                        <p>Email</p>
+                    <img src={user.photo} alt={user.first_name} className='profilePic'></img>
+                    <div>                        
+                        <p><UserIcon className='icon'/> Usuario</p>
+                        <p>{user.first_name} {user.last_name}</p>                        
+                        <p><EmailIcon className='icon'/> Email</p>
                         <p>{user.email}</p>
                     </div>
-                    <p>Suscripciones</p>
+                    
+                    <p><BellIcon className='icon'/> Suscripciones</p>
                     <button>Suscribirse</button>
                 </Aside>
 
