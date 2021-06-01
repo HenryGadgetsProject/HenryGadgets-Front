@@ -16,6 +16,7 @@ export const lightTheme = {
         primaryText             : '#212121',
         secondaryText           : '#757575',
         divider                 : '#BDBDBD',
+        asideHome               : '#FFFFFF',
         body                    : '#F2F2F2',
         h2: {
             fontColor           : '#D32F2F'
@@ -37,7 +38,8 @@ export const darkTheme = {
         primaryText             : '#F2F2F2',
         secondaryText           : '#30363D',
         divider                 : '#BDBDBD',
-        body                    : '#212121',
+        asideHome               : '#47484D',
+        body                    : '#16171B',
         h2: {
             fontColor           : '#4F0EA6'
         },
@@ -61,6 +63,7 @@ const GlobalStyle = createGlobalStyle`
         --secondary-text        : ${ props => props.theme.colorPalette.secondaryText };
         --divider               : ${ props => props.theme.colorPalette.divider };
         --body                  : ${ props => props.theme.colorPalette.body };
+        --aside-home            : ${ props => props.theme.colorPalette.asideHome };
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
     }
@@ -80,7 +83,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         margin                  : 0;
-        font-family             : -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
+        font-family             : 'Hind Vadodara', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
                                   'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
                                   'Fira Sans', 'Droid Sans', 'Helvetica Neue',
                                   'sans-serif';
@@ -180,7 +183,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .carousel-root, .carousel, .carousel.carousel-slider {
-        max-height              : calc(100vh - 40em) !important;
+        max-height              : calc(100vh - 52em) !important;
     }
 
     .carousel-root {
@@ -248,6 +251,9 @@ const GlobalStyle = createGlobalStyle`
 
     .category-slide{
         cursor                  : pointer;
+        img {
+            object-fit: contain !important;
+        }
     }
 
     #breadcrumb-home {
@@ -288,7 +294,7 @@ const GlobalStyle = createGlobalStyle`
     aside {
         ${'' /* border: .2em solid cyan; */}
         grid-column             : 1 / 4;
-
+        background              : var(--aside-home);
         align-items             : center;
         align-self              : left;
         box-sizing              : border-box;
