@@ -13,16 +13,27 @@ import Footer from '../../Components/Organisms/Footer'
 import styled from 'styled-components'
 
 const Aside = styled.aside`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background  : var(--aside-home);
-    border      : none;
-    padding     : 2em;
+    display             : flex;
+    flex-direction      : column;
+    align-items         : center;
+    background          : var(--aside-home);
+    border              : none;
+    padding             : 2em;
+
+    .profilePic {
+        border-radius   : 50%;
+        height          : 16em;
+        width           : 16em;
+    }
 
     div {
-        display: flex;
-        flex-direction: column;
+        align-items     : center;
+        display         : flex;
+        flex-direction  : row;
+        ${'' /* flex-wrap       : wrap; */}
+        justify-content : flex-start;
+        margin          : .5em auto;
+        padding         : 1em;
     }
 
     img {        
@@ -32,63 +43,60 @@ const Aside = styled.aside`
         padding         : 1em;
     }
 
-    .profilePic {
-        border-radius   : 50%;
-        height          : 16em;
-        width           : 16em;
-    }
-
-    .icon {
+    ${'' /* .icon {
         border-radius   : 0;
         height          : 2em;
         width           : 2em;
-    }
+    } */}
 
     span {
-        display: flex;
-        justify-content: center;
+        ${'' /* display         : flex;
+        justify-content : center; */}
         color           : var(--font-color);
         font-size       : 2em;
+        margin-left: .8em;
     }
 
     p {
         color           : var(--font-color);
-        font-size: 2em;
+        flex-wrap       : wrap;
+        font-size       : 2em;
+        margin          : 0 auto 1.5em;
     }
 
     ${'' /* =================================================
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
-        img {
-            margin      : 1em auto;
-        }
+        grid-column     : 1 / 25;
+        width: 100%;
 
-        span {
+        ${'' /* img {
+            margin      : 1em auto;
+        } */}
+
+        ${'' /* span {
             display     : none;
-        }
+        } */}
     }
 
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
-    @media(max-width: 992px) {
+    ${'' /* @media(max-width: 992px) {
         
-    }
+    } */}
 `
 const UserSection = styled.section`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     background: var(--body);
 
     table {
         font-size: 1.2em;
         margin: 0 auto;
-
-        caption {
-            color: white;
-        }
     }
 `
 const UserIcon = styled.img`
@@ -112,16 +120,22 @@ const UserProfile = () => {
             <Main id="main">
                 <Aside>
                     <img src={user.photo} alt={user.first_name} className='profilePic'></img>
-                    <div>                        
-                        <span><UserIcon className='icon'/>Usuario</span>
-                        <p>{user.first_name} {user.last_name}</p>                        
-                    </div>
                     <div>
-                        <span><EmailIcon className='icon'/> Email</span>
-                        <p>{user.email}</p>
+                        <UserIcon className='icon'/>
+                        <span>Usuario</span>
                     </div>
+                    <p>{user.first_name} {user.last_name}</p>
+
+                    <div>
+                        <EmailIcon className='icon'/>
+                        <span>Email</span>
+                    </div>
+                    <p>{user.email}</p>
                     
-                    <p><BellIcon className='icon'/> Suscripciones</p>
+                    <div>
+                        <BellIcon className='icon'/>
+                        <span>Suscripciones</span>
+                    </div>
                     <button>Suscribirse</button>
                 </Aside>
 

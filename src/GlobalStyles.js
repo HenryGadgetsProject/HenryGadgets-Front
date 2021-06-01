@@ -66,6 +66,7 @@ const GlobalStyle = createGlobalStyle`
         --aside-home            : ${ props => props.theme.colorPalette.asideHome };
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
+        --pure-gray             : #808080;
     }
 
 
@@ -591,9 +592,9 @@ const GlobalStyle = createGlobalStyle`
             grid-column         : 1 / 2;
             width               : 10%;
 
-            .icon-drop-down-filters {
+            ${'' /* .icon-drop-down-filters {
                 display         : flex !important;
-            }
+            } */}
 
             .filters {
                 width           : 160%;
@@ -654,7 +655,7 @@ const GlobalStyle = createGlobalStyle`
             .icon-drop-down-filters {
                 display         : flex !important;
                 align-self      : flex-end;
-                margin-right    : 0.35em;
+                margin-right    : .2vw;
             }
 
             .filters {
@@ -662,7 +663,7 @@ const GlobalStyle = createGlobalStyle`
                 flex-direction  : column;
                 justify-content : space-between;
 
-                transition: .5s linear;
+                transition: display .5s linear;
             }
         }
 

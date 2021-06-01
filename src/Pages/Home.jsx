@@ -15,6 +15,7 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { filteredProductsSelector } from '../Helpers/filtered-products-selector.js'
 import Paginate from '../Components/Molecules/Paginate'
+
 import styled from 'styled-components'
 
 const DropIcon = styled.img`

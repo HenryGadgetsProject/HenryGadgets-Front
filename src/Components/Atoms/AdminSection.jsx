@@ -1,7 +1,8 @@
 import styled from "styled-components"
 
 const AdminSection = styled.section`
-    background      : #424242;
+    ${'' /* background      : #424242; */}
+    background      : var(--body);
     min-height      : 100%;
 
     
