@@ -54,7 +54,7 @@ const Ul = styled.ul`
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media (max-width: 992px) {
-        background-color: #0D2538;
+        background-color: var(--pure-black);
         flex-flow       : column nowrap;
         ${'' /* height: 100vh; */}
         height          : 100%;

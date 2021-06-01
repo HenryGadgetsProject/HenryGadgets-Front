@@ -15,6 +15,14 @@ import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { filteredProductsSelector } from '../Helpers/filtered-products-selector.js'
 import Paginate from '../Components/Molecules/Paginate'
+import styled from 'styled-components'
+
+const DropIcon = styled.img`
+    width: 2em;
+    height: 2em;
+    padding: 1em;
+    background: url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white') no-repeat center center / contain;
+`
 
 const Home = () => {
 
@@ -54,7 +62,7 @@ const Home = () => {
                         </Link>
                     ))}
                 </Carousel>
-                
+
             </Header>
 
             <Breadcrumb id="breadcrumb" />
@@ -62,7 +70,7 @@ const Home = () => {
             <Main id="main">
                 <aside>
                     <input type="checkbox" id="btn-drop-down-filters" />
-                    <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters">V</label>
+                    <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
 
                     <div className="filters">
                         <h6>Buscar por: </h6>

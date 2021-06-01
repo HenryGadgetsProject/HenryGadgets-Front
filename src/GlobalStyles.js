@@ -242,7 +242,7 @@ const GlobalStyle = createGlobalStyle`
 
     span.slideTitle {
         position                : absolute;
-        top                     : 10%;
+        top                     : 5%;
         right                   : 5%;
         color                   : var(--pure-white);
         font-size               : 10em;
@@ -653,9 +653,8 @@ const GlobalStyle = createGlobalStyle`
 
             .icon-drop-down-filters {
                 display         : flex !important;
-                position        : absolute !important;
-                right           : 1.5em;
-                top: 50%;
+                align-self      : flex-end;
+                margin-right    : 0.35em;
             }
 
             .filters {
