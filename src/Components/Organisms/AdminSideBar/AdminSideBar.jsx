@@ -11,11 +11,11 @@ import FilterPrdByRating from '../FilterPrdByRating'
 const AdminAside = styled.aside`
     ${'' /* align-items : center; */}
     ${'' /* background              : var(--aside-home); */}
-    background  : black;
-    border      : none;
+    background          : black;
+    border              : none;
     ${'' /* min-height  : 100%; */}
     ${'' /* outline     : none; */}
-    padding     : 2em;
+    padding             : 2em;
 
     a {
         align-items     : center;
@@ -77,6 +77,8 @@ const AdminAside = styled.aside`
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
+        position            : static;
+
         a {
             justify-content : center;
         }

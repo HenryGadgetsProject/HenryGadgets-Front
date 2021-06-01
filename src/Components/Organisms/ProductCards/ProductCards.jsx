@@ -23,7 +23,8 @@ const Cards = styled.div`
     ${'' /* padding                 : 2em 2.5em; */}
     text-align              : center;
     transition              : all .3s ease;
-    width                   : 30em;
+    ${'' /* width                   : 30em; */}
+    min-width               : 25em;
     &:hover {
         /* border              : .20em solid var(--dark-primary); */
         box-shadow          : 0px 0px 10px var(--font-color);
