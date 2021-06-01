@@ -113,13 +113,17 @@ const AdminSideBar = () => {
                 <span>Categorías</span>
             </Link>
             <Link to='/admin/users'>
-                <UserIcon/>
+                <UserIcon />
                 <span>Usuarios</span>
             </Link>
 
             <Link to='/admin/orders'>
-                <OrderIcon/>
+                <OrderIcon />
                 <span>Ordenes</span>
+            </Link>
+            <Link to='/admin/branches'>
+                <OrderIcon />
+                <span>Sucursales</span>
             </Link>
 
             <Link to='/admin/product'>
@@ -129,6 +133,10 @@ const AdminSideBar = () => {
             <Link to='/admin/category'>
                 <AddCategoryIcon />
                 <span>Agregar Categorías</span>
+            </Link>
+            <Link to='/admin/branch'>
+                <AddCategoryIcon />
+                <span>Agregar Sucursal</span>
             </Link>
 
             <div className="filters">
