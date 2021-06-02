@@ -136,10 +136,20 @@ const MenuOptBar = ({ open }) => {
                 user.is_admin ?
                     <>
                         <li>
-                            {/* <Link to="/user" className="link">
-                                <Img src={userIcon} alt='user'></Img>
-                            </Link> */}
-                            <Link to='/user'><span>Hola {user.first_name}</span></Link>
+                            <Link to="/branches" className="link">
+                                <span>Sucursales</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = "/about"  className = "link">
+                                <span>Acerca de</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/user'>
+                                <span>Hola {user.first_name}</span>
+                                {/* <img src={userIcon} alt='user'></img> */}
+                            </Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -155,10 +165,20 @@ const MenuOptBar = ({ open }) => {
                     :
                     <>
                         <li>
-                            {/* <Link to="/user" className="link">
-                                <Img src={userIcon} alt='user'></Img>
-                            </Link> */}
-                            <Link to='/user'><span>Hola {user.first_name}</span></Link>
+                            <Link to="/branches" className="link">
+                                <span>Sucursales</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = "/about"  className = "link">
+                                <span>Acerca de</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/user'>
+                                <span>Hola {user.first_name}</span>
+                                {/* <img src={userIcon} alt='user'></img> */}
+                            </Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -175,6 +195,16 @@ const MenuOptBar = ({ open }) => {
                 :
                 <>
                     <li>
+                        <Link to="/branches" className="link">
+                            <span>Sucursales</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to = "/about"  className = "link">
+                            <span>Acerca de</span>
+                        </Link>
+                    </li>
+                    <li>
                         <Link to="/login" className="link">
                             <img src={loginIcon} alt='login' />
                         </Link>
@@ -187,21 +217,12 @@ const MenuOptBar = ({ open }) => {
 
                 </>
             }
-            {/* <li>
-                <Link to = "/about"  className = "link">
-                    Acerca de
-                </Link>
-            </li> */}
-            {/* <li>Contact Us</li> */}
             <li>
                 <Link to="/cart" className="link">
                     <img src={cartIcon} alt='chart' />
                     <sub className="badge">{itemCount}</sub>
                 </Link>
             </li>
-            {/* <li>
-                <span className="badge">{itemCount}</span>
-            </li> */}
             <li>
                 <ToggleForm />
             </li>

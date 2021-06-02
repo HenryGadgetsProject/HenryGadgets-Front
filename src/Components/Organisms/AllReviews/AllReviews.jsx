@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import Table from '../../Atoms/Table'
-import { getReviewsByUserId, deleteReview } from '../../../Redux/Actions/Review/ReviewActions'
-
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getReviewsByUserId, deleteReview } from '../../../Redux/Actions/Review/ReviewActions'
+import Table from '../../Atoms/Table'
 import Swal from 'sweetalert2'
-// import { deleteCategories } from '../../../Redux/Actions/Categories/CategoriesActions'
 
 
 import styled from "styled-components"
@@ -18,17 +16,13 @@ const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 
-// const InfoIcon = styled.img`
-//     background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
-// `
-
 const AllReviews = () => {
 
     const dispatch = useDispatch()
     
     const reviews = useSelector(state => state.review.reviews)
     const user = useSelector(state => state.user.user)
-    const loading = useSelector(state => state.user.loading)
+    // const loading = useSelector(state => state.user.loading)
 
     useEffect(() => {
         dispatch(getReviewsByUserId(user.id))

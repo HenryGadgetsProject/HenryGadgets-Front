@@ -97,7 +97,7 @@ const UserOrders = () => {
             </Table>
 
             <Table>
-                <caption>Detalles</caption>
+                <caption>Deseos</caption>
                 <thead>
                     <tr>
                         <th>Foto</th>

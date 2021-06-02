@@ -52,7 +52,7 @@ const NavBar = () => {
                     {
                         !mode ?
                             <img
-                                id="logo-productman"
+                                id="logo"
                                 src={LogoLight}
                                 width="50"
                                 height="50"
@@ -60,7 +60,7 @@ const NavBar = () => {
                             />
                             :
                             <img
-                                id="logo-productman"
+                                id="logo"
                                 src={LogoDark}
                                 width="50"
                                 height="50"
