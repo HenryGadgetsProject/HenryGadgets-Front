@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
 import { addToWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
+import NumberFormat from 'react-number-format';
 
 import Swal from 'sweetalert2'
 import StarRatings from 'react-star-ratings'
@@ -138,7 +139,7 @@ const ProductCards = ({ products }) => {
                                 <Link to={`/product/${p.id}`}>
                                     <img src={p.big_image} alt={p.name}></img><br />
                                     <p>{p.name}</p>
-                                    <p>{p.price} $</p>
+                                    <p><NumberFormat value={p.price} displayType={'text'} thousandSeparator='.' decimalSeparator=',' prefix={'$'} /></p>
                                     <span className="center">
                                         <StarRatings
                                             rating={p.rating}
@@ -150,11 +151,11 @@ const ProductCards = ({ products }) => {
                                     </span>
                                     {/* REVIEWS MODAL (Probablemente) */}
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
-                                 </Link>
-                                    <div>
-                                    <WishIcon onClick={() => handleWishlist(p)}/> 
-                                    <CartIcon onClick={() => handleCart(p) }/>
-                                    </div>
+                                </Link>
+                                <div>
+                                    <WishIcon onClick={() => handleWishlist(p)} />
+                                    <CartIcon onClick={() => handleCart(p)} />
+                                </div>
                             </Cards>
                             {/* <button className="buy" onClick={handleClick}>
                             <CartIcon />

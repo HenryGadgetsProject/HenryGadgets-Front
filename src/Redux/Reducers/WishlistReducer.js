@@ -1,11 +1,12 @@
 import {
     WISHLIST_ERROR,
-    WISHLIST_LOADING,
-    GET_WISHLIST,
-    POST_WISHLIST,
-    UPDATE_WISHLIST,
-    DELETE_WISHLIST,
-    ADD_TO_WISHLIST
+    WISHLIST_REQUEST,
+    ADD_TO_WISHLIST,
+    REMOVE_FROM_WHISHLIST,
+    GET_WISHLIST_SUCCESS,
+    CREATE_WISHLIST_SUCCESS,
+    UPDATE_WISHLIST_SUCCESS,
+    DELETE_WISHLIST_SUCCESS
 } from '../Actions/Wishlist/WishlistActionTypes'
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
 
 const wishlistReducer = (state = initialState, action) => {
     switch (action.type) {
-        case WISHLIST_LOADING: {
+        case WISHLIST_REQUEST: {
             return {
                 ...state,
                 loading: true
@@ -26,7 +27,17 @@ const wishlistReducer = (state = initialState, action) => {
         case ADD_TO_WISHLIST: {
             return {
                 ...state,
-                holdWishlist: [...state.holdWishlist, action.payload]
+                holdWishlist: [...state.holdWishlist, action.payload],
+                loading: false,
+                error: ''
+            }
+        }
+        case REMOVE_FROM_WHISHLIST: {
+            return {
+                ...state,
+                holdWishlist: state.holdWishlist.filter(p => p.id !== action.payload),
+                loading: false,
+                error: ''
             }
         }
         case WISHLIST_ERROR: {
@@ -37,36 +48,43 @@ const wishlistReducer = (state = initialState, action) => {
             }
         }
 
-        case GET_WISHLIST: {
+        case GET_WISHLIST_SUCCESS: {
             return {
                 ...state,
                 wishlist: action.payload,
-                loading: false
+                holdWishlist: action.payload,
+                loading: false,
+                error: ''
             }
         }
-        case POST_WISHLIST: {
+        case CREATE_WISHLIST_SUCCESS: {
             return {
                 ...state,
                 wishlist: [...state.wishlist, action.payload],
-                loading: false
+                loading: false,
+                error: ''
             }
         }
-        case DELETE_WISHLIST: {
+        case DELETE_WISHLIST_SUCCESS: {
             return {
                 ...state,
-                wishlist: state.wishlist.filter(wish => wish.id !== parseInt(action.payload) )
+                wishlist: state.wishlist.filter(wish => wish.id !== parseInt(action.payload)),
+                loading: false,
+                error: ''
             }
         }
-        case UPDATE_WISHLIST: {
+        case UPDATE_WISHLIST_SUCCESS: {
             return {
                 ...state,
-                // Hacelo vos Edu jajaja
+                whishlist: state.whishlist.map(wl => (wl.id === parseInt(action.payload)) ? { ...wl, ...action.payload } : wl),
+                loading: false,
+                error: ''
             }
         }
         default: {
             return state
         }
-    }    
+    }
 }
 
 export default wishlistReducer

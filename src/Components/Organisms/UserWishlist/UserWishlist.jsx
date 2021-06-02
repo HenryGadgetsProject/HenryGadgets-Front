@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from '../../Atoms/Table'
-import { getWishlist, deleteWishlist, postWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
+import { getWishlist, removeFromWishlist, postWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
 
 import styled from 'styled-components'
 
@@ -27,15 +27,15 @@ const UserWishlist = () => {
 
     const user = useSelector(state => state.user.user)
 
-    const wishlist = useSelector(state => state.wishlist.wishlist)
+    //onst wishlist = useSelector(state => state.wishlist.wishlist)
 
-    useEffect(() => {
-        dispatch(getWishlist(user.id))
-    }, [dispatch, user.id])
+    // useEffect(() => {
+    //     dispatch(getWishlist(user.id))
+    // }, [dispatch, user.id])
 
     // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
     const holdWishlist = useSelector(state => state.wishlist.holdWishlist)
-    console.log(holdWishlist)
+    console.log('LISTA DE DESEOS', holdWishlist)
     // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
 
     /*
@@ -64,12 +64,12 @@ const UserWishlist = () => {
     }
 
     const handleDelete = (id) => {
-        dispatch(deleteWishlist)
+        dispatch(removeFromWishlist(id))
     }
 
     return (
         <>
-            <Table>
+            {/* <Table>
                 <caption>Lista de Deseos</caption>
                 <thead>
                     <tr>
@@ -82,19 +82,19 @@ const UserWishlist = () => {
                 </thead>
 
                 <tbody>
-                    {wishlist?.map(wishlist => {
+                    {holdWishlist?.map(wl => {
                         return (
-                            <tr key={wishlist.id}>
-                                <td data-label="Nombre" className="center-text">{wishlist.name}</td>
-                                <td data-label="Cambios" className="center-text"><ChangesIcon/></td>
-                                <td data-label="Borrar" className="center-text"><DeleteIcon/></td>
-                                <td data-label="Guardar" className="center-text"><SaveIcon/></td>
-                                <td data-label="Ver Detalles" className="center-text"><GlassIcon/></td>
+                            <tr key={wl.id}>
+                                <td data-label="Nombre" className="center-text">{wl.name}</td>
+                                <td data-label="Cambios" className="center-text"><ChangesIcon /></td>
+                                <td data-label="Borrar" className="center-text"><DeleteIcon /></td>
+                                <td data-label="Guardar" className="center-text"><SaveIcon /></td>
+                                <td data-label="Ver Detalles" className="center-text"><GlassIcon /></td>
                             </tr>
                         )
                     })}
                 </tbody>
-            </Table>
+            </Table> */}
 
             <Table>
                 <caption>Tus productos</caption>
@@ -109,24 +109,24 @@ const UserWishlist = () => {
                 </thead>
 
                 <tbody>
-                    {wishlist[0].products?.map(p => {
+                    {holdWishlist.map(p => {
                         return (
                             <tr key={p.id}>
                                 <td data-label="Foto"><img className="mini" src={p.big_image} alt={p.name} /></td>
                                 <td data-label="Nombre">{p.name}</td>
                                 <td data-label="Precio" className="center-text">{p.price}$</td>
-                                <td data-label="Borrar" className="center-text"><DeleteIcon/></td>
-                                <td data-label="Agregar" className="center-text"><CartIcon/></td>
+                                <td data-label="Borrar" className="center-text"><DeleteIcon onClick={() => handleDelete(p.id)} /></td>
+                                <td data-label="Agregar" className="center-text"><CartIcon /></td>
                             </tr>
                         )
                     })}
-                            <tr>
-                                <td data-label="Agregar Todo" className="center-text">Agregar todo</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td data-label="Carrito" className="center-text"><CartIcon/></td>
-                            </tr>
+                    <tr>
+                        <td data-label="Agregar Todo" className="center-text">Agregar todo</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td data-label="Carrito" className="center-text"><CartIcon /></td>
+                    </tr>
                 </tbody>
             </Table>
         </>

@@ -10,6 +10,7 @@ import StarRatings from 'react-star-ratings'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { addItemCart } from '../Redux/Actions/Cart/CartActions'
+import NumberFormat from 'react-number-format';
 
 import BigCard from '../Components/Atoms/BigCard'
 import NotFound from './NotFound'
@@ -85,7 +86,7 @@ const Product = ({ productId }) => {
                         <div className="separator"></div>
                         <span>Descripción</span><p>{product.description}</p>
                         <span>Stock</span>{product.stock > 0 ? <p>{product.stock}</p> : <p>No hay unidades disponibles.</p>}
-                        <span>Precio</span><p>{product.price} $</p>
+                        <span>Precio</span><p><NumberFormat value={product.price} displayType={'text'} thousandSeparator='.' decimalSeparator=',' prefix={'$'} /></p>
 
                     </div>
 
