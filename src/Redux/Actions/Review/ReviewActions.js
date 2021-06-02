@@ -4,7 +4,6 @@ import HOST from '../../../constants'
 import {
     CREATE_REVIEW_SUCCESS,
     REVIEW_ERROR,
-    REVIEW_ADD,
     REVIEWS_REQUEST,
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
@@ -76,7 +75,7 @@ export const addReview = (input) => {
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_ADD
+                type: REVIEWS_REQUEST
             }
         )
         axios.post(`${HOST}/products/${input.productId}/review`, input)
@@ -101,16 +100,18 @@ export const addReview = (input) => {
     }
 }
 
-export const updateReview = (id, input) => {
+export const updateReview = (id, body) => {
+
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_ADD
+                type: REVIEWS_REQUEST
             }
         )
-        axios.put(`${HOST}/products/review/${id}`, input)
+        axios.put(`${HOST}/products/review/${id}`, body)
             .then(response => {
                 const reviews = response.data
+
                 dispatch(
                     {
                         type: EDIT_REVIEW_SUCCESS,

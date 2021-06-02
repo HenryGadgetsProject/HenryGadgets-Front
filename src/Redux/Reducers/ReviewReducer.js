@@ -2,7 +2,6 @@
 import {
     CREATE_REVIEW_SUCCESS,
     REVIEW_ERROR,
-    REVIEW_ADD,
     REVIEWS_REQUEST,
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
@@ -71,12 +70,6 @@ const reviewReducer = (state = initialState, action) => {
             }
         }
 
-        case REVIEW_ADD: {
-            return {
-                ...state,
-                loading: true
-            }
-        }
 
         case CREATED_FALSE: {
             return {
