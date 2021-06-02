@@ -19,7 +19,6 @@ const initialState = {
 }
 
 const orderReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case ORDER_LOADING: {
             return {
@@ -67,7 +66,6 @@ const orderReducer = (state = initialState, action) => {
                 error: ''
             }
         }
-
         case FILTER_ORDERS: {
             return {
                 ...state,
@@ -76,7 +74,6 @@ const orderReducer = (state = initialState, action) => {
                 error: ''
             }
         }
-
         case FILTER_ORDERS_BY_USER_ID: {
 
 
@@ -85,7 +82,6 @@ const orderReducer = (state = initialState, action) => {
                 filteredOrders1: state.orders.filter(order => parseInt(order.user.id) === action.payload)
             }
         }
-
         default: {
             return state
         }
