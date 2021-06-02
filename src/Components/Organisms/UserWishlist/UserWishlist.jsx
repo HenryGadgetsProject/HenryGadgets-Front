@@ -24,8 +24,13 @@ const ChangesIcon = styled.img`
 const UserWishlist = () => {
 
     const dispatch = useDispatch()
-
     const user = useSelector(state => state.user.user)
+
+    useEffect(() => {
+        dispatch(getWishlist(user.id))
+    }, [])
+
+
 
     //onst wishlist = useSelector(state => state.wishlist.wishlist)
 
@@ -34,8 +39,8 @@ const UserWishlist = () => {
     // }, [dispatch, user.id])
 
     // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
-    const holdWishlist = useSelector(state => state.wishlist.holdWishlist)
-    console.log('LISTA DE DESEOS', holdWishlist)
+    const wishList = useSelector(state => state.wishlist.wishList)
+    console.log('LISTA DE DESEOS', wishList)
     // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
 
     /*
@@ -43,7 +48,7 @@ const UserWishlist = () => {
     Lo que pensé fué lo siguiente:
 
     Desde la Home > El corazón tiene un Dispatch 'AddToWishlist'
-        Este dispatch agrega esos productos al estado 'holdWishlist'
+        Este dispatch agrega esos productos al estado 'wishList'
 
     Desde user/wishlist > Se debería ver esa lista (con algún nombre por defecto) pero sin guardar en la base de datos aún.
     Solo se va a guardar cuando le de click a Guardar.    
@@ -59,12 +64,12 @@ const UserWishlist = () => {
                 Y si no te gusta, te podes ir a freir churros.
     */
 
-    const handlePost = (userId, listName) => {
-        dispatch(postWishlist)
-    }
+    // const handlePost = (userId, listName) => {
+    //     dispatch(postWishlist)
+    // }
 
-    const handleDelete = (id) => {
-        dispatch(removeFromWishlist(id))
+    const handleDelete = (product) => {
+        dispatch(removeFromWishlist(user, product))
     }
 
     return (
@@ -82,7 +87,7 @@ const UserWishlist = () => {
                 </thead>
 
                 <tbody>
-                    {holdWishlist?.map(wl => {
+                    {wishList?.map(wl => {
                         return (
                             <tr key={wl.id}>
                                 <td data-label="Nombre" className="center-text">{wl.name}</td>
@@ -109,13 +114,13 @@ const UserWishlist = () => {
                 </thead>
 
                 <tbody>
-                    {holdWishlist.map(p => {
+                    {wishList?.map(p => {
                         return (
                             <tr key={p.id}>
                                 <td data-label="Foto"><img className="mini" src={p.big_image} alt={p.name} /></td>
                                 <td data-label="Nombre">{p.name}</td>
                                 <td data-label="Precio" className="center-text">{p.price}$</td>
-                                <td data-label="Borrar" className="center-text"><DeleteIcon onClick={() => handleDelete(p.id)} /></td>
+                                <td data-label="Borrar" className="center-text"><DeleteIcon onClick={() => handleDelete(p)} /></td>
                                 <td data-label="Agregar" className="center-text"><CartIcon /></td>
                             </tr>
                         )

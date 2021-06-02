@@ -17,7 +17,8 @@ export const getWishlist = (userId) => {
         dispatch({ type: WISHLIST_REQUEST })
         axios.get(`${HOST}/users/wishlist/${userId}`)
             .then(response => {
-                const wishlist = response.data.wishlists
+
+                const wishlist = response.data.products
                 dispatch(
                     {
                         type: GET_WISHLIST_SUCCESS,
@@ -37,24 +38,72 @@ export const getWishlist = (userId) => {
     }
 }
 
-export const addToWishlist = (product) => {
+export const addToWishlist = (user, product) => {
+
     return (dispatch) => {
-        dispatch(
-            {
-                type: ADD_TO_WISHLIST,
-                payload: product
-            }
-        )
+        dispatch({ type: WISHLIST_REQUEST })
+        axios.post(`${HOST}/users/wishlist/${user.id}/${product.id}`)
+            .then(response => {
+                const whisList = response.data
+
+                dispatch(
+                    {
+                        type: ADD_TO_WISHLIST,
+                        payload: product
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: WISHLIST_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }
-export const removeFromWishlist = (id) => {
+
+// export const addToWishlist = (user, product) => {
+//     return (dispatch) => {
+//         axios.post(`${HOST}/users/wishlist/${user.id}/${product.id}`)
+//             .then(response => {
+//                 const wishList = response.data;
+//                 dispatch(
+//                     {
+//                         type: ADD_TO_WISHLIST,
+//                         payload: product
+//                     }
+//                 )
+//             })
+//     }
+// }
+
+
+export const removeFromWishlist = (user, product) => {
     return (dispatch) => {
-        dispatch(
-            {
-                type: REMOVE_FROM_WHISHLIST,
-                payload: id
-            }
-        )
+        dispatch({ type: WISHLIST_REQUEST })
+        axios.delete(`${HOST}/users/wishlist/${user.id}/${product.id}`)
+            .then(response => {
+                console.log('RESPONSE', response.data)
+                const products = response.data.products
+                dispatch(
+                    {
+                        type: REMOVE_FROM_WHISHLIST,
+                        payload: products
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: WISHLIST_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }
 
@@ -82,31 +131,31 @@ export const postWishlist = (userId, listName) => {
             })
     }
 }
-
-export const deleteWishlist = (id) => {
-    return (dispatch) => {
-        dispatch({ type: WISHLIST_REQUEST })
-        axios.get(`${HOST}/users/wishlist/delete/${id}`)
-            .then(response => {
-
-                dispatch(
-                    {
-                        type: DELETE_WISHLIST_SUCCESS,
-                        payload: parseInt(id)
-                    }
-                )
-            })
-            .catch(error => {
-                const errorMsg = error.message
-                dispatch(
-                    {
-                        type: WISHLIST_ERROR,
-                        payload: errorMsg
-                    }
-                )
-            })
-    }
-}
+// router.delete("/wishlist/:userId/:prodId",deleteItem);
+// export const deleteWishlist = (id) => {
+//     return (dispatch) => {
+//         dispatch({ type: WISHLIST_REQUEST })
+//         axios.delete(`${HOST}/users/wishlist/post/${userId}/${listName}`)
+//             .then(response => {
+//                 const wishlist = response.data
+//                 dispatch(
+//                     {
+//                         type: CREATE_WISHLIST_SUCCESS,
+//                         payload: wishlist
+//                     }
+//                 )
+//             })
+//             .catch(error => {
+//                 const errorMsg = error.message
+//                 dispatch(
+//                     {
+//                         type: WISHLIST_ERROR,
+//                         payload: errorMsg
+//                     }
+//                 )
+//             })
+//     }
+// }
 
 export const updateWishlist = (wishListId, productId) => {
     return (dispatch) => {
@@ -132,3 +181,4 @@ export const updateWishlist = (wishListId, productId) => {
             })
     }
 }
+
