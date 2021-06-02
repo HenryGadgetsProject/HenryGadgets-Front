@@ -35,9 +35,7 @@ const Branch = () => {
         navigator.geolocation.getCurrentPosition(success);
     })
 
-    useEffect(() => {
-        dispatch(getBranches());
-    }, [])
+
 
     const onSelect = item => {
         setSelected(item);
