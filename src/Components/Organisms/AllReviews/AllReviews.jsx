@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getReviewsByUserId, deleteReview } from '../../../Redux/Actions/Review/ReviewActions'
 import Table from '../../Atoms/Table'
@@ -23,13 +23,17 @@ const AllReviews = () => {
     const reviews = useSelector(state => state.review.reviews)
     const user = useSelector(state => state.user.user)
     // const loading = useSelector(state => state.user.loading)
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getReviewsByUserId(user.id))
     }, [dispatch])
 
 
-    console.log(reviews)
+    const editHandler = (review) => {
+        console.log('esta es la review desde all reviews', review)
+        history.push('/user/edit-review', review)
+    }
 
 
     const deleteHandler = (id) => {
@@ -67,7 +71,7 @@ const AllReviews = () => {
                     <th>Descripción</th>
                     <th>Calificación</th>
                     <th>Editar</th>
-                    <th>Borrar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
 
@@ -78,8 +82,8 @@ const AllReviews = () => {
                         <td data-label="Titulo">{review.title}</td>
                         <td data-label="Descripción">{review.description}</td>
                         <td data-label="Calificación">{review.rating}</td>
-                        <td data-label="Editar" className="center-text"><Link to={`/admin/categories-edit/${review.id}`}><EditIcon /></Link></td>
-                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(review.id)}><DeleteIcon /></td>
+                        <td data-label="Editar" className="center-text" onClick={() => editHandler(review)}><EditIcon /></td>
+                        <td data-label="Eliminar" className="center-text" onClick={() => deleteHandler(review.id)}><DeleteIcon /></td>
                     </tr>
                 ))}
             </tbody>

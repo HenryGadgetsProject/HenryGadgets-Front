@@ -101,14 +101,14 @@ export const addReview = (input) => {
     }
 }
 
-export const updateReview = () => {
+export const updateReview = (id, input) => {
     return (dispatch) => {
         dispatch(
             {
                 type: REVIEW_ADD
             }
         )
-        axios.put(`${HOST}/reviews`)
+        axios.put(`${HOST}/products/review/${id}`, input)
             .then(response => {
                 const reviews = response.data
                 dispatch(
