@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
+import { addToWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
 
 import Swal from 'sweetalert2'
 import StarRatings from 'react-star-ratings'
@@ -92,9 +93,12 @@ const ProductCards = ({ products }) => {
 
     const dispatch = useDispatch()
 
-    const product = useSelector(state => state.product.product)
+    // const user = useSelector(state => state.user.user)
 
-    const handleClick = (product) => {
+    const holdWishlist = useSelector(state => state.wishlist.holdWishlist)
+    console.log(holdWishlist)
+
+    const handleCart = (product) => {
         const productSelected = { ...product, quantity: 1 }
 
         dispatch(addItemCart(productSelected))
@@ -106,6 +110,22 @@ const ProductCards = ({ products }) => {
             showConfirmButton: false,
             timer: 2000,
         })
+    }
+
+    const handleWishlist = (product) => {
+        // Swal.fire({
+        //     icon: 'error',
+        //     title: 'Oops...',
+        //     text: 'Debes ingresar a tu cuenta para utilizar la lista de Deseados!'
+        // })
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El producto se ha agregado a la lista!',
+            showConfirmButton: false,
+            timer: 1000,
+        })
+        dispatch(addToWishlist(product))
     }
 
     if (products.length > 0) {
@@ -132,8 +152,8 @@ const ProductCards = ({ products }) => {
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                                  </Link>
                                     <div>
-                                    <WishIcon/> 
-                                    <CartIcon onClick={ () => handleClick(p) }/>
+                                    <WishIcon onClick={() => handleWishlist(p)}/> 
+                                    <CartIcon onClick={() => handleCart(p) }/>
                                     </div>
                             </Cards>
                             {/* <button className="buy" onClick={handleClick}>

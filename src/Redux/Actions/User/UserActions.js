@@ -135,11 +135,11 @@ export const userGoogleLogin = (body, result, token) => {
             })
             .catch(error => {
                 const errorMsg = error.message
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Contraseña o usuario incorrecto!'
-                })
+                // Swal.fire({
+                //     icon: 'error',
+                //     title: 'Oops...',
+                //     text: 'Contraseña o usuario incorrecto!'
+                // })
                 dispatch(
                     {
                         type: USER_ERROR,

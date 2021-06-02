@@ -8,6 +8,7 @@ import cartReducer from '../Reducers/CartReducer'
 import reviewReducer from '../Reducers/ReviewReducer'
 import orderReducer from '../Reducers/OrderReducer'
 import authReducer from '../Reducers/AuthReducer'
+import wishlistReducer from '../Reducers/WishlistReducer'
 import branchReducer from '../Reducers/BranchReducer'
 
 const rootReducer = combineReducers({
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     review: reviewReducer,
     order: orderReducer,
     auth: authReducer,
+    wishlist: wishlistReducer,
     branch: branchReducer
 })
 
