@@ -94,7 +94,7 @@ const ProductCards = ({ products }) => {
 
     const product = useSelector(state => state.product.product)
 
-    const handleClick = () => {
+    const handleClick = (product) => {
         const productSelected = { ...product, quantity: 1 }
 
         dispatch(addItemCart(productSelected))
@@ -133,7 +133,7 @@ const ProductCards = ({ products }) => {
                                  </Link>
                                     <div>
                                     <WishIcon/> 
-                                    <CartIcon onClick={handleClick}/>
+                                    <CartIcon onClick={ () => handleClick(p) }/>
                                     </div>
                             </Cards>
                             {/* <button className="buy" onClick={handleClick}>

@@ -10,6 +10,7 @@ import { getProducts } from './Redux/Actions/Product/ProductActions'
 import { getUsers } from './Redux/Actions/User/UserActions'
 import { getCart } from './Redux/Actions/Cart/CartActions'
 import { getOrders } from './Redux/Actions/Order/OrderActions'
+import { getBranches } from './Redux/Actions/Branch/BranchesActions'
 
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
@@ -32,6 +33,7 @@ function App() {
         dispatch(getProducts());
         dispatch(getUsers())
         dispatch(getOrders())
+        dispatch(getBranches())
 
     }, [dispatch])
 
@@ -54,7 +56,7 @@ function App() {
         if (user.id) {
             dispatch(getCart(user.id))
         }
-    }, [user.id])
+    }, [dispatch, user.id])
 
     if (user.is_admin === true) {
         return (

@@ -591,28 +591,24 @@ const GlobalStyle = createGlobalStyle`
         ${'' /* =============================================
         SECTION 3
         ================================================= */}
-        aside {
+        ${'' /* aside {
             grid-column         : 1 / 2;
             width               : 10%;
-
-            ${'' /* .icon-drop-down-filters {
-                display         : flex !important;
-            } */}
 
             .filters {
                 width           : 160%;
             }
-        }
+        } */}
 
-        section {
+        ${'' /* section {
             grid-column         : 2 / 25;
             flex-direction      : block;
             width               : 90%;
-        }
+        } */}
 
-        .btn {
+        ${'' /* .btn {
             margin              : 2em 0 2em 6em;
-        }
+        } */}
 
         .btn-md {
             width               : 10em;

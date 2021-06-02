@@ -125,7 +125,7 @@ const Table = styled.table`
 
         td:nth-child(even) {
             ${'' /* background      : #515151; */}
-            background  : var(--aside-home);
+            background      : var(--aside-home);
         }
 
         td:before {

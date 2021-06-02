@@ -9,6 +9,7 @@ import reviewReducer from '../Reducers/ReviewReducer'
 import orderReducer from '../Reducers/OrderReducer'
 import authReducer from '../Reducers/AuthReducer'
 import wishlistReducer from '../Reducers/WishlistReducer'
+import branchReducer from '../Reducers/BranchReducer'
 
 const rootReducer = combineReducers({
     product: productReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     review: reviewReducer,
     order: orderReducer,
     auth: authReducer,
-    wishlist: wishlistReducer
+    wishlist: wishlistReducer,
+    branch: branchReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
