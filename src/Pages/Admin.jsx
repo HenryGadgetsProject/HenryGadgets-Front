@@ -18,6 +18,9 @@ import AdminCategoryEdit from './Admin/AdminCategoryEdit'
 import AdminCategoryDetails from "./Admin/AdminCategoryDetails"
 
 import AdminUsers from './Admin/AdminUsers'
+import AdminBranches from "./Admin/AdminBranches"
+import AdminBranchAdd from "./Admin/AdminBranchAdd"
+import AdminBranchEdit from './Admin/AdminBranchEdit'
 
 import AdminOrders from "./Admin/AdminOrders"
 import AdminOrderEdit from "./Admin/AdminOrderEdit"
@@ -40,9 +43,11 @@ const Admin = () => {
                     <Route exact path='/admin/categories' render={() => <AdminCategories />} />
                     <Route exact path='/admin/users' render={() => <AdminUsers />} />
                     <Route exact path='/admin/orders' render={() => <AdminOrders />} />
+                    <Route exact path='/admin/branches' render={() => <AdminBranches />} />
 
                     <Route exact path='/admin/category' render={() => <AdminCategoryAdd />} />
                     <Route exact path='/admin/product' render={() => <AdminProductAdd />} />
+                    <Route exact path='/admin/branch' render={() => <AdminBranchAdd />} />
 
                     <Route exact path='/admin/order-edit/:orderId'
                         render={({ match }) => <AdminOrderEdit orderId={match.params.orderId} />}
@@ -52,6 +57,9 @@ const Admin = () => {
                     />
                     <Route exact path='/admin/products-edit/:productId'
                         render={({ match }) => <AdminProductEdit productId={match.params.productId} />}
+                    />
+                    <Route exact path='/admin/branches-edit/:branchId'
+                        render={({ match }) => <AdminBranchEdit branchId={match.params.branchId} />}
                     />
 
 

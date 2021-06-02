@@ -67,6 +67,15 @@ const SuggestContainer = styled.div`
             transform       : scale(1.05);
         }
     }
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        margin-right    : 3em;
+        min-width       : 18em;
+    }
 `
 
 // const Ul = styled.ul`

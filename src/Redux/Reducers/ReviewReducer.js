@@ -3,9 +3,10 @@ import {
     CREATE_REVIEW_SUCCESS,
     REVIEW_ERROR,
     REVIEW_ADD,
-    REVIEW_REQUEST,
+    REVIEWS_REQUEST,
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
+    DELETE_REVIEW_SUCCESS,
     CREATED_FALSE,
     GET_REVIEWS_BY_USER_ID
 } from '../Actions/Review/ReviewActionTypes'
@@ -22,7 +23,7 @@ const initialState = {
 const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case REVIEW_REQUEST: {
+        case REVIEWS_REQUEST: {
             return {
                 ...state,
                 loading: true
@@ -43,6 +44,14 @@ const reviewReducer = (state = initialState, action) => {
                 reviews: [...state.reviews, action.payload],
                 loading: false
                 // para revisar si queremos dejar editar las revies
+            }
+        }
+
+        case DELETE_REVIEW_SUCCESS: {
+            return {
+                ...state,
+                reviews: state.reviews.filter(review => review.id !== action.payload),
+                loading: false
             }
         }
 

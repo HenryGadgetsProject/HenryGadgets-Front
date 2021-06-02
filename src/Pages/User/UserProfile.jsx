@@ -1,11 +1,12 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
 import Main from '../../Components/Atoms/Main'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
+import AllReviews from '../../Components/Organisms/AllReviews'
 import Footer from '../../Components/Organisms/Footer'
 // import Header from '../Components/Atoms/Header'
 // import Table from '../../Components/Atoms/Table'
@@ -137,11 +138,17 @@ const UserProfile = () => {
                         <span>Suscripciones</span>
                     </div>
                     <button>Suscribirse</button>
+
+                    <Link to='/user/reviews'>
+                        <EmailIcon className='icon'/>
+                        <span>Reviews</span>
+                    </Link>
                 </Aside>
 
                 <UserSection>
                     <Route exact path='/user' render={() => <UserOrders />} />
                     <Route exact path='/user/review' render={() => <ReviewsForm />} />
+                    <Route exact path='/user/reviews' render={() => <AllReviews />} />
                 </UserSection>
             </Main>
 

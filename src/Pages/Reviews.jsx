@@ -75,7 +75,7 @@ const Reviews = ({ productId }) => {
         <h3>{product.name}</h3>
       </TitleCont>
       <Cont>     
-        {(loading === false && reviews.length > 0) ? reviews?.map((review) => (
+        {(loading === false && reviews?.length > 0) ? reviews?.map((review) => (
               <Item key={review.id}>
                 <Title>{review.title}</Title>
                 <Description>{review.description}</Description>
