@@ -7,6 +7,7 @@ import Main from '../../Components/Atoms/Main'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
 import AllReviews from '../../Components/Organisms/AllReviews'
+import UserEditReviewForm from '../../Components/Organisms/UserEditReviewForm'
 import UserWishlist from '../../Components/Organisms/UserWishlist'
 import Footer from '../../Components/Organisms/Footer'
 // import Header from '../Components/Atoms/Header'
@@ -169,6 +170,7 @@ const UserProfile = () => {
                     <Route exact path={['/user', '/user/orders']} render={() => <UserOrders />} />
                     <Route exact path='/user/review' render={() => <ReviewsForm />} />
                     <Route exact path='/user/reviews' render={() => <AllReviews />} />
+                    <Route exact path='/user/edit-review' render={() => <UserEditReviewForm />} />
                     <Route exact path='/user/wishlist' render={() => <UserWishlist />} />
                 </UserSection>
             </Main>

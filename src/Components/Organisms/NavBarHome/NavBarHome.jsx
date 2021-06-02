@@ -12,6 +12,7 @@ import styled from 'styled-components'
 
 const NavHome = styled.nav`
     ${'' /* border-bottom   : .2em solid blue; */}
+    align-items     : center;
     ${'' /* color           : ${ props => props.theme.fontColor || '#393E46' }; */}
     color           : var(--pure-white);
     display         : flex;

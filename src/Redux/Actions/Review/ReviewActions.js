@@ -53,7 +53,6 @@ export const getReviewsByUserId = (userId) => {
         axios.get(`${HOST}/products/user/${userId}`)
             .then(response => {
                 const reviews = response.data.data
-                console.log(reviews)
                 dispatch(
                     {
                         type: GET_REVIEWS_BY_USER_ID,
@@ -102,14 +101,14 @@ export const addReview = (input) => {
     }
 }
 
-export const updateReview = () => {
+export const updateReview = (id, input) => {
     return (dispatch) => {
         dispatch(
             {
                 type: REVIEW_ADD
             }
         )
-        axios.put(`${HOST}/reviews`)
+        axios.put(`${HOST}/products/review/${id}`, input)
             .then(response => {
                 const reviews = response.data
                 dispatch(

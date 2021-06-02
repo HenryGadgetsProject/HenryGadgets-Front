@@ -8,6 +8,7 @@ import { clearCart, saveCartToDB, deleteCartFromDB } from '../../../Redux/Action
 import styled from 'styled-components'
 
 const Ul = styled.ul`
+    ${'' /* align-items         : center; */}
     display             : flex;
     flex-flow           : row nowrap;
     list-style          : none;
@@ -27,12 +28,17 @@ const Ul = styled.ul`
         transition      : .5s;
         &:hover {
             transform   : scale(1.30);
+            ${'' /* color       : lime; */}
         }
     }
 
     a > span {
         color           : var(--pure-white);
-        font-size       : 1.6em;
+    }
+
+    .regards {
+        font-size       : 1.4em;
+        margin          : 0 0 0 .6em;
     }
 
     svg {
@@ -147,7 +153,7 @@ const MenuOptBar = ({ open }) => {
                         </li>
                         <li>
                             <Link to='/user'>
-                                <span>Hola {user.first_name}</span>
+                                <span className="regards">Hola {user.first_name}</span>
                                 {/* <img src={userIcon} alt='user'></img> */}
                             </Link>
                         </li>
@@ -176,7 +182,7 @@ const MenuOptBar = ({ open }) => {
                         </li>
                         <li>
                             <Link to='/user'>
-                                <span>Hola {user.first_name}</span>
+                                <span className="regards">Hola {user.first_name}</span>
                                 {/* <img src={userIcon} alt='user'></img> */}
                             </Link>
                         </li>

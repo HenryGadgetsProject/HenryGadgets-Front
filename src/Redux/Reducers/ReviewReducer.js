@@ -43,7 +43,6 @@ const reviewReducer = (state = initialState, action) => {
                 ...state,
                 reviews: [...state.reviews, action.payload],
                 loading: false
-                // para revisar si queremos dejar editar las revies
             }
         }
 
