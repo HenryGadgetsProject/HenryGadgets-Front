@@ -5,7 +5,7 @@ import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { useSelector, useDispatch } from 'react-redux'
 import { getBranches } from '../Redux/Actions/Branch/BranchesActions'
-
+import { apikey } from '../constant'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import image from '../Images/home.png'
 import hg from '../Images/hg.png'
@@ -50,8 +50,11 @@ const Branch = () => {
         width: "100%"
     };
 
+    // const defaultCenter = {
+    //     lat: parseFloat(-34.583053), lng: parseFloat(-58.398198)
+    // }
     const defaultCenter = {
-        lat: parseFloat(-34.583053), lng: parseFloat(-58.398198)
+        currentPosition
     }
 
 
@@ -64,16 +67,16 @@ const Branch = () => {
             <Main id="main">
 
                 <LoadScript
-                    googleMapsApiKey='AIzaSyDBq-5UzOXdnrCOGsYme33QYOcC5O_rdgs'>
+                    googleMapsApiKey={apikey}>
                     <GoogleMap
                         mapContainerStyle={mapStyles}
                         zoom={14}
-                        center={defaultCenter}>
+                        center={currentPosition}>
                         {
-                            defaultCenter.lat &&
+                            currentPosition.lat &&
                             (
-                                <Marker position={defaultCenter}
-                                    title="Hello World!"
+                                <Marker position={currentPosition}
+                                    title="Estoy aqui!"
                                 />
                             )
                         }

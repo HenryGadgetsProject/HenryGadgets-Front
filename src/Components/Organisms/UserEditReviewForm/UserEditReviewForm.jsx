@@ -128,7 +128,15 @@ const UserEditReviewForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(updateReview(review.id, input))
+        const body = {
+            ...review,
+            title: input.title,
+            rating: input.rating,
+            description: input.description,
+
+        }
+
+        dispatch(updateReview(review.id, body))
         Swal.fire(
             'Listo!',
             'Tu review se actualizó con éxito!',

@@ -3,45 +3,45 @@ import { createGlobalStyle } from 'styled-components'
 // THEME CREATION
 
 export const lightTheme = {
-    background                  : 'linear-gradient(to right, #FF1744 , #AF0000)',
-    fontColor                   : '#000000',
+    background: 'linear-gradient(to right, #FF1744 , #AF0000)',
+    fontColor: '#000000',
 
     // Color Palette - Light Theme
     colorPalette: {
-        darkPrimary             : '#AF0000',
-        defaultPrimary          : '#FF1744',
-        lightPrimary            : '#FFCDD2',
-        primaryAccent           : '#FFCC00',
-        secondaryAccent         : '#00FFFF',
-        primaryText             : '#212121',
-        secondaryText           : '#757575',
-        divider                 : '#BDBDBD',
-        asideHome               : '#FFFFFF',
-        body                    : '#F2F2F2',
+        darkPrimary: '#AF0000',
+        defaultPrimary: '#FF1744',
+        lightPrimary: '#FFCDD2',
+        primaryAccent: '#FFCC00',
+        secondaryAccent: '#00FFFF',
+        primaryText: '#212121',
+        secondaryText: '#757575',
+        divider: '#BDBDBD',
+        asideHome: '#FFFFFF',
+        body: '#F2F2F2',
         h2: {
-            fontColor           : '#D32F2F'
+            fontColor: '#D32F2F'
         },
     }
 }
 
 export const darkTheme = {
-    background                  : 'linear-gradient(to right, #04C8D4 , #512DA8)',
-    fontColor                   : '#FFFFFF',
+    background: 'linear-gradient(to right, #04C8D4 , #512DA8)',
+    fontColor: '#FFFFFF',
 
     // Color Palette - Dark Theme
     colorPalette: {
-        darkPrimary             : '#512DA8',
-        defaultPrimary          : '#4202C2',
-        lightPrimary            : '#815FD3',
-        primaryAccent           : '#00FF00',
-        secondaryAccent         : '#E040FB',
-        primaryText             : '#F2F2F2',
-        secondaryText           : '#30363D',
-        divider                 : '#BDBDBD',
-        asideHome               : '#47484D',
-        body                    : '#16171B',
+        darkPrimary: '#512DA8',
+        defaultPrimary: '#4202C2',
+        lightPrimary: '#815FD3',
+        primaryAccent: '#00FF00',
+        secondaryAccent: '#E040FB',
+        primaryText: '#F2F2F2',
+        secondaryText: '#30363D',
+        divider: '#BDBDBD',
+        asideHome: '#47484D',
+        body: '#16171B',
         h2: {
-            fontColor           : '#4F0EA6'
+            fontColor: '#4F0EA6'
         },
     }
 }
@@ -52,18 +52,18 @@ const GlobalStyle = createGlobalStyle`
     ===================================================== */}
     ${'' /* Color Palette Inheritance */}
     :root {
-        --background-gradient   : ${ props => props.theme.background };
-        --font-color            : ${ props => props.theme.fontColor };
-        --dark-primary          : ${ props => props.theme.colorPalette.darkPrimary };
-        --default-primary       : ${ props => props.theme.colorPalette.defaultPrimary };
-        --light-primary         : ${ props => props.theme.colorPalette.lightPrimary };
-        --primary-accent        : ${ props => props.theme.colorPalette.primaryAccent };
-        --secondary-accent      : ${ props => props.theme.colorPalette.secondaryAccent };
-        --primary-text          : ${ props => props.theme.colorPalette.primaryText };
-        --secondary-text        : ${ props => props.theme.colorPalette.secondaryText };
-        --divider               : ${ props => props.theme.colorPalette.divider };
-        --body                  : ${ props => props.theme.colorPalette.body };
-        --aside-home            : ${ props => props.theme.colorPalette.asideHome };
+        --background-gradient   : ${props => props.theme.background};
+        --font-color            : ${props => props.theme.fontColor};
+        --dark-primary          : ${props => props.theme.colorPalette.darkPrimary};
+        --default-primary       : ${props => props.theme.colorPalette.defaultPrimary};
+        --light-primary         : ${props => props.theme.colorPalette.lightPrimary};
+        --primary-accent        : ${props => props.theme.colorPalette.primaryAccent};
+        --secondary-accent      : ${props => props.theme.colorPalette.secondaryAccent};
+        --primary-text          : ${props => props.theme.colorPalette.primaryText};
+        --secondary-text        : ${props => props.theme.colorPalette.secondaryText};
+        --divider               : ${props => props.theme.colorPalette.divider};
+        --body                  : ${props => props.theme.colorPalette.body};
+        --aside-home            : ${props => props.theme.colorPalette.asideHome};
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
         --pure-gray             : #808080;
@@ -581,6 +581,46 @@ const GlobalStyle = createGlobalStyle`
         height:5rem;
         margin:3rem;
     }
+
+    /* Popup style */
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
 
 
 

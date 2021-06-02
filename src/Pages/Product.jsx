@@ -106,7 +106,7 @@ const Product = ({ productId }) => {
 
                     {product.stock > 0 ? <button className="buy" onClick={handleClick}>
                         <CartIcon />
-                        </button>
+                    </button>
                         :
                         null
                     }

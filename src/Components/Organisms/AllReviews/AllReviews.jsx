@@ -19,19 +19,19 @@ const DeleteIcon = styled.img`
 const AllReviews = () => {
 
     const dispatch = useDispatch()
-    
+
     const reviews = useSelector(state => state.review.reviews)
     const user = useSelector(state => state.user.user)
-    // const loading = useSelector(state => state.user.loading)
+    //const loading = useSelector(state => state.user.loading)
     const history = useHistory()
 
     useEffect(() => {
         dispatch(getReviewsByUserId(user.id))
-    }, [dispatch])
+    }, [user.id, dispatch])
 
 
     const editHandler = (review) => {
-        console.log('esta es la review desde all reviews', review)
+
         history.push('/user/edit-review', review)
     }
 
@@ -67,6 +67,7 @@ const AllReviews = () => {
             <thead>
                 <tr>
                     {/* <th>ID</th> */}
+                    <th>Producto</th>
                     <th className="name">Titulo</th>
                     <th>Descripción</th>
                     <th>Calificación</th>
@@ -79,6 +80,7 @@ const AllReviews = () => {
                 {reviews?.map(review => (
                     <tr key={review.id}>
                         {/* <td data-label="ID">{review.id}</td> */}
+                        <td>{review.product.name}</td>
                         <td data-label="Titulo">{review.title}</td>
                         <td data-label="Descripción">{review.description}</td>
                         <td data-label="Calificación">{review.rating}</td>
