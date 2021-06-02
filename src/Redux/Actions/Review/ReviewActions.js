@@ -53,7 +53,6 @@ export const getReviewsByUserId = (userId) => {
         axios.get(`${HOST}/products/user/${userId}`)
             .then(response => {
                 const reviews = response.data.data
-                console.log(reviews)
                 dispatch(
                     {
                         type: GET_REVIEWS_BY_USER_ID,

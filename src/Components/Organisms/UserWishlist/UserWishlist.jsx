@@ -1,95 +1,95 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import Table from '../../Atoms/Table'
-import { filterOrdersByUserId } from '../../../Redux/Actions/Order/OrderActions'
-import { getReviewsByUserId } from '../../../Redux/Actions/Review/ReviewActions'
+import { getWishlist, deleteWishlist, postWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
 
 import styled from 'styled-components'
 
-// const HistoryIcon = styled.img`
-//     background: url('https://api.iconify.design/ant-design:history-outlined.svg?color=white') no-repeat center center / contain;
-// `
-// const DetailIcon = styled.img`
-//     background: url('https://api.iconify.design/bx:bx-detail.svg?color=white') no-repeat center center / contain;
-// `
-const AddReview = styled.img`
-    background: url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white') no-repeat center center / contain;
-`
 const GlassIcon = styled.img`
     background: url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white') no-repeat center center / contain;
 `
+const DeleteIcon = styled.img`
+    background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
+`
+const CartIcon = styled.img`
+    background: url('https://api.iconify.design/fa-solid:cart-arrow-down.svg?color=chartreuse') no-repeat center center / contain;
+`
+const SaveIcon = styled.img`
+    background: url('https://api.iconify.design/entypo:save.svg?color=%231976d2') no-repeat center center / contain;
+`
+const ChangesIcon = styled.img`
+    background: url('https://api.iconify.design/ant-design:exclamation-circle-outlined.svg?color=orange') no-repeat center center / contain;
+`
 
-const UserOrders = () => {
+const UserWishlist = () => {
+
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
-    const orders = useSelector(state => state.order.filteredOrders1)
-    // const products = useSelector(state => state.product.products)
-    const reviews = useSelector(state => state.review.reviews)
-    //console.log(products)
 
-    let history = useHistory()
-
-    const [details, setDetails] = useState([])
+    const wishlist = useSelector(state => state.wishlist.wishlist)
 
     useEffect(() => {
-        dispatch(filterOrdersByUserId(user.id))
-        dispatch(getReviewsByUserId(user.id))
+        dispatch(getWishlist(user.id))
     }, [dispatch, user.id])
 
-    const handleReview = (productId) => {
-        // console.log('REVIEWS', reviews)
-        // console.log(productId)
-        const reviewFound = reviews.find(rev => rev.productId === productId)
-        if (reviewFound) {
-            alert('no puedes agregar review')
-            // editar
-        } else {
-            //crear
-            history.push('/user/review', productId)
-        }
+    // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
+    const holdWishlist = useSelector(state => state.wishlist.holdWishlist)
+    console.log(holdWishlist)
+    // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
+
+    /*
+    Para mi querido Edu:
+    Lo que pensé fué lo siguiente:
+
+    Desde la Home > El corazón tiene un Dispatch 'AddToWishlist'
+        Este dispatch agrega esos productos al estado 'holdWishlist'
+
+    Desde user/wishlist > Se debería ver esa lista (con algún nombre por defecto) pero sin guardar en la base de datos aún.
+    Solo se va a guardar cuando le de click a Guardar.    
+        Este dispatch 'postWishlist(userId, listName)' 
+
+        debería guardar esa lista de productos en el Backend con el nombre.
+        Nota: Quizás el nombre de la lista SIN GUARDAR debería poder verse con un Input
+              y luego cuando se guarde, cambia de <input/> a <td>
+
+    Los íconos de Cambios y Guardar solo se habilitan en el caso de que los Datos vengan del Backend,
+    De la otra forma solo quedan en Redux (O sino localStorage pero la idea es no agregar complejidad).
+    
+                Y si no te gusta, te podes ir a freir churros.
+    */
+
+    const handlePost = (userId, listName) => {
+        dispatch(postWishlist)
     }
 
-    const handleGetDetails = (order) => {
-
-        // console.log(order.orderDetails)
-
-        const linea = order.orderDetails.map(x => {
-            return {
-                product_id: x.product.id,
-                quantity: x.quantity,
-                name: x.product.name,
-                big_image: x.product.big_image,
-                price: x.product.price,
-                sub_total: x.product.price * x.quantity
-            }
-        })
-        setDetails(linea)
+    const handleDelete = (id) => {
+        dispatch(deleteWishlist)
     }
 
     return (
         <>
             <Table>
-                <caption>Historial</caption>
+                <caption>Lista de Deseos</caption>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th className="name">Fecha</th>
-                        <th>Total</th>
+                        <th>Nombre</th>
+                        <th>Cambios</th>
+                        <th>Borrar</th>
+                        <th>Guardar</th>
                         <th>Ver Detalles</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {orders.map(order => {
-
+                    {wishlist?.map(wishlist => {
                         return (
-                            <tr key={order.id}>
-                                <td data-label="ID" className="center-text">{order.id}</td>
-                                <td data-label="Fecha" className="center-text">28/05/2021</td>
-                                <td data-label="Total" className="center-text">{order.total_price}$</td>
-                                <td data-label="Detalles" className="center-text"><GlassIcon onClick={() => handleGetDetails(order)} /></td>
+                            <tr key={wishlist.id}>
+                                <td data-label="Nombre" className="center-text">{wishlist.name}</td>
+                                <td data-label="Cambios" className="center-text"><ChangesIcon/></td>
+                                <td data-label="Borrar" className="center-text"><DeleteIcon/></td>
+                                <td data-label="Guardar" className="center-text"><SaveIcon/></td>
+                                <td data-label="Ver Detalles" className="center-text"><GlassIcon/></td>
                             </tr>
                         )
                     })}
@@ -97,34 +97,40 @@ const UserOrders = () => {
             </Table>
 
             <Table>
-                <caption>Deseos</caption>
+                <caption>Tus productos</caption>
                 <thead>
                     <tr>
                         <th>Foto</th>
-                        <th className="name">Producto</th>
-                        <th>Cantidad</th>
-                        <th>Sub Total</th>
-                        <th>Crear</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Borrar</th>
+                        <th>Agregar</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {details.map(detail => {
-                        console.log(detail)
+                    {wishlist[0].products?.map(p => {
                         return (
-                            <tr key={detail.product_id}>
-                                <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
-                                <td data-label="Producto">{detail.name}</td>
-                                <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
-                                <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
-                                <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
+                            <tr key={p.id}>
+                                <td data-label="Foto"><img className="mini" src={p.big_image} alt={p.name} /></td>
+                                <td data-label="Nombre">{p.name}</td>
+                                <td data-label="Precio" className="center-text">{p.price}$</td>
+                                <td data-label="Borrar" className="center-text"><DeleteIcon/></td>
+                                <td data-label="Agregar" className="center-text"><CartIcon/></td>
                             </tr>
                         )
                     })}
+                            <tr>
+                                <td data-label="Agregar Todo" className="center-text">Agregar todo</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td data-label="Carrito" className="center-text"><CartIcon/></td>
+                            </tr>
                 </tbody>
             </Table>
         </>
     )
 }
 
-export default UserOrders
+export default UserWishlist

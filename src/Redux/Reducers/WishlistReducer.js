@@ -5,10 +5,12 @@ import {
     POST_WISHLIST,
     UPDATE_WISHLIST,
     DELETE_WISHLIST,
+    ADD_TO_WISHLIST
 } from '../Actions/Wishlist/WishlistActionTypes'
 
 const initialState = {
     loading: false,
+    holdWishlist: [],
     wishlist: [],
     error: ''
 }
@@ -21,6 +23,12 @@ const wishlistReducer = (state = initialState, action) => {
                 loading: true
             }
         }
+        case ADD_TO_WISHLIST: {
+            return {
+                ...state,
+                holdWishlist: [...state.holdWishlist, action.payload]
+            }
+        }
         case WISHLIST_ERROR: {
             return {
                 ...state,
@@ -28,6 +36,7 @@ const wishlistReducer = (state = initialState, action) => {
                 loading: false
             }
         }
+
         case GET_WISHLIST: {
             return {
                 ...state,

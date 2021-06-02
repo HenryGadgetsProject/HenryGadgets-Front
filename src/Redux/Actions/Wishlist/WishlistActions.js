@@ -8,14 +8,15 @@ import {
     POST_WISHLIST,
     UPDATE_WISHLIST,
     DELETE_WISHLIST,
+    ADD_TO_WISHLIST
 } from '../Wishlist/WishlistActionTypes'
 
 export const getWishlist = (userId) => {
     return (dispatch) => {
         dispatch({ type: WISHLIST_LOADING })
-        axios.get(`${HOST}/wishlist/${userId}`)
+        axios.get(`${HOST}/users/wishlist/${userId}`)
             .then(response => {
-                const wishlist = response.data
+                const wishlist = response.data.wishlists
                 dispatch(
                     {
                         type: GET_WISHLIST,
@@ -35,10 +36,21 @@ export const getWishlist = (userId) => {
     }
 }
 
-export const addWishlist = (userId, listName) => {
+export const addToWishlist = (product) => {
+    return (dispatch) => {
+            dispatch(
+                {
+                    type: ADD_TO_WISHLIST,
+                    payload: product
+                }
+            )
+    }
+}
+
+export const postWishlist = (userId, listName) => {
     return (dispatch) => {
         dispatch({ type: WISHLIST_LOADING })
-        axios.get(`${HOST}/wishlist/post/${userId}/${listName}`)
+        axios.get(`${HOST}/users/wishlist/post/${userId}/${listName}`)
             .then(response => {
                 const wishlist = response.data
                 dispatch(
@@ -63,7 +75,7 @@ export const addWishlist = (userId, listName) => {
 export const deleteWishlist = (id) => {
     return (dispatch) => {
         dispatch({ type: WISHLIST_LOADING })
-        axios.get(`${HOST}/wishlist/delete/${id}`)
+        axios.get(`${HOST}/users/wishlist/delete/${id}`)
             .then(response => {
 
                 dispatch(
