@@ -8,6 +8,7 @@ import { clearCart, saveCartToDB, deleteCartFromDB } from '../../../Redux/Action
 import styled from 'styled-components'
 
 const Ul = styled.ul`
+    ${'' /* align-items         : center; */}
     display             : flex;
     flex-flow           : row nowrap;
     list-style          : none;
@@ -27,7 +28,17 @@ const Ul = styled.ul`
         transition      : .5s;
         &:hover {
             transform   : scale(1.30);
+            ${'' /* color       : lime; */}
         }
+    }
+
+    a > span {
+        color           : var(--pure-white);
+    }
+
+    .regards {
+        font-size       : 1.4em;
+        margin          : 0 0 0 .6em;
     }
 
     svg {
@@ -96,13 +107,13 @@ const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
 
-    
+
     const dispatch = useDispatch()
-    
+
     const user = useSelector(state => state.user.user)
     const itemCount = useSelector(state => state.cart.itemCount)
     const cart = useSelector(state => state.cart.cartList)
-    
+
     // ********** Google Login **********
     const [googleUser, setGoogleUser] = useState(JSON.parse(localStorage.getItem('profile')))
     // console.log('User:', googleUser)
@@ -131,10 +142,20 @@ const MenuOptBar = ({ open }) => {
                 user.is_admin ?
                     <>
                         <li>
-                            {/* <Link to="/user" className="link">
-                                <Img src={userIcon} alt='user'></Img>
-                            </Link> */}
-                            <Link to='/user'><span>{user.first_name}</span></Link>
+                            <Link to="/branches" className="link">
+                                <span>Sucursales</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = "/about"  className = "link">
+                                <span>Acerca de</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/user'>
+                                <span className="regards">Hola {user.first_name}</span>
+                                {/* <img src={userIcon} alt='user'></img> */}
+                            </Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -150,10 +171,20 @@ const MenuOptBar = ({ open }) => {
                     :
                     <>
                         <li>
-                            {/* <Link to="/user" className="link">
-                                <Img src={userIcon} alt='user'></Img>
-                            </Link> */}
-                            <Link to='/user'><span>{user.first_name}</span></Link>
+                            <Link to="/branches" className="link">
+                                <span>Sucursales</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = "/about"  className = "link">
+                                <span>Acerca de</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/user'>
+                                <span className="regards">Hola {user.first_name}</span>
+                                {/* <img src={userIcon} alt='user'></img> */}
+                            </Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
@@ -170,6 +201,16 @@ const MenuOptBar = ({ open }) => {
                 :
                 <>
                     <li>
+                        <Link to="/branches" className="link">
+                            <span>Sucursales</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to = "/about"  className = "link">
+                            <span>Acerca de</span>
+                        </Link>
+                    </li>
+                    <li>
                         <Link to="/login" className="link">
                             <img src={loginIcon} alt='login' />
                         </Link>
@@ -182,21 +223,12 @@ const MenuOptBar = ({ open }) => {
 
                 </>
             }
-            {/* <li>
-                <Link to = "/about"  className = "link">
-                    Acerca de
-                </Link>
-            </li> */}
-            {/* <li>Contact Us</li> */}
             <li>
                 <Link to="/cart" className="link">
                     <img src={cartIcon} alt='chart' />
                     <sub className="badge">{itemCount}</sub>
                 </Link>
             </li>
-            {/* <li>
-                <span className="badge">{itemCount}</span>
-            </li> */}
             <li>
                 <ToggleForm />
             </li>

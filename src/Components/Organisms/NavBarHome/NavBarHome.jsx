@@ -12,6 +12,7 @@ import styled from 'styled-components'
 
 const NavHome = styled.nav`
     ${'' /* border-bottom   : .2em solid blue; */}
+    align-items     : center;
     ${'' /* color           : ${ props => props.theme.fontColor || '#393E46' }; */}
     color           : var(--pure-white);
     display         : flex;
@@ -63,7 +64,7 @@ const NavBarHome = () => {
                     {
                         !mode ?
                             <img
-                                id="logo-productman"
+                                id="logo"
                                 src={LogoLight}
                                 width="50"
                                 height="50"
@@ -71,7 +72,7 @@ const NavBarHome = () => {
                             />
                             :
                             <img
-                                id="logo-productman"
+                                id="logo"
                                 src={LogoDark}
                                 width="50"
                                 height="50"

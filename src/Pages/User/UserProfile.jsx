@@ -1,11 +1,14 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
 import Main from '../../Components/Atoms/Main'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
+import AllReviews from '../../Components/Organisms/AllReviews'
+import UserEditReviewForm from '../../Components/Organisms/UserEditReviewForm'
+import UserWishlist from '../../Components/Organisms/UserWishlist'
 import Footer from '../../Components/Organisms/Footer'
 // import Header from '../Components/Atoms/Header'
 // import Table from '../../Components/Atoms/Table'
@@ -26,7 +29,7 @@ const Aside = styled.aside`
         width           : 16em;
     }
 
-    div {
+    div, a {
         align-items     : center;
         display         : flex;
         flex-direction  : row;
@@ -108,6 +111,15 @@ const EmailIcon = styled.img`
 const BellIcon = styled.img`
     background: url('https://api.iconify.design/bi:bell-fill.svg?color=white') no-repeat center center / contain;
 `
+const OrderIcon = styled.img`
+    background: url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white') no-repeat center center / contain;
+`
+const AddReview = styled.img`
+    background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
+`
+const WishIcon = styled.img`
+    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=white') no-repeat center center / contain;
+`
 
 const UserProfile = () => {
 
@@ -135,13 +147,31 @@ const UserProfile = () => {
                     <div>
                         <BellIcon className='icon'/>
                         <span>Suscripciones</span>
+                        <button>Suscribirse</button>
                     </div>
-                    <button>Suscribirse</button>
+
+                    <Link to='/user/orders'>
+                        <OrderIcon className='icon'/>
+                        <span>Ordenes</span>
+                    </Link>
+
+                    <Link to='/user/reviews'>
+                        <AddReview className='icon'/>
+                        <span>Reviews</span>
+                    </Link>
+
+                    <Link to='/user/wishlist'>
+                        <WishIcon className='icon'/>
+                        <span>Lista de deseos</span>
+                    </Link>
                 </Aside>
 
                 <UserSection>
-                    <Route exact path='/user' render={() => <UserOrders />} />
+                    <Route exact path={['/user', '/user/orders']} render={() => <UserOrders />} />
                     <Route exact path='/user/review' render={() => <ReviewsForm />} />
+                    <Route exact path='/user/reviews' render={() => <AllReviews />} />
+                    <Route exact path='/user/edit-review' render={() => <UserEditReviewForm />} />
+                    <Route exact path='/user/wishlist' render={() => <UserWishlist />} />
                 </UserSection>
             </Main>
 

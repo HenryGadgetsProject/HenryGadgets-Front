@@ -74,24 +74,25 @@ const Reviews = ({ productId }) => {
         <h2>Opiniones acerca de</h2>
         <h3>{product.name}</h3>
       </TitleCont>
-      <Cont>     
-        {(loading === false && reviews.length > 0) ? reviews?.map((review) => (
-              <Item key={review.id}>
-                <Title>{review.title}</Title>
-                <Description>{review.description}</Description>
-                <Title>Puntaje</Title>
-                <StarRatings
-                  rating={review.rating}
-                  starDimension="1.2em"
-                  starSpacing=".2em"
-                  numberOfStars={5}
-                  starRatedColor="gold"
-                />
-              </Item>
-            ))
-        : null}
+      <Cont>
+        {(loading === false && reviews?.length > 0) ? reviews?.map((review) => (
+          <Item key={review.id}>
+            <Title>{review.title}</Title>
+            <Description>{review.description}</Description>
+            <Title>Puntaje</Title>
+            <StarRatings
+              rating={review.rating}
+              starDimension="1.2em"
+              starSpacing=".2em"
+              numberOfStars={5}
+              starRatedColor="gold"
+            />
+            <p>{`${review.user.first_name} ${review.user.last_name}`}</p>
+          </Item>
+        ))
+          : null}
       </Cont>
-  
+
       <Footer />
     </>
   );

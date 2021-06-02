@@ -55,6 +55,9 @@ const AdminAside = styled.aside`
     MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
+        grid-column         : 1 / 2;
+        width               : 10%;
+
         img {
             margin      : 1em auto;
         }
@@ -64,7 +67,8 @@ const AdminAside = styled.aside`
         }
 
         div.filters {
-            margin: .5em 0 !important;
+            margin      : .5em 0 !important;
+            width       : 160%;
 
             div {
                 width: 90%
@@ -127,13 +131,17 @@ const AdminSideBar = () => {
                 <span>Categorías</span>
             </Link>
             <Link to='/admin/users'>
-                <UserIcon/>
+                <UserIcon />
                 <span>Usuarios</span>
             </Link>
 
             <Link to='/admin/orders'>
-                <OrderIcon/>
+                <OrderIcon />
                 <span>Ordenes</span>
+            </Link>
+            <Link to='/admin/branches'>
+                <OrderIcon />
+                <span>Sucursales</span>
             </Link>
 
             <Link to='/admin/product'>
@@ -143,6 +151,10 @@ const AdminSideBar = () => {
             <Link to='/admin/category'>
                 <AddCategoryIcon />
                 <span>Agregar Categorías</span>
+            </Link>
+            <Link to='/admin/branch'>
+                <AddCategoryIcon />
+                <span>Agregar Sucursal</span>
             </Link>
 
             <input type="checkbox" id="btn-drop-down-filters" />
