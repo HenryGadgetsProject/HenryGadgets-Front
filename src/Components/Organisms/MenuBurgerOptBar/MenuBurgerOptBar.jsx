@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import MenuOptBar from '../MenuOptBar'
-import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -56,10 +55,6 @@ const MenuBurgerOptBar = () => {
                 <div />
                 <div />
             </StyledBurger>
-
-            <Link to="/branches" className="link">
-                <h5> Sucursales</h5>
-            </Link>
 
             <MenuOptBar
                 onClick={() => setOpen(!open)}
