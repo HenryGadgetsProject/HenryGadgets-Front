@@ -12,7 +12,7 @@ import styled from 'styled-components'
 
 const NavHome = styled.nav`
     ${'' /* border-bottom   : .2em solid blue; */}
-    align-items     : center;
+    //align-items     : center;
     ${'' /* color           : ${ props => props.theme.fontColor || '#393E46' }; */}
     color           : var(--pure-white);
     display         : flex;
@@ -81,11 +81,7 @@ const NavBarHome = () => {
                     }
                     {/* <h1>Henry Gadgets</h1> */}
                 </Link>
-                {/* <H2>
-                    <Link to="/home" className="link">
-                        HandyX App
-                    </Link>
-                </H2> */}
+
             </LogoDivHome>
 
             {location.pathname === '/home' ? <SearchBar /> : null}

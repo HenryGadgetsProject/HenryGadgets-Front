@@ -11,8 +11,7 @@ import {
 
 const initialState = {
     loading: false,
-    holdWishlist: [],
-    wishlist: [],
+    wishList: [],
     error: ''
 }
 
@@ -27,7 +26,7 @@ const wishlistReducer = (state = initialState, action) => {
         case ADD_TO_WISHLIST: {
             return {
                 ...state,
-                holdWishlist: [...state.holdWishlist, action.payload],
+                wishList: [...state.wishList, action.payload],
                 loading: false,
                 error: ''
             }
@@ -35,7 +34,7 @@ const wishlistReducer = (state = initialState, action) => {
         case REMOVE_FROM_WHISHLIST: {
             return {
                 ...state,
-                holdWishlist: state.holdWishlist.filter(p => p.id !== action.payload),
+                wishList: action.payload,
                 loading: false,
                 error: ''
             }
@@ -51,8 +50,7 @@ const wishlistReducer = (state = initialState, action) => {
         case GET_WISHLIST_SUCCESS: {
             return {
                 ...state,
-                wishlist: action.payload,
-                holdWishlist: action.payload,
+                wishList: action.payload,
                 loading: false,
                 error: ''
             }

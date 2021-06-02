@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
@@ -8,6 +8,7 @@ import NumberFormat from 'react-number-format';
 import Swal from 'sweetalert2'
 import StarRatings from 'react-star-ratings'
 import styled from 'styled-components'
+import { InfoWindow } from '@react-google-maps/api'
 
 const Cards = styled.div`
     background              : var(--pure-white);
@@ -89,15 +90,31 @@ const WishIcon = styled.img`
         transform: scale(1.30);
     }
 `
+const WishIconRed = styled.img`
+    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=red') no-repeat center center / contain;
+    height: 4em !important;
+    width: 4em !important;
+    padding: 2em;
+    margin-top: 1.6em;
+    transition: .3s;
+    &:hover {
+        transform: scale(1.30);
+    }
+`
 
 const ProductCards = ({ products }) => {
 
     const dispatch = useDispatch()
 
-    // const user = useSelector(state => state.user.user)
 
-    const holdWishlist = useSelector(state => state.wishlist.holdWishlist)
-    console.log(holdWishlist)
+    const user = useSelector(state => state.user.user)
+    const wishList = useSelector(state => state.wishlist.wishList)
+
+
+
+    const [wish, setWish] = useState([])
+
+    console.log("ESTADO", JSON.stringify(wish, null, 4))
 
     const handleCart = (product) => {
         const productSelected = { ...product, quantity: 1 }
@@ -114,19 +131,27 @@ const ProductCards = ({ products }) => {
     }
 
     const handleWishlist = (product) => {
-        // Swal.fire({
-        //     icon: 'error',
-        //     title: 'Oops...',
-        //     text: 'Debes ingresar a tu cuenta para utilizar la lista de Deseados!'
-        // })
+
+
+        if (wishList.length > 0 && wishList.find(p => p.id === product.id)) {
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'El producto ya existe en la lista de deseos!',
+                showConfirmButton: false,
+                timer: 2000,
+            })
+            return
+        }
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'El producto se ha agregado a la lista!',
             showConfirmButton: false,
             timer: 1000,
         })
-        dispatch(addToWishlist(product))
+        dispatch(addToWishlist(user, product))
+        setWish([...wish, product.id])
     }
 
     if (products.length > 0) {
@@ -153,7 +178,9 @@ const ProductCards = ({ products }) => {
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                                 </Link>
                                 <div>
-                                    <WishIcon onClick={() => handleWishlist(p)} />
+                                    {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
+
+
                                     <CartIcon onClick={() => handleCart(p)} />
                                 </div>
                             </Cards>
