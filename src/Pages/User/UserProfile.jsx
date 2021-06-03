@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
 // import Header from '../../Components/Atoms/Header'
@@ -12,6 +12,8 @@ import UserEditReviewForm from '../../Components/Organisms/UserEditReviewForm'
 import UserWishlist from '../../Components/Organisms/UserWishlist'
 import Footer from '../../Components/Organisms/Footer'
 // import Table from '../../Components/Atoms/Table'
+import { userSuscribe } from '../../Redux/Actions/User/UserActions'
+import axios from 'axios'
 
 import styled from 'styled-components'
 
@@ -138,6 +140,12 @@ const UserProfile = () => {
 
     const user = useSelector(state => state.user.user)
 
+    const dispatch = useDispatch()
+
+    const handleSuscribe = () => {
+        dispatch(userSuscribe(user))
+    }
+
     return (
         <div className="container">
             <NavBar className="nav" />
@@ -160,8 +168,14 @@ const UserProfile = () => {
                     
                     <div className="links">
                         <BellIcon className='icon'/>
-                        <span>Suscripciones</span>
-                        <button>Suscribirse</button>
+                        <span>Newsletter!</span>
+                        {(user.nlsuscribe) ? 
+                        <button onClick={handleSuscribe}>Desuscribirme</button>
+                        :
+                        <button onClick={handleSuscribe}>Suscribirme</button> 
+                        }
+                        
+                        
                     </div>
 
                     <Link to='/user/orders' className="links">

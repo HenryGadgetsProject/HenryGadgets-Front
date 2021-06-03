@@ -14,7 +14,8 @@ import {
     CHANGE_USER_STATUS_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
     PROMOTE_USER_SUCCESS,
-    RESET_PASSWORD_SUCCESS
+    RESET_PASSWORD_SUCCESS,
+    USER_SUSCRIBE
 } from './UserActionTypes'
 
 // import {
@@ -353,6 +354,34 @@ export const resetPassword = (id) => {
                     {
                         type: RESET_PASSWORD_SUCCESS,
                         payload: id
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: USER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const userSuscribe = (user) => {
+    return (dispatch) => {
+        dispatch({ type: USER_LOADING })
+        axios.put(`${HOST}/users/suscribe/nletter/${user.id}`)
+        .then((response) => {
+                const fullUser = {
+                    ...user,
+                    nlsuscribe: response.data
+                }
+                dispatch(
+                    {
+                        type: USER_SUSCRIBE,
+                        payload: fullUser
                     }
                 )
             })
