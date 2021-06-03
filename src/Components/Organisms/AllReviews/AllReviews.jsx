@@ -80,7 +80,7 @@ const AllReviews = () => {
                 {reviews?.map(review => (
                     <tr key={review.id}>
                         {/* <td data-label="ID">{review.id}</td> */}
-                        <td>{review.product.name}</td>
+                        <td data-label="Producto">{review.product.name}</td>
                         <td data-label="Titulo">{review.title}</td>
                         <td data-label="Descripción">{review.description}</td>
                         <td data-label="Calificación">{review.rating}</td>

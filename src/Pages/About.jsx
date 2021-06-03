@@ -1,11 +1,10 @@
 import React from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-import Header from '../Components/Atoms/Header'
 import Footer from '../Components/Organisms/Footer'
 import styled from 'styled-components'
 
-import alumnos from '../Data/alumnos'
+// import alumnos from '../Data/alumnos'
 
 const Container = styled.div`
     display: flex;
@@ -35,6 +34,7 @@ const CardContainer = styled.div`
     justify-content: space-around;
 `
 const Card = styled.div`
+    margin: .5em auto 4em;
     padding: 0 4em 0 4em;
     text-align: center;
     p {
@@ -102,10 +102,8 @@ const Marco = styled.img`
 const About = () => {
     return (
         <div>
-            <Header id="header">
-                <NavBar id="nav-general" />
-                <Breadcrumb id="breadcrumb" />
-            </Header>
+            <NavBar />
+            <Breadcrumb id="breadcrumb" />
 
             <Container>
             <h3>El Equipo</h3>

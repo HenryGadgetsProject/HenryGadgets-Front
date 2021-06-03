@@ -141,13 +141,13 @@ const AdminUsers = () => {
                         <td data-label="Apellidos">{user.last_name}</td>
                         <td data-label="Correo">{user.email}</td>
                         <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin />}</td>
-                        <td data-label="Editar" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
-                        <td data-label="Editar" className="center-text" onClick={() => resetPasswordHandler(user.id)}>{(user.is_admin) ? null : <ResetIcon />}</td>
+                        <td data-label="Promover" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
+                        <td data-label="Reset" className="center-text" onClick={() => resetPasswordHandler(user.id)}>{(user.is_admin) ? null : <ResetIcon />}</td>
                         {
                         (user.status === 'active') ? 
-                        <td data-label="Borrar" className="center-text" onClick={() => statusHandler(user.id, 'disabled')}>{(user.is_admin) ? null : <StatusIcon/>}</td>
+                        <td data-label="Estado" className="center-text" onClick={() => statusHandler(user.id, 'disabled')}>{(user.is_admin) ? null : <StatusIcon/>}</td>
                         :
-                        <td data-label="Borrar" className="center-text" onClick={() => statusHandler(user.id, 'active')}>{(user.is_admin) ? null : <DeleteIcon/>}</td>
+                        <td data-label="Estado" className="center-text" onClick={() => statusHandler(user.id, 'active')}>{(user.is_admin) ? null : <DeleteIcon/>}</td>
                         }
                     </tr>
                 ))}

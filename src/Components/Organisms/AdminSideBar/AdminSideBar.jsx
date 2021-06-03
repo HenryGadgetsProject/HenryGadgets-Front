@@ -93,11 +93,11 @@ const AdminAside = styled.aside`
     }
 `
 
-const DropIcon = styled.img`
+const DropDownIcon = styled.img`
     width: 2em;
     height: 2em;
     padding: 1em;
-    background: url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-drop-down) no-repeat center center / contain;
 `
 const ProductsIcon = styled.img`
     background: var(--icon-products) no-repeat center center / contain;
@@ -176,7 +176,7 @@ const AdminSideBar = () => {
             </Link>
 
             <input type="checkbox" id="btn-drop-down-filters" />
-            <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
+            <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropDownIcon/></label>
             <div className="filters">
                 <h6>Buscar por: </h6>
 

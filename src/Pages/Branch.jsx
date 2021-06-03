@@ -4,10 +4,12 @@ import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from '../Components/Atoms/Main'
 import Footer from '../Components/Organisms/Footer'
 import { useSelector, useDispatch } from 'react-redux'
-import { getBranches } from '../Redux/Actions/Branch/BranchesActions'
+// import { getBranches } from '../Redux/Actions/Branch/BranchesActions'
 import { apikey } from '../constant'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import image from '../Images/home.png'
+
+// import LogoLight from '../../src/Images/Logo-light.png'
+// import LogoDark from '../../src/Images/Logo-dark.png'
 import hg from '../Images/hg.png'
 
 
@@ -17,9 +19,7 @@ const Branch = () => {
     const [selected, setSelected] = useState({});
     const [currentPosition, setCurrentPosition] = useState({});
 
-
     const branches = useSelector(state => state.branch.branches);
-
 
     const success = position => {
         const currentPosition = {
@@ -30,17 +30,14 @@ const Branch = () => {
     };
 
 
-
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);
     })
 
 
-
     const onSelect = item => {
         setSelected(item);
     }
-
 
 
     const mapStyles = {
@@ -60,7 +57,6 @@ const Branch = () => {
         <div className="container">
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
-
 
             <Main id="main">
 

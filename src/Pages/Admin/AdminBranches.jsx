@@ -35,8 +35,8 @@ const AdminBranches = () => {
             text: "vas a eliminar una sucursal",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#7FFF00',
+            cancelButtonColor: '#E90000',
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })
@@ -75,10 +75,10 @@ const AdminBranches = () => {
                     <tr key={branch.id}>
                         <td data-label="ID">{branch.id}</td>
                         <td data-label="Nombre">{branch.name}</td>
-                        <td data-label="Descripción">{branch.address}</td>
-                        <td data-label="Descripción">{branch.atention}</td>
+                        <td data-label="Dirección">{branch.address}</td>
+                        <td data-label="Atención">{branch.atention}</td>
                         <td data-label="Editar" className="center-text"><Link to={`/admin/branches-edit/${branch.id}`}><EditIcon /></Link></td>
-                        <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(branch.id)}><DeleteIcon /></td>
+                        <td data-label="Eliminar" className="center-text" onClick={() => deleteHandler(branch.id)}><DeleteIcon /></td>
                         {/* <td className="center-text"><Link to={`/admin/categories/${branch.id}`}><InfoIcon /></Link></td> */}
                     </tr>
                 ))}

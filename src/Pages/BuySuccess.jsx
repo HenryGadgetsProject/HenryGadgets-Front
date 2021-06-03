@@ -77,9 +77,6 @@ const BuySuccess = ({ orderId }) => {
         < div className="container" >
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
             <Main id="main">
                 <div className="success-container">

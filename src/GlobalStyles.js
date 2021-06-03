@@ -34,6 +34,7 @@ export const lightTheme = {
         Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
         addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
 
+        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=black')`,
         products: `url('https://api.iconify.design/akar-icons:tag.svg?color=black')`,
         categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=black')`,
         users: `url('https://api.iconify.design/fa-solid:users.svg?color=black')`,
@@ -90,6 +91,7 @@ export const darkTheme = {
         Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
         addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
 
+        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white')`,
         products: `url('https://api.iconify.design/akar-icons:tag.svg?color=white')`,
         categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=white')`,
         users: `url('https://api.iconify.design/fa-solid:users.svg?color=white')`,
@@ -146,6 +148,7 @@ const GlobalStyle = createGlobalStyle`
         --icon-review           : ${props => props.theme.icon.Review};
         --icon-add-review       : ${props => props.theme.icon.addReview};
 
+        --icon-drop-down        : ${props => props.theme.icon.dropDown};
         --icon-products         : ${props => props.theme.icon.products};
         --icon-categories       : ${props => props.theme.icon.categories};
         --icon-users            : ${props => props.theme.icon.users};
@@ -714,13 +717,15 @@ ADMIN ANALYTICS
         display: flex;
         justify-content: center;
         margin-top:3rem;
-
+        outline: none;
     }
 
     .filter-buttons img{
         width:5rem;
         height:5rem;
         margin:3rem;
+        outline: none;
+        border: none;
     }
 
     /* Popup style */
@@ -807,7 +812,8 @@ ADMIN ANALYTICS
         SECTION 1 / SECTION 2
         ================================================= */}
         span.slideTitle {
-            top                 : 50%;
+            right               : 13%;
+            top                 : 45%;
             font-size           : 5em;
         }
 

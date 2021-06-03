@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
+// import Header from '../../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
@@ -10,7 +11,6 @@ import AllReviews from '../../Components/Organisms/AllReviews'
 import UserEditReviewForm from '../../Components/Organisms/UserEditReviewForm'
 import UserWishlist from '../../Components/Organisms/UserWishlist'
 import Footer from '../../Components/Organisms/Footer'
-// import Header from '../Components/Atoms/Header'
 // import Table from '../../Components/Atoms/Table'
 
 import styled from 'styled-components'
@@ -96,9 +96,12 @@ const Aside = styled.aside`
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
-    ${'' /* @media(max-width: 992px) {
-        
-    } */}
+    @media(max-width: 992px) {
+        display: flex !important;
+        position: static !important;
+        position            : -webkit-static !important;
+        z-index             : 0;
+    }
 `
 const UserSection = styled.section`
     display: flex;
@@ -139,6 +142,7 @@ const UserProfile = () => {
         <div className="container">
             <NavBar className="nav" />
             <Breadcrumb id="breadcrumb" />
+
             <Main id="main">
                 <Aside>
                     <img src={user.photo} alt={user.first_name} className='profilePic'></img>
