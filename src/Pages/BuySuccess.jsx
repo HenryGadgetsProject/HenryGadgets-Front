@@ -17,10 +17,13 @@ const BuySuccess = ({ orderId }) => {
     const history = useHistory()
     const { search } = useLocation()
     const values = queryString.parse(search)
+    console.log('vuelve de mp', values)
 
     const user = useSelector(state => state.user.user)
     const cart = useSelector(state => state.cart.cartList)
     const status = useSelector(state => state.cart.status)
+
+    console.log('EN SUCCESS', cart)
 
 
     const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
@@ -60,7 +63,7 @@ const BuySuccess = ({ orderId }) => {
     useEffect(() => {
         if (values.status === 'approved') {
             setTimeout(() => {
-                dispatch(sendMail(body))
+                dispatch(sendMail(body, 'buy-confirmation'))
                 dispatch(changeToCompleted(orderId))
                 dispatch(dispatch(clearCart))
                 Toast.fire({

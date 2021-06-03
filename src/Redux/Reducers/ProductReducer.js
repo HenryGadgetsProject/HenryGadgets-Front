@@ -21,6 +21,8 @@ import {
     SET_PROD_BY_ACTIVE,
     SET_PROD_BY_PRICE,
     SET_PROD_BY_RATING,
+
+    NOTIFY_STOCK_SUCCESS
     // FILTER_PRODUCT_BY_CATEGORY,
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_REVIEWS_SUCCESS,
@@ -141,62 +143,7 @@ const ProductReducer = (state = initialState, action) => {
                 selectedRating: action.payload,
                 loading: false
             }
-        ////////////////////////////
 
-        // case GET_PRODUCTS_BY_STOCK_SUCCESS: {
-        //     if (action.payload === 'todas') {
-        //         return {
-        //             ...state,
-        //             filteredProducts: state.products,
-        //             loading: false
-        //         }
-        //     }
-
-        //     if (action.payload === 'disponible') {
-        //         return {
-        //             ...state,
-        //             filteredProducts: state.products.filter(product => product.stock > 0),
-        //             loading: false
-        //         }
-        //     }
-
-        //     return {
-        //         ...state,
-        //         filteredProducts: state.products.filter(product => product.stock === 0),
-        //         loading: false
-        //     }
-        // }
-
-        // case GET_PRODUCTS_BY_IS_ACTIVE_SUCCESS: {
-        //     if (action.payload === 'todas') {
-        //         return {
-        //             ...state,
-        //             filteredProducts: state.products,
-        //             loading: false
-        //         }
-        //     }
-
-        //     let flagOption = ''
-
-        //     if (action.payload === 'inactivo') {
-        //         flagOption = 'false'
-        //         return {
-        //             ...state,
-        //             filteredProducts: state.products.filter(product => product.is_active.toString() === flagOption),
-        //             loading: false
-        //         }
-        //     }
-
-        //     if (action.payload === 'activo') {
-        //         flagOption = 'true'
-        //         return {
-        //             ...state,
-        //             filteredProducts: state.products.filter(product => product.is_active.toString() === flagOption),
-        //             loading: false
-        //         }
-        //     }
-        //     return state
-        // }
 
         case CREATE_PRODUCT_SUCCESS: {
             return {
@@ -232,14 +179,15 @@ const ProductReducer = (state = initialState, action) => {
             }
         }
 
-        // case FILTER_PRODUCT_BY_CATEGORY: {
+        case NOTIFY_STOCK_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                error: ''
+            }
+        }
 
-        //     return {
-        //         ...state,
-        //         filteredPokemons: state.pokemons.filter(pokemon => pokemon.types.some(type =>type.name === action.payload))
 
-        //     }
-        // }
         default: {
             return state
         }
