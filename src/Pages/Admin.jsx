@@ -29,6 +29,7 @@ import AdminAnalytics from "./Admin/AdminAnalytics"
 
 import Footer from "../Components/Organisms/Footer"
 import AdminOffers from "./Admin/AdminOffers"
+import AdminOfferAdd from "./Admin/AdminOfferAdd"
 //import NotFoundAdmin from "./NotFoundAdmin"
 
 const Admin = () => {
@@ -47,13 +48,14 @@ const Admin = () => {
                     <Route exact path='/admin/users' render={() => <AdminUsers />} />
                     <Route exact path='/admin/orders' render={() => <AdminOrders />} />
                     <Route exact path='/admin/branches' render={() => <AdminBranches />} />
-                    <Route exact path='/admin/offers' render={() => <AdminOffers/>} />
+                    <Route exact path='/admin/offers' render={() => <AdminOffers />} />
 
                     <Route exact path='/admin/category' render={() => <AdminCategoryAdd />} />
                     <Route exact path='/admin/product' render={() => <AdminProductAdd />} />
                     <Route exact path='/admin/branch' render={() => <AdminBranchAdd />} />
+                    <Route exact path='/admin/offer' render={() => <AdminOfferAdd />} />
 
-                    <Route exact path='/admin/analytics' render={() => <AdminAnalytics />}/>
+                    <Route exact path='/admin/analytics' render={() => <AdminAnalytics />} />
 
                     <Route exact path='/admin/order-edit/:orderId'
                         render={({ match }) => <AdminOrderEdit orderId={match.params.orderId} />}

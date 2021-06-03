@@ -155,7 +155,7 @@ const AdminSideBar = () => {
                 <span>Sucursales</span>
             </Link>
             <Link to='/admin/offers'>
-                <OfferIcon/>
+                <OfferIcon />
                 <span>Ofertas</span>
             </Link>
             <Link to='/admin/product'>
@@ -170,13 +170,17 @@ const AdminSideBar = () => {
                 <AddLocationIcon />
                 <span>Agregar Sucursal</span>
             </Link>
+            <Link to='/admin/offer'>
+                <AddLocationIcon />
+                <span>Agregar oferta</span>
+            </Link>
             <Link to='/admin/analytics'>
                 <SalesIcon />
                 <span>Visualizar ventas</span>
             </Link>
 
             <input type="checkbox" id="btn-drop-down-filters" />
-            <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropDownIcon/></label>
+            <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropDownIcon /></label>
             <div className="filters">
                 <h6>Buscar por: </h6>
 
