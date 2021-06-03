@@ -1,5 +1,6 @@
 export const WISHLIST_ERROR = 'WISHLIST_ERROR';
 export const WISHLIST_REQUEST = 'WISHLIST_REQUEST';
+export const WISH = 'WISH';
 
 
 export const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST'

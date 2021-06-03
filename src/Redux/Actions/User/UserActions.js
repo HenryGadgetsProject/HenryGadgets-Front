@@ -22,6 +22,7 @@ import {
 // } from '../Auth/AuthActionsType'
 
 import { addItemCart } from '../Cart/CartActions'
+import { getWishlist } from '../Wishlist/WishlistActions'
 
 const Toast = Swal.mixin({
     toast: true,
@@ -76,6 +77,7 @@ export const userLogin = (input) => {
                         payload: fullUser
                     }
                 )
+                dispatch(getWishlist(fullUser.id))
             })
             .catch(error => {
                 const errorMsg = error.message
