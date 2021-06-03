@@ -161,7 +161,8 @@ const OrderForm = ({ total }) => {
     const body1 = {
         products: cart,
         client: client,
-        total: total
+        total: total,
+
     }
 
     const handleChange = (e) => {

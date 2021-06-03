@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 const FormContainer = styled.div`
     height: 100%;
@@ -87,11 +88,11 @@ const OfferIcon = styled.img`
 
 const validate = (input) => {
     let error = {}
-    if (!input.target) {
-        error.target = 'Debes ingresar un objetivo'
-    }
-    if (!input.targetId) {
-        error.targetId = 'Ingresa una ID'
+    // if (!input.target) {
+    //     error.target = 'Debes ingresar un objetivo'
+    // }
+    if (!input.targetName) {
+        error.targetName = 'Selecciona una categoría'
     }
     if (!input.discount) {
         error.discount = 'Ingresa un Descuento'
@@ -104,16 +105,22 @@ const validate = (input) => {
 
 const OffersForm = () => {
 
+    const categories = useSelector(state => state.category.categories)
+
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
 
     const [input, setInput] = useState({
-        target: "",
-        targetId: "",
+        target: "category",
         discount: "",
-        duration: ""
+        duration: "",
+        targetName: ""
     })
+
+    console.log(input)
+
+
 
     const handleChange = (e) => {
         setInput({
@@ -126,7 +133,7 @@ const OffersForm = () => {
     }
 
     const handleSubmit = (e) => {
-        if (error.target || error.targetId || error.discount || error.duration || input.target === '') {
+        if (error.targetId || error.discount || error.duration) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -142,11 +149,13 @@ const OffersForm = () => {
         )
         const body = {
             target: input.target.toLowerCase(),
-            targetId: input.targetId,
+            targetName: input.targetName,
             discount: parseInt(input.discount),
-            duration: parseInt(input.duration)
+            duration: parseFloat(input.duration)
         }
-        console.log(body)
+
+        console.log('BODY', body)
+
         // ***** El coso que hizo juan *****
         axios.post('http://localhost:3001/offer', body)
         // ***** El coso que hizo juan *****
@@ -165,22 +174,26 @@ const OffersForm = () => {
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
-                    <Item>
+                    {/* <Item>
                         <NameIcon />
                         <Label>Objetivo </Label>
                         <br />
                         <Input name='target' value={input.target} onBlur={handleBlur} onChange={handleChange} placeholder="Product / Category"></Input>
                         {isTouch.target && error.target ? (<ErrorMsg>{error.target}</ErrorMsg>) : null}
-                    </Item>
+                    </Item> */}
                     <Item>
                         <NameIcon />
-                        <Label>ID Objetivo </Label>
+                        <Label>Categoría </Label>
                         <br />
-                        <Input name='targetId' value={input.targetId} onBlur={handleBlur} onChange={handleChange}></Input>
-                        {isTouch.targetId && error.targetId ? (<ErrorMsg>{error.targetId}</ErrorMsg>) : null}
+                        <select name="targetName" onChange={handleChange} value={input.targetName}>
+                            <option value="">Seleciona una categoría</option>
+                            {categories.map(cat => (<option key={cat.id} value={cat.name}>{cat.name}</option>))}
+                        </select>
+                        {/* <Input name='targetId' value={input.targetId} onBlur={handleBlur} onChange={handleChange}></Input>
+                        {isTouch.targetId && error.targetId ? (<ErrorMsg>{error.targetId}</ErrorMsg>) : null} */}
                     </Item>
                 </Divider>
-                <br/>
+                <br />
                 <Divider>
                     <Item>
                         <OfferIcon />
