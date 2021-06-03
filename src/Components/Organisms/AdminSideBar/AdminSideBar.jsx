@@ -10,8 +10,8 @@ import FilterPrdByRating from '../FilterPrdByRating'
 
 const AdminAside = styled.aside`
     ${'' /* align-items : center; */}
-    ${'' /* background              : var(--aside-home); */}
-    background          : black;
+    ${'' /* background          : black; */}
+    background          : var(--aside-home);
     border              : none;
     ${'' /* min-height  : 100%; */}
     ${'' /* outline     : none; */}
@@ -40,12 +40,12 @@ const AdminAside = styled.aside`
     }
 
     span {
-        color           : #FFFFFF;
+        color           : var(--font-color);
         font-size       : 2em;
     }
 
     div.filters {
-        border-top      : .2em solid #FFFFFF;
+        border-top      : .2em solid var(--font-color);
         margin          : 4em auto 0;
         padding         : 2em 0;
     }
@@ -99,44 +99,46 @@ const DropIcon = styled.img`
     padding: 1em;
     background: url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white') no-repeat center center / contain;
 `
-
-const ProductIcon = styled.img`
-    background: url('https://api.iconify.design/akar-icons:tag.svg?color=white') no-repeat center center / contain;
+const ProductsIcon = styled.img`
+    background: var(--icon-products) no-repeat center center / contain;
 `
-const AddProductIcon = styled.img`
-    background: url('https://api.iconify.design/carbon:tag-edit.svg?color=white') no-repeat center center / contain;
-`
-const CategoryIcon = styled.img`
-    background: url('https://api.iconify.design/bx:bx-category-alt.svg?color=white') no-repeat center center / contain;
-`
-const AddCategoryIcon = styled.img`
-    background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
+const CategoriesIcon = styled.img`
+    background: var(--icon-categories) no-repeat center center / contain;
 `
 const UserIcon = styled.img`
-    background: url('https://api.iconify.design/bx:bxs-user.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-users) no-repeat center center / contain;
 `
 const OrderIcon = styled.img`
-    background: url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-order) no-repeat center center / contain;
 `
 const LocationIcon = styled.img`
-    background: url('https://api.iconify.design/carbon:location-filled.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-location) no-repeat center center / contain;
 `
 const AddLocationIcon = styled.img`
-    background: url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-add-location) no-repeat center center / contain;
 `
 const OfferIcon = styled.img`
-    background: url('https://api.iconify.design/bx:bxs-offer.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-offer) no-repeat center center / contain;
+`
+const AddProductsIcon = styled.img`
+    background: var(--icon-add-products) no-repeat center center / contain;
+`
+const AddCategoriesIcon = styled.img`
+    background: var(--icon-add-categories) no-repeat center center / contain;
+`
+const SalesIcon = styled.img`
+    background: var(--icon-sales) no-repeat center center / contain;
 `
 
 const AdminSideBar = () => {
     return (
         <AdminAside>
             <Link to='/admin/products'>
-                <ProductIcon />
+                <ProductsIcon />
                 <span>Productos</span>
             </Link>
             <Link to='/admin/categories'>
-                <CategoryIcon />
+                <CategoriesIcon />
                 <span>Categorías</span>
             </Link>
             <Link to='/admin/users'>
@@ -157,11 +159,11 @@ const AdminSideBar = () => {
                 <span>Ofertas</span>
             </Link>
             <Link to='/admin/product'>
-                <AddProductIcon />
+                <AddProductsIcon />
                 <span>Agregar Productos</span>
             </Link>
             <Link to='/admin/category'>
-                <AddCategoryIcon />
+                <AddCategoriesIcon />
                 <span>Agregar Categorías</span>
             </Link>
             <Link to='/admin/branch'>
@@ -169,7 +171,7 @@ const AdminSideBar = () => {
                 <span>Agregar Sucursal</span>
             </Link>
             <Link to='/admin/analytics'>
-                <AddCategoryIcon />
+                <SalesIcon />
                 <span>Visualizar ventas</span>
             </Link>
 

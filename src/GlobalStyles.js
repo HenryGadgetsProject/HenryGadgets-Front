@@ -29,7 +29,23 @@ export const lightTheme = {
         bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=black')`,
         order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
         review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
-        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`
+        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`,
+        magnifyingGlass: `url('https://api.iconify.design/foundation:magnifying-glass.svg?color=black')`,
+        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
+        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
+
+        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=black')`,
+        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=black')`,
+        users: `url('https://api.iconify.design/fa-solid:users.svg?color=black')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=black')`,
+        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=black')`,
+        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=black')`,
+        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
+        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
+
+        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=black')`
     },
     // Profile Pic - Light Theme
     pic: {
@@ -69,7 +85,23 @@ export const darkTheme = {
         bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=white')`,
         order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
         review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
-        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`
+        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`,
+        magnifyingGlass: `url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white')`,
+        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
+        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
+
+        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=white')`,
+        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=white')`,
+        users: `url('https://api.iconify.design/fa-solid:users.svg?color=white')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=white')`,
+        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=white')`,
+        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=white')`,
+        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
+        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
+
+        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=white')`
     },
     // Profile Pic - Dark Theme
     pic: {
@@ -110,6 +142,22 @@ const GlobalStyle = createGlobalStyle`
         --icon-order            : ${props => props.theme.icon.order};
         --icon-review           : ${props => props.theme.icon.review};
         --icon-wish             : ${props => props.theme.icon.wish};
+        --icon-magnifying-glass : ${props => props.theme.icon.magnifyingGlass};
+        --icon-review           : ${props => props.theme.icon.Review};
+        --icon-add-review       : ${props => props.theme.icon.addReview};
+
+        --icon-products         : ${props => props.theme.icon.products};
+        --icon-categories       : ${props => props.theme.icon.categories};
+        --icon-users            : ${props => props.theme.icon.users};
+        --icon-order            : ${props => props.theme.icon.order};
+        --icon-location         : ${props => props.theme.icon.location};
+        --icon-offer            : ${props => props.theme.icon.offer};
+        --icon-add-products     : ${props => props.theme.icon.addProducts};
+        --icon-add-categories   : ${props => props.theme.icon.addCategories};
+        --icon-add-location     : ${props => props.theme.icon.addLocation};
+        --icon-sales            : ${props => props.theme.icon.sales};
+
+        --icon-github           : ${props => props.theme.icon.github};
 
         --pic-alex              : ${props => props.theme.pic.alex};
         --pic-eduardo           : ${props => props.theme.pic.eduardo};

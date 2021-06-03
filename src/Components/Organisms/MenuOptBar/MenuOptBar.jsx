@@ -25,7 +25,7 @@ const Ul = styled.ul`
     }
 
     li > div, a > * {
-        transition      : .5s;
+        transition      : transform .3s linear;
         &:hover {
             transform   : scale(1.30);
             ${'' /* color       : lime; */}
@@ -34,6 +34,10 @@ const Ul = styled.ul`
 
     a > span {
         color           : var(--pure-white);
+        transition      : transform .3s linear;
+        &:hover {
+            transform   : scale(1.30);
+        }
     }
 
     .regards {
@@ -100,9 +104,11 @@ const Ul = styled.ul`
 
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
 const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
-const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
+// const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
+const userIcon = 'https://api.iconify.design/clarity:assign-user-solid.svg?color=white'
 const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
 const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
+const wishIcon = 'https://api.iconify.design/clarity:heart-solid.svg?color=white'
 const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
@@ -167,6 +173,11 @@ const MenuOptBar = ({ open }) => {
                                 <img src={adminIcon} alt='admin' />
                             </Link>
                         </li>
+                        <li>
+                            <Link to="/user/wishlist" className="link">
+                                <img src={wishIcon} alt='wishlist' />
+                            </Link>
+                        </li>
                     </>
                     :
                     <>
@@ -196,7 +207,11 @@ const MenuOptBar = ({ open }) => {
                                 <img src={(user.photo) ? user.photo : userIcon} alt='user' />
                             </Link>
                         </li>
-
+                        <li>
+                            <Link to="/user/wishlist" className="link">
+                                <img src={wishIcon} alt='wishlist' />
+                            </Link>
+                        </li>
                     </>
                 :
                 <>

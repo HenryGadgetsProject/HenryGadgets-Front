@@ -53,7 +53,7 @@ const GitHubIcon = styled.img`
     height: 3em;
     width: 3em;
     padding: 1.6em;
-    background: url('https://api.iconify.design/akar-icons:github-fill.svg') no-repeat center center / contain;
+    background: var(--icon-github) no-repeat center center / contain;
 `
 const LinkedInIcon = styled.img`
     margin: 0 1em 0 1em;

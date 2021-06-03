@@ -31,12 +31,20 @@ const Aside = styled.aside`
 
     div, a {
         align-items     : center;
+        align-self      : flex-start;
         display         : flex;
         flex-direction  : row;
         ${'' /* flex-wrap       : wrap; */}
         justify-content : flex-start;
         margin          : .5em 0 0 0;
         padding         : 1em;
+    }
+
+    .links {
+        transition      : transform .3s linear;
+        &:hover {
+            transform   : scale(1.08)
+        }
     }
 
     img {        
@@ -61,10 +69,12 @@ const Aside = styled.aside`
     }
 
     p {
+        align-self      : flex-start;
         color           : var(--font-color);
         flex-wrap       : wrap;
         font-size       : 2em;
-        margin          : 0 auto 1.5em;
+        ${'' /* margin          : 0 auto 1.5em; */}
+        margin          : 0 0 1em .5em;
     }
 
     ${'' /* =================================================
@@ -114,7 +124,7 @@ const BellIcon = styled.img`
 const OrderIcon = styled.img`
     background: var(--icon-order) no-repeat center center / contain;
 `
-const AddReview = styled.img`
+const Review = styled.img`
     background: var(--icon-review) no-repeat center center / contain;
 `
 const WishIcon = styled.img`
@@ -144,23 +154,23 @@ const UserProfile = () => {
                     </div>
                     <p>{user.email}</p>
                     
-                    <div>
+                    <div className="links">
                         <BellIcon className='icon'/>
                         <span>Suscripciones</span>
                         <button>Suscribirse</button>
                     </div>
 
-                    <Link to='/user/orders'>
+                    <Link to='/user/orders' className="links">
                         <OrderIcon className='icon'/>
                         <span>Ordenes</span>
                     </Link>
 
-                    <Link to='/user/reviews'>
-                        <AddReview className='icon'/>
+                    <Link to='/user/reviews' className="links">
+                        <Review className='icon'/>
                         <span>Reviews</span>
                     </Link>
 
-                    <Link to='/user/wishlist'>
+                    <Link to='/user/wishlist' className="links">
                         <WishIcon className='icon'/>
                         <span>Lista de deseos</span>
                     </Link>
