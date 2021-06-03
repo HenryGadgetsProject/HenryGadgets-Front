@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 //import axios from 'axios'
-import { createOrder } from '../../../Redux/Actions/Cart/CartActions'
+import { createOrder, sendMail } from '../../../Redux/Actions/Cart/CartActions'
 
 const FormContainer = styled.div`
     height: 100%;
@@ -123,7 +123,10 @@ const OrderForm = ({ total }) => {
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
-    //const orderId = useSelector(state => state.cart.orderId)
+    // const orderId = useSelector(state => state.cart.orderId)
+
+    const cart = useSelector(state => state.cart.cartList)
+
 
 
     //const history = useHistory()
@@ -138,12 +141,28 @@ const OrderForm = ({ total }) => {
     //const [payment, setPayment] = useState('false')
 
 
+
+
+
     const [input, setInput] = useState({
         street: "",
         country: "",
         city: "",
         phone_number: "",
     })
+
+
+    const client = {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email
+    }
+
+    const body1 = {
+        products: cart,
+        client: client,
+        total: total
+    }
 
     const handleChange = (e) => {
         setInput({
@@ -163,12 +182,17 @@ const OrderForm = ({ total }) => {
     }
 
     const handleSubmit = (e) => {
+
         e.preventDefault()
+
+
 
         //setProcess('true')
 
         const body = { ...input, total_price: total }
+
         dispatch(createOrder(user.id, body))
+        dispatch(sendMail(body1, 'buy-thanks'))
 
         /////////
         // Swal.fire({

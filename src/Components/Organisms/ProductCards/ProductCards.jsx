@@ -221,10 +221,12 @@ const ProductCards = ({ products }) => {
 
                                     {/* Box SIEMPRE debe estar renderizado */}
                                     <Box>
-                                        {/* Offer debe recibir el condicional del Descuento */}
-                                        <Offer>
-                                            25%<br/>
-                                        </Offer>
+                                        {(p.discount > 0) ?
+                                            <Offer>
+                                                {(p.discount * 100)} % <br />
+                                            </Offer>
+                                            : null
+                                        }
                                     </Box>
 
                                     <img src={p.big_image} alt={p.name}></img><br />

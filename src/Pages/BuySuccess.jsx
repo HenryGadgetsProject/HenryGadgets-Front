@@ -60,7 +60,7 @@ const BuySuccess = ({ orderId }) => {
     useEffect(() => {
         if (values.status === 'approved') {
             setTimeout(() => {
-                dispatch(sendMail(body))
+                dispatch(sendMail(body, 'buy-confirmation'))
                 dispatch(changeToCompleted(orderId))
                 dispatch(dispatch(clearCart))
                 Toast.fire({
