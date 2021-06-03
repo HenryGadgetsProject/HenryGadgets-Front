@@ -10,7 +10,6 @@ const Table = styled.table`
         font-weight     : bold;
         margin          : 1.8em 0 .5em 0;
         text-align      : left;
-        white-space     : nowrap !important;
     }
 
     th, td {
@@ -80,7 +79,7 @@ const Table = styled.table`
         margin          : 0 auto;
         width: 90%;
 
-        thead, tbody, th, td, tr { 
+        thead, tbody, th, td, tr {
 		    display     : block;
             min-height  : 2.5em;
 	    }
@@ -88,7 +87,6 @@ const Table = styled.table`
         caption {
             font-size   : 1.6em;
             margin      : .5em 0;
-            white-space : nowrap !important;
         }
 
         thead tr {
@@ -116,7 +114,7 @@ const Table = styled.table`
 
         td, td:nth-child(even) {
             border          : none;
-            border-bottom   : 1px solid var(--pure-white); 
+            border-bottom   : 1px solid var(--pure-white);
             position        : relative;
             padding-left    : 50%;
             :hover {

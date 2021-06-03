@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductsById } from '../../Redux/Actions/Product/ProductActions'
-import BigCardAdmin from '../../Components/Atoms/BigCardAdmin'
+import BigCardAdmin from '../../Components/Atoms/BigCardAdmin.jsx'
 
 const AdminProductDetails = ({ productId }) => {
     const dispatch = useDispatch()

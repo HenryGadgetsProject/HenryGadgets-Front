@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import { createOrder } from '../../../Redux/Actions/Cart/CartActions'
 
 const FormContainer = styled.div`
+    height: 100%;
     margin-top: 10em;
     padding: 2em;
     background: #424242;

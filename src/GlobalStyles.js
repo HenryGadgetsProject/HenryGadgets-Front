@@ -21,6 +21,41 @@ export const lightTheme = {
         h2: {
             fontColor: '#D32F2F'
         },
+    },
+    // Icons - Light Theme
+    icon: {
+        user: `url('https://api.iconify.design/si-glyph:badge-name.svg?color=black')`,
+        email: `url('https://api.iconify.design/clarity:email-solid.svg?color=black')`,
+        bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=black')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`,
+        magnifyingGlass: `url('https://api.iconify.design/foundation:magnifying-glass.svg?color=black')`,
+        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
+        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
+
+        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=black')`,
+        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=black')`,
+        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=black')`,
+        users: `url('https://api.iconify.design/fa-solid:users.svg?color=black')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=black')`,
+        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=black')`,
+        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=black')`,
+        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
+        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
+
+        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=black')`
+    },
+    // Profile Pic - Light Theme
+    pic: {
+        alex: `url('https://i.imgur.com/XaczzE1.png')`,
+        eduardo: `url('https://i.imgur.com/eXiZwOG.png')`,
+        guille: `url('https://i.imgur.com/zj255AA.png')`,
+        juan: `url('https://i.imgur.com/w9W40Hc.png')`,
+        leo: `url('https://i.imgur.com/mhpIyZF.png')`,
+        marco: `url('https://i.imgur.com/xE42jql.png')`,
     }
 }
 
@@ -43,6 +78,41 @@ export const darkTheme = {
         h2: {
             fontColor: '#4F0EA6'
         },
+    },
+    // Icons - Dark Theme
+    icon: {
+        user: `url('https://api.iconify.design/si-glyph:badge-name.svg?color=white')`,
+        email: `url('https://api.iconify.design/clarity:email-solid.svg?color=white')`,
+        bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=white')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`,
+        magnifyingGlass: `url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white')`,
+        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
+        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
+
+        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white')`,
+        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=white')`,
+        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=white')`,
+        users: `url('https://api.iconify.design/fa-solid:users.svg?color=white')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=white')`,
+        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=white')`,
+        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=white')`,
+        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
+        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
+
+        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=white')`
+    },
+    // Profile Pic - Dark Theme
+    pic: {
+        alex: `url('https://i.imgur.com/N5xXz6J.png')`,
+        eduardo: `url('https://i.imgur.com/GaXaUOt.png')`,
+        guille: `url('https://i.imgur.com/jBxkUkS.png')`,
+        juan: `url('https://i.imgur.com/uWtpojk.png')`,
+        leo: `url('https://i.imgur.com/aK0x7W8.png')`,
+        marco: `url('https://i.imgur.com/Wgj41rA.png')`,
     }
 }
 
@@ -67,6 +137,37 @@ const GlobalStyle = createGlobalStyle`
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
         --pure-gray             : #808080;
+
+        --icon-user             : ${props => props.theme.icon.user};
+        --icon-email            : ${props => props.theme.icon.email};
+        --icon-bell             : ${props => props.theme.icon.bell};
+        --icon-order            : ${props => props.theme.icon.order};
+        --icon-review           : ${props => props.theme.icon.review};
+        --icon-wish             : ${props => props.theme.icon.wish};
+        --icon-magnifying-glass : ${props => props.theme.icon.magnifyingGlass};
+        --icon-review           : ${props => props.theme.icon.Review};
+        --icon-add-review       : ${props => props.theme.icon.addReview};
+
+        --icon-drop-down        : ${props => props.theme.icon.dropDown};
+        --icon-products         : ${props => props.theme.icon.products};
+        --icon-categories       : ${props => props.theme.icon.categories};
+        --icon-users            : ${props => props.theme.icon.users};
+        --icon-order            : ${props => props.theme.icon.order};
+        --icon-location         : ${props => props.theme.icon.location};
+        --icon-offer            : ${props => props.theme.icon.offer};
+        --icon-add-products     : ${props => props.theme.icon.addProducts};
+        --icon-add-categories   : ${props => props.theme.icon.addCategories};
+        --icon-add-location     : ${props => props.theme.icon.addLocation};
+        --icon-sales            : ${props => props.theme.icon.sales};
+
+        --icon-github           : ${props => props.theme.icon.github};
+
+        --pic-alex              : ${props => props.theme.pic.alex};
+        --pic-eduardo           : ${props => props.theme.pic.eduardo};
+        --pic-guille            : ${props => props.theme.pic.guille};
+        --pic-juan              : ${props => props.theme.pic.juan};
+        --pic-leo               : ${props => props.theme.pic.leo};
+        --pic-marco             : ${props => props.theme.pic.marco};
     }
 
 
@@ -469,7 +570,50 @@ const GlobalStyle = createGlobalStyle`
         width                   : 15em;
     }
 
+    ${
+  "" /* =================================================
+ADMIN ANALYTICS
+===================================================== */
+}
+.botonsAnalytics{
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 80%;
+}
 
+.graficos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
+  border-radius: 2em;
+}
+
+.tarta, .barritas{
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.idAnalytics{
+
+}
+
+.tituloLeo{
+  font-size: 2em;
+  color: var(--font-color);
+}
+.tituloLeoAlt{
+  font-size: 2em;
+  color: rgba(66,66,66);
+}
+
+.tituloLeo2{
+  font-size: 3em;
+  color: var(--font-color);
+  font-weight: bold;
+}
     ${'' /* =================================================
     SECTION 4
     ===================================================== */}
@@ -491,7 +635,7 @@ const GlobalStyle = createGlobalStyle`
 
     .total{
         display                 : flex;
-        justify-content         : flex-end;    
+        justify-content         : flex-end;
         font-size               : 2em;
     }
 
@@ -514,7 +658,7 @@ const GlobalStyle = createGlobalStyle`
     }
     .success-product{
         display: flex;
-        justify-content:flex-start;        
+        justify-content:flex-start;
         border-bottom:1px dotted #000000;
         padding: 2rem;
         font-size:1.6rem;
@@ -553,7 +697,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items :flex-start ;
-        border-top:1px dotted #000000;       
+        border-top:1px dotted #000000;
         border-bottom:1px dotted #000000;
         padding: 2rem;
         font-size:1.6rem;
@@ -573,13 +717,15 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         justify-content: center;
         margin-top:3rem;
-        
+        outline: none;
     }
 
     .filter-buttons img{
         width:5rem;
         height:5rem;
         margin:3rem;
+        outline: none;
+        border: none;
     }
 
     /* Popup style */
@@ -666,7 +812,8 @@ const GlobalStyle = createGlobalStyle`
         SECTION 1 / SECTION 2
         ================================================= */}
         span.slideTitle {
-            top                 : 50%;
+            right               : 13%;
+            top                 : 45%;
             font-size           : 5em;
         }
 

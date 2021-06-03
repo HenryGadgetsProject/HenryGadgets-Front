@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import NavBar from '../../Components/Organisms/NavBar'
 import Breadcrumb from '../../Components/Atoms/Breadcrumb'
+// import Header from '../../Components/Atoms/Header'
 import Main from '../../Components/Atoms/Main'
 import UserOrders from '../../Components/Organisms/UserOrders'
 import ReviewsForm from '../../Components/Organisms/ReviewsForm'
@@ -10,7 +11,6 @@ import AllReviews from '../../Components/Organisms/AllReviews'
 import UserEditReviewForm from '../../Components/Organisms/UserEditReviewForm'
 import UserWishlist from '../../Components/Organisms/UserWishlist'
 import Footer from '../../Components/Organisms/Footer'
-// import Header from '../Components/Atoms/Header'
 // import Table from '../../Components/Atoms/Table'
 
 import styled from 'styled-components'
@@ -18,7 +18,7 @@ import styled from 'styled-components'
 const Aside = styled.aside`
     display             : flex;
     flex-direction      : column;
-    align-items         : center;
+    /* align-items         : center; */
     background          : var(--aside-home);
     border              : none;
     padding             : 2em;
@@ -31,12 +31,20 @@ const Aside = styled.aside`
 
     div, a {
         align-items     : center;
+        align-self      : flex-start;
         display         : flex;
         flex-direction  : row;
         ${'' /* flex-wrap       : wrap; */}
         justify-content : flex-start;
-        margin          : .5em auto;
+        margin          : .5em 0 0 0;
         padding         : 1em;
+    }
+
+    .links {
+        transition      : transform .3s linear;
+        &:hover {
+            transform   : scale(1.08)
+        }
     }
 
     img {        
@@ -61,10 +69,12 @@ const Aside = styled.aside`
     }
 
     p {
+        align-self      : flex-start;
         color           : var(--font-color);
         flex-wrap       : wrap;
         font-size       : 2em;
-        margin          : 0 auto 1.5em;
+        ${'' /* margin          : 0 auto 1.5em; */}
+        margin          : 0 0 1em .5em;
     }
 
     ${'' /* =================================================
@@ -86,9 +96,12 @@ const Aside = styled.aside`
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
-    ${'' /* @media(max-width: 992px) {
-        
-    } */}
+    @media(max-width: 992px) {
+        display: flex !important;
+        position: static !important;
+        position            : -webkit-static !important;
+        z-index             : 0;
+    }
 `
 const UserSection = styled.section`
     display: flex;
@@ -103,22 +116,22 @@ const UserSection = styled.section`
     }
 `
 const UserIcon = styled.img`
-    background: url('https://api.iconify.design/si-glyph:badge-name.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-user) no-repeat center center / contain;
 `
 const EmailIcon = styled.img`
-    background: url('https://api.iconify.design/clarity:email-solid.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-email) no-repeat center center / contain;
 `
 const BellIcon = styled.img`
-    background: url('https://api.iconify.design/bi:bell-fill.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-bell) no-repeat center center / contain;
 `
 const OrderIcon = styled.img`
-    background: url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-order) no-repeat center center / contain;
 `
-const AddReview = styled.img`
-    background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
+const Review = styled.img`
+    background: var(--icon-review) no-repeat center center / contain;
 `
 const WishIcon = styled.img`
-    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-wish) no-repeat center center / contain;
 `
 
 const UserProfile = () => {
@@ -129,6 +142,7 @@ const UserProfile = () => {
         <div className="container">
             <NavBar className="nav" />
             <Breadcrumb id="breadcrumb" />
+
             <Main id="main">
                 <Aside>
                     <img src={user.photo} alt={user.first_name} className='profilePic'></img>
@@ -144,23 +158,23 @@ const UserProfile = () => {
                     </div>
                     <p>{user.email}</p>
                     
-                    <div>
+                    <div className="links">
                         <BellIcon className='icon'/>
                         <span>Suscripciones</span>
                         <button>Suscribirse</button>
                     </div>
 
-                    <Link to='/user/orders'>
+                    <Link to='/user/orders' className="links">
                         <OrderIcon className='icon'/>
                         <span>Ordenes</span>
                     </Link>
 
-                    <Link to='/user/reviews'>
-                        <AddReview className='icon'/>
+                    <Link to='/user/reviews' className="links">
+                        <Review className='icon'/>
                         <span>Reviews</span>
                     </Link>
 
-                    <Link to='/user/wishlist'>
+                    <Link to='/user/wishlist' className="links">
                         <WishIcon className='icon'/>
                         <span>Lista de deseos</span>
                     </Link>

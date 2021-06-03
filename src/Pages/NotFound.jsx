@@ -43,9 +43,6 @@ const NotFound = () => {
         <div className="container">
             <NavBar className="nav" />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
             <Main id="main">
                 <NotFoundContainer>
@@ -61,7 +58,7 @@ const NotFound = () => {
                 </NotFoundContainer>
 
                 <Link to="/home">
-                    <button className="review">Regresar</button>
+                    <button className="review btn btn-md">Regresar</button>
                 </Link>
             </Main>
 

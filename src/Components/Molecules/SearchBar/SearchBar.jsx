@@ -61,7 +61,7 @@ const SuggestContainer = styled.div`
         transition          : .3s;
         &:hover {
             /* background-color: var(--default-primary); */
-            background-color: #FF616F;
+            background-color: var(--default-primary);
             color           : var(--pure-white);
             cursor          : pointer;
             transform       : scale(1.05);
@@ -74,7 +74,7 @@ const SuggestContainer = styled.div`
     ===================================================== */}
     @media(max-width: 992px) {
         margin-right    : 3em;
-        min-width       : 18em;
+        max-width       : 23.4em;
     }
 `
 
