@@ -39,7 +39,7 @@ export const getOffers = () => {
 
 
 
-export const addBranch = (body) => {
+export const addOffer = (body) => {
     console.log(body)
     return (dispatch) => {
         dispatch({ type: OFFER_REQUEST })
@@ -65,14 +65,14 @@ export const addBranch = (body) => {
     }
 }
 
-export const getBranchById = (id) => {
+export const getOfferById = (id) => {
     return {
         type: GET_OFFER_BY_ID_SUCCESS,
         payload: id
     }
 }
 
-export const deleteBranch = (id) => {
+export const deleteOffer = (id) => {
     return (dispatch) => {
         dispatch({ type: OFFER_REQUEST })
         axios.delete(`${HOST}/offer/${id}`)
@@ -97,7 +97,7 @@ export const deleteBranch = (id) => {
     }
 }
 
-export const updateBranch = (id, body) => {
+export const updateOffer = (id, body) => {
     return (dispatch) => {
         dispatch({ type: OFFER_REQUEST })
         axios.put(`${HOST}/offer/${id}`, body)
