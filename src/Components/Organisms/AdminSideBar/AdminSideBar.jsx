@@ -156,6 +156,10 @@ const AdminSideBar = () => {
                 <AddCategoryIcon />
                 <span>Agregar Sucursal</span>
             </Link>
+            <Link to='/admin/analytics'>
+                <AddCategoryIcon />
+                <span>Visualizar ventas</span>
+            </Link>
 
             <input type="checkbox" id="btn-drop-down-filters" />
             <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>

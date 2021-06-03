@@ -468,8 +468,50 @@ const GlobalStyle = createGlobalStyle`
     .btn-lg {
         width                   : 15em;
     }
+    ${
+  "" /* =================================================
+ADMIN ANALYTICS
+===================================================== */
+}
+.botonsAnalytics{
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 80%;
+}
 
+.graficos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
+  border-radius: 2em;
+}
 
+.tarta, .barritas{
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.idAnalytics{
+
+}
+
+.tituloLeo{
+  font-size: 2em;
+  color: white;
+}
+.tituloLeoAlt{
+  font-size: 2em;
+  color: rgba(66,66,66);
+}
+
+.tituloLeo2{
+  font-size: 3em;
+  color: white;
+  font-weight: bold;
+}
     ${'' /* =================================================
     SECTION 4
     ===================================================== */}
@@ -491,7 +533,7 @@ const GlobalStyle = createGlobalStyle`
 
     .total{
         display                 : flex;
-        justify-content         : flex-end;    
+        justify-content         : flex-end;
         font-size               : 2em;
     }
 
@@ -514,7 +556,7 @@ const GlobalStyle = createGlobalStyle`
     }
     .success-product{
         display: flex;
-        justify-content:flex-start;        
+        justify-content:flex-start;
         border-bottom:1px dotted #000000;
         padding: 2rem;
         font-size:1.6rem;
@@ -553,7 +595,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items :flex-start ;
-        border-top:1px dotted #000000;       
+        border-top:1px dotted #000000;
         border-bottom:1px dotted #000000;
         padding: 2rem;
         font-size:1.6rem;
@@ -573,7 +615,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         justify-content: center;
         margin-top:3rem;
-        
+
     }
 
     .filter-buttons img{
