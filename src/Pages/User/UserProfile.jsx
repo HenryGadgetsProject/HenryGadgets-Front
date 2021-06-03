@@ -35,7 +35,7 @@ const Aside = styled.aside`
         flex-direction  : row;
         ${'' /* flex-wrap       : wrap; */}
         justify-content : flex-start;
-        margin          : .5em auto;
+        margin          : .5em 0 0 0;
         padding         : 1em;
     }
 
