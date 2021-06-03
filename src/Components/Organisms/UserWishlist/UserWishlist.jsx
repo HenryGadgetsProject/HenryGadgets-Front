@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from '../../Atoms/Table'
-import { getWishlist, removeFromWishlist, postWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
+import { getWishlist, removeFromWishlist, postWishlist, resetWishList } from '../../../Redux/Actions/Wishlist/WishlistActions'
 
 import styled from 'styled-components'
 
@@ -72,37 +72,14 @@ const UserWishlist = () => {
         dispatch(removeFromWishlist(user, product))
     }
 
+    const handleClear = () => {
+        dispatch(resetWishList())
+    }
+
     return (
         <>
-            {/* <Table>
-                <caption>Lista de Deseos</caption>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Cambios</th>
-                        <th>Borrar</th>
-                        <th>Guardar</th>
-                        <th>Ver Detalles</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {wishList?.map(wl => {
-                        return (
-                            <tr key={wl.id}>
-                                <td data-label="Nombre" className="center-text">{wl.name}</td>
-                                <td data-label="Cambios" className="center-text"><ChangesIcon /></td>
-                                <td data-label="Borrar" className="center-text"><DeleteIcon /></td>
-                                <td data-label="Guardar" className="center-text"><SaveIcon /></td>
-                                <td data-label="Ver Detalles" className="center-text"><GlassIcon /></td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table> */}
-
             <Table>
-                <caption>Tus productos</caption>
+                <caption>Tus productos deseados</caption>
                 <thead>
                     <tr>
                         <th>Foto</th>
@@ -126,10 +103,10 @@ const UserWishlist = () => {
                         )
                     })}
                     <tr>
+                        <td data-label="Borrar Todo" className="center-text">Borrar todo</td>
+                        <td data-label="Borrar" className="center-text"><DeleteIcon onClick={() => handleClear()} /></td>
+                        <td></td>
                         <td data-label="Agregar Todo" className="center-text">Agregar todo</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td data-label="Carrito" className="center-text"><CartIcon /></td>
                     </tr>
                 </tbody>

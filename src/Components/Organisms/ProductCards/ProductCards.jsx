@@ -184,8 +184,13 @@ const ProductCards = ({ products }) => {
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                                 </Link>
                                 <div>
-                                    {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
-
+                                    {console.log('USUARIO', user)}
+                                    {(user.id) ?
+                                        <div>
+                                            {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
+                                        </div>
+                                        : null
+                                    }
 
                                     <CartIcon onClick={() => handleCart(p)} />
                                 </div>

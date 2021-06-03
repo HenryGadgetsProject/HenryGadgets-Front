@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ToggleForm from '../../Molecules/Toggle'
 import { userLogut } from '../../../Redux/Actions/User/UserActions'
 import { clearCart, saveCartToDB, deleteCartFromDB } from '../../../Redux/Actions/Cart/CartActions'
+import { resetWishList } from '../../../Redux/Actions/Wishlist/WishlistActions'
 
 import styled from 'styled-components'
 
@@ -96,6 +97,16 @@ const Ul = styled.ul`
         }
     }
 `
+const WishIconRed = styled.img`
+    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=red') no-repeat center center / contain;
+    height: 1em !important;
+    width: 1em !important;
+    padding: 1em;
+    /* margin-top: 1.6em; */
+    transition: .3s;
+    &:hover {
+        transform: scale(1.30);
+    }`
 
 
 const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
@@ -130,6 +141,7 @@ const MenuOptBar = ({ open }) => {
         saveCartToDB(cart, user.id)
         dispatch(userLogut())
         dispatch(clearCart())
+        dispatch(resetWishList())
         // ********** Google Log Out **********
         dispatch({ type: 'LOGOUT' })
         setGoogleUser(null)
@@ -147,7 +159,7 @@ const MenuOptBar = ({ open }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to = "/about"  className = "link">
+                            <Link to="/about" className="link">
                                 <span>Acerca de</span>
                             </Link>
                         </li>
@@ -176,7 +188,7 @@ const MenuOptBar = ({ open }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to = "/about"  className = "link">
+                            <Link to="/about" className="link">
                                 <span>Acerca de</span>
                             </Link>
                         </li>
@@ -196,6 +208,14 @@ const MenuOptBar = ({ open }) => {
                                 <img src={(user.photo) ? user.photo : userIcon} alt='user' />
                             </Link>
                         </li>
+                        {(user) ?
+                            <li>
+                                <Link to="/user/wishlist" className="link" >
+                                    <WishIconRed />
+                                </Link>
+                            </li> : null
+                        }
+
 
                     </>
                 :
@@ -206,7 +226,7 @@ const MenuOptBar = ({ open }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to = "/about"  className = "link">
+                        <Link to="/about" className="link">
                             <span>Acerca de</span>
                         </Link>
                     </li>
