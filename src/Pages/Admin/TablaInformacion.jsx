@@ -99,13 +99,13 @@ const TablaInformacion = () => {
   return (
     <Table>
       <caption>Últimas compras realizadas</caption>
-      <NumbersContainer>
-      <button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</button>
+      {/* <NumbersContainer> */}
+      {/* <button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</button>
       {pageDecrementBtn}
       {renderPageNumbers}
       {pageIncrementBtn}
-      <button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</button>
-      </NumbersContainer>
+      <button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</button> */}
+      {/* </NumbersContainer> */}
       <thead>
         <tr>
           <th>ID de compra</th>

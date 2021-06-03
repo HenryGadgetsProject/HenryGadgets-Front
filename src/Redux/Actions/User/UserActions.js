@@ -77,7 +77,7 @@ export const userLogin = (input) => {
                         payload: fullUser
                     }
                 )
-                dispatch(getWishlist(fullUser.id))
+                // dispatch(getWishlist(fullUser.id))
             })
             .catch(error => {
                 const errorMsg = error.message

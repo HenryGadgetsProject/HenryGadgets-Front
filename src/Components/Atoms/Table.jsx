@@ -10,6 +10,7 @@ const Table = styled.table`
         font-weight     : bold;
         margin          : 1.8em 0 .5em 0;
         text-align      : left;
+        white-space     : nowrap !important;
     }
 
     th, td {
@@ -87,6 +88,7 @@ const Table = styled.table`
         caption {
             font-size   : 1.6em;
             margin      : .5em 0;
+            white-space : nowrap !important;
         }
 
         thead tr {

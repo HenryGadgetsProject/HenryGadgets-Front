@@ -468,6 +468,7 @@ const GlobalStyle = createGlobalStyle`
     .btn-lg {
         width                   : 15em;
     }
+
     ${
   "" /* =================================================
 ADMIN ANALYTICS
@@ -500,7 +501,7 @@ ADMIN ANALYTICS
 
 .tituloLeo{
   font-size: 2em;
-  color: white;
+  color: var(--font-color);
 }
 .tituloLeoAlt{
   font-size: 2em;
@@ -509,7 +510,7 @@ ADMIN ANALYTICS
 
 .tituloLeo2{
   font-size: 3em;
-  color: white;
+  color: var(--font-color);
   font-weight: bold;
 }
     ${'' /* =================================================

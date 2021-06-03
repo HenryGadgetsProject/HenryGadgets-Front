@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import TablaInformacion from "./TablaInformacion";
-import styled from "styled-components";
 import { Pie, Bar } from "react-chartjs-2";
 import helper from "./helper";
 
-const AdminStats = styled.aside`
-  width: 100%;
-`;
+// import styled from "styled-components";
+
+// const AdminStats = styled.div`
+//   width: 100%;
+// `;
 
 const AdminAnalytics = () => {
   const orders = useSelector((state) => state.order.orders);
@@ -144,7 +145,7 @@ const AdminAnalytics = () => {
   }
 
   return (
-    <AdminStats>
+    <>
       <div className="tituloLeo2">Estadisticas de las ventas</div>
       <div className="botonsAnalytics">
         {months.map((x) => (
@@ -236,7 +237,7 @@ const AdminAnalytics = () => {
         </div>
       </div>
       <TablaInformacion />
-    </AdminStats>
+    </>
   );
 };
 
