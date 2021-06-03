@@ -34,7 +34,7 @@ const Table = styled.table`
 
     tr:hover {
         ${'' /* background      : #626262; */}
-        background      : var(--background-gradient);
+        background      : var(--light-primary);
     }
 
     tbody tr td {
@@ -121,7 +121,7 @@ const Table = styled.table`
             padding-left    : 50%;
             :hover {
                 ${'' /* background  : #626262; */}
-                background  : var(--background-gradient);
+                background  : var(--light-primary);
             }
         }
 
