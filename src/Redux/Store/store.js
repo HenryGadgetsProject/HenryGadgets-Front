@@ -10,6 +10,7 @@ import orderReducer from '../Reducers/OrderReducer'
 import authReducer from '../Reducers/AuthReducer'
 import wishlistReducer from '../Reducers/WishlistReducer'
 import branchReducer from '../Reducers/BranchReducer'
+import offerReducer from '../Reducers/OfferReducer'
 
 const rootReducer = combineReducers({
     product: productReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     order: orderReducer,
     auth: authReducer,
     wishlist: wishlistReducer,
-    branch: branchReducer
+    branch: branchReducer,
+    offer: offerReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

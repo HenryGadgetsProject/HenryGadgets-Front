@@ -12,6 +12,7 @@ import { getCart } from './Redux/Actions/Cart/CartActions'
 import { getOrders } from './Redux/Actions/Order/OrderActions'
 import { getBranches } from './Redux/Actions/Branch/BranchesActions'
 import { getWishlist } from './Redux/Actions/Wishlist/WishlistActions'
+import { getOffers } from './Redux/Actions/Offer/OffersActions'
 
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
@@ -35,6 +36,7 @@ function App() {
         dispatch(getUsers())
         dispatch(getOrders())
         dispatch(getBranches())
+        dispatch(getOffers())
 
     }, [dispatch])
 
