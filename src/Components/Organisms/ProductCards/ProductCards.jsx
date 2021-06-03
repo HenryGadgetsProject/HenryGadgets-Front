@@ -35,6 +35,9 @@ const Cards = styled.div`
     }
 
     img {
+        /* Sale Romper el Front */
+        margin-top: -11em;
+        /* Sale Romper el Front */
         height              : 16em;
         width               : 16em;
         object-fit          : contain;
@@ -67,7 +70,6 @@ const Cards = styled.div`
 
     }
 `
-
 const CartIcon = styled.img`
     background: url('https://api.iconify.design/fa-solid:cart-arrow-down.svg?color=%23212121') no-repeat center center / contain;
     height: 4em !important;
@@ -100,6 +102,48 @@ const WishIconRed = styled.img`
     &:hover {
         transform: scale(1.30);
     }
+`
+
+// Con esto rompemos el front
+const IconsContainer = styled.div`
+    margin-top: 11em;
+`
+// Con esto rompemos el front
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
+const Box = styled.div`
+  position: relative;
+  width: 27.4em;
+  height: 12em;
+  overflow: hidden;
+`
+const Offer = styled.div`
+  position: absolute;
+  display: inline-block;
+  top: 0.3em;
+  right: 0.8em;
+  max-width: 5em;
+  color: white;
+  font-weight: 600;
+  font-size: 1.6em;
+  z-index: 1;
+  &::after{
+    position: absolute;
+    top: -1.5em;
+    right: -6em;
+    content: "";  
+    height: 5em;
+    width: 15em;
+    transform: rotatez(45deg);
+    background: var(--background-gradient);
+    /* background-color: chartreuse; */
+    z-index:-1;
+  }
 `
 
 const ProductCards = ({ products }) => {
@@ -174,7 +218,17 @@ const ProductCards = ({ products }) => {
                     return (
                         <div className="card-container" key={p?.id}>
                             <Cards>
+
                                 <Link to={`/product/${p.id}`}>
+
+                                    {/* Box SIEMPRE debe estar renderizado */}
+                                    <Box>
+                                        {/* Offer debe recibir el condicional del Descuento */}
+                                        <Offer>
+                                            25%<br/>
+                                        </Offer>
+                                    </Box>
+
                                     <img src={p.big_image} alt={p.name}></img><br />
                                     <p>{p.name}</p>
 
@@ -191,21 +245,20 @@ const ProductCards = ({ products }) => {
                                             starRatedColor="gold"
                                         />
                                     </span>
-
                                     {/* REVIEWS MODAL (Probablemente) */}
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                                 </Link>
-                                <div>
 
+                                <IconsContainer>
                                     {(user.id) ?
                                         <div>
                                             {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
                                         </div>
                                         : null
                                     }
-
                                     <CartIcon onClick={() => handleCart(p)} />
-                                </div>
+                                </IconsContainer>
+
                             </Cards>
                             {/* <button className="buy" onClick={handleClick}>
                             <CartIcon />

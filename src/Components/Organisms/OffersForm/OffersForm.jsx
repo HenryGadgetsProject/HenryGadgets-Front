@@ -140,8 +140,15 @@ const OffersForm = () => {
             'La oferta se ha agregado con éxito!',
             'success'
         )
+        const body = {
+            target: input.target.toLowerCase(),
+            targetId: input.targetId,
+            discount: parseInt(input.discount),
+            duration: parseInt(input.duration)
+        }
+        console.log(body)
         // ***** El coso que hizo juan *****
-        axios.post('http://localhost:3001/offer', input)
+        axios.post('http://localhost:3001/offer', body)
         // ***** El coso que hizo juan *****
     }
 
