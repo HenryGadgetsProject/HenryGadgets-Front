@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    height: 100%;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
@@ -161,14 +162,14 @@ const UserEditReviewForm = () => {
                         <NameIcon />
                         <Label>Titulo </Label>
                         <br />
-                        <Input name='title' value={input.title} onBlur={handleBlur} onChange={handleChange} required></Input>
+                        <Input name='title' value={input.title} onBlur={handleBlur} onChange={handleChange}></Input>
                         {isTouch.title && error.title ? (<ErrorMsg>{error.title}</ErrorMsg>) : null}
                     </Item>
                     <Item>
                         <ImageIcon />
                         <Label>Rating </Label>
                         <br />
-                        <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange} required></Input>
+                        <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange}></Input>
                         {isTouch.rating && error.rating ? (<ErrorMsg>{error.rating}</ErrorMsg>) : null}
                     </Item>
                 </Divider>
@@ -177,7 +178,7 @@ const UserEditReviewForm = () => {
                     <DescriptionIcon />
                     <Label>Descripción </Label>
                     <br />
-                    <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
                 </Item>
 

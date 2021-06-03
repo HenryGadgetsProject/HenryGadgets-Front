@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    height: 100%;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
