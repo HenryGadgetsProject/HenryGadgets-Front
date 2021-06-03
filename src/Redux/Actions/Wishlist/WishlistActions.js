@@ -9,8 +9,7 @@ import {
     GET_WISHLIST_SUCCESS,
     CREATE_WISHLIST_SUCCESS,
     UPDATE_WISHLIST_SUCCESS,
-    DELETE_WISHLIST_SUCCESS,
-    WISH
+    RESET_WISH_LIST
 } from '../Wishlist/WishlistActionTypes'
 
 export const getWishlist = (userId) => {
@@ -66,20 +65,7 @@ export const addToWishlist = (user, product) => {
     }
 }
 
-// export const addToWishlist = (user, product) => {
-//     return (dispatch) => {
-//         axios.post(`${HOST}/users/wishlist/${user.id}/${product.id}`)
-//             .then(response => {
-//                 const wishList = response.data;
-//                 dispatch(
-//                     {
-//                         type: ADD_TO_WISHLIST,
-//                         payload: product
-//                     }
-//                 )
-//             })
-//     }
-// }
+
 
 
 export const removeFromWishlist = (user, product) => {
@@ -87,7 +73,7 @@ export const removeFromWishlist = (user, product) => {
         dispatch({ type: WISHLIST_REQUEST })
         axios.delete(`${HOST}/users/wishlist/${user.id}/${product.id}`)
             .then(response => {
-                console.log('RESPONSE', response.data)
+
                 const products = response.data.products
                 dispatch(
                     {
@@ -183,10 +169,16 @@ export const updateWishlist = (wishListId, productId) => {
     }
 }
 
-export const makeWish = (productId) => {
+// export const makeWish = (productId) => {
+//     return {
+//         type: WISH,
+//         payload: productId
+//     }
+// }
+
+export const resetWishList = () => {
     return {
-        type: WISH,
-        payload: productId
+        type: RESET_WISH_LIST,
     }
 }
 

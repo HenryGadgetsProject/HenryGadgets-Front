@@ -115,7 +115,6 @@ const ProductCards = ({ products }) => {
 
     // const [wish, setWish] = useState([])
 
-    console.log("ESTADO", JSON.stringify(wish, null, 4))
 
     const handleCart = (product) => {
         const productSelected = { ...product, quantity: 1 }
@@ -164,13 +163,25 @@ const ProductCards = ({ products }) => {
         return (
             <>
                 {products?.map(p => {
+
+                    let newPrice = p.price
+
+                    if (p.discount > 0) {
+                        newPrice = newPrice * (1 - p.discount)
+                    }
+
+
                     return (
                         <div className="card-container" key={p?.id}>
                             <Cards>
                                 <Link to={`/product/${p.id}`}>
                                     <img src={p.big_image} alt={p.name}></img><br />
                                     <p>{p.name}</p>
-                                    <p><NumberFormat value={p.price} displayType={'text'} thousandSeparator='.' decimalSeparator=',' prefix={'$'} /></p>
+
+                                    <p><NumberFormat value={newPrice}
+
+                                        displayType={'text'} thousandSeparator='.' decimalSeparator=',' prefix={'$'} /></p>
+
                                     <span className="center">
                                         <StarRatings
                                             rating={p.rating}
@@ -180,12 +191,18 @@ const ProductCards = ({ products }) => {
                                             starRatedColor="gold"
                                         />
                                     </span>
+
                                     {/* REVIEWS MODAL (Probablemente) */}
                                     {/* {product.map(product => <span className="cat-name">{product.name}</span>)} */}
                                 </Link>
                                 <div>
-                                    {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
 
+                                    {(user.id) ?
+                                        <div>
+                                            {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
+                                        </div>
+                                        : null
+                                    }
 
                                     <CartIcon onClick={() => handleCart(p)} />
                                 </div>

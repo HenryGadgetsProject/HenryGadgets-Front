@@ -6,14 +6,13 @@ import {
     GET_WISHLIST_SUCCESS,
     CREATE_WISHLIST_SUCCESS,
     UPDATE_WISHLIST_SUCCESS,
-    DELETE_WISHLIST_SUCCESS,
-    WISH
+    // DELETE_WISHLIST_SUCCESS,
+    RESET_WISH_LIST
 } from '../Actions/Wishlist/WishlistActionTypes'
 
 const initialState = {
     loading: false,
     wishList: [],
-    // wish: [],
     error: ''
 }
 
@@ -60,34 +59,35 @@ const wishlistReducer = (state = initialState, action) => {
         case CREATE_WISHLIST_SUCCESS: {
             return {
                 ...state,
-                wishlist: [...state.wishlist, action.payload],
+                wishList: [...state.wishList, action.payload],
                 loading: false,
                 error: ''
             }
         }
-        case DELETE_WISHLIST_SUCCESS: {
-            return {
-                ...state,
-                wishlist: state.wishlist.filter(wish => wish.id !== parseInt(action.payload)),
-                loading: false,
-                error: ''
-            }
-        }
+        // case DELETE_WISHLIST_SUCCESS: {
+        //     return {
+        //         ...state,
+        //         wishList: state.wishList.filter(wish => wish.id !== parseInt(action.payload)),
+        //         loading: false,
+        //         error: ''
+        //     }
+        // }
         case UPDATE_WISHLIST_SUCCESS: {
             return {
                 ...state,
-                whishlist: state.whishlist.map(wl => (wl.id === parseInt(action.payload)) ? { ...wl, ...action.payload } : wl),
+                whishList: state.whishList.map(wl => (wl.id === parseInt(action.payload)) ? { ...wl, ...action.payload } : wl),
                 loading: false,
                 error: ''
             }
         }
 
-        // case WISH: {
-        //     return {
-        //         ...state,
-        //         wish: [...state.wish, action.payload]
-        //     }
-        // }
+        case RESET_WISH_LIST: {
+            return {
+                ...state,
+                wishList: []
+            }
+        }
+
         default: {
             return state
         }
