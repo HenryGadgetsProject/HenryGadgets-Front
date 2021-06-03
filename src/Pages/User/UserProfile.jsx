@@ -18,7 +18,7 @@ import styled from 'styled-components'
 const Aside = styled.aside`
     display             : flex;
     flex-direction      : column;
-    align-items         : center;
+    /* align-items         : center; */
     background          : var(--aside-home);
     border              : none;
     padding             : 2em;
@@ -35,7 +35,7 @@ const Aside = styled.aside`
         flex-direction  : row;
         ${'' /* flex-wrap       : wrap; */}
         justify-content : flex-start;
-        margin          : .5em auto;
+        margin          : .5em 0 0 0;
         padding         : 1em;
     }
 
@@ -103,22 +103,22 @@ const UserSection = styled.section`
     }
 `
 const UserIcon = styled.img`
-    background: url('https://api.iconify.design/si-glyph:badge-name.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-user) no-repeat center center / contain;
 `
 const EmailIcon = styled.img`
-    background: url('https://api.iconify.design/clarity:email-solid.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-email) no-repeat center center / contain;
 `
 const BellIcon = styled.img`
-    background: url('https://api.iconify.design/bi:bell-fill.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-bell) no-repeat center center / contain;
 `
 const OrderIcon = styled.img`
-    background: url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-order) no-repeat center center / contain;
 `
 const AddReview = styled.img`
-    background: url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-review) no-repeat center center / contain;
 `
 const WishIcon = styled.img`
-    background: url('https://api.iconify.design/clarity:heart-solid.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-wish) no-repeat center center / contain;
 `
 
 const UserProfile = () => {

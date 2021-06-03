@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
-import Swal from 'sweetalert2'
-import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
+import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
@@ -74,55 +72,47 @@ const ImageIcon = styled.img`
     padding: 1em;
     background: url('https://api.iconify.design/bi:image-fill.svg?color=white') no-repeat center center / contain;
 `
-const DescriptionIcon = styled.img`
-    margin-top: 2em;
+const DurationIcon = styled.img`
     height: 2em;
     width: 2em;
     padding: 1em;
-    background: url('https://api.iconify.design/ic:baseline-description.svg?color=white') no-repeat center center / contain;
+    background: url('https://api.iconify.design/bx:bx-time.svg?color=white') no-repeat center center / contain;
+`
+const OfferIcon = styled.img`
+    height: 2em;
+    width: 2em;
+    padding: 1em;
+    background: url('https://api.iconify.design/bx:bxs-offer.svg?color=white') no-repeat center center / contain;
 `
 
-// Control para Formulario
 const validate = (input) => {
-
     let error = {}
-
-    if (!input.name) {
-        error.name = 'Ingresa un nombre'
+    if (!input.target) {
+        error.target = 'Debes ingresar un objetivo'
     }
-    if (!input.photo) {
-        error.photo = 'Ingresa una url'
+    if (!input.targetId) {
+        error.targetId = 'Ingresa una ID'
     }
-    if (!input.description) {
-        error.description = 'Ingresa una descripción'
+    if (!input.discount) {
+        error.discount = 'Ingresa un Descuento'
+    }
+    if (!input.duration) {
+        error.duration = 'Ingresa una duración'
     }
     return error
 }
 
-const CategoryForm = () => {
-
-    let history = useHistory();
-
-    const dispatch = useDispatch()
+const OffersForm = () => {
 
     const [isTouch, setIsTouch] = useState({})
 
     const [error, setError] = useState('')
 
-    const categories = useSelector(state => state.category.categories)
-
-    // Determina el último valor de la ID categories
-    function getId(array) {
-        return array.reduce((acumulator, current) => {
-            return acumulator < current.id ? current.id : acumulator;
-        }, 0) + 1;
-    }
-
     const [input, setInput] = useState({
-        id: getId(categories),
-        name: "",
-        photo: "",
-        description: "",
+        target: "",
+        targetId: "",
+        discount: "",
+        duration: ""
     })
 
     const handleChange = (e) => {
@@ -136,7 +126,7 @@ const CategoryForm = () => {
     }
 
     const handleSubmit = (e) => {
-        if (error.name || error.photo || error.description || input.name === '') {
+        if (error.target || error.targetId || error.discount || error.duration || input.target === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -145,13 +135,14 @@ const CategoryForm = () => {
             return e.preventDefault()
         }
         e.preventDefault()
-        dispatch(addCategory(input))
         Swal.fire(
             'Listo!',
-            'La categoría se ha agregado con éxito!',
+            'La oferta se ha agregado con éxito!',
             'success'
         )
-        history.push("/admin/categories");
+        // ***** El coso que hizo juan *****
+        axios.post('http://localhost:3001/offer', input)
+        // ***** El coso que hizo juan *****
     }
 
     const handleBlur = (e) => {
@@ -163,33 +154,42 @@ const CategoryForm = () => {
 
     return (
         <FormContainer>
-            <h3>Agregar Categoría</h3>
+            <h3>Agregar Ofertas</h3>
             <Form onSubmit={handleSubmit}>
 
                 <Divider>
                     <Item>
                         <NameIcon />
-                        <Label>Nombre </Label>
+                        <Label>Objetivo </Label>
                         <br />
-                        <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange}></Input>
-                        {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
+                        <Input name='target' value={input.target} onBlur={handleBlur} onChange={handleChange} placeholder="Product / Category"></Input>
+                        {isTouch.target && error.target ? (<ErrorMsg>{error.target}</ErrorMsg>) : null}
                     </Item>
                     <Item>
-                        <ImageIcon />
-                        <Label>Imágen </Label>
+                        <NameIcon />
+                        <Label>ID Objetivo </Label>
                         <br />
-                        <Input name='photo' value={input.photo} onBlur={handleBlur} onChange={handleChange}></Input>
-                        {isTouch.photo && error.photo ? (<ErrorMsg>{error.photo}</ErrorMsg>) : null}
+                        <Input name='targetId' value={input.targetId} onBlur={handleBlur} onChange={handleChange}></Input>
+                        {isTouch.targetId && error.targetId ? (<ErrorMsg>{error.targetId}</ErrorMsg>) : null}
                     </Item>
                 </Divider>
-
-                <Item>
-                    <DescriptionIcon />
-                    <Label>Descripción </Label>
-                    <br />
-                    <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange}></LongInput>
-                    {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
-                </Item>
+                <br/>
+                <Divider>
+                    <Item>
+                        <OfferIcon />
+                        <Label>Descuento </Label>
+                        <br />
+                        <Input name='discount' value={input.discount} onBlur={handleBlur} onChange={handleChange}></Input>
+                        {isTouch.discount && error.discount ? (<ErrorMsg>{error.discount}</ErrorMsg>) : null}
+                    </Item>
+                    <Item>
+                        <DurationIcon />
+                        <Label>Duración </Label>
+                        <br />
+                        <Input name='duration' value={input.duration} onBlur={handleBlur} onChange={handleChange}></Input>
+                        {isTouch.duration && error.duration ? (<ErrorMsg>{error.duration}</ErrorMsg>) : null}
+                    </Item>
+                </Divider>
 
                 <ButtonContainer>
                     <Button type='submit'>Agregar</Button>
@@ -200,4 +200,4 @@ const CategoryForm = () => {
     )
 }
 
-export default CategoryForm
+export default OffersForm

@@ -118,6 +118,15 @@ const UserIcon = styled.img`
 const OrderIcon = styled.img`
     background: url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white') no-repeat center center / contain;
 `
+const LocationIcon = styled.img`
+    background: url('https://api.iconify.design/carbon:location-filled.svg?color=white') no-repeat center center / contain;
+`
+const AddLocationIcon = styled.img`
+    background: url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white') no-repeat center center / contain;
+`
+const OfferIcon = styled.img`
+    background: url('https://api.iconify.design/bx:bxs-offer.svg?color=white') no-repeat center center / contain;
+`
 
 const AdminSideBar = () => {
     return (
@@ -140,10 +149,13 @@ const AdminSideBar = () => {
                 <span>Ordenes</span>
             </Link>
             <Link to='/admin/branches'>
-                <OrderIcon />
+                <LocationIcon />
                 <span>Sucursales</span>
             </Link>
-
+            <Link to='/admin/offers'>
+                <OfferIcon/>
+                <span>Ofertas</span>
+            </Link>
             <Link to='/admin/product'>
                 <AddProductIcon />
                 <span>Agregar Productos</span>
@@ -153,8 +165,12 @@ const AdminSideBar = () => {
                 <span>Agregar Categorías</span>
             </Link>
             <Link to='/admin/branch'>
-                <AddCategoryIcon />
+                <AddLocationIcon />
                 <span>Agregar Sucursal</span>
+            </Link>
+            <Link to='/admin/analytics'>
+                <AddCategoryIcon />
+                <span>Visualizar ventas</span>
             </Link>
 
             <input type="checkbox" id="btn-drop-down-filters" />

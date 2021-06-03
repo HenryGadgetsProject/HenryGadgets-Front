@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    height: 100%;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
@@ -143,6 +144,14 @@ const BranchForm = () => {
     }
 
     const handleSubmit = (e) => {
+        if (error.name || error.address || error.attention || error.lat || input.lng || input.name === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes completar correctamente los campos!'
+            })
+            return e.preventDefault()
+        }
         e.preventDefault()
         const body = {
             name: input.name,
@@ -175,35 +184,35 @@ const BranchForm = () => {
                     <NameIcon />
                     <Label>Nombre </Label>
                     <br />
-                    <LongInput name='name' value={input.name} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='name' value={input.name} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
                 </Item>
                 <Item>
                     <DescriptionIcon />
                     <Label>Dirección</Label>
                     <br />
-                    <LongInput name='address' value={input.address} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='address' value={input.address} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.address && error.address ? (<ErrorMsg>{error.address}</ErrorMsg>) : null}
                 </Item>
                 <Item>
                     <DescriptionIcon />
                     <Label>Atención</Label>
                     <br />
-                    <LongInput name='atention' value={input.atention} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='atention' value={input.atention} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.atention && error.atention ? (<ErrorMsg>{error.atention}</ErrorMsg>) : null}
                 </Item>
                 <Item>
                     <DescriptionIcon />
                     <Label>Latitud</Label>
                     <br />
-                    <LongInput name='lat' value={input.lat} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='lat' value={input.lat} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.lat && error.lat ? (<ErrorMsg>{error.lat}</ErrorMsg>) : null}
                 </Item>
                 <Item>
                     <DescriptionIcon />
                     <Label>Longitud</Label>
                     <br />
-                    <LongInput name='lng' value={input.lng} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='lng' value={input.lng} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.lng && error.lng ? (<ErrorMsg>{error.lng}</ErrorMsg>) : null}
                 </Item>
 

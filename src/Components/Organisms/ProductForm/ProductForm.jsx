@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    height: 100%;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
@@ -17,7 +18,6 @@ const FormContainer = styled.div`
 `
 const Form = styled.form`
     padding: 2em;
-
 `
 const Label = styled.label`
     font-size: 2em;

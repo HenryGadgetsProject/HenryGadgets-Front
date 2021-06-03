@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    height: 100%;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
@@ -156,14 +157,14 @@ const EditCategoryForm = ({ categoryId }) => {
                         <NameIcon />
                         <Label>Nombre </Label>
                         <br />
-                        <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange} required></Input>
+                        <Input name='name' value={input.name} onBlur={handleBlur} onChange={handleChange}></Input>
                         {isTouch.name && error.name ? (<ErrorMsg>{error.name}</ErrorMsg>) : null}
                     </Item>
                     <Item>
                         <ImageIcon />
                         <Label>Imágen </Label>
                         <br />
-                        <Input name='photo' value={input.photo} onBlur={handleBlur} onChange={handleChange} required></Input>
+                        <Input name='photo' value={input.photo} onBlur={handleBlur} onChange={handleChange}></Input>
                         {isTouch.photo && error.photo ? (<ErrorMsg>{error.photo}</ErrorMsg>) : null}
                     </Item>
                 </Divider>
@@ -172,7 +173,7 @@ const EditCategoryForm = ({ categoryId }) => {
                     <DescriptionIcon />
                     <Label>Descripción </Label>
                     <br />
-                    <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange} required></LongInput>
+                    <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
                 </Item>
 
