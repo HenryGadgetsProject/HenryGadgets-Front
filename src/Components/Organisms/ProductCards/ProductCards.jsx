@@ -117,7 +117,9 @@ const ProductCards = ({ products }) => {
 
 
     const handleCart = (product) => {
-        const productSelected = { ...product, quantity: 1 }
+
+
+        const productSelected = { ...product, quantity: 1, price: (product.price * (1 - product.discount)) }
 
         dispatch(addItemCart(productSelected))
 
@@ -164,11 +166,7 @@ const ProductCards = ({ products }) => {
             <>
                 {products?.map(p => {
 
-                    let newPrice = p.price
 
-                    if (p.discount > 0) {
-                        newPrice = newPrice * (1 - p.discount)
-                    }
 
 
                     return (
@@ -178,7 +176,7 @@ const ProductCards = ({ products }) => {
                                     <img src={p.big_image} alt={p.name}></img><br />
                                     <p>{p.name}</p>
 
-                                    <p><NumberFormat value={newPrice}
+                                    <p><NumberFormat value={p.price * (1 - p.discount)}
 
                                         displayType={'text'} thousandSeparator='.' decimalSeparator=',' prefix={'$'} /></p>
 
