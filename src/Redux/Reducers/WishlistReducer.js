@@ -6,12 +6,14 @@ import {
     GET_WISHLIST_SUCCESS,
     CREATE_WISHLIST_SUCCESS,
     UPDATE_WISHLIST_SUCCESS,
-    DELETE_WISHLIST_SUCCESS
+    DELETE_WISHLIST_SUCCESS,
+    WISH
 } from '../Actions/Wishlist/WishlistActionTypes'
 
 const initialState = {
     loading: false,
     wishList: [],
+    // wish: [],
     error: ''
 }
 
@@ -79,6 +81,13 @@ const wishlistReducer = (state = initialState, action) => {
                 error: ''
             }
         }
+
+        // case WISH: {
+        //     return {
+        //         ...state,
+        //         wish: [...state.wish, action.payload]
+        //     }
+        // }
         default: {
             return state
         }

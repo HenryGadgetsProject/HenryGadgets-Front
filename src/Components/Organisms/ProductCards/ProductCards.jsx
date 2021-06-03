@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
-import { addToWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
+import { addToWishlist, makeWish, removeFromWishlist } from '../../../Redux/Actions/Wishlist/WishlistActions'
 import NumberFormat from 'react-number-format';
 
 import Swal from 'sweetalert2'
@@ -109,10 +109,11 @@ const ProductCards = ({ products }) => {
 
     const user = useSelector(state => state.user.user)
     const wishList = useSelector(state => state.wishlist.wishList)
+    let wishM = wishList.map(w => w.id)
 
+    const [wish, setWish] = useState(wishM)
 
-
-    const [wish, setWish] = useState([])
+    // const [wish, setWish] = useState([])
 
     console.log("ESTADO", JSON.stringify(wish, null, 4))
 
@@ -131,7 +132,6 @@ const ProductCards = ({ products }) => {
     }
 
     const handleWishlist = (product) => {
-
 
         if (wishList.length > 0 && wishList.find(p => p.id === product.id)) {
             Swal.fire({
@@ -152,6 +152,12 @@ const ProductCards = ({ products }) => {
         })
         dispatch(addToWishlist(user, product))
         setWish([...wish, product.id])
+    }
+
+
+    const handleNoWishlist = (product) => {
+        dispatch(removeFromWishlist(user, product))
+        setWish([wish.filter(w => w.id !== product.id)])
     }
 
     if (products.length > 0) {

@@ -11,6 +11,7 @@ import { getUsers } from './Redux/Actions/User/UserActions'
 import { getCart } from './Redux/Actions/Cart/CartActions'
 import { getOrders } from './Redux/Actions/Order/OrderActions'
 import { getBranches } from './Redux/Actions/Branch/BranchesActions'
+import { getWishlist } from './Redux/Actions/Wishlist/WishlistActions'
 
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
@@ -43,6 +44,7 @@ function App() {
 
     useEffect(() => {
         if (fullUser) {
+            dispatch(getWishlist(fullUser.id))
             dispatch(
                 {
                     type: USER_LOGIN_SUCCESS,
