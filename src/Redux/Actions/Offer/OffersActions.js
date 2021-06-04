@@ -43,7 +43,7 @@ export const addOffer = (body) => {
     console.log(body)
     return (dispatch) => {
         dispatch({ type: OFFER_REQUEST })
-        axios.post('http://localhost:3001/offer', body)
+        axios.post(`${HOST}/offer`, body)
             .then(response => {
                 const offer = response.data
                 dispatch(

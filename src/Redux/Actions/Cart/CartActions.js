@@ -138,7 +138,7 @@ export const createOrder = (userId, body,) => {
         try {
             dispatch({ type: ORDER_LOADING })
 
-            const idReq = await axios.put(`http://localhost:3001/orders/orders/${userId}`, body)
+            const idReq = await axios.put(`${HOST}/orders/orders/${userId}`, body)
             const id = idReq.data.id
 
             dispatch(
@@ -148,7 +148,7 @@ export const createOrder = (userId, body,) => {
                 }
             )
 
-            const dataReq = await axios.put(`http://localhost:3001/orders/admin/${id}/processing`)
+            const dataReq = await axios.put(`${HOST}/orders/admin/${id}/processing`)
 
 
             const order = {
@@ -157,7 +157,7 @@ export const createOrder = (userId, body,) => {
                 quantity: 1
             }
 
-            const paymentUrlReq = await axios.post(`http://localhost:3001/payment/${dataReq.data.id}`, order)
+            const paymentUrlReq = await axios.post(`${HOST}/payment/${dataReq.data.id}`, order)
             window.open(paymentUrlReq.data.url)
 
         } catch (error) {
@@ -175,7 +175,7 @@ export const createOrder = (userId, body,) => {
 export const sendMail = (body, url) => {
     return (dispatch) => {
         dispatch({ type: MAIL_SENDING })
-        axios.post(`http://localhost:3001/email/${url}`, body)
+        axios.post(`${HOST}/email/${url}`, body)
             .then(response => {
 
                 dispatch(
@@ -247,7 +247,7 @@ export const changeToCompleted = (orderId) => {
         try {
             dispatch({ type: ORDER_LOADING })
 
-            await axios.put(`http://localhost:3001/orders/admin/${orderId}/completed`)
+            await axios.put(`${HOST}/orders/admin/${orderId}/completed`)
 
 
 
