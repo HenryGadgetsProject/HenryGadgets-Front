@@ -326,7 +326,7 @@ const ProductForm = () => {
                             <ActiveIcon />
                             <Label>Publicación Activa </Label>
                             <br />
-                            <Input name='is_active' value={input.is_active} onBlur={handleBlur} onChange={handleChange}   placeholder='True / False'></Input>
+                            <Input name='is_active' value={input.is_active} onBlur={handleBlur} onChange={handleChange} placeholder='True / False'></Input>
                             {isTouch.is_active && error.is_active ? (<ErrorMsg>{error.is_active}</ErrorMsg>) : <p></p>}
                             {/* <select onChange={handleChange} value={input.is_active}>
                             <option value="true">Activa</option>

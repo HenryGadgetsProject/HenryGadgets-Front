@@ -30,4 +30,6 @@ export const SET_PROD_BY_PRICE = 'SET_PRODUCTS_BY_PRICE'
 export const SET_PROD_BY_RATING = 'SET_PRODUCTS_BY_RATING'
 
 export const NOTIFY_STOCK_SUCCESS = 'NOTIFY_STOCK_SUCCESS'
+
+
 ////////////////////////////

@@ -3,7 +3,11 @@ import axios from 'axios'
 
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addOffer } from '../../../Redux/Actions/Offer/OffersActions'
+import { getProducts } from '../../../Redux/Actions/Product/ProductActions'
+import { useHistory } from 'react-router-dom'
+
 
 const FormContainer = styled.div`
     background: var(--background-form);
@@ -134,6 +138,10 @@ const validate = (input) => {
 
 const OffersForm = () => {
 
+    const dispatch = useDispatch()
+
+    const history = useHistory()
+
     const categories = useSelector(state => state.category.categories)
 
     const [isTouch, setIsTouch] = useState({})
@@ -184,9 +192,11 @@ const OffersForm = () => {
         }
 
         console.log('BODY', body)
-
+        dispatch(addOffer(body))
+        history.push('/admin/offers')
+        // dispatch(getProducts())
         // ***** El coso que hizo juan *****
-        axios.post('http://localhost:3001/offer', body)
+        //axios.post('http://localhost:3001/offer', body)
         // ***** El coso que hizo juan *****
     }
 

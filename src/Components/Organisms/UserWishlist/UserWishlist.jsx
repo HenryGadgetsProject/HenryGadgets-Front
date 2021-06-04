@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Table from '../../Atoms/Table'
 import { getWishlist, removeFromWishlist, postWishlist, resetWishList } from '../../../Redux/Actions/Wishlist/WishlistActions'
-
+import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
 import styled from 'styled-components'
 
 const GlassIcon = styled.img`
@@ -40,6 +40,14 @@ const UserWishlist = () => {
         dispatch(removeFromWishlist(user, product))
     }
 
+    const handleCart = (product) => {
+        const productSelected = { ...product, quantity: 1, price: product.price }
+        dispatch(addItemCart(productSelected))
+        dispatch(removeFromWishlist(user, product))
+    }
+
+
+
     const handleClear = () => {
         dispatch(resetWishList())
     }
@@ -64,18 +72,20 @@ const UserWishlist = () => {
                             <tr key={p.id}>
                                 <td data-label="Foto"><img className="mini" src={p.big_image} alt={p.name} /></td>
                                 <td data-label="Nombre">{p.name}</td>
-                                <td data-label="Precio" className="center-text">{p.price}$</td>
+                                <td data-label="Precio" className="center-text">{p.price}</td>
                                 <td data-label="Borrar" className="center-text"><DeleteIcon onClick={() => handleDelete(p)} /></td>
-                                <td data-label="Agregar" className="center-text"><CartIcon /></td>
+                                <td data-label="Agregar" className="center-text"><CartIcon onClick={() => handleCart(p)} /></td>
                             </tr>
                         )
                     })}
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td data-label="Borrar Todo" className="center-text">Borrar todo</td>
                         <td data-label="Borrar" className="center-text"><DeleteIcon onClick={() => handleClear()} /></td>
                         <td></td>
-                        <td data-label="Agregar Todo" className="center-text">Agregar todo</td>
-                        <td data-label="Carrito" className="center-text"><CartIcon /></td>
+                        {/* <td data-label="Agregar Todo" className="center-text">Agregar todo</td>
+                        <td data-label="Carrito" className="center-text"><CartIcon /></td> */}
                     </tr>
                 </tbody>
             </Table>

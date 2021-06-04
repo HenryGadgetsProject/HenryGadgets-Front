@@ -62,7 +62,8 @@ const OfferReducer = (state = initialState, action) => {
             return {
                 ...state,
                 offers: state.offers.filter(offer => offer.id !== parseInt(action.payload)),
-                loading: false
+                loading: false,
+
             }
         }
         case UPDATE_OFFER_SUCCESS: {
