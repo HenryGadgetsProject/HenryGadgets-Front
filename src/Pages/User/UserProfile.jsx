@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userSuscribe } from '../../Redux/Actions/User/UserActions'
@@ -11,6 +11,8 @@ import AllReviews from '../../Components/Organisms/AllReviews'
 import UserEditReviewForm from '../../Components/Organisms/UserEditReviewForm'
 import UserWishlist from '../../Components/Organisms/UserWishlist'
 import Footer from '../../Components/Organisms/Footer'
+
+import { getUser } from '../../Redux/Actions/User/UserActions'
 
 import styled from 'styled-components'
 
@@ -143,8 +145,13 @@ const UserProfile = () => {
     const dispatch = useDispatch()
 
     const handleSuscribe = () => {
+
         dispatch(userSuscribe(user))
     }
+
+    useEffect(() => {
+        dispatch(getUser(user.id))
+    }, [user.id])
 
     return (
         <div className="container">
@@ -155,43 +162,43 @@ const UserProfile = () => {
                 <Aside>
                     <img src={user.photo} alt={user.first_name} className='profilePic'></img>
                     <div>
-                        <UserIcon className='icon'/>
+                        <UserIcon className='icon' />
                         <span>Usuario</span>
                     </div>
                     <p>{user.first_name} {user.last_name}</p>
 
                     <div>
-                        <EmailIcon className='icon'/>
+                        <EmailIcon className='icon' />
                         <span>Email</span>
                     </div>
                     <p>{user.email}</p>
-                    
+
                     <div className="links">
                         {/* <BellIcon className='icon'/>
                         <span>Newsletter!</span> */}
                         {(user.nlsuscribe) ?
-                        <>
-                        <OnIcon className='icon'/><span className='span-pointer' onClick={handleSuscribe}>Activar Notifaciones</span>
-                        </>
-                        :
-                        <>
-                        <OffIcon classname='icon'/><span className='span-pointer' onClick={handleSuscribe}>Desactivar Notificaciones</span> 
-                        </>
+                            <>
+                                <OnIcon className='icon' /><span className='span-pointer' onClick={handleSuscribe}>Activar Notifaciones</span>
+                            </>
+                            :
+                            <>
+                                <OffIcon classname='icon' /><span className='span-pointer' onClick={handleSuscribe}>Desactivar Notificaciones</span>
+                            </>
                         }
                     </div>
 
                     <Link to='/user/orders' className="links">
-                        <OrderIcon className='icon'/>
+                        <OrderIcon className='icon' />
                         <span>Ordenes</span>
                     </Link>
 
                     <Link to='/user/reviews' className="links">
-                        <Review className='icon'/>
+                        <Review className='icon' />
                         <span>Reviews</span>
                     </Link>
 
                     <Link to='/user/wishlist' className="links">
-                        <WishIcon className='icon'/>
+                        <WishIcon className='icon' />
                         <span>Lista de deseos</span>
                     </Link>
                 </Aside>
