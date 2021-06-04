@@ -78,7 +78,7 @@ const Home = () => {
                     <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
 
                     <div className="filters">
-                        <h6>Buscar por: </h6>
+                        <h6>Buscar por : </h6>
                         <FilterPrdByCatName />
                         <FilterPrdByStock />
                         <FilterPrdByPrice />

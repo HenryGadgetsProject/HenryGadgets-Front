@@ -45,6 +45,7 @@ export const lightTheme = {
         addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
         addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
         sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
+        notification: `url('https://api.iconify.design/bx:bxs-bell-ring.svg?color=black')`,
 
         github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=black')`
     },
@@ -102,6 +103,7 @@ export const darkTheme = {
         addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
         addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
         sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
+        notification: `url('https://api.iconify.design/bx:bxs-bell-ring.svg?color=white')`,
 
         github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=white')`
     },
@@ -159,6 +161,7 @@ const GlobalStyle = createGlobalStyle`
         --icon-add-categories   : ${props => props.theme.icon.addCategories};
         --icon-add-location     : ${props => props.theme.icon.addLocation};
         --icon-sales            : ${props => props.theme.icon.sales};
+        --icon-notification     : ${props => props.theme.icon.notification};
 
         --icon-github           : ${props => props.theme.icon.github};
 

@@ -250,10 +250,10 @@ const EditProductForm = ({ productId }) => {
             return
         }
 
-        if (parseInt(product.stock) < parseInt(input.stock)) {
+        if (parseInt(product.stock) === 0 && parseInt(product.stock) < parseInt(input.stock)) {
             dispatch(sendStockNotification(product.id))
         }
-
+        
         // const newInput = {...input, rating: parseInt(input.rating)}
 
         dispatch(updateProduct(productId, input))
