@@ -4,6 +4,7 @@ import NavBarHome from '../Components/Organisms/NavBarHome'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
+// import AsideSearchBar from '../Components/Organisms/AsideSearchBar'
 import Footer from '../Components/Organisms/Footer'
 import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
 import FilterPrdByStock from '../Components/Organisms/FilterPrdByStock'
@@ -70,6 +71,9 @@ const Home = () => {
 
             <Main id="main">
                 <aside>
+                    {/* <div className="aside-search-bar">
+                        <AsideSearchBar />
+                    </div> */}
                     <input type="checkbox" id="btn-drop-down-filters" />
                     <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
 

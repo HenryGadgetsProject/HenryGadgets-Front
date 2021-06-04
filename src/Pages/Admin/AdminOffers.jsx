@@ -33,7 +33,7 @@ const AdminOffers = () => {
         <>
 
             <Table>
-                <caption>Sucursales</caption>
+                <caption>Ofertas</caption>
                 <thead>
                     <tr>
                         <th className="name">Categoría</th>

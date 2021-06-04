@@ -11,7 +11,7 @@ export const lightTheme = {
         darkPrimary: '#AF0000',
         defaultPrimary: '#FF1744',
         lightPrimary: '#FFCDD2',
-        primaryAccent: '#FFCC00',
+        primaryAccent: '#00FF00',
         secondaryAccent: '#00FFFF',
         primaryText: '#212121',
         secondaryText: '#757575',
@@ -30,7 +30,7 @@ export const lightTheme = {
         order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
         review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
         wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`,
-        magnifyingGlass: `url('https://api.iconify.design/foundation:magnifying-glass.svg?color=black')`,
+        magnifyingGlass: `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=black')`,
         Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
         addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
 
@@ -68,8 +68,8 @@ export const darkTheme = {
         darkPrimary: '#512DA8',
         defaultPrimary: '#4202C2',
         lightPrimary: '#815FD3',
-        primaryAccent: '#00FF00',
-        secondaryAccent: '#E040FB',
+        primaryAccent: '#E040FB',
+        secondaryAccent: '#FFCC00',
         primaryText: '#F2F2F2',
         secondaryText: '#30363D',
         divider: '#BDBDBD',
@@ -87,7 +87,7 @@ export const darkTheme = {
         order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
         review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
         wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`,
-        magnifyingGlass: `url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white')`,
+        magnifyingGlass: `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=white')`,
         Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
         addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
 
@@ -344,10 +344,10 @@ const GlobalStyle = createGlobalStyle`
 
     span.slideTitle {
         position                : absolute;
-        top                     : 5%;
-        right                   : 5%;
+        top                     : 4vh;
+        right                   : 5vw;
         color                   : var(--pure-white);
-        font-size               : 10em;
+        font-size               : 9em;
         text-shadow             : 3px 5px 8px var(--pure-black);
     }
 
@@ -408,6 +408,10 @@ const GlobalStyle = createGlobalStyle`
         padding                 : 2.2em 0;
         width                   : 20%;
 
+        ${'' /* div.aside-search-bar {
+            display: none;
+        } */}
+
         #btn-drop-down-filters {
             display: none;
             &:checked ~ .filters {
@@ -418,6 +422,7 @@ const GlobalStyle = createGlobalStyle`
         .icon-drop-down-filters {
             display: none;
             cursor: pointer;
+            z-index: 700;
         }
 
         .filters {
@@ -775,6 +780,15 @@ ADMIN ANALYTICS
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
         ${'' /* =============================================
+        SECTION 1 / SECTION 2
+        ================================================= */}
+        span.slideTitle {
+            right               : 14%;
+            top                 : 13%;
+            font-size           : 5em;
+        }
+        
+        ${'' /* =============================================
         SECTION 3
         ================================================= */}
         ${'' /* aside {
@@ -812,8 +826,8 @@ ADMIN ANALYTICS
         SECTION 1 / SECTION 2
         ================================================= */}
         span.slideTitle {
-            right               : 13%;
-            top                 : 45%;
+            right               : 7vw;
+            top                 : 10vh;
             font-size           : 5em;
         }
 
@@ -841,6 +855,14 @@ ADMIN ANALYTICS
             position            : -webkit-sticky;
             top                 : 7em;
             z-index             : 800;
+
+            ${'' /* div.aside-search-bar {
+                align-items: center;
+                display         : flex !important;
+                justify-content: center;
+                position: absolute;
+                width: 100%;
+            } */}
 
             .icon-drop-down-filters {
                 display         : flex !important;

@@ -27,6 +27,11 @@ const Description = styled.div`
         display: flex;
         justify-content: space-around;
     }
+    img {
+        margin: 0 1em 0 1em;
+        height: 5em;
+        width: 5em;
+    }
 `
 const CardContainer = styled.div`
     display: flex;
@@ -42,11 +47,6 @@ const Card = styled.div`
         font-size: 1.8em;
         font-weight: 600;
     }
-`
-const ProfilePic = styled.img`
-    width: 14em;
-    height: 14em;
-    border-radius: 50%;
 `
 const GitHubIcon = styled.img`
     margin: 0 1em 0 1em;
@@ -152,14 +152,17 @@ const About = () => {
                 {/* <p>Esta App ha sido desarrollada como parte del proceso de aprendizaje en Henry.</p> */}
                 <p>El reto en este punto, consistió en integrar de forma grupal tecnologías de frontend, backend y bases de datos con multiples funcionalidades para el usuario final y el administrador.</p>
                 <h4>Las tecnologías utilizadas para el desarrollo del proyecto fueron:</h4>
-                <ul>
-                    <li>Node</li>
-                    <li>React</li>
-                    <li>Redux</li>
-                    <li>Express</li>
-                    <li>PostgreSQL</li>
-                    <li>Sequelize</li>
-                </ul>
+                  
+                    <img src="https://api.iconify.design/vscode-icons:file-type-html.svg" alt="html5"/>
+                    <img src="https://api.iconify.design/vscode-icons:file-type-css.svg" alt="css3"/>
+                    <img src="https://api.iconify.design/logos:javascript.svg" alt="javascript"/>
+                    <img src="https://api.iconify.design/logos:react.svg" alt="react"/>
+                    <img src="https://api.iconify.design/logos:redux.svg" alt="redux"/>  
+                    <img src="https://api.iconify.design/logos:nodejs-icon.svg" alt="node"/>  
+                    <img src="https://api.iconify.design/simple-icons:express.svg" alt="express"/>  
+                    <img src="https://api.iconify.design/logos:postgresql.svg" alt="postgreSQL"/> 
+                    <img src="https://api.iconify.design/logos:sequelize.svg" alt="sequelize"/> 
+
                 <p>Se espera poder mejorarla a futuro con las recomendaciones de cada evaluador, en busca de que quede como una de las Apps del portafolio.</p>
                 </Description>
             </Container>

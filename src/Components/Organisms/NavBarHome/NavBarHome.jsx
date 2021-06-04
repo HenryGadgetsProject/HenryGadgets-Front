@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import SearchBar from '../../Molecules/SearchBar'
+import AsideSearchBar from '../AsideSearchBar'
 import MenuBurgerOptBar from '../MenuBurgerOptBar'
 
 import LogoLight from '../../../Images/Logo-light.png'
@@ -12,7 +12,7 @@ import styled from 'styled-components'
 
 const NavHome = styled.nav`
     ${'' /* border-bottom   : .2em solid blue; */}
-    //align-items     : center;
+    ${'' /* //align-items     : center; */}
     ${'' /* color           : ${ props => props.theme.fontColor || '#393E46' }; */}
     color           : var(--pure-white);
     display         : flex;
@@ -23,24 +23,42 @@ const NavHome = styled.nav`
     width           : 100%;
     z-index         : 900;
 
-    ${'' /* .logo {
-        padding     : 18px 0;
-    } */}
+    div.aside-search-bar {
+            display: none;
+        }
+
+    
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        div.aside-search-bar {
+            align-items     : center;
+            display         : flex !important;
+            justify-content : center;
+            ${'' /* position: absolute; */}
+            width           : 100%;
+        }
+    }
 `
 const LogoDivHome = styled.div`
     align-items     : center;
     display         : flex;
     justify-content : space-between;
     margin-left     : 2em;
-    ${'' /* width           : auto; */}
     width           : 4em;
+
+    transition      : all .3s linear;
+    &:hover {
+        transform   : scale(1.1);
+    }
 `
 
 const NavBarHome = () => {
     const [navHomeState, setNavHomeState] = useState(false)
     const mode = useSelector((state) => state.global.theme)
 
-    const location = useLocation()
+    // const location = useLocation()
 
     useEffect(() => {
         const changeNavHomeBackground = () => {
@@ -81,11 +99,11 @@ const NavBarHome = () => {
                     }
                     {/* <h1>Henry Gadgets</h1> */}
                 </Link>
-
             </LogoDivHome>
 
-            {location.pathname === '/home' ? <SearchBar /> : null}
-            {/* <SearchBar /> */}
+            <div className="aside-search-bar">
+                <AsideSearchBar />
+            </div>
 
             <MenuBurgerOptBar />
         </NavHome>
