@@ -50,27 +50,35 @@ const Button = styled.button`
 `
 
 const DeleteIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 const EditIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
 `
 const ResetIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/bx:bx-reset.svg?color=green') no-repeat center center / contain;
 `
 const CartIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/el:shopping-cart-sign.svg?color=%23FF1744') no-repeat center center / contain;
 `
 const ProcessingIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/uim:process.svg?color=%23ffff00') no-repeat center center / contain;
 `
 const CreatedIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/akar-icons:arrow-forward-thick-fill.svg?color=%231565c0') no-repeat center center / contain;
 `
 const CancelledIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/ic:round-cancel.svg?color=%23d50000') no-repeat center center / contain;
 `
 const CompletedIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/teenyicons:tick-circle-solid.svg?color=chartreuse') no-repeat center center / contain;
 `
 
@@ -164,6 +172,7 @@ const AdminOrders = () => {
 
     return (
         <>
+            <h3>Filtrar por estado</h3>
             <div className="filter-buttons">
                 <ResetIcon onClick={() => dispatch(getOrders())} />
                 <CartIcon onClick={() => handleTerm('cart')} />
