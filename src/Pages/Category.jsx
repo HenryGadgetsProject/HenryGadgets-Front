@@ -7,6 +7,19 @@ import Main from '../Components/Atoms/Main'
 import ProductCards from '../Components/Organisms/ProductCards'
 import Footer from '../Components/Organisms/Footer'
 
+import styled from 'styled-components'
+
+const Container = styled.div`
+    text-align: center;
+`
+const CardContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+`
 
 const Category = ({ categoryId }) => {
 
@@ -19,7 +32,7 @@ const Category = ({ categoryId }) => {
     const products = useSelector(state => state.product.filteredProducts)
 
     return (
-        <div className="container">
+        <>
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
 
@@ -28,13 +41,15 @@ const Category = ({ categoryId }) => {
                     <h3>Aún no existen productos para esta categoría.</h3>
                 </Main>
                 :
-                <Main id="main">
-                    <ProductCards products={products} />
-                </Main>
+                <Container>
+                        <h3>Listado de Productos</h3>
+                        <CardContainer>
+                            <ProductCards products={products} />
+                        </CardContainer>
+                </Container>
             }
-
             <Footer />
-        </div>
+        </>
     )
 }
 

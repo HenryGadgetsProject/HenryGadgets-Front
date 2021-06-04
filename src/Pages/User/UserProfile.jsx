@@ -57,6 +57,10 @@ const Aside = styled.aside`
         margin-left     : .8em;
     }
 
+    .span-pointer:hover {
+        cursor: pointer;
+    }
+
     p {
         align-self      : flex-start;
         color           : var(--font-color);
@@ -104,9 +108,6 @@ const UserIcon = styled.img`
 const EmailIcon = styled.img`
     background          : var(--icon-email) no-repeat center center / contain;
 `
-const BellIcon = styled.img`
-    background          : var(--icon-bell) no-repeat center center / contain;
-`
 const OrderIcon = styled.img`
     background          : var(--icon-order) no-repeat center center / contain;
 `
@@ -115,6 +116,12 @@ const Review = styled.img`
 `
 const WishIcon = styled.img`
     background          : var(--icon-wish) no-repeat center center / contain;
+`
+const OnIcon = styled.img`
+    background: var(--icon-notification) no-repeat center center / contain;
+`
+const OffIcon = styled.img`
+    background: url('https://api.iconify.design/bx:bxs-bell-off.svg?color=red') no-repeat center center / contain;
 `
 
 const UserProfile = () => {
@@ -148,12 +155,16 @@ const UserProfile = () => {
                     <p>{user.email}</p>
                     
                     <div className="links">
-                        <BellIcon className='icon'/>
-                        <span>Newsletter!</span>
-                        {(user.nlsuscribe) ? 
-                        <button onClick={handleSuscribe}>Desuscribirme</button>
+                        {/* <BellIcon className='icon'/>
+                        <span>Newsletter!</span> */}
+                        {(user.nlsuscribe) ?
+                        <>
+                        <OnIcon className='icon'/><span className='span-pointer' onClick={handleSuscribe}>Activar Notifaciones</span>
+                        </>
                         :
-                        <button onClick={handleSuscribe}>Suscribirme</button> 
+                        <>
+                        <OffIcon classname='icon'/><span className='span-pointer' onClick={handleSuscribe}>Desactivar Notificaciones</span> 
+                        </>
                         }
                     </div>
 
