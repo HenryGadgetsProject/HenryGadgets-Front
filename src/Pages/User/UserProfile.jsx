@@ -178,11 +178,11 @@ const UserProfile = () => {
                         <span>Newsletter!</span> */}
                         {(user.nlsuscribe) ?
                             <>
-                                <OnIcon className='icon' /><span className='span-pointer' onClick={handleSuscribe}>Activar Notifaciones</span>
+                            <OffIcon classname='icon' /><span className='span-pointer' onClick={handleSuscribe}>Desactivar Notificaciones</span>
                             </>
                             :
                             <>
-                                <OffIcon classname='icon' /><span className='span-pointer' onClick={handleSuscribe}>Desactivar Notificaciones</span>
+                            <OnIcon className='icon' /><span className='span-pointer' onClick={handleSuscribe}>Activar Notifaciones</span>
                             </>
                         }
                     </div>
