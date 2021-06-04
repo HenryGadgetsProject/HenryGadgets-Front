@@ -4,6 +4,7 @@ import Table from '../../Atoms/Table'
 import { getWishlist, removeFromWishlist, postWishlist, resetWishList } from '../../../Redux/Actions/Wishlist/WishlistActions'
 import { addItemCart } from '../../../Redux/Actions/Cart/CartActions'
 import styled from 'styled-components'
+import Swal from 'sweetalert2'
 
 const GlassIcon = styled.img`
     background: url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white') no-repeat center center / contain;
@@ -41,6 +42,19 @@ const UserWishlist = () => {
     }
 
     const handleCart = (product) => {
+
+        console.log('STOCK', product)
+        if (product.stock === 0) {
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'El producto no  tiene unidades disponibles',
+                showConfirmButton: false,
+                timer: 2000,
+            })
+            return
+
+        }
         const productSelected = { ...product, quantity: 1, price: product.price }
         dispatch(addItemCart(productSelected))
         dispatch(removeFromWishlist(user, product))
