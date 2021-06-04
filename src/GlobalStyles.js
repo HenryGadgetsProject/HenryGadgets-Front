@@ -3,116 +3,116 @@ import { createGlobalStyle } from 'styled-components'
 // THEME CREATION
 
 export const lightTheme = {
-    background: 'linear-gradient(to right, #FF1744 , #AF0000)',
-    fontColor: '#000000',
+    background              : 'linear-gradient(to right, #FF1744 , #AF0000)',
+    fontColor               : '#000000',
 
     // Color Palette - Light Theme
-    colorPalette: {
-        darkPrimary: '#AF0000',
-        defaultPrimary: '#FF1744',
-        lightPrimary: '#FFCDD2',
-        primaryAccent: '#00FF00',
-        secondaryAccent: '#00FFFF',
-        primaryText: '#212121',
-        secondaryText: '#757575',
-        divider: '#BDBDBD',
-        asideHome: '#FFFFFF',
-        body: '#F2F2F2',
+    colorPalette            : {
+        darkPrimary         : '#AF0000',
+        defaultPrimary      : '#FF1744',
+        lightPrimary        : '#FFCDD2',
+        primaryAccent       : '#00FF00',
+        secondaryAccent     : '#00FFFF',
+        primaryText         : '#212121',
+        secondaryText       : '#757575',
+        divider             : '#BDBDBD',
+        asideHome           : '#FFFFFF',
+        body                : '#F2F2F2',
         h2: {
-            fontColor: '#D32F2F'
+            fontColor       : '#D32F2F'
         },
     },
     // Icons - Light Theme
     icon: {
-        user: `url('https://api.iconify.design/si-glyph:badge-name.svg?color=black')`,
-        email: `url('https://api.iconify.design/clarity:email-solid.svg?color=black')`,
-        bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=black')`,
-        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
-        review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
-        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`,
-        magnifyingGlass: `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=black')`,
-        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
-        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
+        user                : `url('https://api.iconify.design/si-glyph:badge-name.svg?color=black')`,
+        email               : `url('https://api.iconify.design/clarity:email-solid.svg?color=black')`,
+        bell                : `url('https://api.iconify.design/bi:bell-fill.svg?color=black')`,
+        order               : `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        review              : `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        wish                : `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`,
+        magnifyingGlass     : `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=black')`,
+        Review              : `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
+        addReview           : `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
 
-        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=black')`,
-        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=black')`,
-        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=black')`,
-        users: `url('https://api.iconify.design/fa-solid:users.svg?color=black')`,
-        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
-        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=black')`,
-        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=black')`,
-        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=black')`,
-        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
-        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
-        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
+        dropDown            : `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=black')`,
+        products            : `url('https://api.iconify.design/akar-icons:tag.svg?color=black')`,
+        categories          : `url('https://api.iconify.design/bx:bx-category-alt.svg?color=black')`,
+        users               : `url('https://api.iconify.design/fa-solid:users.svg?color=black')`,
+        order               : `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        location            : `url('https://api.iconify.design/carbon:location-filled.svg?color=black')`,
+        offer               : `url('https://api.iconify.design/bx:bxs-offer.svg?color=black')`,
+        addProducts         : `url('https://api.iconify.design/carbon:tag-edit.svg?color=black')`,
+        addCategories       : `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        addLocation         : `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
+        sales               : `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
 
-        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=black')`
+        github              : `url('https://api.iconify.design/akar-icons:github-fill.svg?color=black')`
     },
     // Profile Pic - Light Theme
     pic: {
-        alex: `url('https://i.imgur.com/XaczzE1.png')`,
-        eduardo: `url('https://i.imgur.com/eXiZwOG.png')`,
-        guille: `url('https://i.imgur.com/zj255AA.png')`,
-        juan: `url('https://i.imgur.com/w9W40Hc.png')`,
-        leo: `url('https://i.imgur.com/mhpIyZF.png')`,
-        marco: `url('https://i.imgur.com/xE42jql.png')`,
+        alex                : `url('https://i.imgur.com/XaczzE1.png')`,
+        eduardo             : `url('https://i.imgur.com/eXiZwOG.png')`,
+        guille              : `url('https://i.imgur.com/zj255AA.png')`,
+        juan                : `url('https://i.imgur.com/w9W40Hc.png')`,
+        leo                 : `url('https://i.imgur.com/mhpIyZF.png')`,
+        marco               : `url('https://i.imgur.com/xE42jql.png')`,
     }
 }
 
 export const darkTheme = {
-    background: 'linear-gradient(to right, #04C8D4 , #512DA8)',
-    fontColor: '#FFFFFF',
+    background              : 'linear-gradient(to right, #04C8D4 , #512DA8)',
+    fontColor               : '#FFFFFF',
 
     // Color Palette - Dark Theme
-    colorPalette: {
-        darkPrimary: '#512DA8',
-        defaultPrimary: '#4202C2',
-        lightPrimary: '#815FD3',
-        primaryAccent: '#E040FB',
-        secondaryAccent: '#FFCC00',
-        primaryText: '#F2F2F2',
-        secondaryText: '#30363D',
-        divider: '#BDBDBD',
-        asideHome: '#47484D',
-        body: '#16171B',
-        h2: {
-            fontColor: '#4F0EA6'
+    colorPalette            : {
+        darkPrimary         : '#512DA8',
+        defaultPrimary      : '#4202C2',
+        lightPrimary        : '#815FD3',
+        primaryAccent       : '#E040FB',
+        secondaryAccent     : '#FFCC00',
+        primaryText         : '#F2F2F2',
+        secondaryText       : '#30363D',
+        divider             : '#BDBDBD',
+        asideHome           : '#47484D',
+        body                : '#16171B',
+        h2                  : {
+            fontColor       : '#4F0EA6'
         },
     },
     // Icons - Dark Theme
-    icon: {
-        user: `url('https://api.iconify.design/si-glyph:badge-name.svg?color=white')`,
-        email: `url('https://api.iconify.design/clarity:email-solid.svg?color=white')`,
-        bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=white')`,
-        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
-        review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
-        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`,
-        magnifyingGlass: `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=white')`,
-        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
-        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
+    icon                    : {
+        user                : `url('https://api.iconify.design/si-glyph:badge-name.svg?color=white')`,
+        email               : `url('https://api.iconify.design/clarity:email-solid.svg?color=white')`,
+        bell                : `url('https://api.iconify.design/bi:bell-fill.svg?color=white')`,
+        order               : `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        review              : `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        wish                : `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`,
+        magnifyingGlass     : `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=white')`,
+        Review              : `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
+        addReview           : `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
 
-        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white')`,
-        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=white')`,
-        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=white')`,
-        users: `url('https://api.iconify.design/fa-solid:users.svg?color=white')`,
-        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
-        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=white')`,
-        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=white')`,
-        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=white')`,
-        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
-        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
-        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
+        dropDown            : `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white')`,
+        products            : `url('https://api.iconify.design/akar-icons:tag.svg?color=white')`,
+        categories          : `url('https://api.iconify.design/bx:bx-category-alt.svg?color=white')`,
+        users               : `url('https://api.iconify.design/fa-solid:users.svg?color=white')`,
+        order               : `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        location            : `url('https://api.iconify.design/carbon:location-filled.svg?color=white')`,
+        offer               : `url('https://api.iconify.design/bx:bxs-offer.svg?color=white')`,
+        addProducts         : `url('https://api.iconify.design/carbon:tag-edit.svg?color=white')`,
+        addCategories       : `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        addLocation         : `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
+        sales               : `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
 
-        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=white')`
+        github              : `url('https://api.iconify.design/akar-icons:github-fill.svg?color=white')`
     },
     // Profile Pic - Dark Theme
-    pic: {
-        alex: `url('https://i.imgur.com/N5xXz6J.png')`,
-        eduardo: `url('https://i.imgur.com/GaXaUOt.png')`,
-        guille: `url('https://i.imgur.com/jBxkUkS.png')`,
-        juan: `url('https://i.imgur.com/uWtpojk.png')`,
-        leo: `url('https://i.imgur.com/aK0x7W8.png')`,
-        marco: `url('https://i.imgur.com/Wgj41rA.png')`,
+    pic                     : {
+        alex                : `url('https://i.imgur.com/N5xXz6J.png')`,
+        eduardo             : `url('https://i.imgur.com/GaXaUOt.png')`,
+        guille              : `url('https://i.imgur.com/jBxkUkS.png')`,
+        juan                : `url('https://i.imgur.com/uWtpojk.png')`,
+        leo                 : `url('https://i.imgur.com/aK0x7W8.png')`,
+        marco               : `url('https://i.imgur.com/Wgj41rA.png')`,
     }
 }
 
@@ -413,35 +413,35 @@ const GlobalStyle = createGlobalStyle`
         } */}
 
         #btn-drop-down-filters {
-            display: none;
+            display             : none;
             &:checked ~ .filters {
-                display: flex !important;
+                display         : flex !important;
             }
         }
 
         .icon-drop-down-filters {
-            display: none;
-            cursor: pointer;
-            z-index: 700;
+            display             : none;
+            cursor              : pointer;
+            z-index             : 700;
         }
 
         .filters {
-            align-items             : center;
-            display                 : flex;
-            flex-direction          : column;
-            position                : sticky;
-            position                : -webkit-sticky;
-            top                     : 14em;
+            align-items         : center;
+            display             : flex;
+            flex-direction      : column;
+            position            : sticky;
+            position            : -webkit-sticky;
+            top                 : 14em;
             ${'' /* width: 100%; */}
 
             h6 {
-                color               : var(--font-color);
-                font-size           : 1.8em;
-                margin              : 0 auto .5em;
+                color           : var(--font-color);
+                font-size       : 1.8em;
+                margin          : 0 auto .5em;
             }
 
             label {
-                color               : var(--font-color);
+                color           : var(--font-color);
             }
         }
     }
@@ -533,7 +533,7 @@ const GlobalStyle = createGlobalStyle`
         outline                 : none;
         padding                 : 1.6em;
         text-align              : center;
-        transition              : .5s;
+        transition              : all .3s linear;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -876,7 +876,7 @@ ADMIN ANALYTICS
                 justify-content : space-between;
                 position        : static;
 
-                transition: display .5s linear;
+                transition      : all .5s linear;
             }
         }
 

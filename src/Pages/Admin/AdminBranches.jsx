@@ -1,10 +1,9 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import Table from '../../Components/Atoms/Table'
-
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteBranch } from '../../Redux/Actions/Branch/BranchesActions'
+import Table from '../../Components/Atoms/Table'
 import Swal from 'sweetalert2'
-import { getBranches, deleteBranch } from '../../Redux/Actions/Branch/BranchesActions'
 
 import styled from "styled-components"
 
@@ -17,19 +16,13 @@ const DeleteIcon = styled.img`
 `
 
 
-
 const AdminBranches = () => {
 
     const dispatch = useDispatch();
 
     const branches = useSelector(state => state.branch.branches);
 
-
-
     const deleteHandler = (id) => {
-
-
-
         Swal.fire({
             title: 'Estas seguro?',
             text: "vas a eliminar una sucursal",
@@ -54,8 +47,6 @@ const AdminBranches = () => {
 
 
     return (
-
-
         <Table>
             <caption>Sucursales</caption>
             <thead>
@@ -66,7 +57,6 @@ const AdminBranches = () => {
                     <th>Atención</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-
                 </tr>
             </thead>
 
@@ -79,7 +69,6 @@ const AdminBranches = () => {
                         <td data-label="Atención">{branch.atention}</td>
                         <td data-label="Editar" className="center-text"><Link to={`/admin/branches-edit/${branch.id}`}><EditIcon /></Link></td>
                         <td data-label="Eliminar" className="center-text" onClick={() => deleteHandler(branch.id)}><DeleteIcon /></td>
-                        {/* <td className="center-text"><Link to={`/admin/categories/${branch.id}`}><InfoIcon /></Link></td> */}
                     </tr>
                 ))}
             </tbody>

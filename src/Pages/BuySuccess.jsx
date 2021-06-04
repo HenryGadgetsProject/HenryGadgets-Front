@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-import { useSelector } from 'react-redux'
 import Main from '../Components/Atoms/Main'
-import Footer from '../Components/Organisms/Footer'
-import queryString from 'query-string'
-import { useLocation, useHistory } from 'react-router-dom'
-import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
-import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
-//import ReviewsForm from '../Components/Organisms/ReviewsForm/ReviewsForm'
+import queryString from 'query-string'
+import Footer from '../Components/Organisms/Footer'
 
 
 const BuySuccess = ({ orderId }) => {
@@ -39,13 +37,6 @@ const BuySuccess = ({ orderId }) => {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-
-    // dispatch(sendMail(body))
-    // dispatch(dispatch(clearCart))
-    // Toast.fire({
-    //     icon: 'success',
-    //     title: 'Te hemos enviado un mail'
-    // })
 
     const client = {
         first_name: user.first_name,
@@ -77,7 +68,7 @@ const BuySuccess = ({ orderId }) => {
     }, [user])
 
     return (
-        < div className="container" >
+        <div className="container" >
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
 
@@ -104,13 +95,10 @@ const BuySuccess = ({ orderId }) => {
                     </div>
                     {(status === 200) ? <h2>enviado</h2> : null}
                 </div>
-
-                {/* <ReviewsForm /> */}
-
             </Main>
 
             <Footer />
-        </div >
+        </div>
     )
 }
 

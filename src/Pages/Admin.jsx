@@ -30,7 +30,6 @@ import AdminAnalytics from "./Admin/AdminAnalytics"
 import Footer from "../Components/Organisms/Footer"
 import AdminOffers from "./Admin/AdminOffers"
 import AdminOfferAdd from "./Admin/AdminOfferAdd"
-//import NotFoundAdmin from "./NotFoundAdmin"
 
 const Admin = () => {
 
@@ -80,7 +79,7 @@ const Admin = () => {
                     {/* <Route component={NotFoundAdmin} /> */}
                 </AdminSection>
             </Main>
-
+            
             <Footer />
         </div>
     )
