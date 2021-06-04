@@ -1,26 +1,18 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import Table from '../../Components/Atoms/Table'
-
 import { Link } from 'react-router-dom'
-import Swal from 'sweetalert2'
+import { useSelector, useDispatch } from 'react-redux'
 import { deleteCategories } from '../../Redux/Actions/Categories/CategoriesActions'
-// import { getProductsByCategoryId } from '../../Redux/Actions/Product/ProductActions'
-
+import Table from '../../Components/Atoms/Table'
+import Swal from 'sweetalert2'
 
 import styled from "styled-components"
 
 const EditIcon = styled.img`
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
 `
-
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
-
-// const InfoIcon = styled.img`
-//     background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
-// `
 
 const AdminCategories = () => {
 
@@ -77,7 +69,6 @@ const AdminCategories = () => {
                     <th>Foto</th>
                     <th>Editar</th>
                     <th>Borrar</th>
-                    {/* <th>Info</th> */}
                 </tr>
             </thead>
 
@@ -90,7 +81,6 @@ const AdminCategories = () => {
                         <td data-label="Foto"><img className="mini" src={category.photo} alt={category.name} /></td>
                         <td data-label="Editar" className="center-text"><Link to={`/admin/categories-edit/${category.id}`}><EditIcon /></Link></td>
                         <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(category.id)}><DeleteIcon /></td>
-                        {/* <td className="center-text"><Link to={`/admin/categories/${category.id}`}><InfoIcon /></Link></td> */}
                     </tr>
                 ))}
             </tbody>

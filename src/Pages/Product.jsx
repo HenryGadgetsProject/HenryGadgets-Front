@@ -90,15 +90,6 @@ const Product = ({ productId }) => {
 
                     </div>
 
-                    {/* <h5>17</h5> */}
-                    {/* <h6>Ver Opiniones</h6> */}
-
-                    {/* <ul>
-                        <li><img src={ eyeIcon } alt='eye' /></li>
-                        <li><img src={ heartIcon } alt='heart' /></li>
-                        <li><img src={ shareIcon } alt='share' /></li>
-                    </ul> */}
-
                     <Link to={`/product/${productId}/reviews`}>
                         <button className="review">
                             Ver Opiniones
@@ -111,7 +102,6 @@ const Product = ({ productId }) => {
                         :
                         null
                     }
-
                 </BigCard>
             </Main>
 

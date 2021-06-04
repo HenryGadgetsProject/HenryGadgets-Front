@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from '../Components/Atoms/Main'
-import Footer from '../Components/Organisms/Footer'
-import { useSelector, useDispatch } from 'react-redux'
-// import { getBranches } from '../Redux/Actions/Branch/BranchesActions'
 import { apikey } from '../constant'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import Footer from '../Components/Organisms/Footer'
 
-// import LogoLight from '../../src/Images/Logo-light.png'
-// import LogoDark from '../../src/Images/Logo-dark.png'
 import hg from '../Images/hg.png'
 
 
@@ -29,29 +26,22 @@ const Branch = () => {
         setCurrentPosition(currentPosition);
     };
 
-
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);
     })
 
-
     const onSelect = item => {
         setSelected(item);
     }
-
 
     const mapStyles = {
         height: "100vh",
         width: "100%"
     };
 
-    // const defaultCenter = {
-    //     lat: parseFloat(-34.583053), lng: parseFloat(-58.398198)
-    // }
     const defaultCenter = {
         currentPosition
     }
-
 
     return (
         <div className="container">
@@ -59,7 +49,6 @@ const Branch = () => {
             <Breadcrumb id="breadcrumb" />
 
             <Main id="main">
-
                 <LoadScript
                     googleMapsApiKey={apikey}>
                     <GoogleMap
@@ -74,7 +63,6 @@ const Branch = () => {
                                 />
                             )
                         }
-
                         {
                             branches.map(item => {
                                 item.location = { lat: item.latitud, lng: item.longitud }
@@ -102,12 +90,10 @@ const Branch = () => {
                                 </InfoWindow>
                             )
                         }
-
                     </GoogleMap>
                 </LoadScript>
-
             </Main>
-
+            
             <Footer />
         </div>
     )

@@ -40,7 +40,7 @@ const Item = styled.div`
   }
 `;
 const Title = styled.p`
-  color: #ff1744;
+  color: var(--default-primary);
   font-size: 2em;
 `;
 const Description = styled.span`

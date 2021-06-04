@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import TablaInformacion from "./TablaInformacion";
 import { Pie, Bar } from "react-chartjs-2";
 import helper from "./helper";
-
-// import styled from "styled-components";
-
-// const AdminStats = styled.div`
-//   width: 100%;
-// `;
+import TablaInformacion from "./TablaInformacion";
 
 const AdminAnalytics = () => {
   const orders = useSelector((state) => state.order.orders);

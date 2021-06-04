@@ -106,9 +106,8 @@ const About = () => {
             <Breadcrumb id="breadcrumb" />
 
             <Container>
-            <h3>El Equipo</h3>
+                <h3>El Equipo</h3>
                 <CardContainer>
-
                     <Card>
                         <Alex/>
                         <p>Alex Leon</p>
@@ -145,13 +144,11 @@ const About = () => {
                         <GitHubIcon/>
                         <a href='https://www.linkedin.com/in/marco-antonio-camparone-dev/' target="blank"><LinkedInIcon/></a>
                     </Card>
-
                 </CardContainer>
 
                 <Description>
-                {/* <p>Esta App ha sido desarrollada como parte del proceso de aprendizaje en Henry.</p> */}
-                <p>El reto en este punto, consistió en integrar de forma grupal tecnologías de frontend, backend y bases de datos con multiples funcionalidades para el usuario final y el administrador.</p>
-                <h4>Las tecnologías utilizadas para el desarrollo del proyecto fueron:</h4>
+                    <p>El reto en este punto, consistió en integrar de forma grupal tecnologías de frontend, backend y bases de datos con multiples funcionalidades para el usuario final y el administrador.</p>
+                    <h4>Las tecnologías utilizadas para el desarrollo del proyecto fueron:</h4>
                   
                     <img src="https://api.iconify.design/vscode-icons:file-type-html.svg" alt="html5"/>
                     <img src="https://api.iconify.design/vscode-icons:file-type-css.svg" alt="css3"/>
@@ -163,9 +160,10 @@ const About = () => {
                     <img src="https://api.iconify.design/logos:postgresql.svg" alt="postgreSQL"/> 
                     <img src="https://api.iconify.design/logos:sequelize.svg" alt="sequelize"/> 
 
-                <p>Se espera poder mejorarla a futuro con las recomendaciones de cada evaluador, en busca de que quede como una de las Apps del portafolio.</p>
+                    <p>Se espera poder mejorarla a futuro con las recomendaciones de cada evaluador, en busca de que quede como una de las Apps del portafolio.</p>
                 </Description>
             </Container>
+            
             <Footer />
         </div>
     )

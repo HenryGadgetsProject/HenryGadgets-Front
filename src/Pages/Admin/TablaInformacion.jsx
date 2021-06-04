@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import Table from "../../Components/Atoms/TablitaAnalizadora";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
+import Table from "../../Components/Atoms/TablitaAnalizadora";
+
+import styled from "styled-components";
 
 const NumbersContainer = styled.ul`
-list-style: none;
-display: flex;
-justify-content: center ;
-align-self: center;
-background: inherit;
-padding: 0;
-margin-top: 4em;
+  list-style: none;
+  display: flex;
+  justify-content: center ;
+  align-self: center;
+  background: inherit;
+  padding: 0;
+  margin-top: 4em;
 `
 const TablaInformacion = () => {
   const clientOrders = useSelector((state) => state.order.filteredOrders);
@@ -67,9 +68,6 @@ const TablaInformacion = () => {
           setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
       }
   }
-  // const handleMoreBtn = () => {
-  //     setItemsPerPage(itemsPerPage + 5)
-  // }
 
   let pageIncrementBtn = null
   if (pages.length > maxPageNumberLimit) {
@@ -99,13 +97,6 @@ const TablaInformacion = () => {
   return (
     <Table>
       <caption>Últimas compras realizadas</caption>
-      {/* <NumbersContainer> */}
-      {/* <button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</button>
-      {pageDecrementBtn}
-      {renderPageNumbers}
-      {pageIncrementBtn}
-      <button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</button> */}
-      {/* </NumbersContainer> */}
       <thead>
         <tr>
           <th>ID de compra</th>
@@ -148,11 +139,11 @@ const TablaInformacion = () => {
         })}
       </tbody>
       <NumbersContainer>
-      <button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</button>
-      {pageDecrementBtn}
-      {renderPageNumbers}
-      {pageIncrementBtn}
-      <button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</button>
+        <button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</button>
+        {pageDecrementBtn}
+        {renderPageNumbers}
+        {pageIncrementBtn}
+        <button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</button>
       </NumbersContainer>
     </Table>
   );
