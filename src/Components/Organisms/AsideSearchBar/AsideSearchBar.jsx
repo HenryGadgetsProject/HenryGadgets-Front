@@ -1,113 +1,63 @@
 import React, { useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { searchProducts } from '../../../Redux/Actions/Product/ProductActions'
-import { Link } from 'react-router-dom'
 import debounce from 'lodash.debounce'
 
 import styled from 'styled-components'
 
 // Styled Components
 const Input = styled.input`
-    background          : var(--pure-white);
-    border              : none;
-    border-radius       : 3em;
-    ${'' /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1); */}
-    font-size           : 1.3em;
-    font-weight         : 600;
-    height              : 2.5em;
-    margin              : .5em 1em;
-    outline             : none;
-    padding-left        : 1em;
-    ${'' /* text-transform      : capitalize; */}
-    min-width           : 25em;
-    ${'' /* width           : 40em; */}
-
-
-    ${'' /* =================================================
-    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
-    ===================================================== */}
-    @media(max-width: 992px) {
-        margin-right    : 3em;
-        min-width       : 18em;
-    }
+    align-self              : center;
+    background              : var(--pure-white);
+    border                  : none;
+    border-radius           : 3em;
+    font-size               : 1.3em;
+    ${'' /* height                  : 3em; */}
+    height                  : 2.8em;
+    margin                  : 0 auto;
+    outline                 : none;
+    padding-left            : 1em;
+    ${'' /* position                : relative; */}
+    ${'' /* top                     : -2.2em; */}
+    width                   : 50vw;
 `
 
 const SuggestContainer = styled.div`
-    ${'' /* display:none; */}
-    ${'' /* border-radius       : .3em; */}
-    ${'' /* margin              : -1em 0 0 .8em; */}
-    margin              : -.8em 0 0 2em;
-    height              : 25em;
-    ${'' /* max-width           : 21.35em; */}
-    overflow            : scroll;
-    padding-left: .5em;
-    scrollbar-width     : none; /* Firefox */
-    ${'' /* width               : 33em; */}
-    width               : 30.5em;
-    -ms-overflow-style  : none; /* IE and Edge */
+    margin                  : -3em 0 0 1.4em;
+    height                  : 25.5em;
+    overflow-y              : scroll;
+    padding-left            : .5em;
+    scrollbar-width         : none; /* Firefox */
+    width                   : 44.5vw;
+    -ms-overflow-style      : none; /* IE and Edge */
     &::-webkit-scrollbar {
-        display         : none;
+        display             : none;
     }
 
     ul {
-        display         : contents;
+        display             : contents;
     }
 
     li {
         align-items: center;
         background          : var(--pure-white);
-        ${'' /* border-bottom       : 1px solid var(--pure-white); */}
         color               : var(--pure-black);
-        ${'' /* display             : block; */}
         display             : flex;
         font-size           : 1.6em;
         font-weight         : 400;
         height              : 1.6em;
         padding-left        : 1em;
-        transition          : .3s;
+        transition          : all .3s linear;
         &:hover {
-            /* background-color: var(--default-primary); */
             background-color: var(--default-primary);
             color           : var(--pure-white);
             cursor          : pointer;
-            ${'' /* transform       : scale(1.05); */}
         }
-    }
-
-
-    ${'' /* =================================================
-    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
-    ===================================================== */}
-    @media(max-width: 992px) {
-        margin-right    : 3em;
-        max-width       : 23.4em;
     }
 `
 
-// const Ul = styled.ul`
-//     display             : contents;
-// `
-
-// const Li = styled.li`
-//     background          : var(--pure-white);
-//     ${'' /* border-bottom       : 1px solid var(--pure-white); */}
-//     color               : var(--pure-black);
-//     display             : block;
-//     font-size           : 1.6em;
-//     font-weight         : 400;
-//     height              : 1.6em;
-//     padding-left        : 1em;
-//     transition          : .3s;
-//     &:hover {
-//         /* background-color: var(--default-primary); */
-//         background-color: #FF616F;
-//         color           : var(--pure-white);
-//         cursor          : pointer;
-//         transform       : scale(1.05);
-//     }
-// `
-
-const SearchBar = () => {
+const AsideSearchBar = () => {
 
     const dispatch = useDispatch()
     const foundProducts = useSelector(state => state.product.searchProducts)
@@ -174,4 +124,4 @@ const SearchBar = () => {
     )
 }
 
-export default SearchBar
+export default AsideSearchBar
