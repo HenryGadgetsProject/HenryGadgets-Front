@@ -148,7 +148,7 @@ const About = () => {
 
                 <Description>
                     <p>El reto en este punto, consistió en integrar de forma grupal tecnologías de frontend, backend y bases de datos con multiples funcionalidades para el usuario final y el administrador.</p>
-                    <h4>Las tecnologías utilizadas para el desarrollo del proyecto fueron:</h4>
+                    <p>Las tecnologías utilizadas para el desarrollo del proyecto fueron:</p>
                   
                     <img src="https://api.iconify.design/vscode-icons:file-type-html.svg" alt="html5"/>
                     <img src="https://api.iconify.design/vscode-icons:file-type-css.svg" alt="css3"/>

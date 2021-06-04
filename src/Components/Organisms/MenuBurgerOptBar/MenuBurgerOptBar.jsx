@@ -17,7 +17,7 @@ const StyledBurger = styled.div`
         border-radius   : 2em;
         height          : .25em;
         transform-origin: .14em;
-        transition      : all .5s linear;
+        transition      : all .3s linear;
         width           : 2.5em;
 
         &:nth-child(1) {

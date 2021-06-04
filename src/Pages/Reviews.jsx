@@ -33,7 +33,7 @@ const Item = styled.div`
   width: 40em;
   /* box-shadow: 0px 0px 5px var(--font-color); */
   box-sizing: border-box;
-  transition: 0.3s;
+  transition: all .3s linear;
   box-shadow: var(--divider) 7px 7px;
   &:hover {
     transform: scale(1.05);

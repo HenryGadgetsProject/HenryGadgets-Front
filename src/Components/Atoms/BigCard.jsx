@@ -2,13 +2,12 @@ import styled from 'styled-components'
 
 const BigCard = styled.div`
     ${'' /* border: 2px solid lime; */}
-    background-color        : #FFFFFF;
+    background              : var(--pure-white);
     box-shadow              : 8px 8px 90px 0px rgba(0, 0, 0, 0.75);
     margin                  : 7em auto;
     max-height              : 45em;
     position                : relative;
     width                   : 110em;
-    ${'' /* width                   : calc(100vw - 40em); */}
     z-index                 : 10;
     -webkit-box-shadow      : 8px 8px 90px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow         : 8px 8px 90px 0px rgba(0, 0, 0, 0.75);
@@ -16,19 +15,15 @@ const BigCard = styled.div`
     /* Left side */
     .thumbnail {
         ${'' /* border: 2px solid blue; */}
-        background          : #FFFFFF;
+        background          : var(--pure-white);
         box-shadow          : 5px 5px 60px 0px rgba(0, 0, 0, 0.75);
         float               : left;
         height              : 50em;
-        ${'' /* height              : calc(100vh - 29em); */}
-        ${'' /* object-fit          : contain; */}
         left                : 3em;
         overflow            : hidden;
         position            : relative;
-        ${'' /* position            : absolute; */}
         top                 : -2.5em;
         width               : 50em;
-        ${'' /* width               : calc(100vh - 29em); */}
         z-index             : 20;
         -webkit-box-shadow  : 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
@@ -67,15 +62,6 @@ const BigCard = styled.div`
         width               : 11em;
         border-radius       : 3em;
     }
-
-    ${'' /* .author > img {
-        padding-top         : 5px;
-        margin-left         : 10px;
-        float               : left;
-        height              : 20px;
-        width               : 20px;
-        border-radius       : 50%;
-    } */}
 
     h2 {
         padding-top         : .8em;
@@ -138,89 +124,67 @@ const BigCard = styled.div`
         border              : .1em solid var(--dark-primary);
         border-radius       : 3em;
         cursor              : pointer;
-        ${'' /* color               : #AF0000; */}
-        ${'' /* margin              : 2em auto; */}
         outline             : none;
-        transition          : .3s linear;
+        transition          : all .3s linear;
         &:hover {
             background      : var(--background-gradient);
             border-color    : var(--dark-primary);
-            color           : #FFFFFF;
+            color           : var(--pure-white);
             transform       : scale(1.10);
         }
         &:active {
             background      : var(--background-gradient);
-            color           : #FFFFFF;
+            color           : var(--pure-white);
             font-weight     : bold;
         }
 
-
-        ${'' /* background          : #FF1744;
-        border              : .15em solid #FF1744;
-        border-radius       : 3em; */}
         bottom              : -1.5em;
         box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-sizing          : border-box;
-        ${'' /* color               : white; */}
         font-size           : 1.6em;
         height              : 3.7em;
-        ${'' /* outline             : none; */}
         position            : absolute;
         right               : 2em;
         text-align          : center;
-        ${'' /* transition          : .5s; */}
         width               : 8em;
         z-index             : 30;
         -webkit-box-shadow  : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        ${'' /* &:hover {
-            transform       : scale(1.10);
-        } */}
     }
 
     .review {
         background          : var(--dark-primary);
         border              : .1em solid var(--dark-primary);
         border-radius       : 3em;
-        ${'' /* color               : #AF0000; */}
-        ${'' /* margin              : 2em auto; */}
         cursor              : pointer;
         outline             : none;
-        transition          : .3s linear;
+        transition          : all .3s linear;
         &:hover {
             background      : var(--background-gradient);
             border-color    : var(--dark-primary);
-            color           : #FFFFFF;
+            color           : var(--pure-white);
             transform       : scale(1.10);
         }
         &:active {
             background      : var(--background-gradient);
-            color           : #FFFFFF;
+            color           : var(--pure-white);
             font-weight     : bold;
         }
 
 
-        ${'' /* background-color    : #FF1744;
-        border              : .15em solid #FF1744;
-        border-radius       : 3em; */}
         bottom              : -1.5em;
         box-shadow          : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-sizing          : border-box;
         color               : white;
         font-size           : 1.6em;
         height              : 3.7em;
-        ${'' /* outline             : none; */}
         position            : absolute;
         right               : 14em;
         text-align          : center;
-        ${'' /* transition          : .5s; */}
         width               : 11em;
         z-index             : 30;
         -webkit-box-shadow  : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow     : 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        ${'' /* &:hover {
-            transform       : scale(1.10);
-        } */}
     }
 
     .close {
@@ -248,9 +212,6 @@ const BigCard = styled.div`
         .review {
             right: 12em;
         }
-
-        ${'' /* height: 40em;
-        width: 90em; */}
     }
 
 
@@ -258,8 +219,6 @@ const BigCard = styled.div`
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
-        ${'' /* display             : flex; */}
-        ${'' /* flex-direction      : column; */}
         margin              : 5em 2em;
         min-height          : 100% !important;
         width               : 100%;
@@ -293,23 +252,6 @@ const BigCard = styled.div`
 
         p {
             margin          : .2em 0;
-
-        ${'' /* display         : flex;
-        flex-direction  : column;
-        width           : 100%;
-        margin          : 5em 2em;
-
-        .thumbnail {
-            display     : flex;
-            height      : 50em;
-            width       : 50em;
-            left        : 0;
-            margin      : 0 auto;
-        }
-
-        .right {
-            margin: 1em auto;
-            width: 80%; */}
         }
 
         /* Floating action button */
@@ -323,27 +265,6 @@ const BigCard = styled.div`
             width           : 10em;
             right           : 11.3em !important;
             bottom          : -2.5em;
-
-            ${'' /* width               : 60%;
-            right               : 2em;
-            bottom              : 3em;
-            margin: 0 auto;
-        }
-
-        .review {
-            width               : 60%;
-            right               : 2em;
-            bottom              : 1em;
-            right               : 0;
-        }
-
-        .close {
-            cursor              : pointer;
-            font-size           : 2.5em;
-            position            : absolute;
-            right               : .8em;
-            top                 : .1em;
-            z-index             : 30; */}
         }
     }
 `

@@ -170,7 +170,7 @@ const AdminOrders = () => {
 
     return (
         <>
-            <h3>Filtrar por estado</h3>
+            <h4>Filtrar por estado</h4>
             <div className="filter-buttons">
                 <ResetIcon onClick={() => dispatch(getOrders())} />
                 <CartIcon onClick={() => handleTerm('cart')} />

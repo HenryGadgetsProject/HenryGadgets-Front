@@ -64,7 +64,7 @@ const SuggestContainer = styled.div`
         font-weight         : 400;
         height              : 1.6em;
         padding-left        : 1em;
-        transition          : .3s;
+        transition          : all .3s linear;
         &:hover {
             /* background-color: var(--default-primary); */
             background-color: var(--default-primary);

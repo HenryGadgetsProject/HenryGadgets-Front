@@ -9,22 +9,18 @@ import FilterPrdByPrice from '../FilterPrdByPrice'
 import FilterPrdByRating from '../FilterPrdByRating'
 
 const AdminAside = styled.aside`
-    ${'' /* align-items : center; */}
-    ${'' /* background          : black; */}
     background          : var(--aside-home);
     border              : none;
-    ${'' /* min-height  : 100%; */}
-    ${'' /* outline     : none; */}
-    padding             : 2em;
+    padding             : 3.5em 2em 2em;
 
     a {
         align-items     : center;
         cursor          : pointer;
         display         : flex;
         justify-content : flex-start;
-        margin          : 1em auto;
-        padding         : 1em;
-        transition      : .5s;
+        margin          : .5em auto;
+        padding         : .5em;
+        transition      : all .3s linear;
         width           : 90%;
         &:hover {
             transform   : scale(1.08)
@@ -44,10 +40,32 @@ const AdminAside = styled.aside`
         font-size       : 2em;
     }
 
+    .icon-drop-down-filters {
+        display         : flex !important;
+        ${'' /* cursor          : pointer; */}
+        margin          : 1em auto 0;
+        ${'' /* z-index         : 700; */}
+    }
+
     div.filters {
         border-top      : .2em solid var(--font-color);
-        margin          : 4em auto 0;
-        padding         : 2em 0;
+        margin          : 2em auto 0;
+        padding         : 1em 0;
+
+        ${'' /* align-items     : center; */}
+        display         : none !important;
+        ${'' /* flex-direction  : column; */}
+        ${'' /* position            : sticky;
+        position            : -webkit-sticky; */}
+        top             : 14em;
+
+        justify-content : space-between;
+        position        : static;
+        transition      : all .3s linear;
+
+        h6 {
+            margin      : .5em auto;
+        }
     }
 
 
@@ -59,16 +77,28 @@ const AdminAside = styled.aside`
         width               : 10%;
 
         img {
-            margin      : 1em auto;
+            margin          : 1em auto;
         }
 
         span {
-            display     : none;
+            display         : none;
+        }
+
+        .icon-drop-down-filters {
+            display         : flex !important;
+            margin          : 0 auto;
         }
 
         div.filters {
-            margin      : .5em 0 !important;
-            width       : 160%;
+            margin          : .5em 0 !important;
+            width           : 160%;
+
+            display         : none;
+            flex-direction  : column;
+            justify-content : space-between;
+            position        : static;
+
+            transition      : all .3s linear;
 
             div {
                 width: 90%
@@ -114,9 +144,6 @@ const OrderIcon = styled.img`
 const LocationIcon = styled.img`
     background: var(--icon-location) no-repeat center center / contain;
 `
-const AddLocationIcon = styled.img`
-    background: var(--icon-add-location) no-repeat center center / contain;
-`
 const OfferIcon = styled.img`
     background: var(--icon-offer) no-repeat center center / contain;
 `
@@ -125,6 +152,12 @@ const AddProductsIcon = styled.img`
 `
 const AddCategoriesIcon = styled.img`
     background: var(--icon-add-categories) no-repeat center center / contain;
+`
+const AddLocationIcon = styled.img`
+    background: var(--icon-add-location) no-repeat center center / contain;
+`
+const AddOfferIcon = styled.img`
+    background: var(--icon-add-offer) no-repeat center center / contain;
 `
 const SalesIcon = styled.img`
     background: var(--icon-sales) no-repeat center center / contain;
@@ -171,7 +204,7 @@ const AdminSideBar = () => {
                 <span>Agregar Sucursal</span>
             </Link>
             <Link to='/admin/offer'>
-                <AddLocationIcon />
+                <AddOfferIcon />
                 <span>Agregar oferta</span>
             </Link>
             <Link to='/admin/analytics'>

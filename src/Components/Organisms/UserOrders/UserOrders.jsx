@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import Table from '../../Atoms/Table'
+import { useSelector, useDispatch } from 'react-redux'
 import { filterOrdersByUserId } from '../../../Redux/Actions/Order/OrderActions'
 import { getReviewsByUserId } from '../../../Redux/Actions/Review/ReviewActions'
+import Table from '../../Atoms/Table'
 
 import styled from 'styled-components'
 
-// const HistoryIcon = styled.img`
-//     background: url('https://api.iconify.design/ant-design:history-outlined.svg?color=white') no-repeat center center / contain;
-// `
-// const DetailIcon = styled.img`
-//     background: url('https://api.iconify.design/bx:bx-detail.svg?color=white') no-repeat center center / contain;
-// `
 const AddReview = styled.img`
     background: var(--icon-add-review) no-repeat center center / contain;
-    ${'' /* background: url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black') no-repeat center center / contain; */}
 `
 const MagnifyingGlass = styled.img`
     background: var(--icon-magnifying-glass) no-repeat center center / contain;
-    ${'' /* background: url('https://api.iconify.design/foundation:magnifying-glass.svg?color=black') no-repeat center center / contain; */}
 `
 
 const UserOrders = () => {
@@ -27,9 +19,7 @@ const UserOrders = () => {
 
     const user = useSelector(state => state.user.user)
     const orders = useSelector(state => state.order.filteredOrders1)
-    // const products = useSelector(state => state.product.products)
     const reviews = useSelector(state => state.review.reviews)
-    //console.log(products)
 
     let history = useHistory()
 
@@ -41,8 +31,6 @@ const UserOrders = () => {
     }, [dispatch, user.id])
 
     const handleReview = (productId) => {
-        // console.log('REVIEWS', reviews)
-        // console.log(productId)
         const reviewFound = reviews.find(rev => rev.productId === productId)
         if (reviewFound) {
             alert('no puedes agregar review')
@@ -54,8 +42,6 @@ const UserOrders = () => {
     }
 
     const handleGetDetails = (order) => {
-
-        // console.log(order.orderDetails)
 
         const linea = order.orderDetails.map(x => {
             return {
@@ -85,7 +71,6 @@ const UserOrders = () => {
 
                 <tbody>
                     {orders.map(order => {
-
                         return (
                             <tr key={order.id}>
                                 <td data-label="ID" className="center-text">{order.id}</td>
@@ -106,7 +91,7 @@ const UserOrders = () => {
                         <th className="name">Producto</th>
                         <th>Cantidad</th>
                         <th>Sub Total</th>
-                        <th>Crear</th>
+                        <th>Crear review</th>
                     </tr>
                 </thead>
 
@@ -118,8 +103,8 @@ const UserOrders = () => {
                                 <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
                                 <td data-label="Producto">{detail.name}</td>
                                 <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
-                                <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
-                                <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
+                                <td data-label="Sub Total" className="center-text">{detail.sub_total}$</td>
+                                <td data-label="Crear review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
                             </tr>
                         )
                     })}

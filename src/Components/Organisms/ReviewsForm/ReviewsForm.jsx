@@ -10,63 +10,126 @@ import Swal from 'sweetalert2'
 import styled from "styled-components"
 
 const FormContainer = styled.div`
-  height: 45em;
-  margin-bottom: 10em;
-  padding: 2em;
-  justify-content: center;
-  background-color: #424242;
+  background: var(--background-form);
   border-radius: 2em;
+  height: 45em;
+  justify-content: center;
+  margin: 2em 0 10em 0;
+  padding: 2em;
+  
   h3 {
     text-align: center;
-    color: #ffffff;
+    color: var(--pure-white);
+    margin: 0 auto;
   }
-`;
-const Form = styled.form`
-  width: 100%;
-  padding: 2em;
-`;
-const Label = styled.label`
-  font-size: 2em;
-  color: #ffffff;
-  margin-left: 0.2em;
-`;
-const Input = styled.input`
-  font-size: 1.5em;
-  width: 16em;
-`;
+
+  form {
+    width: 100%;
+    padding: 2em;
+  }
+
+  label {
+    font-size: 2em;
+    color: var(--pure-white);
+    margin-left: .2em;
+  }
+
+  input {
+    font-size: 1.5em;
+    width: 16em;
+  }
+
+  button {
+    background: var(--background-form);
+    color: var(--pure-white);
+    border: .15em solid var(--default-primary);
+    padding: .7em 1.5em .7em 1.5em;
+    margin-top: 1em;
+    font-size: 2em;
+    border-radius: .3em;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    &:hover {
+      box-shadow: 0 0 40px 40px var(--default-primary) inset;
+    }
+  }
+
+  #divider {
+    display: flex;
+  }
+
+  .item {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  #button-container {
+    margin-top: 2em;
+    text-align: center;
+  }
+
+
+  ${'' /* =================================================
+  SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+  ===================================================== */}
+    @media(max-width: 992px) {
+      margin: 2em auto;
+
+      #divider {
+        flex-direction: column;
+      }
+    }
+`
+
+// const Form = styled.form`
+//   width: 100%;
+//   padding: 2em;
+// `
+
+// const Label = styled.label`
+//   font-size: 2em;
+//   color: var(--pure-white);
+//   margin-left: 0.2em;
+// `
+
+// const Input = styled.input`
+//   font-size: 1.5em;
+//   width: 16em;
+// `
+
 const LongInput = styled.input`
   font-size: 1.5em;
   width: 34.6em;
 `
-const Button = styled.button`
-  background: #424242;
-  color: #ffffff;
-  border: 0.15em solid #ff1744;
-  padding: 0.7em 1.5em 0.7em 1.5em;
-  margin-top: 1em;
-  font-size: 2em;
-  border-radius: 0.3em;
-  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-  &:hover {
-    color: black;
-    box-shadow: 0 0 40px 40px #ff1744 inset;
-  }
-`;
-// const ErrorMsg = styled.p`
-//   color: #ff1744;
-//   font-size: 1.2em;
-// `;
-const Divider = styled.div`
-  display: flex;
-`;
-const Item = styled.div`
-  padding-left: 2em;
-  padding-right: 2em;
-`;
-const ButtonContainer = styled.div`
-  margin-top: 2em;
-  text-align: center;
-`;
+
+// const Button = styled.button`
+//   background: var(--background-form);
+//   color: var(--pure-white);
+//   border: 0.15em solid var(--default-primary);
+//   padding: 0.7em 1.5em 0.7em 1.5em;
+//   margin-top: 1em;
+//   font-size: 2em;
+//   border-radius: .3em;
+//   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+//   &:hover {
+//     ${'' /* color: black; */}
+//     box-shadow: 0 0 40px 40px var(--default-primary) inset;
+//   }
+// `
+
+// const Divider = styled.div`
+//   display: flex;
+// `
+
+// const Item = styled.div`
+//   padding-left: 2em;
+//   padding-right: 2em;
+// `
+
+// const ButtonContainer = styled.div`
+//   margin-top: 2em;
+//   text-align: center;
+// `
+
 const TitleIcon = styled.img`
   margin-top: 2em;
   height: 2em;
@@ -88,7 +151,7 @@ const CommentIcon = styled.img`
   padding: 1em;
   background: url('https://api.iconify.design/fa-regular:comment-dots.svg?color=white') no-repeat center center / contain;
 `
-// const ReviewsForm = ({ execSubmit, user, productId }) => {
+
 const ReviewsForm = () => {
   
   const dispatch = useDispatch()
@@ -128,35 +191,35 @@ const ReviewsForm = () => {
   return (
     <FormContainer>
       <h3>Form Review</h3>
-      <Form onSubmit={handleSubmit}>
-        <Divider>
-          <Item>
+      <form onSubmit={handleSubmit}>
+        <div id="divider">
+          <div className="item">
             <TitleIcon />
-            <Label>Titulo</Label>
+            <label>Titulo</label>
             <br/>
-            <Input
+            <input
               name="title"
               value={input.title}
               onChange={handleChange}
-              ></Input>
-          </Item>
-          <Item>
+              ></input>
+          </div>
+          <div className="item">
             <RatingIcon />
-            <Label>Rating </Label>
+            <label>Rating </label>
             <br/>
-            <Input
-            type="number"
-            name="rating"
-            value={input.rating}
-            onChange={handleChange}
-            ></Input>
+            <input
+              type="number"
+              name="rating"
+              value={input.rating}
+              onChange={handleChange}
+            ></input>
             <br />
-          </Item>
-        </Divider>
+          </div>
+        </div>
 
-          <Item>
+          <div className="item">
             <CommentIcon />
-            <Label>Comment</Label>
+            <label>Comment</label>
             <br/>
             <LongInput
               name="description"
@@ -164,14 +227,14 @@ const ReviewsForm = () => {
               onChange={handleChange}
               ></LongInput>
             <br />
-          </Item>
+          </div>
 
-        <ButtonContainer>
-          <Button type="submit">Publicar Review!</Button>
-        </ButtonContainer>
-      </Form>
+        <div id="button-container">
+          <button type="submit">Publicar Review!</button>
+        </div>
+      </form>
     </FormContainer>
-  );
-};
+  )
+}
 
-export default ReviewsForm;
+export default ReviewsForm
