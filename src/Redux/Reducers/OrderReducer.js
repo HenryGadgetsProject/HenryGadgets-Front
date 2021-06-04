@@ -6,7 +6,8 @@ import {
     GET_ORDER_BY_ID_SUCCESS,
     UPDATE_ORDER_SUCCESS,
     FILTER_ORDERS,
-    FILTER_ORDERS_BY_USER_ID
+    FILTER_ORDERS_BY_USER_ID,
+    CHANGE_STATUS_ORDER_SUCCESS
 } from '../Actions/Order/OrderActionTypes'
 
 const initialState = {
@@ -80,6 +81,16 @@ const orderReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredOrders1: state.orders.filter(order => parseInt(order.user.id) === action.payload)
+            }
+        }
+
+        case CHANGE_STATUS_ORDER_SUCCESS: {
+            return {
+                ...state,
+                filteredOrders: state.orders.map(order => (order.id === parseInt(action.payload.id)) ? { ...order, state: action.payload.state } : order),
+                orders: state.orders.map(order => (order.id === parseInt(action.payload.id)) ? { ...order, state: action.payload.state } : order),
+                loading: false,
+                error: ''
             }
         }
         default: {

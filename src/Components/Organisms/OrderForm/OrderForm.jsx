@@ -6,23 +6,34 @@ import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
-    height: 50em;
-    margin-top: 10em;
-    padding: 2em;
-    background: #424242;
+    background: var(--background-form);
     border-radius: 2em;
+    height: 50em;
+    margin: 2em 0 10em 0;
+    padding: 2em;
+
     h3 {
-      text-align: center;
-      color: #FFFFFF;
+        text-align: center;
+        color: var(--pure-white);
+        margin: 0 auto;
     }
-    margin-bottom: 10em;
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        height: 60em;
+        margin: 2em auto;
+        width: 96%;
+    }
 `
 const Form = styled.form`
     padding: 2em;
 `
 const Label = styled.label`
     font-size: 2em;
-    color: #FFFFFF;
+    color: var(--pure-white);
     margin-left: .2em;
 `
 const Input = styled.input`
@@ -35,30 +46,36 @@ const Input = styled.input`
 //     width: 34.7em;
 // `
 const Button = styled.button`
-    background: #424242;
-    color: #FFFFFF;
-    border: .15em solid #ff1744;
-    padding: .7em 1.5em .7em 1.5em;
+    background: var(--background-form);
+    color: var(--pure-white);
+    border: 0.15em solid var(--default-primary);
+    padding: 0.7em 1.5em 0.7em 1.5em;
     margin-top: 1em;
     font-size: 2em;
     border-radius: .3em;
-    transition: box-shadow 300ms ease-in-out,
-    color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     &:disabled {
-        background: gray;
-        border: .15em solid white;
+        background: var(--pure-gray);
+        border: .15em solid var(--pure-white);
     }
     &:hover {
-        color: black;
-        box-shadow: 0 0 40px 40px #ff1744 inset;
+        box-shadow: 0 0 40px 40px var(--default-primary) inset;
     }
 `
 const ErrorMsg = styled.p`
-    color: #ff1744;
+    color: #FF1744;
     font-size: 1.2em;
 `
 const Divider = styled.div`
     display: flex;
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        flex-direction: column;
+    }
 `
 const Item = styled.div`
     padding-left: 2em;

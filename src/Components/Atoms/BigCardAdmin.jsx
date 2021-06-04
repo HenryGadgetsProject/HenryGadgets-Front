@@ -9,13 +9,11 @@ import StarRatings from 'react-star-ratings'
 import styled from 'styled-components'
 
 const BCA = styled.div`
-    background-color: #FFFFFF;
+    background: var(--pure-white);
     box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
     margin: 7em auto;
-    ${'' /* height: 430px; */}
     max-height              : 40em;
     position: relative;
-    ${'' /* width: 900px; */}
     width                   : 80em;
     z-index                 : 10;
     -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
@@ -23,11 +21,10 @@ const BCA = styled.div`
 
     /* Image on the left side */
     .thumbnail {
-        background: #FFFFFF;
+        background: var(--pure-white);
         box-shadow: 5px 5px 60px 0px rgba(0, 0, 0, 0.75);
         float: left;
         height: 37em;
-        ${'' /* object-fit: contain; */}
         left: 3em;
         overflow: hidden;
         position: relative;
@@ -38,8 +35,6 @@ const BCA = styled.div`
         -moz-box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
     }
 
-    /*object-fit: cover;*/
-    /*object-position: center;*/
     img.left {
         height: 100%;
         left: 50%;
@@ -71,15 +66,6 @@ const BCA = styled.div`
         width: 11em;
         border-radius: 3em;
     }
-
-    ${'' /* .author > img {
-        padding-top: 5px;
-        margin-left: 10px;
-        float: left;
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-    } */}
 
     h2 {
         padding-top: .8em;
@@ -139,9 +125,9 @@ const BCA = styled.div`
     /* Floating action button */
     .buy {
         position: absolute;
-        background-color: #ff1744;
+        background: var(--default-primary);
         color: white;
-        border: .15em solid #ff1744;
+        border: .15em solid var(--default-primary);
         right: 70px;
         bottom: -20px;
         font-size: 1.4em;
@@ -154,7 +140,7 @@ const BCA = styled.div`
         -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
         box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-        transition: .3s;
+        transition: all .3s linear;
         &:hover{
             transform: scale(1.10);
         }
@@ -173,17 +159,13 @@ const BCA = styled.div`
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media(max-width: 992px) {
-        ${'' /* display             : flex; */}
-        ${'' /* flex-direction      : column; */}
         margin              : 7em auto 11em;
         min-height          : 100% !important;
         width               : 90%;
 
         /* Left side */
         .thumbnail {
-            ${'' /* display         : flex; */}
             height          : 20em !important;
-            ${'' /* width           : 44.3em; */}
             width           : 100%;
             position        : absolute;
             left            : 0;
@@ -216,11 +198,7 @@ const BCA = styled.div`
 
 
 const BigCardAdmin = ({ product }) => {
-
-
-
     return (
-
         <Link to='/admin/products'>
             <BCA>
                 <div className="thumbnail">
@@ -246,16 +224,9 @@ const BigCardAdmin = ({ product }) => {
                     <span>Precio</span><p>{product.price} $</p>
 
                 </div>
-
-                {/* <button className="buy">
-                    Comprar
-                </button> */}
-
             </BCA>
         </Link>
     )
 }
 
 export default BigCardAdmin
-
-

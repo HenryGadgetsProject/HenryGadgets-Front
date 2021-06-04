@@ -24,7 +24,7 @@ const Cards = styled.div`
     height                  : 35em;
     ${'' /* padding                 : 2em 2.5em; */}
     text-align              : center;
-    transition              : all .3s ease;
+    transition              : all .3s linear;
     ${'' /* width                   : 30em; */}
     min-width               : 25em;
     &:hover {
@@ -76,7 +76,7 @@ const CartIcon = styled.img`
     width: 4em !important;
     padding: 2em;
     margin-top: 1.6em;
-    transition: .3s;
+    transition: all .3s linear;
     &:hover {
         transform: scale(1.30);
     }
@@ -87,7 +87,7 @@ const WishIcon = styled.img`
     width: 4em !important;
     padding: 2em;
     margin-top: 1.6em;
-    transition: .3s;
+    transition: all .3s linear;
     &:hover {
         transform: scale(1.30);
     }
@@ -98,7 +98,7 @@ const WishIconRed = styled.img`
     width: 4em !important;
     padding: 2em;
     margin-top: 1.6em;
-    transition: .3s;
+    transition: all .3s linear;
     &:hover {
         transform: scale(1.30);
     }
@@ -162,6 +162,18 @@ const ProductCards = ({ products }) => {
 
     const handleCart = (product) => {
 
+        if (product.stock === 0) {
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'El producto no  tiene unidades disponibles',
+                showConfirmButton: false,
+                timer: 2000,
+            })
+            return
+
+        }
+
 
         const productSelected = { ...product, quantity: 1, price: (product.price * (1 - product.discount)) }
 
@@ -206,7 +218,7 @@ const ProductCards = ({ products }) => {
             text: 'Debes ingresar como Usuario para usar la Lista de deseados!'
         })
     }
- 
+
     const handleNoWishlist = (product) => {
         dispatch(removeFromWishlist(user, product))
         setWish([wish.filter(w => w.id !== product.id)])
@@ -216,10 +228,6 @@ const ProductCards = ({ products }) => {
         return (
             <>
                 {products?.map(p => {
-
-
-
-
                     return (
                         <div className="card-container" key={p?.id}>
                             <Cards>
@@ -228,7 +236,7 @@ const ProductCards = ({ products }) => {
 
                                     {/* Box SIEMPRE debe estar renderizado */}
                                     <Box>
-                                        {(p.discount > 0) ?
+                                        {(p.discount > 0.00) ?
                                             <Offer>
                                                 {(p.discount * 100)} % <br />
                                             </Offer>
@@ -261,10 +269,10 @@ const ProductCards = ({ products }) => {
                                         <div>
                                             {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
                                         </div>
-                                        : <WishIcon onClick={handleLogin}/>
+                                        : <WishIcon onClick={handleLogin} />
                                     }
-                            
-                                    
+
+
                                     <CartIcon onClick={() => handleCart(p)} />
                                 </IconsContainer>
 

@@ -22,7 +22,9 @@ import {
     SET_PROD_BY_ACTIVE,
     SET_PROD_BY_PRICE,
     SET_PROD_BY_RATING,
-    NOTIFY_STOCK_SUCCESS
+    NOTIFY_STOCK_SUCCESS,
+
+
     // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
@@ -283,3 +285,5 @@ export const sendStockNotification = (productId) => {
             })
     }
 }
+
+

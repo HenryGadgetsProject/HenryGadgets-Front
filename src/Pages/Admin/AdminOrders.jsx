@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getOrders, deleteOrder, filterOrders } from '../../Redux/Actions/Order/OrderActions'
+import { getOrders, deleteOrder, filterOrders, changeStatusOrder } from '../../Redux/Actions/Order/OrderActions'
 
 import Table from '../../Components/Atoms/Table'
 import Swal from 'sweetalert2'
@@ -145,6 +145,10 @@ const AdminOrders = () => {
         dispatch(filterOrders(term))
     }
 
+    const cancelHandler = (id) => {
+        dispatch(changeStatusOrder(id, 'cancelled'))
+    }
+
     const deleteHandler = (id) => {
         Swal.fire({
             title: 'Estas seguro?',
@@ -170,7 +174,7 @@ const AdminOrders = () => {
 
     return (
         <>
-            <h3>Filtrar por estado</h3>
+            <h4>Filtrar por estado</h4>
             <div className="filter-buttons">
                 <ResetIcon onClick={() => dispatch(getOrders())} />
                 <CartIcon onClick={() => handleTerm('cart')} />
@@ -188,7 +192,7 @@ const AdminOrders = () => {
                         <th>Precio Total</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Editar</th>
+                        <th>Cancel</th>
                         <th>Borrar</th>
                     </tr>
                 </thead>
@@ -207,7 +211,7 @@ const AdminOrders = () => {
                             <td data-label="Total">{order.total_price}</td>
                             <td data-label="Nombre">{order.user?.first_name}</td>
                             <td data-label="Apellido" className="center-text">{order.user?.last_name}</td>
-                            <td data-label="Editar" className="center-text"><Link to={`/admin/order-edit/${order.id}`}><EditIcon /></Link></td>
+                            <td data-label="Cancel" className="center-text" onClick={() => cancelHandler(order.id)}><EditIcon /></td>
                             <td data-label="Borrar" className="center-text" onClick={() => deleteHandler(order.id)}><DeleteIcon /></td>
                         </tr>
                     ))}
@@ -216,9 +220,9 @@ const AdminOrders = () => {
 
             <NumbersContainer>
                 <Button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
-                    {pageDecrementBtn}
-                    {renderPageNumbers}
-                    {pageIncrementBtn}
+                {pageDecrementBtn}
+                {renderPageNumbers}
+                {pageIncrementBtn}
                 <Button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
             </NumbersContainer>
         </>

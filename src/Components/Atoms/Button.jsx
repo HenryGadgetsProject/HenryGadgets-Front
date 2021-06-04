@@ -9,7 +9,7 @@ const GeneralBtn = styled.button`
     font-weight         : bold;
     margin              : .5em 0;
     padding             : .5em 2em;
-    transition          : all .5s linear;
+    transition          : all .3s linear;
     &:hover {
         background      : linear-gradient(to right, var(--pure-black) , var(--default-primary));
         border-color    : var(--default-primary);

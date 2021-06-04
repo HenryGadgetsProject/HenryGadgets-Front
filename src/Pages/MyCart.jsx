@@ -48,7 +48,7 @@ const Table = styled.table`
 
     tr {
         background          : var(--body);
-        transition          : background-color .5s ease;
+        transition          : all .3s linear;
     }
 
     tr:hover {
@@ -70,7 +70,7 @@ const Table = styled.table`
         object-fit          : contain;
         outline             : none;
         padding             : 1em;
-        transition          : .3s;
+        transition          : all .3s linear;
         width               : 100%;
         &:hover {
             transform       : scale(1.20)
@@ -209,7 +209,7 @@ const MyCart = () => {
 
     const deleteHandler = (product) => {
         // alert(productId)
-        dispatch(deleteItemFromCart(product))
+
         Swal.fire({
             title: 'Estas seguro?',
             text: "Vas a eliminar un producto de tu Carrito!",
@@ -219,6 +219,16 @@ const MyCart = () => {
             cancelButtonColor: '#E90000',
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteItemFromCart(product))
+
+                Swal.fire(
+                    'Eliminado!',
+                    'Tu categoría fue eliminada.',
+                    'success'
+                )
+            }
         })
     }
 
@@ -228,9 +238,31 @@ const MyCart = () => {
 
     const decrementHandler = (product) => {
         if (product.quantity === 1) {
-            dispatch(deleteItemFromCart(product))
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "Vas a eliminar un producto de tu Carrito!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#7FFF00',
+                cancelButtonColor: '#E90000',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteItemFromCart(product))
+
+                    Swal.fire(
+                        'Eliminado!',
+                        'Tu categoría fue eliminada.',
+                        'success'
+                    )
+                }
+            })
+
         }
-        dispatch(decrementQuantity(product))
+        if (product.quantity > 1) {
+            dispatch(decrementQuantity(product))
+        }
     }
 
 

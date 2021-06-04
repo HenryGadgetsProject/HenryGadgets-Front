@@ -9,57 +9,130 @@ import styled from 'styled-components'
 const FormContainer = styled.div`
     height: 46em;
     padding: 2em;
-    background: #424242;
+    background: var(--background-form);
     border-radius: 2em;
+
     h3 {
-      color: #FFFFFF;
+        text-align: center;
+        color: var(--pure-white);
+        margin: 0 auto;
+    }
+
+    form {
+        width: 100%;
+        padding: 2em;
+    }
+
+    label {
+        font-size: 2em;
+        color: var(--pure-white);
+        margin-left: 0.2em;
+    }
+
+    input {
+        font-size: 1.5em;
+        width: 16em;
+    }
+
+    button {
+        background: var(--background-form);
+        color: var(--pure-white);
+        border: 0.15em solid var(--default-primary);
+        padding: 0.7em 1.5em 0.7em 1.5em;
+        margin-top: 1em;
+        font-size: 2em;
+        border-radius: .3em;
+        transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+        &:hover {
+            box-shadow: 0 0 40px 40px var(--default-primary) inset;
+        }
+    }
+
+    #divider {
+        display: flex;
+    }
+
+    .item {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    #button-container {
+        margin-top: 2em;
+        text-align: center;
+    }
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        margin: 2em auto;
+
+        input {
+            margin-bottom: 1em;
+        }
+
+        #divider {
+            flex-direction: column;
+        }
     }
 `
-const Form = styled.form`
-    padding: 2em;
-`
-const Label = styled.label`
-    font-size: 2em;
-    color: #FFFFFF;
-    margin-left: .2em;
-`
-const Input = styled.input`
-    font-size: 1.5em;
-    width: 16em;
-`
+
+// const Form = styled.form`
+//     padding: 2em;
+// `
+// const Label = styled.label`
+//     font-size: 2em;
+//     color: #FFFFFF;
+//     margin-left: .2em;
+// `
+// const Input = styled.input`
+//     font-size: 1.5em;
+//     width: 16em;
+// `
 const LongInput = styled.input`
-    font-size: 1.5em;
-    width: 34.7em;
-`
-const Button = styled.button`
-    background: #424242;
-    color: #FFFFFF;
-    border: .15em solid #ff1744;
-    padding: .7em 1.5em .7em 1.5em;
-    margin-top: 1em;
-    font-size: 2em;
-    border-radius: .3em;
-    transition: box-shadow 300ms ease-in-out,
-    color 300ms ease-in-out;
-    &:hover {
-        color: black;
-        box-shadow: 0 0 40px 40px #ff1744 inset;
+    font-size: 1.5em !important;
+    width: 34.7em !important;
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        font-size: 1.5em !important;
+        width: 16em !important;
     }
 `
+// const Button = styled.button`
+//     background: #424242;
+//     color: #FFFFFF;
+//     border: .15em solid #ff1744;
+//     padding: .7em 1.5em .7em 1.5em;
+//     margin-top: 1em;
+//     font-size: 2em;
+//     border-radius: .3em;
+//     transition: box-shadow 300ms ease-in-out,
+//     color 300ms ease-in-out;
+//     &:hover {
+//         color: black;
+//         box-shadow: 0 0 40px 40px #ff1744 inset;
+//     }
+// `
 const ErrorMsg = styled.p`
     color: #ff1744;
     font-size: 1.2em;
 `
-const Divider = styled.div`
-    display: flex;
-`
-const Item = styled.div`
-    padding-left: 2em;
-    padding-right: 2em;
-`
-const ButtonContainer = styled.div`
-    text-align: center;
-`
+// const Divider = styled.div`
+//     display: flex;
+// `
+// const Item = styled.div`
+//     padding-left: 2em;
+//     padding-right: 2em;
+// `
+// const ButtonContainer = styled.div`
+//     text-align: center;
+// `
 
 // Iconos
 const NameIcon = styled.img`
@@ -156,37 +229,37 @@ const UserEditReviewForm = () => {
     return (
         <FormContainer>
             <h3>Editar Review</h3>
-            <Form onSubmit={handleSubmit}>
-                <Divider>
-                    <Item>
+            <form onSubmit={handleSubmit}>
+                <div id="divider">
+                    <div className="item">
                         <NameIcon />
-                        <Label>Titulo </Label>
+                        <label>Titulo </label>
                         <br />
-                        <Input name='title' value={input.title} onBlur={handleBlur} onChange={handleChange}></Input>
+                        <input name='title' value={input.title} onBlur={handleBlur} onChange={handleChange}></input>
                         {isTouch.title && error.title ? (<ErrorMsg>{error.title}</ErrorMsg>) : null}
-                    </Item>
-                    <Item>
+                    </div>
+                    <div className="item">
                         <ImageIcon />
-                        <Label>Rating </Label>
+                        <label>Rating </label>
                         <br />
-                        <Input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange}></Input>
+                        <input name='rating' value={input.rating} onBlur={handleBlur} onChange={handleChange}></input>
                         {isTouch.rating && error.rating ? (<ErrorMsg>{error.rating}</ErrorMsg>) : null}
-                    </Item>
-                </Divider>
+                    </div>
+                </div>
 
-                <Item>
+                <div className="item">
                     <DescriptionIcon />
-                    <Label>Descripción </Label>
+                    <label>Descripción </label>
                     <br />
                     <LongInput name='description' value={input.description} onBlur={handleBlur} onChange={handleChange}></LongInput>
                     {isTouch.description && error.description ? (<ErrorMsg>{error.description}</ErrorMsg>) : null}
-                </Item>
+                </div>
 
-                <ButtonContainer>
-                    <Button type='submit'>Editar</Button>
-                </ButtonContainer>
+                <div id="button-container">
+                    <button type='submit'>Editar</button>
+                </div>
 
-            </Form>
+            </form>
         </FormContainer>
     )
 }
