@@ -31,42 +31,10 @@ const UserWishlist = () => {
     }, [])
 
 
-
-    //onst wishlist = useSelector(state => state.wishlist.wishlist)
-
-    // useEffect(() => {
-    //     dispatch(getWishlist(user.id))
-    // }, [dispatch, user.id])
-
     // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
     const wishList = useSelector(state => state.wishlist.wishList)
     console.log('LISTA DE DESEOS', wishList)
     // ***** Este estado contiene el arreglo de objetos cuando le doy al Corazón en /home *****
-
-    /*
-    Para mi querido Edu:
-    Lo que pensé fué lo siguiente:
-
-    Desde la Home > El corazón tiene un Dispatch 'AddToWishlist'
-        Este dispatch agrega esos productos al estado 'wishList'
-
-    Desde user/wishlist > Se debería ver esa lista (con algún nombre por defecto) pero sin guardar en la base de datos aún.
-    Solo se va a guardar cuando le de click a Guardar.    
-        Este dispatch 'postWishlist(userId, listName)' 
-
-        debería guardar esa lista de productos en el Backend con el nombre.
-        Nota: Quizás el nombre de la lista SIN GUARDAR debería poder verse con un Input
-              y luego cuando se guarde, cambia de <input/> a <td>
-
-    Los íconos de Cambios y Guardar solo se habilitan en el caso de que los Datos vengan del Backend,
-    De la otra forma solo quedan en Redux (O sino localStorage pero la idea es no agregar complejidad).
-    
-                Y si no te gusta, te podes ir a freir churros.
-    */
-
-    // const handlePost = (userId, listName) => {
-    //     dispatch(postWishlist)
-    // }
 
     const handleDelete = (product) => {
         dispatch(removeFromWishlist(user, product))

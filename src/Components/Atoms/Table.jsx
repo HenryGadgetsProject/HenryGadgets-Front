@@ -29,7 +29,7 @@ const Table = styled.table`
     tr {
         ${'' /* background      : #424242; */}
         background      : var(--body);
-        transition      : background-color .5s linear;
+        transition      : all .5s linear;
     }
 
     tr:hover {
@@ -48,7 +48,7 @@ const Table = styled.table`
         height          : 2em;
         outline         : none;
         padding         : 1em;
-        transition      : .3s;
+        transition      : all .3s linear;
         width           : 2em;
         &:hover {
             transform   : scale(1.20)

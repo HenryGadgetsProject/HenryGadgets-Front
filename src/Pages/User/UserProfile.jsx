@@ -33,8 +33,8 @@ const Aside = styled.aside`
         display         : flex;
         flex-direction  : row;
         justify-content : flex-start;
-        margin          : .5em 0 0 0;
-        padding         : 1em;
+        margin          : 0;
+        padding         : .8em;
     }
 
     .links {
@@ -75,6 +75,12 @@ const Aside = styled.aside`
     @media(min-width: 992px) and (max-width: 1199px) {
         grid-column     : 1 / 25;
         width           : 100%;
+
+        div, a, p {
+            align-items     : center;
+            align-self      : center;
+            justify-content : center;
+        }
     }
 
 
@@ -86,6 +92,12 @@ const Aside = styled.aside`
         position        : static !important;
         position        : -webkit-static !important;
         z-index         : 0;
+
+        div, a, p {
+            align-items     : center;
+            align-self      : center;
+            justify-content : center;
+        }
     }
 `
 

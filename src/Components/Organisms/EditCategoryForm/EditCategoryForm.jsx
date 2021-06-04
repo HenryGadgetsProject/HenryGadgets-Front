@@ -7,12 +7,28 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    background: var(--background-form);
+    border-radius: 2em;
+    margin: 2em 0 10em 0;
     height: 100%;
     padding: 2em;
-    background: #424242;
-    border-radius: 2em;
+
     h3 {
-      color: #FFFFFF;
+        text-align: center;
+        color: var(--pure-white);
+        margin: 0 auto;
+    }
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        width: 96%;
+
+        input {
+            margin-bottom: .5em;
+        }
     }
 `
 const Form = styled.form`
@@ -20,7 +36,7 @@ const Form = styled.form`
 `
 const Label = styled.label`
     font-size: 2em;
-    color: #FFFFFF;
+    color: var(--pure-white);
     margin-left: .2em;
 `
 const Input = styled.input`
@@ -30,28 +46,43 @@ const Input = styled.input`
 const LongInput = styled.input`
     font-size: 1.5em;
     width: 34.7em;
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        font-size: 1.5em !important;
+        width: 16em !important;
+    }
 `
 const Button = styled.button`
-    background: #424242;
-    color: #FFFFFF;
-    border: .15em solid #ff1744;
-    padding: .7em 1.5em .7em 1.5em;
+    background: var(--background-form);
+    color: var(--pure-white);
+    border: .15em solid var(--default-primary);
+    padding: 0.7em 1.5em 0.7em 1.5em;
     margin-top: 1em;
     font-size: 2em;
     border-radius: .3em;
-    transition: box-shadow 300ms ease-in-out,
-    color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     &:hover {
-        color: black;
-        box-shadow: 0 0 40px 40px #ff1744 inset;
+        box-shadow: 0 0 40px 40px var(--default-primary) inset;
     }
 `
 const ErrorMsg = styled.p`
-    color: #ff1744;
+    color: #FF1744;
     font-size: 1.2em;
 `
 const Divider = styled.div`
     display: flex;
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        flex-direction: column;
+    }
 `
 const Item = styled.div`
     padding-left: 2em;

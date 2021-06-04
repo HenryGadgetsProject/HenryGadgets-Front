@@ -48,7 +48,7 @@ const Table = styled.table`
 
     tr {
         background          : var(--body);
-        transition          : background-color .5s ease;
+        transition          : all .3s linear;
     }
 
     tr:hover {
@@ -70,7 +70,7 @@ const Table = styled.table`
         object-fit          : contain;
         outline             : none;
         padding             : 1em;
-        transition          : .3s;
+        transition          : all .3s linear;
         width               : 100%;
         &:hover {
             transform       : scale(1.20)

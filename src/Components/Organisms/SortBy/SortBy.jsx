@@ -1,17 +1,8 @@
 import React from 'react'
-// import { useDispatch } from 'react-redux'
-// import { setSortOrder } from '../redux/actions'
-
 import FilterContainer from '../../Atoms/FilterContainer'
 import Select from '../../Atoms/Select'
 
-const SortBy = () => {
-    // const dispatch = useDispatch()
-    
-    // const handleChange = e => {
-    //     dispatch(setSortOrder(e.target.value))
-    // }
-    
+const SortBy = () => {    
     return (
         <FilterContainer>
             <label htmlFor="sort-by">Ordenar por: </label>

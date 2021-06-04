@@ -19,7 +19,7 @@ const PageNumbers = styled.li`
     font-weight: 500;
     text-align: center;
     padding: 1.6em;
-    transition: .5s;
+    transition: all .3s linear;
     &:hover {
         background: var(--background-gradient);
         color: var(--pure-white);

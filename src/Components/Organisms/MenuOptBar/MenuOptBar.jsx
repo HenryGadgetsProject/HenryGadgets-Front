@@ -10,14 +10,12 @@ import { resetWishList } from '../../../Redux/Actions/Wishlist/WishlistActions'
 import styled from 'styled-components'
 
 const Ul = styled.ul`
-    ${'' /* align-items         : center; */}
     display             : flex;
     flex-flow           : row nowrap;
     list-style          : none;
     margin              : auto 2em;
 
     li {
-        ${'' /* margin          : 0 1.5em; */}
         padding         : 1.25em 0;
     }
 
@@ -33,7 +31,7 @@ const Ul = styled.ul`
         justify-content : center;
 
 
-        transition      : transform .3s linear;
+        transition      : all .3s linear;
         &:hover {
             border-bottom: .11em solid var(--dark-primary);
             transform   : scale(1.1);
@@ -43,10 +41,6 @@ const Ul = styled.ul`
 
     a > span {
         color           : var(--pure-white);
-        ${'' /* transition      : transform .3s linear;
-        &:hover {
-            transform   : scale(1.30);
-        } */}
     }
 
     li > div.nav-search-bar {
@@ -83,13 +77,16 @@ const Ul = styled.ul`
     }
 
     sub.badge {
+        align-items     : center;
         background      : red;
         border-radius   : 100%;
         color           : white;
+        display         : flex;
         font-size       : .8em;
-        padding         : .1em .4em;
-        ${'' /* height          : 1em; */}
-        ${'' /* width           : 1em; */}
+        justify-content : center;
+        ${'' /* padding         : .1em .4em; */}
+        min-height      : 1.6em;
+        min-width       : 1.6em;
     }
 
     .theme {
@@ -122,7 +119,7 @@ const Ul = styled.ul`
         right           : -2em;
         top             : 0;
         transform       : ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
-        transition      : all .5s linear;
+        transition      : all .3s linear;
         width           : 80%;
         z-index         : 900;
         &::-webkit-scrollbar {
@@ -142,14 +139,13 @@ const Ul = styled.ul`
             color       : var(--pure-white);
             font-size   : 1.18em;
             padding     : 1em 0;
-            ${'' /* margin      : 0 2em; */}
         }
 
         li > div {
             color: var(--pure-white);
             font-size: 1.2em;
             padding: .5em;
-            transition      : .5s;
+            transition      : all .3s linear;
             &:hover {
                 transform   : scale(1.1);
                 transform-origin: 0;
@@ -172,8 +168,7 @@ const WishIconRed = styled.img`
     height: 1em !important;
     width: 1em !important;
     padding: 1em;
-    /* margin-top: 1.6em; */
-    transition: .3s;
+    transition: all .3s linear;
     &:hover {
         transform: scale(1.30);
     }`

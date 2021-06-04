@@ -44,6 +44,7 @@ export const lightTheme = {
         addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=black')`,
         addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
         addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
+        addOffer: `url('https://api.iconify.design/mdi:offer.svg?color=black')`,
         sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
         notification: `url('https://api.iconify.design/bx:bxs-bell-ring.svg?color=black')`,
 
@@ -102,6 +103,7 @@ export const darkTheme = {
         addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=white')`,
         addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
         addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
+        addOffer: `url('https://api.iconify.design/mdi:offer.svg?color=white')`,
         sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
         notification: `url('https://api.iconify.design/bx:bxs-bell-ring.svg?color=white')`,
 
@@ -139,6 +141,7 @@ const GlobalStyle = createGlobalStyle`
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
         --pure-gray             : #808080;
+        --background-form       : #424242;
 
         --icon-user             : ${props => props.theme.icon.user};
         --icon-email            : ${props => props.theme.icon.email};
@@ -160,6 +163,7 @@ const GlobalStyle = createGlobalStyle`
         --icon-add-products     : ${props => props.theme.icon.addProducts};
         --icon-add-categories   : ${props => props.theme.icon.addCategories};
         --icon-add-location     : ${props => props.theme.icon.addLocation};
+        --icon-add-offer        : ${props => props.theme.icon.addOffer};
         --icon-sales            : ${props => props.theme.icon.sales};
         --icon-notification     : ${props => props.theme.icon.notification};
 
@@ -285,6 +289,12 @@ const GlobalStyle = createGlobalStyle`
         color                   : var(--font-color);
         font-size               : 4em;
         margin                  : 0;
+    }
+
+    h4 {
+        color                   : var(--font-color);
+        font-size               : 2.2em;
+        margin                  : 2.1em auto 0;
     }
 
     .carousel-root, .carousel, .carousel.carousel-slider {
@@ -426,16 +436,23 @@ const GlobalStyle = createGlobalStyle`
             display             : none;
             cursor              : pointer;
             z-index             : 700;
+
+            ${'' /* display         : flex !important;
+            margin          : 1em auto 0; */}
         }
 
         .filters {
             align-items         : center;
             display             : flex;
+            ${'' /* display             : none; */}
             flex-direction      : column;
             position            : sticky;
             position            : -webkit-sticky;
             top                 : 14em;
-            ${'' /* width: 100%; */}
+
+            ${'' /* justify-content     : space-between;
+            position            : static;
+            transition          : all .3s linear; */}
 
             h6 {
                 color           : var(--font-color);
@@ -510,7 +527,7 @@ const GlobalStyle = createGlobalStyle`
         color                   : var(--dark-primary);
         margin                  : 2em auto;
         outline                 : none;
-        transition              : .5s linear;
+        transition              : all .3s linear;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -795,22 +812,19 @@ ADMIN ANALYTICS
         SECTION 3
         ================================================= */}
         ${'' /* aside {
-            grid-column         : 1 / 2;
-            width               : 10%;
+            .icon-drop-down-filters {
+                display         : flex !important;
+                margin          : 0 auto;
+            }
 
             .filters {
-                width           : 160%;
+                display         : none;
+                flex-direction  : column;
+                justify-content : space-between;
+                position        : static;
+
+                transition      : all .3s linear;
             }
-        } */}
-
-        ${'' /* section {
-            grid-column         : 2 / 25;
-            flex-direction      : block;
-            width               : 90%;
-        } */}
-
-        ${'' /* .btn {
-            margin              : 2em 0 2em 6em;
         } */}
 
         .btn-md {
@@ -870,7 +884,7 @@ ADMIN ANALYTICS
             .icon-drop-down-filters {
                 display         : flex !important;
                 align-self      : flex-end;
-                margin-right    : .2vw;
+                ${'' /* margin-right    : .2vw; */}
             }
 
             .filters {
@@ -879,7 +893,7 @@ ADMIN ANALYTICS
                 justify-content : space-between;
                 position        : static;
 
-                transition      : all .5s linear;
+                transition      : all .3s linear;
             }
         }
 
