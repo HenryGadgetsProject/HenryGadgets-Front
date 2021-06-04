@@ -48,10 +48,6 @@ const NotFound = () => {
                 <NotFoundContainer>
                     <h3>Error 404 | La página no existe.</h3>
 
-                    {/* {setTimeout(() => {
-                        history.push('/home')
-                    }, 3000)} */}
-
                     {/* <p>Lo sentimos, tu busqueda no ha retornado ningún resultado.</p>
                     <p>Probablemente el producto que estás buscando no existe".</p>
                     <p>Si lo deseas también puedes repetir la busqueda verificando el nombre, intentar una nueva busqueda con otro producto o regresar a la página principal para ver más opciones.</p> */}

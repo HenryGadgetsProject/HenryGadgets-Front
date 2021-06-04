@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Main from '../../Components/Atoms/Main'
 import { getCategoryById } from '../../Redux/Actions/Categories/CategoriesActions'
+import Main from '../../Components/Atoms/Main'
 
 const AdminCategoryDetails = ({ categoryId }) => {
     const dispatch = useDispatch()

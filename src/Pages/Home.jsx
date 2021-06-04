@@ -4,7 +4,6 @@ import NavBarHome from '../Components/Organisms/NavBarHome'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
-// import AsideSearchBar from '../Components/Organisms/AsideSearchBar'
 import Footer from '../Components/Organisms/Footer'
 import FilterPrdByCatName from '../Components/Organisms/FilterPrdByCatName'
 import FilterPrdByStock from '../Components/Organisms/FilterPrdByStock'
@@ -43,7 +42,6 @@ const Home = () => {
         <div className="container">
             <Header id="header">
                 <NavBarHome />
-                {/* <NavBar /> */}
 
                 {/* ya tiene preparado el onClick para que vaya a /products/id */}
                 <Carousel
@@ -86,9 +84,10 @@ const Home = () => {
                     </div>
                 </aside>
                 <section>
-                    <Paginate data={products}/>
+                    <Paginate data={products} />
                 </section>                
             </Main>
+            
             <Footer />
         </div>
     )

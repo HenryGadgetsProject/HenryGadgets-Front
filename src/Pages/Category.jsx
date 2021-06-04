@@ -4,8 +4,8 @@ import { getProductsByCategoryId } from '../Redux/Actions/Product/ProductActions
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
 import Main from '../Components/Atoms/Main'
-import Footer from '../Components/Organisms/Footer'
 import ProductCards from '../Components/Organisms/ProductCards'
+import Footer from '../Components/Organisms/Footer'
 
 import styled from 'styled-components'
 
@@ -35,9 +35,6 @@ const Category = ({ categoryId }) => {
         <>
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
             {products.length === 0 ?
                 <Main id="main">
