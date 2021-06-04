@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
 import ToggleForm from '../../Molecules/Toggle'
+import SearchBar from '../../Molecules/SearchBar'
+import { useSelector, useDispatch } from 'react-redux'
 import { userLogut } from '../../../Redux/Actions/User/UserActions'
 import { clearCart, saveCartToDB, deleteCartFromDB } from '../../../Redux/Actions/Cart/CartActions'
 import { resetWishList } from '../../../Redux/Actions/Wishlist/WishlistActions'
@@ -16,8 +17,7 @@ const Ul = styled.ul`
     margin              : auto 2em;
 
     li {
-        ${'' /* font-size       : 1.4em; */}
-        ${'' /* color           : var(--font-color); */}
+        ${'' /* margin          : 0 1.5em; */}
         padding         : 1.25em 0;
     }
 
@@ -25,34 +25,60 @@ const Ul = styled.ul`
         padding         : .4em .6em;
     }
 
-    li > div, a > * {
+    li > div, li > a {
+
+        align-content   : center;
+        align-items     : center;
+        display         : flex;
+        justify-content : center;
+
+
         transition      : transform .3s linear;
         &:hover {
-            transform   : scale(1.30);
+            border-bottom: .11em solid var(--dark-primary);
+            transform   : scale(1.1);
             ${'' /* color       : lime; */}
         }
     }
 
     a > span {
         color           : var(--pure-white);
-        transition      : transform .3s linear;
+        ${'' /* transition      : transform .3s linear;
         &:hover {
             transform   : scale(1.30);
+        } */}
+    }
+
+    li > div.nav-search-bar {
+        &:hover {
+            border-bottom: none !important;
+            transform   : none !important;
         }
     }
 
-    .regards {
-        font-size       : 1.4em;
-        margin          : 0 0 0 .6em;
-    }
+    ${'' /* #btn-active-search {
+        &:checked ~ .top-search-bar {
+            display: flex !important;
+            transition: all .5s linear;
+            width: 100%;
+        }
+    } */}
+
+    ${'' /* .top-search-bar {
+        display: none;
+        width: 0;
+    } */}
 
     svg {
         height          : 2.2em;
+        margin-right    : .5em;
         width           : 2.2em;
     }
 
     img {
+        border-radius   : 3em;
         height          : 2em;
+        margin-right    : .5em;
         width           : 2em;
     }
 
@@ -66,38 +92,78 @@ const Ul = styled.ul`
         ${'' /* width           : 1em; */}
     }
 
+    .theme {
+        font-size       : 1.4em;
+    }
+
+
+    ${'' /* =================================================
+    MEDIUM - CHECK TABLET HORIZONTAL VIEW 1024px
+    ===================================================== */}
+    @media(min-width: 992px) and (max-width: 1199px) {
+        span {
+            display: none;
+        }
+    }
+
+
     ${'' /* =================================================
     SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
     ===================================================== */}
     @media (max-width: 992px) {
         background-color: var(--pure-black);
+        display         : flex;
         flex-flow       : column nowrap;
         ${'' /* height: 100vh; */}
         height          : 100%;
-        padding-top     : 5em;
+        overflow-y      : scroll;
+        padding-top     : 3em;
         position        : fixed;
         right           : -2em;
         top             : 0;
         transform       : ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
         transition      : all .5s linear;
-        width           : 300px;
-        z-index: 900;
+        width           : 80%;
+        z-index         : 900;
+        &::-webkit-scrollbar {
+            width: .2em;
+        }
+        &::-webkit-scrollbar-track {
+            background: var(--pure-black);
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--pure-gray);
+            border-radius: 2em;
+            border: .3em solid (--pure-black);
+        }
 
         li {
+            align-self  : flex-start;
             color       : var(--pure-white);
             font-size   : 1.18em;
-            margin      : 0 2em .5em 4em;
+            padding     : 1em 0;
+            ${'' /* margin      : 0 2em; */}
         }
 
         li > div {
-            color: #FFFFFF;
-            font-size: 1.4em;
-            padding: .8em;
+            color: var(--pure-white);
+            font-size: 1.2em;
+            padding: .5em;
             transition      : .5s;
             &:hover {
-                transform   : scale(1.30);
+                transform   : scale(1.1);
                 transform-origin: 0;
             }
+        }
+
+        li > div, li > a {
+            &:hover {
+                border-bottom: none !important;
+            }
+        }
+
+        li > div.nav-search-bar {
+            display: none;
         }
     }
 `
@@ -112,24 +178,26 @@ const WishIconRed = styled.img`
         transform: scale(1.30);
     }`
 
-
-const loginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
-const logoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
+// const Search = 'https://api.iconify.design/ic:baseline-search.svg?color=white'
+const Branches = 'https://api.iconify.design/map-store.svg?color=white'
+const AboutTeam = 'https://api.iconify.design/heroicons-solid:user-group.svg?color=white'
+const LoginIcon = 'https://api.iconify.design/ri:login-box-line.svg?color=white'
+const LogoutIcon = 'https://api.iconify.design/ri:logout-box-line.svg?color=white'
 // const userIcon = 'https://api.iconify.design/carbon:user-avatar-filled.svg?color=white'
-const userIcon = 'https://api.iconify.design/clarity:assign-user-solid.svg?color=white'
-const registerUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
-const adminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
-const wishIcon = 'https://api.iconify.design/clarity:heart-solid.svg?color=white'
-const cartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
+const UserIcon = 'https://api.iconify.design/clarity:assign-user-solid.svg?color=white'
+const RegisterUserIcon = 'https://api.iconify.design/ant-design:user-add-outlined.svg?color=white'
+const AdminIcon = 'https://api.iconify.design/clarity:administrator-solid.svg?color=white'
+const WishIcon = 'https://api.iconify.design/clarity:heart-solid.svg?color=white'
+const CartIcon = 'https://api.iconify.design/si-glyph:trolley-2.svg?color=white'
 
 const MenuOptBar = ({ open }) => {
-
-
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
     const itemCount = useSelector(state => state.cart.itemCount)
     const cart = useSelector(state => state.cart.cartList)
+
+    const location = useLocation()
 
     // ********** Google Login **********
     const [googleUser, setGoogleUser] = useState(JSON.parse(localStorage.getItem('profile')))
@@ -156,38 +224,55 @@ const MenuOptBar = ({ open }) => {
 
     return (
         <Ul open={open}>
+            <li>
+                <div className="nav-search-bar">
+                    {location.pathname === '/home' ? <SearchBar /> : null}
+                    {/* <input type="checkbox" id="btn-active-search" /> */}
+                    {/* <div className="top-search-bar"> */}
+                        {/* <SearchBar /> */}
+                    {/* </div> */}
+                    {/* <label htmlFor="btn-active-search" className="icon-active-search"><img src={Search} alt='search' />
+                        <span>Buscar</span>
+                    </label> */}
+                </div>
+            </li>
             {user.token ?
                 user.is_admin ?
                     <>
                         <li>
                             <Link to="/branches" className="link">
+                                <img src={Branches} alt='branches' />
                                 <span>Sucursales</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/about" className="link">
+                            <Link to = "/about"  className="link">
+                                <img src={AboutTeam} alt='about' />
                                 <span>Acerca de</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to='/user'>
-                                <span className="regards">Hola {user.first_name}</span>
-                                {/* <img src={userIcon} alt='user'></img> */}
+                            <Link to='/user' className="link">
+                                <img src={(user.photo) ? user.photo : UserIcon} alt='user' />
+                                <span>Hola {user.first_name}</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
-                                <img src={logoutIcon} alt='logout' />
+                                <img src={LogoutIcon} alt='logout' />
+                                <span>Salir</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/admin" className="link">
-                                <img src={adminIcon} alt='admin' />
+                                <img src={AdminIcon} alt='admin' />
+                                <span>Panel</span>
                             </Link>
                         </li>
                         <li>
                             <Link to="/user/wishlist" className="link">
-                                <img src={wishIcon} alt='wishlist' />
+                                <img src={WishIcon} alt='wishlist' />
+                                <span>Deseos</span>
                             </Link>
                         </li>
                     </>
@@ -195,67 +280,60 @@ const MenuOptBar = ({ open }) => {
                     <>
                         <li>
                             <Link to="/branches" className="link">
+                                <img src={Branches} alt='branches' />
                                 <span>Sucursales</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/about" className="link">
+                            <Link to = "/about"  className="link">
+                                <img src={AboutTeam} alt='about' />
                                 <span>Acerca de</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to='/user'>
+                            <Link to='/user' className="link">
+                                <img src={(user.photo) ? user.photo : UserIcon} alt='user' />
                                 <span className="regards">Hola {user.first_name}</span>
-                                {/* <img src={userIcon} alt='user'></img> */}
                             </Link>
                         </li>
                         <li>
                             <Link to="/home" className="link" onClick={handleClick}>
-                                <img src={logoutIcon} alt='logout' />
+                                <img src={LogoutIcon} alt='logout' />
+                                <span>Salir</span>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/user" className="link">
-                                <img src={(user.photo) ? user.photo : userIcon} alt='user' />
+                            <Link to="/user/wishlist" className="link">
+                                <img src={WishIcon} alt='wishlist' />
+                                <span>Deseos</span>
                             </Link>
                         </li>
-
-                        {(user) ?
-                            <li>
-                                <Link to="/user/wishlist" className="link" >
-                                    <WishIconRed />
-                                </Link>
-                            </li> : null
-                        }
-
-
-                        {/* <li>
-                            <Link to="/user/wishlist" className="link">
-                                <img src={wishIcon} alt='wishlist' />
-                            </Link>
-                        </li> */}
 
                     </>
                 :
                 <>
                     <li>
                         <Link to="/branches" className="link">
+                            <img src={Branches} alt='branches' />
                             <span>Sucursales</span>
                         </Link>
                     </li>
                     <li>
-                        <Link to="/about" className="link">
+                        <Link to = "/about"  className="link">
+                            <img src={AboutTeam} alt='about' />
                             <span>Acerca de</span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/login" className="link">
-                            <img src={loginIcon} alt='login' />
+                            <img src={LoginIcon} alt='login' />
+                            <span>Ingresar</span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/register" className="link">
-                            <img src={registerUserIcon} alt='register' />
+                            <img src={RegisterUserIcon} alt='register' />
+                            <span>Registrar</span>
                         </Link>
                     </li>
 
@@ -263,11 +341,11 @@ const MenuOptBar = ({ open }) => {
             }
             <li>
                 <Link to="/cart" className="link">
-                    <img src={cartIcon} alt='chart' />
+                    <img src={CartIcon} alt='chart' />
                     <sub className="badge">{itemCount}</sub>
                 </Link>
             </li>
-            <li>
+            <li className="theme">
                 <ToggleForm />
             </li>
         </Ul>

@@ -199,7 +199,14 @@ const ProductCards = ({ products }) => {
         setWish([...wish, product.id])
     }
 
-
+    const handleLogin = () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Debes ingresar como Usuario para usar la Lista de deseados!'
+        })
+    }
+ 
     const handleNoWishlist = (product) => {
         dispatch(removeFromWishlist(user, product))
         setWish([wish.filter(w => w.id !== product.id)])
@@ -254,8 +261,10 @@ const ProductCards = ({ products }) => {
                                         <div>
                                             {(!wish.includes(p.id)) ? <WishIcon onClick={() => handleWishlist(p)} /> : <WishIconRed />}
                                         </div>
-                                        : null
+                                        : <WishIcon onClick={handleLogin}/>
                                     }
+                            
+                                    
                                     <CartIcon onClick={() => handleCart(p)} />
                                 </IconsContainer>
 

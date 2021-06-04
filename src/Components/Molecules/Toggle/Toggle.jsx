@@ -5,6 +5,7 @@ const Toggle = () => {
     return (
         <div>
             <ToggleMode />
+            {/* <span>Tema</span> */}
         </div>
     )
 }

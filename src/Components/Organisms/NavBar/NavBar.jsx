@@ -26,18 +26,18 @@ const Nav = styled.nav`
     top: 0;
     width           : 100%;
     z-index         : 900;
-
-    ${'' /* .logo {
-        padding     : 18px 0;
-    } */}
 `
 const LogoDiv = styled.div`
     align-items     : center;
     display         : flex;
     justify-content : space-between;
     margin-left     : 2em;
-    ${'' /* width           : auto; */}
     width           : 4em;
+
+    transition      : all .3s linear;
+    &:hover {
+        transform   : scale(1.1);
+    }
 `
 
 const NavBar = () => {
