@@ -9,7 +9,8 @@ import {
     GET_ORDER_BY_ID_SUCCESS,
     UPDATE_ORDER_SUCCESS,
     FILTER_ORDERS,
-    FILTER_ORDERS_BY_USER_ID
+    FILTER_ORDERS_BY_USER_ID,
+    CHANGE_STATUS_ORDER_SUCCESS
 } from '../Order/OrderActionTypes'
 
 export const getOrders = () => {
@@ -141,5 +142,30 @@ export const filterOrdersByUserId = (userId) => {
     return {
         type: FILTER_ORDERS_BY_USER_ID,
         payload: userId
+    }
+}
+
+export const changeStatusOrder = (id, status) => {
+    return (dispatch) => {
+        dispatch({ type: ORDER_LOADING })
+        axios.put(`${HOST}/orders/admin/${id}/${status}`)
+            .then(response => {
+                const order = response.data;
+                dispatch(
+                    {
+                        type: CHANGE_STATUS_ORDER_SUCCESS,
+                        payload: order
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: ORDER_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }

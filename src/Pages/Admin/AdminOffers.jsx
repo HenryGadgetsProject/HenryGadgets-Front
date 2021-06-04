@@ -18,7 +18,6 @@ const AdminOffers = () => {
     const offers = useSelector(state => state.offer.offers);
 
     const deleteHandler = (offerId) => {
-
         dispatch(deleteOffer(offerId))
     }
 
@@ -42,7 +41,7 @@ const AdminOffers = () => {
                         <tr key={offer.id}>
                             <td data-label="Categoría">{offer.targetName}</td>
                             <td data-label="Descuento">{offer.discount * 100}%</td>
-                            <td data-label="Duración">{new Date(Date.parse(offer.updatedAt) + offer.duration).toUTCString()}</td>
+                            <td data-label="Duración">{new Date(Date.parse(offer.updatedAt) + offer.duration).toLocaleString()}</td>
                             <td data-label="Activo">{(offer.active) ? 'Si' : 'No'}</td>
                             <td data-label="Eliminar" className="center-text" onClick={() => deleteHandler(offer.id)}><DeleteIcon /></td>
                         </tr>
