@@ -4,27 +4,25 @@ import ProductCards from '../../Organisms/ProductCards'
 import styled from 'styled-components'
 
 const NumbersContainer = styled.ul`
-    list-style: none;
-    display: flex;
     align-self: center;
     background: var(--pure-white);
+    color: var(--dark-primary);
+    display: flex;
+    list-style: none;
     padding: 0;
 `
 const PageNumbers = styled.li`
+    border: .1em solid var(--divider);
+    color: var(--dark-primary);
+    cursor: pointer;
     font-size: 1.2em;
     font-weight: 500;
     text-align: center;
     padding: 1.6em;
-    border: .1em solid var(--divider);
-    cursor: pointer;
     transition: .5s;
     &:hover {
-        background-color: #ff616f;
-    }
-    &.active {
-        font-weight: 700;
-        background-color: #ff1744;
-        color: black;
+        background: var(--background-gradient);
+        color: var(--pure-white);
     }
 `
 const Button = styled.button`
@@ -33,11 +31,12 @@ const Button = styled.button`
     padding: 1.6em;
     background-color: transparent;
     border: .1em solid var(--divider);
-    color: black;
+    color: var(--dark-primary);
     cursor: pointer;
-    transition: .5s;
+    transition: all .3s linear;
     &:hover {
-        background-color: #ff1744;
+        background: var(--background-gradient);
+        color: var(--pure-white);
     }
     &:focus {
         outline: none;
@@ -121,20 +120,20 @@ const Paginate = ({data, component}) => {
 
     return (
         <>
-        <div className="popular-products">
-            <ProductCards
-                products={currentItems}
-            />
-        </div>
+            <div className="popular-products">
+                <ProductCards
+                    products={currentItems}
+                />
+            </div>
 
-        {/* <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton> */}
-        <NumbersContainer>
-            <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
-            {pageDecrementBtn}
-            {renderPageNumbers}
-            {pageIncrementBtn}
-            <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-        </NumbersContainer>
+            {/* <LoadMoreButton onClick={handleMoreBtn}>Cargar más productos</LoadMoreButton> */}
+            <NumbersContainer>
+                <Button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
+                {pageDecrementBtn}
+                {renderPageNumbers}
+                {pageIncrementBtn}
+                <Button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
+            </NumbersContainer>
         </>
     )
 }

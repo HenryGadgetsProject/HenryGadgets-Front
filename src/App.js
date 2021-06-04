@@ -10,6 +10,9 @@ import { getProducts } from './Redux/Actions/Product/ProductActions'
 import { getUsers } from './Redux/Actions/User/UserActions'
 import { getCart } from './Redux/Actions/Cart/CartActions'
 import { getOrders } from './Redux/Actions/Order/OrderActions'
+import { getBranches } from './Redux/Actions/Branch/BranchesActions'
+import { getWishlist } from './Redux/Actions/Wishlist/WishlistActions'
+import { getOffers } from './Redux/Actions/Offer/OffersActions'
 
 
 import GlobalStyles, { darkTheme, lightTheme } from './GlobalStyles'
@@ -32,6 +35,8 @@ function App() {
         dispatch(getProducts());
         dispatch(getUsers())
         dispatch(getOrders())
+        dispatch(getBranches())
+        dispatch(getOffers())
 
     }, [dispatch])
 
@@ -41,6 +46,7 @@ function App() {
 
     useEffect(() => {
         if (fullUser) {
+            dispatch(getWishlist(fullUser.id))
             dispatch(
                 {
                     type: USER_LOGIN_SUCCESS,
@@ -54,7 +60,7 @@ function App() {
         if (user.id) {
             dispatch(getCart(user.id))
         }
-    }, [user.id])
+    }, [dispatch, user.id])
 
     if (user.is_admin === true) {
         return (

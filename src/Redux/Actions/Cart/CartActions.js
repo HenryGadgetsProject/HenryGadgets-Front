@@ -172,10 +172,10 @@ export const createOrder = (userId, body,) => {
     }
 }
 
-export const sendMail = (body) => {
+export const sendMail = (body, url) => {
     return (dispatch) => {
         dispatch({ type: MAIL_SENDING })
-        axios.post(`http://localhost:3001/email/buy-confirmation`, body)
+        axios.post(`http://localhost:3001/email/${url}`, body)
             .then(response => {
 
                 dispatch(

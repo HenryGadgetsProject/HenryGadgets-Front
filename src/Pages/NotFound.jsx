@@ -43,17 +43,10 @@ const NotFound = () => {
         <div className="container">
             <NavBar className="nav" />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
             <Main id="main">
                 <NotFoundContainer>
                     <h3>Error 404 | La página no existe.</h3>
-
-                    {/* {setTimeout(() => {
-                        history.push('/home')
-                    }, 3000)} */}
 
                     {/* <p>Lo sentimos, tu busqueda no ha retornado ningún resultado.</p>
                     <p>Probablemente el producto que estás buscando no existe".</p>
@@ -61,7 +54,7 @@ const NotFound = () => {
                 </NotFoundContainer>
 
                 <Link to="/home">
-                    <button className="review">Regresar</button>
+                    <button className="review btn btn-md">Regresar</button>
                 </Link>
             </Main>
 

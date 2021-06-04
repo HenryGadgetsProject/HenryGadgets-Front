@@ -42,7 +42,6 @@ const Home = () => {
         <div className="container">
             <Header id="header">
                 <NavBarHome />
-                {/* <NavBar /> */}
 
                 {/* ya tiene preparado el onClick para que vaya a /products/id */}
                 <Carousel
@@ -70,11 +69,14 @@ const Home = () => {
 
             <Main id="main">
                 <aside>
+                    {/* <div className="aside-search-bar">
+                        <AsideSearchBar />
+                    </div> */}
                     <input type="checkbox" id="btn-drop-down-filters" />
                     <label htmlFor="btn-drop-down-filters" className="icon-drop-down-filters"><DropIcon/></label>
 
                     <div className="filters">
-                        <h6>Buscar por: </h6>
+                        <h6>Buscar por : </h6>
                         <FilterPrdByCatName />
                         <FilterPrdByStock />
                         <FilterPrdByPrice />
@@ -82,9 +84,10 @@ const Home = () => {
                     </div>
                 </aside>
                 <section>
-                    <Paginate data={products}/>
+                    <Paginate data={products} />
                 </section>                
             </Main>
+            
             <Footer />
         </div>
     )

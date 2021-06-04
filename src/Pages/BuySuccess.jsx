@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-import { useSelector } from 'react-redux'
 import Main from '../Components/Atoms/Main'
-import Footer from '../Components/Organisms/Footer'
-import queryString from 'query-string'
-import { useLocation, useHistory } from 'react-router-dom'
-import { clearCart, sendMail, changeToCompleted } from '../Redux/Actions/Cart/CartActions'
-import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
-//import ReviewsForm from '../Components/Organisms/ReviewsForm/ReviewsForm'
+import queryString from 'query-string'
+import Footer from '../Components/Organisms/Footer'
 
 
 const BuySuccess = ({ orderId }) => {
@@ -17,10 +15,13 @@ const BuySuccess = ({ orderId }) => {
     const history = useHistory()
     const { search } = useLocation()
     const values = queryString.parse(search)
+    console.log('vuelve de mp', values)
 
     const user = useSelector(state => state.user.user)
     const cart = useSelector(state => state.cart.cartList)
     const status = useSelector(state => state.cart.status)
+
+    console.log('EN SUCCESS', cart)
 
 
     const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
@@ -36,13 +37,6 @@ const BuySuccess = ({ orderId }) => {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-
-    // dispatch(sendMail(body))
-    // dispatch(dispatch(clearCart))
-    // Toast.fire({
-    //     icon: 'success',
-    //     title: 'Te hemos enviado un mail'
-    // })
 
     const client = {
         first_name: user.first_name,
@@ -60,7 +54,7 @@ const BuySuccess = ({ orderId }) => {
     useEffect(() => {
         if (values.status === 'approved') {
             setTimeout(() => {
-                dispatch(sendMail(body))
+                dispatch(sendMail(body, 'buy-confirmation'))
                 dispatch(changeToCompleted(orderId))
                 dispatch(dispatch(clearCart))
                 Toast.fire({
@@ -74,12 +68,9 @@ const BuySuccess = ({ orderId }) => {
     }, [user])
 
     return (
-        < div className="container" >
+        <div className="container" >
             <NavBar id="nav-general" />
             <Breadcrumb id="breadcrumb" />
-            {/* <Header id="header">
-                <h1>Henry Gadgets</h1>
-            </Header> */}
 
             <Main id="main">
                 <div className="success-container">
@@ -104,13 +95,10 @@ const BuySuccess = ({ orderId }) => {
                     </div>
                     {(status === 200) ? <h2>enviado</h2> : null}
                 </div>
-
-                {/* <ReviewsForm /> */}
-
             </Main>
 
             <Footer />
-        </div >
+        </div>
     )
 }
 

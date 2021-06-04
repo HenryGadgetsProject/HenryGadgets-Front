@@ -10,11 +10,12 @@ import styled from 'styled-components'
 const Input = styled.input`
     background          : var(--pure-white);
     border              : none;
+    border-radius       : 3em;
     ${'' /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1); */}
     font-size           : 1.3em;
     font-weight         : 600;
     height              : 2.5em;
-    margin              : 1.3em;
+    margin              : .5em 1em;
     outline             : none;
     padding-left        : 1em;
     ${'' /* text-transform      : capitalize; */}
@@ -34,12 +35,15 @@ const Input = styled.input`
 const SuggestContainer = styled.div`
     ${'' /* display:none; */}
     ${'' /* border-radius       : .3em; */}
-    margin              : -1.7em 0 0 1.7em;
+    ${'' /* margin              : -1em 0 0 .8em; */}
+    margin              : -.8em 0 0 2em;
     height              : 25em;
     ${'' /* max-width           : 21.35em; */}
     overflow            : scroll;
+    padding-left: .5em;
     scrollbar-width     : none; /* Firefox */
-    width               : 32.5em;
+    ${'' /* width               : 33em; */}
+    width               : 30.5em;
     -ms-overflow-style  : none; /* IE and Edge */
     &::-webkit-scrollbar {
         display         : none;
@@ -50,10 +54,12 @@ const SuggestContainer = styled.div`
     }
 
     li {
+        align-items: center;
         background          : var(--pure-white);
         ${'' /* border-bottom       : 1px solid var(--pure-white); */}
         color               : var(--pure-black);
-        display             : block;
+        ${'' /* display             : block; */}
+        display             : flex;
         font-size           : 1.6em;
         font-weight         : 400;
         height              : 1.6em;
@@ -61,11 +67,20 @@ const SuggestContainer = styled.div`
         transition          : .3s;
         &:hover {
             /* background-color: var(--default-primary); */
-            background-color: #FF616F;
+            background-color: var(--default-primary);
             color           : var(--pure-white);
             cursor          : pointer;
-            transform       : scale(1.05);
+            ${'' /* transform       : scale(1.05); */}
         }
+    }
+
+
+    ${'' /* =================================================
+    SMALL - CHECK TABLET VERTICAL OR MOBILE VIEW 992px
+    ===================================================== */}
+    @media(max-width: 992px) {
+        margin-right    : 3em;
+        max-width       : 23.4em;
     }
 `
 

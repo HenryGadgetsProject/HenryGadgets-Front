@@ -26,23 +26,23 @@ const Nav = styled.nav`
     top: 0;
     width           : 100%;
     z-index         : 900;
-
-    ${'' /* .logo {
-        padding     : 18px 0;
-    } */}
 `
 const LogoDiv = styled.div`
     align-items     : center;
     display         : flex;
     justify-content : space-between;
     margin-left     : 2em;
-    ${'' /* width           : auto; */}
     width           : 4em;
+
+    transition      : all .3s linear;
+    &:hover {
+        transform   : scale(1.1);
+    }
 `
 
 const NavBar = () => {
     const mode = useSelector((state) => state.global.theme)
-    
+
     const location = useLocation()
 
     return (
@@ -52,28 +52,25 @@ const NavBar = () => {
                     {
                         !mode ?
                             <img
-                                id="logo-productman"
-                                src={ LogoLight }
+                                id="logo"
+                                src={LogoLight}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
-                        :
+                            :
                             <img
-                                id="logo-productman"
-                                src={ LogoDark }
+                                id="logo"
+                                src={LogoDark}
                                 width="50"
                                 height="50"
                                 alt=""
                             />
                     }
                 </Link>
-                {/* <H2>
-                    <Link to="/home" className="link">
-                        HandyX App
-                    </Link>
-                </H2> */}
+
             </LogoDiv>
+
 
             {location.pathname === '/home' ? <SearchBar /> : null}
             {/* <SearchBar /> */}

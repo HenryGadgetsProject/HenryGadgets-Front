@@ -10,6 +10,7 @@ const Table = styled.table`
         font-weight     : bold;
         margin          : 1.8em 0 .5em 0;
         text-align      : left;
+        white-space     : nowrap !important;
     }
 
     th, td {
@@ -33,7 +34,7 @@ const Table = styled.table`
 
     tr:hover {
         ${'' /* background      : #626262; */}
-        background      : var(--background-gradient);
+        background      : var(--light-primary);
     }
 
     tbody tr td {
@@ -87,6 +88,7 @@ const Table = styled.table`
         caption {
             font-size   : 1.6em;
             margin      : .5em 0;
+            white-space : nowrap !important;
         }
 
         thead tr {
@@ -119,13 +121,13 @@ const Table = styled.table`
             padding-left    : 50%;
             :hover {
                 ${'' /* background  : #626262; */}
-                background  : var(--background-gradient);
+                background  : var(--light-primary);
             }
         }
 
         td:nth-child(even) {
             ${'' /* background      : #515151; */}
-            background  : var(--aside-home);
+            background      : var(--aside-home);
         }
 
         td:before {

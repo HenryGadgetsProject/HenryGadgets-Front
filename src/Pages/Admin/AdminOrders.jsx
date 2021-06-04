@@ -9,27 +9,24 @@ import styled from "styled-components"
 
 
 const NumbersContainer = styled.ul`
-    list-style: none;
-    display: flex;
     align-self: center;
     background: var(--pure-white);
+    color: var(--dark-primary);
+    display: flex;
+    list-style: none;
     padding: 0;
 `
 const PageNumbers = styled.li`
+    border: .1em solid var(--divider);
+    color: var(--dark-primary);
+    cursor: pointer;
     font-size: 1.2em;
     font-weight: 500;
-    text-align: center;
     padding: 1.6em;
-    border: .1em solid var(--divider);
-    cursor: pointer;
-    transition: .5s;
+    text-align: center;
     &:hover {
-        background-color: #ff616f;
-    }
-    &.active {
-        font-weight: 700;
-        background-color: #ff1744;
-        color: black;
+        background: var(--background-gradient);
+        color: var(--pure-white);
     }
 `
 const Button = styled.button`
@@ -38,11 +35,12 @@ const Button = styled.button`
     padding: 1.6em;
     background-color: transparent;
     border: .1em solid var(--divider);
-    color: black;
+    color: var(--dark-primary);
     cursor: pointer;
-    transition: .5s;
+    transition: all .3s linear;
     &:hover {
-        background-color: #ff1744;
+        background: var(--background-gradient);
+        color: var(--pure-white);
     }
     &:focus {
         outline: none;
@@ -50,27 +48,35 @@ const Button = styled.button`
 `
 
 const DeleteIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
 const EditIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
 `
 const ResetIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/bx:bx-reset.svg?color=green') no-repeat center center / contain;
 `
 const CartIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/el:shopping-cart-sign.svg?color=%23FF1744') no-repeat center center / contain;
 `
 const ProcessingIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/uim:process.svg?color=%23ffff00') no-repeat center center / contain;
 `
 const CreatedIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/akar-icons:arrow-forward-thick-fill.svg?color=%231565c0') no-repeat center center / contain;
 `
 const CancelledIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/ic:round-cancel.svg?color=%23d50000') no-repeat center center / contain;
 `
 const CompletedIcon = styled.img`
+    padding: 2.5em;
     background: url('https://api.iconify.design/teenyicons:tick-circle-solid.svg?color=chartreuse') no-repeat center center / contain;
 `
 
@@ -125,7 +131,7 @@ const AdminOrders = () => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
             return (
                 <PageNumbers
-                    className={currentPage === number ? 'active' : null} key={number} id={number} onClick={handleClick}>
+                    className={currentPage === number ? 'active btn-pag' : null} key={number} id={number} onClick={handleClick}>
                     {number}
                 </PageNumbers>
             )
@@ -145,8 +151,8 @@ const AdminOrders = () => {
             text: "Vas a eliminar una Orden",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#7FFF00',
+            cancelButtonColor: '#E90000',
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })
@@ -164,6 +170,7 @@ const AdminOrders = () => {
 
     return (
         <>
+            <h3>Filtrar por estado</h3>
             <div className="filter-buttons">
                 <ResetIcon onClick={() => dispatch(getOrders())} />
                 <CartIcon onClick={() => handleTerm('cart')} />
@@ -207,13 +214,13 @@ const AdminOrders = () => {
                 </tbody>
             </Table>
 
-                <NumbersContainer>
-                    <Button onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
+            <NumbersContainer>
+                <Button className="btn-pag" onClick={handlePrevBtn} disabled={currentPage === pages[0] ? true : false}>Anterior</Button>
                     {pageDecrementBtn}
                     {renderPageNumbers}
                     {pageIncrementBtn}
-                    <Button onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
-                </NumbersContainer>
+                <Button className="btn-pag" onClick={handleNextBtn} disabled={currentPage === pages[pages.length - 1] ? true : false}>Siguiente</Button>
+            </NumbersContainer>
         </>
     )
 }

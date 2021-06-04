@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateProduct, getProductsById } from '../../../Redux/Actions/Product/ProductActions'
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom";
+import { sendStockNotification } from '../../../Redux/Actions/Product/ProductActions'
 
 import styled from 'styled-components'
 
 const FormContainer = styled.div`
+    height: 100%;
     padding: 2em;
     background: #424242;
     border-radius: 2em;
@@ -233,6 +235,11 @@ const EditProductForm = ({ productId }) => {
     }
 
     const handleSubmit = (e) => {
+
+        // console.log(input)
+        // console.log(product)
+
+
         e.preventDefault()
         if (error.name || error.price || error.big_image || error.description || error.is_active || error.stock) {
             Swal.fire({
@@ -243,6 +250,10 @@ const EditProductForm = ({ productId }) => {
             return
         }
 
+        if (parseInt(product.stock) === 0 && parseInt(product.stock) < parseInt(input.stock)) {
+            dispatch(sendStockNotification(product.id))
+        }
+        
         // const newInput = {...input, rating: parseInt(input.rating)}
 
         dispatch(updateProduct(productId, input))

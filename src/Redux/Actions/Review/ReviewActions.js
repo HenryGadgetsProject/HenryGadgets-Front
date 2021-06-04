@@ -4,11 +4,10 @@ import HOST from '../../../constants'
 import {
     CREATE_REVIEW_SUCCESS,
     REVIEW_ERROR,
-    REVIEW_ADD,
-    REVIEW_REQUEST,
+    REVIEWS_REQUEST,
     GET_REVIEW_SUCCESS,
     EDIT_REVIEW_SUCCESS,
-    CREATED_FALSE,
+    DELETE_REVIEW_SUCCESS,
     // GET_REVIEW_BY_PRODUCT,
     GET_REVIEWS_BY_USER_ID
 } from './ReviewActionTypes'
@@ -17,7 +16,7 @@ export const getReview = (productId) => {
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_REQUEST
+                type: REVIEWS_REQUEST
             }
         )
         axios.get(`${HOST}/products/${productId}/review`)
@@ -46,7 +45,7 @@ export const getReviewsByUserId = (userId) => {
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_REQUEST
+                type: REVIEWS_REQUEST
             }
         )
         axios.get(`${HOST}/products/user/${userId}`)
@@ -75,7 +74,7 @@ export const addReview = (input) => {
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_ADD
+                type: REVIEWS_REQUEST
             }
         )
         axios.post(`${HOST}/products/${input.productId}/review`, input)
@@ -100,16 +99,18 @@ export const addReview = (input) => {
     }
 }
 
-export const updateReview = () => {
+export const updateReview = (id, body) => {
+
     return (dispatch) => {
         dispatch(
             {
-                type: REVIEW_ADD
+                type: REVIEWS_REQUEST
             }
         )
-        axios.put(`${HOST}/reviews`)
+        axios.put(`${HOST}/products/review/${id}`, body)
             .then(response => {
                 const reviews = response.data
+
                 dispatch(
                     {
                         type: EDIT_REVIEW_SUCCESS,
@@ -129,13 +130,28 @@ export const updateReview = () => {
     }
 }
 
-export const createdFalse = (bool) => {
+export const deleteReview = (id) => {
     return (dispatch) => {
-        dispatch(
-            {
-                type: CREATED_FALSE
-            }
-        )
+        dispatch({ type: REVIEWS_REQUEST })
+        axios.delete(`${HOST}/products/review/${id}`)
+            .then(response => {
+                const review = response.data
+                dispatch(
+                    {
+                        type: DELETE_REVIEW_SUCCESS,
+                        payload: parseInt(id)
+                    }
+                )
+            })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: REVIEW_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
     }
 }
 

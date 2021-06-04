@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../Components/Organisms/NavBar'
 import Breadcrumb from '../Components/Atoms/Breadcrumb'
-// import Header from '../Components/Atoms/Header'
 import Main from '../Components/Atoms/Main'
-// import Table from '../Components/Atoms/Table'
 import Footer from '../Components/Organisms/Footer'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
@@ -24,48 +22,45 @@ import styled from 'styled-components'
 // Table
 const Table = styled.table`
     border-collapse         : collapse;
-    display                 :block;
+    display                 : block;
     margin                  : 0 auto;
     width                   : 80%;
 
     caption {
-        color               : var(--pure-black);
+        color               : var(--font-color);
         font-size           : 2.2em;
         font-weight         : bold;
         margin              : 1.8em 0 .5em 0;
         text-align          : center;
-        ${'' /* align-self: flex-start; */}
     }
 
     th, td {
         padding             : .8em;
         text-align          : center;
-        border-bottom       : .1em solid #b6b6b6;
+        border-bottom       : .1em solid var(--divider);
     }
 
     th {
-        color               : var(--pure-black);
+        color               : var(--font-color);
         /* color: #FFFFFF; */
         font-size           : 2em;
     }
 
     tr {
-        /* background-color:#424242; */
+        background          : var(--body);
         transition          : background-color .5s ease;
     }
 
     tr:hover {
-        background-color    : var(--divider);
+        background          : var(--light-primary);
         td {
             color           : var(--pure-black);
         }
-        /* background-color:#626262; */
     }
 
     tbody tr td {
         text-align          : center;
-        /* color: #b6b6b6; */
-        color               : #424242;
+        color               : var(--font-color);
         font-size           : 2em;
     }
 
@@ -130,31 +125,31 @@ const Table = styled.table`
         }
 
         tr {
-            border          : .2em solid #B6B6B6;
+            border          : .2em solid var(--divider);
             margin-bottom   : 4em;
             width           : 100%;
             :hover {
-                background  : transparent;
+                background  : var(--pure-gray);
             }
         }
 
         td, td:nth-child(even) {
             border          : none;
-            border-bottom   : 1px solid #EEEEEE;
+            border-bottom   : 1px solid var(--pure-white); 
             color           : black;
             position        : relative;
             padding-left    : 50%;
             :hover {
-                background  : #626262;
+                background  : var(--light-primary);
             }
         }
 
         td:nth-child(even) {
-            background      : #515151;
+            background      : var(--aside-home);
         }
 
         td:before {
-            color           : black;
+            color           : var(--font-color);
             content         : attr(data-label);
             float           : left;
             font-weight     : bold;
@@ -172,16 +167,6 @@ const Table = styled.table`
     }
 `
 
-// const Container = styled.div`
-//     display: flex;
-// `
-// const Item = styled.div`   
-// `
-
-// Icons
-// const BuyIcon = styled.img`
-//     background: url('https://api.iconify.design/bi:credit-card-2-back.svg?color=%23ff1744') no-repeat center center / contain;
-// `
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/ant-design:delete-filled.svg?color=%23e90000') no-repeat center center / contain;
 `
@@ -230,8 +215,8 @@ const MyCart = () => {
             text: "Vas a eliminar un producto de tu Carrito!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#7FFF00',
+            cancelButtonColor: '#E90000',
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         })

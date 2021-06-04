@@ -22,6 +22,7 @@ import {
     SET_PROD_BY_ACTIVE,
     SET_PROD_BY_PRICE,
     SET_PROD_BY_RATING,
+    NOTIFY_STOCK_SUCCESS
     // FILTER_PRODUCT_BY_PRODUCT
     // GET_PRODUCT_BY_ID_SUCCESS,
     // GET_PRODUCT_BY_ZONE_SUCCESS,
@@ -243,6 +244,34 @@ export const updateProduct = (id, input) => {
                     }
                 )
             })
+            .catch(error => {
+                const errorMsg = error.message
+                dispatch(
+                    {
+                        type: PRODUCT_ERROR,
+                        payload: errorMsg
+                    }
+                )
+            })
+    }
+}
+
+export const sendStockNotification = (productId) => {
+    return (dispatch) => {
+        dispatch(
+            {
+                type: PRODUCT_REQUEST
+            }
+        )
+        axios.post(`${HOST}/email/stock/${productId}`).then(response => {
+            // const product = response.data
+            dispatch(
+                {
+                    type: NOTIFY_STOCK_SUCCESS,
+
+                }
+            )
+        })
             .catch(error => {
                 const errorMsg = error.message
                 dispatch(

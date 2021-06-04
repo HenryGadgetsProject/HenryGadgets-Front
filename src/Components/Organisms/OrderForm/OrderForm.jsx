@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-//import { addCategory } from '../../../Redux/Actions/Categories/CategoriesActions'
-//import Swal from 'sweetalert2'
-//import { useHistory } from 'react-router-dom'
+import { createOrder, sendMail } from '../../../Redux/Actions/Cart/CartActions'
 
-
+import Swal from 'sweetalert2'
 import styled from 'styled-components'
 
-//import axios from 'axios'
-import { createOrder } from '../../../Redux/Actions/Cart/CartActions'
-
 const FormContainer = styled.div`
+    height: 50em;
     margin-top: 10em;
     padding: 2em;
     background: #424242;
@@ -79,11 +75,11 @@ const NameIcon = styled.img`
     padding: 1em;
     background: url('https://api.iconify.design/bi:pencil-fill.svg?color=white') no-repeat center center / contain;
 `
-const ImageIcon = styled.img`
+const CountryIcon = styled.img`
     height: 2em;
     width: 2em;
     padding: 1em;
-    background: url('https://api.iconify.design/bi:image-fill.svg?color=white') no-repeat center center / contain;
+    background: url('https://api.iconify.design/bx:bx-world.svg?color=white') no-repeat center center / contain;
 `
 const PhoneIcon = styled.img`
     height: 2em;
@@ -119,23 +115,14 @@ const validate = (input) => {
 }
 
 const OrderForm = ({ total }) => {
+
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.user)
-    //const orderId = useSelector(state => state.cart.orderId)
-
-
-    //const history = useHistory()
-
+    const cart = useSelector(state => state.cart.cartList)
 
     const [isTouch, setIsTouch] = useState({})
-
     const [error, setError] = useState('')
-
-    //const [process, setProcess] = useState('false')
-
-    //const [payment, setPayment] = useState('false')
-
 
     const [input, setInput] = useState({
         street: "",
@@ -143,6 +130,18 @@ const OrderForm = ({ total }) => {
         city: "",
         phone_number: "",
     })
+
+    const client = {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email
+    }
+
+    const body1 = {
+        products: cart,
+        client: client,
+        total: total,
+    }
 
     const handleChange = (e) => {
         setInput({
@@ -162,73 +161,19 @@ const OrderForm = ({ total }) => {
     }
 
     const handleSubmit = (e) => {
+        if (error.street || error.country || error.city || error.phone_number || input.street === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Debes completar todos los campos!'
+            })
+            return e.preventDefault()
+        }
         e.preventDefault()
-
-        //setProcess('true')
-
         const body = { ...input, total_price: total }
         dispatch(createOrder(user.id, body))
-
-        /////////
-        // Swal.fire({
-        //     title: 'Tu compra se enviará a la siguiente dirección',
-        //     text: 'Información proporcionada por el usuario',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Confirmar',
-        //     cancelButtonText: 'Cancelar'
-        // })
-        //     .then((result) => {
-        //         if (result.isConfirmed) {
-        //             setPayment('true')
-
-        //             console.log('entro a processing')
-        //             console.log(orderId)
-        //             axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
-        //                 .then(response => {
-        //                     console.log(response.data)
-        //                 })
-        //             Swal.fire(
-        //                 'Ahora puedes proceder con tu pago',
-        //                 'success'
-        //             )
-        //             history.push('/confirmation')
-        //         } else {
-        //             console.log('setProcess -> false, limpiar back, y modificar state en redux');
-        //         }
-        //     })
-        /////////
+        dispatch(sendMail(body1, 'buy-thanks'))
     }
-
-
-    // const handleAdressProcessing = () => {
-
-    //     setPayment('true')
-
-    //     console.log('entro a processing')
-    //     console.log(orderId)
-    //     axios.put(`http://localhost:3001/orders/admin/${orderId}/processing`)
-    //         .then(response => {
-    //             console.log(response.data)
-
-    //         })
-
-    // }
-
-    // const handlePayment = () => {
-
-    //     const order = {
-    //         description: "Henry Gadgets",
-    //         price: total,
-    //         quantity: 1
-    //     }
-
-    //     axios.post(`http://localhost:3001/payment/${orderId}`, order)
-    //         .then(response => window.open(response.data.url))
-
-    // }
-
 
     return (
         <FormContainer>
@@ -237,7 +182,7 @@ const OrderForm = ({ total }) => {
 
                 <Divider>
                     <Item>
-                        <ImageIcon />
+                        <CountryIcon />
                         <Label>País </Label>
                         <br />
                         <Input name='country' value={input.country} onBlur={handleBlur} onChange={handleChange}></Input>

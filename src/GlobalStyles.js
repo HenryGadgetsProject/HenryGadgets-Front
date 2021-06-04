@@ -3,46 +3,118 @@ import { createGlobalStyle } from 'styled-components'
 // THEME CREATION
 
 export const lightTheme = {
-    background                  : 'linear-gradient(to right, #FF1744 , #AF0000)',
-    fontColor                   : '#000000',
+    background              : 'linear-gradient(to right, #FF1744 , #AF0000)',
+    fontColor               : '#000000',
 
     // Color Palette - Light Theme
-    colorPalette: {
-        darkPrimary             : '#AF0000',
-        defaultPrimary          : '#FF1744',
-        lightPrimary            : '#FFCDD2',
-        primaryAccent           : '#FFCC00',
-        secondaryAccent         : '#00FFFF',
-        primaryText             : '#212121',
-        secondaryText           : '#757575',
-        divider                 : '#BDBDBD',
-        asideHome               : '#FFFFFF',
-        body                    : '#F2F2F2',
+    colorPalette            : {
+        darkPrimary         : '#AF0000',
+        defaultPrimary      : '#FF1744',
+        lightPrimary        : '#FFCDD2',
+        primaryAccent       : '#00FF00',
+        secondaryAccent     : '#00FFFF',
+        primaryText         : '#212121',
+        secondaryText       : '#757575',
+        divider             : '#BDBDBD',
+        asideHome           : '#FFFFFF',
+        body                : '#F2F2F2',
         h2: {
-            fontColor           : '#D32F2F'
+            fontColor       : '#D32F2F'
         },
+    },
+    // Icons - Light Theme
+    icon: {
+        user: `url('https://api.iconify.design/si-glyph:badge-name.svg?color=black')`,
+        email: `url('https://api.iconify.design/clarity:email-solid.svg?color=black')`,
+        bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=black')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=black')`,
+        magnifyingGlass: `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=black')`,
+        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=black')`,
+        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black')`,
+
+        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=black')`,
+        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=black')`,
+        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=black')`,
+        users: `url('https://api.iconify.design/fa-solid:users.svg?color=black')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=black')`,
+        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=black')`,
+        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=black')`,
+        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=black')`,
+        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=black')`,
+        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=black')`,
+        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=black')`,
+        notification: `url('https://api.iconify.design/bx:bxs-bell-ring.svg?color=black')`,
+
+        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=black')`
+    },
+    // Profile Pic - Light Theme
+    pic: {
+        alex                : `url('https://i.imgur.com/XaczzE1.png')`,
+        eduardo             : `url('https://i.imgur.com/eXiZwOG.png')`,
+        guille              : `url('https://i.imgur.com/zj255AA.png')`,
+        juan                : `url('https://i.imgur.com/w9W40Hc.png')`,
+        leo                 : `url('https://i.imgur.com/mhpIyZF.png')`,
+        marco               : `url('https://i.imgur.com/xE42jql.png')`,
     }
 }
 
 export const darkTheme = {
-    background                  : 'linear-gradient(to right, #04C8D4 , #512DA8)',
-    fontColor                   : '#FFFFFF',
+    background              : 'linear-gradient(to right, #04C8D4 , #512DA8)',
+    fontColor               : '#FFFFFF',
 
     // Color Palette - Dark Theme
-    colorPalette: {
-        darkPrimary             : '#512DA8',
-        defaultPrimary          : '#4202C2',
-        lightPrimary            : '#815FD3',
-        primaryAccent           : '#00FF00',
-        secondaryAccent         : '#E040FB',
-        primaryText             : '#F2F2F2',
-        secondaryText           : '#30363D',
-        divider                 : '#BDBDBD',
-        asideHome               : '#47484D',
-        body                    : '#16171B',
-        h2: {
-            fontColor           : '#4F0EA6'
+    colorPalette            : {
+        darkPrimary         : '#512DA8',
+        defaultPrimary      : '#4202C2',
+        lightPrimary        : '#815FD3',
+        primaryAccent       : '#E040FB',
+        secondaryAccent     : '#FFCC00',
+        primaryText         : '#F2F2F2',
+        secondaryText       : '#30363D',
+        divider             : '#BDBDBD',
+        asideHome           : '#47484D',
+        body                : '#16171B',
+        h2                  : {
+            fontColor       : '#4F0EA6'
         },
+    },
+    // Icons - Dark Theme
+    icon: {
+        user: `url('https://api.iconify.design/si-glyph:badge-name.svg?color=white')`,
+        email: `url('https://api.iconify.design/clarity:email-solid.svg?color=white')`,
+        bell: `url('https://api.iconify.design/bi:bell-fill.svg?color=white')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        review: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        wish: `url('https://api.iconify.design/clarity:heart-solid.svg?color=white')`,
+        magnifyingGlass: `url('https://api.iconify.design/fluent:calendar-search-16-filled.svg?color=white')`,
+        Review: `url('https://api.iconify.design/ic:baseline-rate-review.svg?color=white')`,
+        addReview: `url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white')`,
+
+        dropDown: `url('https://api.iconify.design/ic:outline-arrow-drop-down-circle.svg?color=white')`,
+        products: `url('https://api.iconify.design/akar-icons:tag.svg?color=white')`,
+        categories: `url('https://api.iconify.design/bx:bx-category-alt.svg?color=white')`,
+        users: `url('https://api.iconify.design/fa-solid:users.svg?color=white')`,
+        order: `url('https://api.iconify.design/bi:file-earmark-check-fill.svg?color=white')`,
+        location: `url('https://api.iconify.design/carbon:location-filled.svg?color=white')`,
+        offer: `url('https://api.iconify.design/bx:bxs-offer.svg?color=white')`,
+        addProducts: `url('https://api.iconify.design/carbon:tag-edit.svg?color=white')`,
+        addCategories: `url('https://api.iconify.design/ant-design:appstore-add-outlined.svg?color=white')`,
+        addLocation: `url('https://api.iconify.design/bx:bxs-location-plus.svg?color=white')`,
+        sales: `url('https://api.iconify.design/whh:resellerhosting.svg?color=white')`,
+        notification: `url('https://api.iconify.design/bx:bxs-bell-ring.svg?color=white')`,
+
+        github: `url('https://api.iconify.design/akar-icons:github-fill.svg?color=white')`
+    },
+    // Profile Pic - Dark Theme
+    pic                     : {
+        alex                : `url('https://i.imgur.com/N5xXz6J.png')`,
+        eduardo             : `url('https://i.imgur.com/GaXaUOt.png')`,
+        guille              : `url('https://i.imgur.com/jBxkUkS.png')`,
+        juan                : `url('https://i.imgur.com/uWtpojk.png')`,
+        leo                 : `url('https://i.imgur.com/aK0x7W8.png')`,
+        marco               : `url('https://i.imgur.com/Wgj41rA.png')`,
     }
 }
 
@@ -52,21 +124,53 @@ const GlobalStyle = createGlobalStyle`
     ===================================================== */}
     ${'' /* Color Palette Inheritance */}
     :root {
-        --background-gradient   : ${ props => props.theme.background };
-        --font-color            : ${ props => props.theme.fontColor };
-        --dark-primary          : ${ props => props.theme.colorPalette.darkPrimary };
-        --default-primary       : ${ props => props.theme.colorPalette.defaultPrimary };
-        --light-primary         : ${ props => props.theme.colorPalette.lightPrimary };
-        --primary-accent        : ${ props => props.theme.colorPalette.primaryAccent };
-        --secondary-accent      : ${ props => props.theme.colorPalette.secondaryAccent };
-        --primary-text          : ${ props => props.theme.colorPalette.primaryText };
-        --secondary-text        : ${ props => props.theme.colorPalette.secondaryText };
-        --divider               : ${ props => props.theme.colorPalette.divider };
-        --body                  : ${ props => props.theme.colorPalette.body };
-        --aside-home            : ${ props => props.theme.colorPalette.asideHome };
+        --background-gradient   : ${props => props.theme.background};
+        --font-color            : ${props => props.theme.fontColor};
+        --dark-primary          : ${props => props.theme.colorPalette.darkPrimary};
+        --default-primary       : ${props => props.theme.colorPalette.defaultPrimary};
+        --light-primary         : ${props => props.theme.colorPalette.lightPrimary};
+        --primary-accent        : ${props => props.theme.colorPalette.primaryAccent};
+        --secondary-accent      : ${props => props.theme.colorPalette.secondaryAccent};
+        --primary-text          : ${props => props.theme.colorPalette.primaryText};
+        --secondary-text        : ${props => props.theme.colorPalette.secondaryText};
+        --divider               : ${props => props.theme.colorPalette.divider};
+        --body                  : ${props => props.theme.colorPalette.body};
+        --aside-home            : ${props => props.theme.colorPalette.asideHome};
         --pure-white            : #FFFFFF;
         --pure-black            : #000000;
         --pure-gray             : #808080;
+
+        --icon-user             : ${props => props.theme.icon.user};
+        --icon-email            : ${props => props.theme.icon.email};
+        --icon-bell             : ${props => props.theme.icon.bell};
+        --icon-order            : ${props => props.theme.icon.order};
+        --icon-review           : ${props => props.theme.icon.review};
+        --icon-wish             : ${props => props.theme.icon.wish};
+        --icon-magnifying-glass : ${props => props.theme.icon.magnifyingGlass};
+        --icon-review           : ${props => props.theme.icon.Review};
+        --icon-add-review       : ${props => props.theme.icon.addReview};
+
+        --icon-drop-down        : ${props => props.theme.icon.dropDown};
+        --icon-products         : ${props => props.theme.icon.products};
+        --icon-categories       : ${props => props.theme.icon.categories};
+        --icon-users            : ${props => props.theme.icon.users};
+        --icon-order            : ${props => props.theme.icon.order};
+        --icon-location         : ${props => props.theme.icon.location};
+        --icon-offer            : ${props => props.theme.icon.offer};
+        --icon-add-products     : ${props => props.theme.icon.addProducts};
+        --icon-add-categories   : ${props => props.theme.icon.addCategories};
+        --icon-add-location     : ${props => props.theme.icon.addLocation};
+        --icon-sales            : ${props => props.theme.icon.sales};
+        --icon-notification     : ${props => props.theme.icon.notification};
+
+        --icon-github           : ${props => props.theme.icon.github};
+
+        --pic-alex              : ${props => props.theme.pic.alex};
+        --pic-eduardo           : ${props => props.theme.pic.eduardo};
+        --pic-guille            : ${props => props.theme.pic.guille};
+        --pic-juan              : ${props => props.theme.pic.juan};
+        --pic-leo               : ${props => props.theme.pic.leo};
+        --pic-marco             : ${props => props.theme.pic.marco};
     }
 
 
@@ -243,10 +347,10 @@ const GlobalStyle = createGlobalStyle`
 
     span.slideTitle {
         position                : absolute;
-        top                     : 5%;
-        right                   : 5%;
+        top                     : 4vh;
+        right                   : 5vw;
         color                   : var(--pure-white);
-        font-size               : 10em;
+        font-size               : 9em;
         text-shadow             : 3px 5px 8px var(--pure-black);
     }
 
@@ -307,35 +411,40 @@ const GlobalStyle = createGlobalStyle`
         padding                 : 2.2em 0;
         width                   : 20%;
 
-        #btn-drop-down-filters {
+        ${'' /* div.aside-search-bar {
             display: none;
+        } */}
+
+        #btn-drop-down-filters {
+            display             : none;
             &:checked ~ .filters {
-                display: flex !important;
+                display         : flex !important;
             }
         }
 
         .icon-drop-down-filters {
-            display: none;
-            cursor: pointer;
+            display             : none;
+            cursor              : pointer;
+            z-index             : 700;
         }
 
         .filters {
-            align-items             : center;
-            display                 : flex;
-            flex-direction          : column;
-            position                : sticky;
-            position                : -webkit-sticky;
-            top                     : 14em;
+            align-items         : center;
+            display             : flex;
+            flex-direction      : column;
+            position            : sticky;
+            position            : -webkit-sticky;
+            top                 : 14em;
             ${'' /* width: 100%; */}
 
             h6 {
-                color               : var(--font-color);
-                font-size           : 1.8em;
-                margin              : 0 auto .5em;
+                color           : var(--font-color);
+                font-size       : 1.8em;
+                margin          : 0 auto .5em;
             }
 
             label {
-                color               : var(--font-color);
+                color           : var(--font-color);
             }
         }
     }
@@ -427,7 +536,7 @@ const GlobalStyle = createGlobalStyle`
         outline                 : none;
         padding                 : 1.6em;
         text-align              : center;
-        transition              : .5s;
+        transition              : all .3s linear;
         &:hover {
             ${'' /* background      : linear-gradient(to right, var(--default-primary) , var(--dark-primary)); */}
             background          : var(--background-gradient);
@@ -469,7 +578,50 @@ const GlobalStyle = createGlobalStyle`
         width                   : 15em;
     }
 
+    ${
+  "" /* =================================================
+ADMIN ANALYTICS
+===================================================== */
+}
+.botonsAnalytics{
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 80%;
+}
 
+.graficos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: white;
+  border-radius: 2em;
+}
+
+.tarta, .barritas{
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+
+.idAnalytics{
+
+}
+
+.tituloLeo{
+  font-size: 2em;
+  color: var(--font-color);
+}
+.tituloLeoAlt{
+  font-size: 2em;
+  color: rgba(66,66,66);
+}
+
+.tituloLeo2{
+  font-size: 3em;
+  color: var(--font-color);
+  font-weight: bold;
+}
     ${'' /* =================================================
     SECTION 4
     ===================================================== */}
@@ -491,7 +643,7 @@ const GlobalStyle = createGlobalStyle`
 
     .total{
         display                 : flex;
-        justify-content         : flex-end;    
+        justify-content         : flex-end;
         font-size               : 2em;
     }
 
@@ -514,7 +666,7 @@ const GlobalStyle = createGlobalStyle`
     }
     .success-product{
         display: flex;
-        justify-content:flex-start;        
+        justify-content:flex-start;
         border-bottom:1px dotted #000000;
         padding: 2rem;
         font-size:1.6rem;
@@ -553,7 +705,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items :flex-start ;
-        border-top:1px dotted #000000;       
+        border-top:1px dotted #000000;
         border-bottom:1px dotted #000000;
         padding: 2rem;
         font-size:1.6rem;
@@ -573,14 +725,56 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         justify-content: center;
         margin-top:3rem;
-        
+        outline: none;
     }
 
     .filter-buttons img{
         width:5rem;
         height:5rem;
         margin:3rem;
+        outline: none;
+        border: none;
     }
+
+    /* Popup style */
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
 
 
 
@@ -589,30 +783,35 @@ const GlobalStyle = createGlobalStyle`
     ===================================================== */}
     @media(min-width: 992px) and (max-width: 1199px) {
         ${'' /* =============================================
+        SECTION 1 / SECTION 2
+        ================================================= */}
+        span.slideTitle {
+            right               : 14%;
+            top                 : 13%;
+            font-size           : 5em;
+        }
+        
+        ${'' /* =============================================
         SECTION 3
         ================================================= */}
-        aside {
+        ${'' /* aside {
             grid-column         : 1 / 2;
             width               : 10%;
-
-            ${'' /* .icon-drop-down-filters {
-                display         : flex !important;
-            } */}
 
             .filters {
                 width           : 160%;
             }
-        }
+        } */}
 
-        section {
+        ${'' /* section {
             grid-column         : 2 / 25;
             flex-direction      : block;
             width               : 90%;
-        }
+        } */}
 
-        .btn {
+        ${'' /* .btn {
             margin              : 2em 0 2em 6em;
-        }
+        } */}
 
         .btn-md {
             width               : 10em;
@@ -630,7 +829,8 @@ const GlobalStyle = createGlobalStyle`
         SECTION 1 / SECTION 2
         ================================================= */}
         span.slideTitle {
-            top                 : 50%;
+            right               : 7vw;
+            top                 : 10vh;
             font-size           : 5em;
         }
 
@@ -659,6 +859,14 @@ const GlobalStyle = createGlobalStyle`
             top                 : 7em;
             z-index             : 800;
 
+            ${'' /* div.aside-search-bar {
+                align-items: center;
+                display         : flex !important;
+                justify-content: center;
+                position: absolute;
+                width: 100%;
+            } */}
+
             .icon-drop-down-filters {
                 display         : flex !important;
                 align-self      : flex-end;
@@ -671,7 +879,7 @@ const GlobalStyle = createGlobalStyle`
                 justify-content : space-between;
                 position        : static;
 
-                transition: display .5s linear;
+                transition      : all .5s linear;
             }
         }
 

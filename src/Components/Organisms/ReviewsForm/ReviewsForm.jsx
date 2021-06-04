@@ -10,9 +10,9 @@ import Swal from 'sweetalert2'
 import styled from "styled-components"
 
 const FormContainer = styled.div`
+  height: 45em;
   margin-bottom: 10em;
   padding: 2em;
-  width: 50%;
   justify-content: center;
   background-color: #424242;
   border-radius: 2em;
@@ -22,6 +22,7 @@ const FormContainer = styled.div`
   }
 `;
 const Form = styled.form`
+  width: 100%;
   padding: 2em;
 `;
 const Label = styled.label`
@@ -33,6 +34,10 @@ const Input = styled.input`
   font-size: 1.5em;
   width: 16em;
 `;
+const LongInput = styled.input`
+  font-size: 1.5em;
+  width: 34.6em;
+`
 const Button = styled.button`
   background: #424242;
   color: #ffffff;
@@ -62,23 +67,27 @@ const ButtonContainer = styled.div`
   margin-top: 2em;
   text-align: center;
 `;
-const EmailIcon = styled.img`
+const TitleIcon = styled.img`
   margin-top: 2em;
   height: 2em;
   width: 2em;
   padding: 1em;
-  background: url("https://api.iconify.design/dashicons:email-alt.svg?color=white")
-    no-repeat center center / contain;
-`;
-const PasswordIcon = styled.img`
+  background: url('https://api.iconify.design/akar-icons:tag.svg?color=white') no-repeat center center / contain;
+`
+const RatingIcon = styled.img`
   margin-top: 2em;
   height: 2em;
   width: 2em;
   padding: 1em;
-  background: url("https://api.iconify.design/carbon:password.svg?color=white")
-    no-repeat center center / contain;
-`;
-
+  background: url('https://api.iconify.design/ant-design:star-filled.svg?color=white') no-repeat center center / contain;
+`
+const CommentIcon = styled.img`
+  margin-top: 2em;
+  height: 2em;
+  width: 2em;
+  padding: 1em;
+  background: url('https://api.iconify.design/fa-regular:comment-dots.svg?color=white') no-repeat center center / contain;
+`
 // const ReviewsForm = ({ execSubmit, user, productId }) => {
 const ReviewsForm = () => {
   
@@ -122,34 +131,19 @@ const ReviewsForm = () => {
       <Form onSubmit={handleSubmit}>
         <Divider>
           <Item>
-            <Label>Hola! {user.first_name} {user.last_name}</Label>
-            <br />
-            {/* <Input name='user' value={input.user} onBlur={handleBlur} onChange={handleChange}></Input>
-                        {isTouch.user && error.user ? (<ErrorMsg>{error.user}</ErrorMsg>) : null} */}
-          </Item>
-        </Divider>
-
-
-        <Item>
-          <EmailIcon />
-          <Label>{user.email}</Label>
-          <br />
-        </Item>
-
-        <Divider>
-          <Item>
-            <PasswordIcon />
+            <TitleIcon />
             <Label>Titulo</Label>
+            <br/>
             <Input
               name="title"
               value={input.title}
               onChange={handleChange}
               ></Input>
-            <br />
           </Item>
           <Item>
-            <PasswordIcon />
+            <RatingIcon />
             <Label>Rating </Label>
+            <br/>
             <Input
             type="number"
             name="rating"
@@ -161,18 +155,19 @@ const ReviewsForm = () => {
         </Divider>
 
           <Item>
-            <PasswordIcon />
+            <CommentIcon />
             <Label>Comment</Label>
-            <Input
+            <br/>
+            <LongInput
               name="description"
               value={input.description}
               onChange={handleChange}
-              ></Input>
+              ></LongInput>
             <br />
           </Item>
 
         <ButtonContainer>
-          <Button type="submit">Enviar review!</Button>
+          <Button type="submit">Publicar Review!</Button>
         </ButtonContainer>
       </Form>
     </FormContainer>

@@ -14,10 +14,12 @@ import styled from 'styled-components'
 //     background: url('https://api.iconify.design/bx:bx-detail.svg?color=white') no-repeat center center / contain;
 // `
 const AddReview = styled.img`
-    background: url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=white') no-repeat center center / contain;
+    background: var(--icon-add-review) no-repeat center center / contain;
+    ${'' /* background: url('https://api.iconify.design/fluent:form-new-28-regular.svg?color=black') no-repeat center center / contain; */}
 `
-const GlassIcon = styled.img`
-    background: url('https://api.iconify.design/foundation:magnifying-glass.svg?color=white') no-repeat center center / contain;
+const MagnifyingGlass = styled.img`
+    background: var(--icon-magnifying-glass) no-repeat center center / contain;
+    ${'' /* background: url('https://api.iconify.design/foundation:magnifying-glass.svg?color=black') no-repeat center center / contain; */}
 `
 
 const UserOrders = () => {
@@ -89,7 +91,7 @@ const UserOrders = () => {
                                 <td data-label="ID" className="center-text">{order.id}</td>
                                 <td data-label="Fecha" className="center-text">28/05/2021</td>
                                 <td data-label="Total" className="center-text">{order.total_price}$</td>
-                                <td data-label="Detalles" className="center-text"><GlassIcon onClick={() => handleGetDetails(order)} /></td>
+                                <td data-label="Detalles" className="center-text"><MagnifyingGlass onClick={() => handleGetDetails(order)} /></td>
                             </tr>
                         )
                     })}
@@ -100,24 +102,27 @@ const UserOrders = () => {
                 <caption>Detalles</caption>
                 <thead>
                     <tr>
-                        <th>*</th>
+                        <th>Foto</th>
                         <th className="name">Producto</th>
                         <th>Cantidad</th>
                         <th>Sub Total</th>
-                        <th>Review</th>
+                        <th>Crear</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {details.map(detail => (
-                        <tr key={detail.product_id}>
-                            <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
-                            <td data-label="Producto">{detail.name}</td>
-                            <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
-                            <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
-                            <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
-                        </tr>
-                    ))}
+                    {details.map(detail => {
+                        console.log(detail)
+                        return (
+                            <tr key={detail.product_id}>
+                                <td data-label="Foto"><img className="mini" src={detail.big_image} alt={detail.name} /></td>
+                                <td data-label="Producto">{detail.name}</td>
+                                <td data-label="Cantidad" className="center-text">{detail.quantity}</td>
+                                <td data-label="Monto" className="center-text">{detail.sub_total}$</td>
+                                <td data-label="Review"><AddReview onClick={() => { handleReview(detail.product_id) }} /></td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </Table>
         </>

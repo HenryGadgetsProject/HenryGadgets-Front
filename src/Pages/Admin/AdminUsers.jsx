@@ -1,40 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { changeUserStatus, promoteUser, getUsers, resetPassword } from '../../Redux/Actions/User/UserActions'
 import Table from '../../Components/Atoms/Table'
 import Swal from 'sweetalert2'
-
-// import { Link } from 'react-router-dom'
-
-import { changeUserStatus, promoteUser, getUsers, resetPassword } from '../../Redux/Actions/User/UserActions'
 
 import styled from "styled-components"
 
 const StatusIcon = styled.img`
     background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;
 `
-
 const ResetIcon = styled.img`
 background: url('https://api.iconify.design/bx:bx-reset.svg?color=green') no-repeat center center / contain;
 `
-// const EditIcon = styled.img`
-//     background: url('https://api.iconify.design/akar-icons:edit.svg?color=%23ffcc00') no-repeat center center / contain;
-// `
 const DeleteIcon = styled.img`
     background: url('https://api.iconify.design/el:ban-circle.svg?color=red') no-repeat center center / contain;
 `
 const PromoteIcon = styled.img`
     background: url('https://api.iconify.design/bi:arrow-up-circle-fill.svg?color=chartreuse') no-repeat center center / contain;
 `
-// const DegradeIcon = styled.img`
-//     background: url('https://api.iconify.design/el:arrow-down.svg?color=red') no-repeat center center / contain;
-// `
 const NotAdmin = styled.img`
     background: url('https://api.iconify.design/entypo:circle-with-cross.svg?color=%23ff3d00') no-repeat center center / contain;
 `
 
-// const InfoIcon = styled.img`
-//     background: url('https://api.iconify.design/bi:info-circle-fill.svg?color=lightblue') no-repeat center center / contain;
-// `
 
 const AdminUsers = () => {
 
@@ -61,8 +48,8 @@ const AdminUsers = () => {
                 text: "Vas a inhabilitar a un usuario",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#7FFF00',
+                cancelButtonColor: '#E90000',
                 confirmButtonText: 'Inhabilitar',
                 cancelButtonText: 'Cancelar'
             })
@@ -83,8 +70,8 @@ const AdminUsers = () => {
                 text: "Vas a habilitar a un usuario",
                 icon: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#7FFF00',
+                cancelButtonColor: '#E90000',
                 confirmButtonText: 'Habilitar',
                 cancelButtonText: 'Cancelar'
             })
@@ -141,13 +128,13 @@ const AdminUsers = () => {
                         <td data-label="Apellidos">{user.last_name}</td>
                         <td data-label="Correo">{user.email}</td>
                         <td data-label="Administrador" className="center-text">{(user.is_admin) ? <StatusIcon /> : <NotAdmin />}</td>
-                        <td data-label="Editar" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
-                        <td data-label="Editar" className="center-text" onClick={() => resetPasswordHandler(user.id)}>{(user.is_admin) ? null : <ResetIcon />}</td>
+                        <td data-label="Promover" className="center-text" onClick={() => promoteHandler(user.id)}>{(user.is_admin) ? null : <PromoteIcon />}</td>
+                        <td data-label="Reset" className="center-text" onClick={() => resetPasswordHandler(user.id)}>{(user.is_admin) ? null : <ResetIcon />}</td>
                         {
                         (user.status === 'active') ? 
-                        <td data-label="Borrar" className="center-text" onClick={() => statusHandler(user.id, 'disabled')}>{(user.is_admin) ? null : <StatusIcon/>}</td>
+                        <td data-label="Estado" className="center-text" onClick={() => statusHandler(user.id, 'disabled')}>{(user.is_admin) ? null : <StatusIcon/>}</td>
                         :
-                        <td data-label="Borrar" className="center-text" onClick={() => statusHandler(user.id, 'active')}>{(user.is_admin) ? null : <DeleteIcon/>}</td>
+                        <td data-label="Estado" className="center-text" onClick={() => statusHandler(user.id, 'active')}>{(user.is_admin) ? null : <DeleteIcon/>}</td>
                         }
                     </tr>
                 ))}

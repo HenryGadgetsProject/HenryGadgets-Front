@@ -1,18 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteProducts } from '../../Redux/Actions/Product/ProductActions'
+import { filteredProductsSelector } from '../../Helpers/filtered-products-selector.js'
+import Table from '../../Components/Atoms/Table'
 import StarRatings from 'react-star-ratings'
 import Swal from 'sweetalert2'
-import Table from '../../Components/Atoms/Table'
-// import FilterPrdByCatName from '../../Components/Organisms/FilterPrdByCatName'
-// import FilterPrdByStock from '../../Components/Organisms/FilterPrdByStock'
-// import FilterPrdByActive from '../../Components/Organisms/FilterPrdByActive'
-// import FilterPrdByPrice from '../../Components/Organisms/FilterPrdByPrice'
-// import FilterPrdByRating from '../../Components/Organisms/FilterPrdByRating'
-import { deleteProducts } from '../../Redux/Actions/Product/ProductActions'
-import { useSelector, useDispatch } from 'react-redux'
-// import { setProductsByCategoryName, setProductsByStock } from '../../Redux/Actions/Product/ProductActions'
-import { filteredProductsSelector } from '../../Helpers/filtered-products-selector.js'
-// import Paginate from '../../Components/Molecules/Paginate'
 
 import styled from "styled-components"
 
@@ -24,46 +17,6 @@ const NumbersContainer = styled.ul`
     padding: 0;
     margin-top: 4em;
 `
-// const PageNumbers = styled.li`
-    // ${'' /* border: .1em solid var(--divider);
-    // cursor: pointer;
-    // font-size: 1.2em;
-    // font-weight: 500;
-    // padding: 1.6em;
-    // text-align: center;
-    // transition: .5s;
-    // &:hover {
-    //     background-color: #ff616f;
-    // } */}
-    // ${'' /* &.active {
-    //     font-weight: bold;
-    //     background-color: var(--light-primary);
-    //     color: black;
-    // } */}
-// `
-// const Button = styled.button`
-    // ${'' /* background-color: transparent;
-    // border: .1em solid var(--divider);
-    // color: black;
-    // cursor: pointer;
-    // font-size: 1.2em;
-    // padding: 1.6em;
-    // text-align: center;
-    // transition: .5s;
-    // &:hover {
-    //     background-color: #ff1744;
-    // }
-    // &:focus {
-    //     outline: none;
-    // } */}
-// `
-// const LoadMoreButton = styled.button`
-//     padding: 1rem;
-//     background-color: #ff1744;
-//     color: black;
-//     font-size: 1.2em;
-//     border: 1px solid black;
-// `
 
 const StatusIcon = styled.img`
     background: url('https://api.iconify.design/bi:check-circle-fill.svg?color=chartreuse') no-repeat center center / contain;`
@@ -85,12 +38,6 @@ const AdminProducts = () => {
 
     const products = useSelector(state => filteredProductsSelector(state))
     const loading = useSelector(state => state.product.loading)
-
-    // useEffect(() => {
-    //     dispatch(setProductsByCategoryName(''))
-    //     dispatch(setProductsByStock(''))
-
-    // }, [dispatch])
 
     const deleteHandler = (id) => {
         Swal.fire({
@@ -161,9 +108,6 @@ const AdminProducts = () => {
             setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
         }
     }
-    // const handleMoreBtn = () => {
-    //     setItemsPerPage(itemsPerPage + 5)
-    // }
 
     let pageIncrementBtn = null
     if (pages.length > maxPageNumberLimit) {
@@ -196,18 +140,6 @@ const AdminProducts = () => {
     } else {
         return (
             <>
-                {/* <div className="filters">
-                    <FilterPrdByCatName />
-
-                    <FilterPrdByStock />
-
-                    <FilterPrdByActive />
-
-                    <FilterPrdByPrice />
-
-                    <FilterPrdByRating />
-                </div> */}
-
                 <Table>
                     <caption>Productos</caption>
                     <thead>

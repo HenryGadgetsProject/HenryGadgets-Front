@@ -10,7 +10,8 @@ import {
     CHANGE_USER_STATUS_SUCCESS,
     TOGGLE_USER_ADMIN_SUCCESS,
     PROMOTE_USER_SUCCESS,
-    RESET_PASSWORD_SUCCESS
+    RESET_PASSWORD_SUCCESS,
+    USER_SUSCRIBE
 } from '../Actions/User/UserActionTypes'
 
 
@@ -132,6 +133,14 @@ const userReducer = (state = initialState, action) => {
                 loading: false,
                 users: state.users.map(user => (user.id === parseInt(action.payload.id)) ? { ...user, reset: true } : user),
                 error: ''
+            }
+        }
+
+        case USER_SUSCRIBE: {
+            return {
+                ...state,
+                user: action.payload,
+                loading: false
             }
         }
 
