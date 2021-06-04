@@ -232,7 +232,8 @@ export const addUser = (body) => {
                         }
                     )
                 } else {
-                    alert('No se pudo registrar tu nuevo usuario')
+                    // alert('No se pudo registrar tu nuevo usuario')
+                    return
                 }
             })
             .catch(error => {
