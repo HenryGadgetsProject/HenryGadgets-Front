@@ -149,9 +149,9 @@ const UserProfile = () => {
         dispatch(userSuscribe(user))
     }
 
-    useEffect(() => {
-        dispatch(getUser(user.id))
-    }, [user.id])
+    // useEffect(() => {
+    //     dispatch(getUser(user.id))
+    // }, [user.id])
 
     return (
         <div className="container">
